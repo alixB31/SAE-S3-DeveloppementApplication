@@ -1,7 +1,7 @@
 # SAE-S3-DeveloppementApplication
 
-### Description :
+## Description :
 
-### Equipe & Rôles :
+## Equipe & Rôles :
 
-### Liens : 
+## Liens : 
