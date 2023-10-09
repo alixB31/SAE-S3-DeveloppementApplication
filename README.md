@@ -3,8 +3,13 @@
 ## Description :
 
 ## Equipe & Rôles :
-Alix Brugier --> alixB31
-Nathan Girardin --> Natou
+Alix Brugier --> alixB31 --> Devellopeur
+
+Nathan Girardin --> Natou --> Product Owner
+
+Mateo Faussurier --> Mateofsr --> Scrum Master
+
+Rayan Ibrahim --> Bratoun --> Devellopeur
 
 ## Liens : 
 Lien github : https://github.com/alixB31/SAE-S3-DeveloppementApplication.git
