@@ -10,13 +10,15 @@ Il peut ensuite exporter les questions précedemment créés pour les partager �
 
 
 ## Equipe & Rôles :
-Alix Brugier --> alixB31 --> Devellopeur
 
-Nathan Girardin --> Natou --> Product Owner
+Alix Brugier     ==> alixB31 
 
-Mateo Faussurier --> Mateofsr --> Scrum Master
+Nathan Girardin  ==> Natou    
 
-Rayan Ibrahim --> Bratoun --> Devellopeur
+Mateo Faussurier ==> Mateofsr 
+
+Rayan Ibrahim    ==> Bratoun  
+
 
 ## Liens : 
 Lien github : https://github.com/alixB31/SAE-S3-DeveloppementApplication.git  
