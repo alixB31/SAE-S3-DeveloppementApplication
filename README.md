@@ -17,7 +17,22 @@ Nathan Girardin  ==> Natou
 
 Mateo Faussurier ==> Mateofsr 
 
-Rayan Ibrahim    ==> Bratoun  
+Rayan Ibrahim    ==> Bratoun
+
+**Sprint 0 :**
+Product Owner : Nathan Girardin
+Scrum Master : Mateo Faussurier
+Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahim, Alix Brugier
+
+**Sprint 1 :**
+Product Owner : 
+Scrum Master : 
+Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahim, Alix Brugier
+
+**Sprint 2 :**
+Product Owner : 
+Scrum Master : 
+Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahim, Alix Brugier
 
 
 ## Liens : 
