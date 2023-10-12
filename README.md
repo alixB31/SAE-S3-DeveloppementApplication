@@ -17,7 +17,7 @@ Nathan Girardin  ==> Natou
 
 Mateo Faussurier ==> Mateofsr 
 
-Rayan Ibrahim    ==> Bratoun
+Rayan Ibrahime    ==> Bratoun
 
 
 **Sprint 0 :**
