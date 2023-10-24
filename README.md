@@ -9,6 +9,8 @@ Il peut aussi créer de nouvelles catégories, en modifier le nom, ou en supprim
 Il peut ensuite exporter les questions qu'il possède pour les partager à d'autres utilisateurs, et en tant qu'utilisateur il peut aussi recevoir puis importer une banque de questions.
 
 
+
+
 ## Equipe & Rôles :
 
 Alix Brugier     ==> alixB31 
