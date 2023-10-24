@@ -8,9 +8,6 @@ Le quiz est paramétrable, l'utilisateur peut choisir le nombre de questions, la
 Il peut aussi créer de nouvelles catégories, en modifier le nom, ou en supprimer, ainsi que de créer de nouvelles questions dans une catégorie, modifier ces questions et ces réponses, ou en supprimer.
 Il peut ensuite exporter les questions qu'il possède pour les partager à d'autres utilisateurs, et en tant qu'utilisateur il peut aussi recevoir puis importer une banque de questions.
 
-
-
-
 ## Equipe & Rôles :
 
 Alix Brugier     ==> alixB31 
