@@ -29,8 +29,8 @@ Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahim, Alix
 
 **Sprint 1 :**
 
-Product Owner : 
-Scrum Master : 
+Product Owner : IBRAHIME Rayan
+Scrum Master : BRUGIER Alix
 Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahim, Alix Brugier
 
 
