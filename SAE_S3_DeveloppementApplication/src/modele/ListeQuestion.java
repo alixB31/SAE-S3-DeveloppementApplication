@@ -1,36 +1,43 @@
 /*
- * 
+ * ListeQuestion.java
+ * année 2023-2024, BUT2 Informatique, no copyright
  */
 package modele;
 
 import java.util.HashMap;
 
 /**
- * 
+ * Liste des questions de type HashMap.
+ * @author Nathan Girardin, Mateo Faussurier, Rayan Ibrahim, Alix Brugier
  */
 public class ListeQuestion {
 	
-	// Liste contenant les catégories, la clé est l'équivalante à l'intitulé d'une question
-		// Cette intitulé est unique.
+		/*
+		 * Liste contenant les questions du quiz, cle correspont à la cle 
+		 * dans la liste pour acceder à une question.
+		 * l'intitule d'une question est unique.
+		 */
 		HashMap<String, Question> listeQuestion;
 		
 		/**
-		 * Construit un objet ListeQuestion.
+		 * Construit un objet ListeQuestion qui contiendra des objets Question.
 		 */
 		public ListeQuestion() {
 			listeQuestion = new HashMap<>();
 		}
 		
 		/**
-		 * @return
+		 * getter de la ListeQuestion
+		 * @return la liste des questions
 		 */
 		public HashMap getListeQuestion() {
 			return listeQuestion;
 		}
 		
 		/**
-		 * @param cle
-		 * @return
+		 * getter d'une question en particulier dans la liste
+		 * @param cle designant la question que l'on veut getter
+		 * @return la question / l'element
 		 */
 		public Question getElementListeQuestion(String cle) {
 			return listeQuestion.get(cle);
