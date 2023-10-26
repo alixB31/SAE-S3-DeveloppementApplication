@@ -67,7 +67,7 @@ public class ListeCategorie {
      * @param categorie
      * @return estAjoutee, true si la catégorie est ajoutée, false sinon.
      */
-    public boolean ajouterCategorie(Categorie categorie) {
+    public boolean ajouterElementListeCategorie(Categorie categorie) {
         boolean estAjoutee = false;
         String intitule = categorie.getIntituleCategorie();
         if (!elementEstDansListeCategorie(intitule) && !intitule.isEmpty() 
@@ -75,18 +75,17 @@ public class ListeCategorie {
             listeCategorie.put(intitule, categorie);
             estAjoutee = true;
         }
-
         return estAjoutee;
     }
 
     /**
-     * Modifie unecatégorie, on ne peut modifier que l'intitulé d'une catégorie.
+     * Modifie une catégorie, on ne peut modifier que l'intitulé d'une catégorie.
      * Les questions liées à une catégorie sont modifiées au sein de la classe
      * ListeQuestion.java.
      * @param ancienneCategorie
      * @param nouvelleIntitule 
      * @param nouvelleCategorie
-     * @return estModifiee, true si la catégorie est modiee, false sinon.
+     * @return estModifiee, true si la catégorie est modifiée, false sinon.
      */
     public boolean modifierCategorie(Categorie ancienneCategorie, String nouvelleIntitule) {
         boolean estModifiee = false;
