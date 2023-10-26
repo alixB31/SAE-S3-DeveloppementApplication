@@ -1,5 +1,5 @@
 /*
- * ListeCategorie.java												26/10/2023
+ * ListeCategorie.java					             26/10/2023
  * Un objet permettant de stoquer les catégories existantes.
  * C'est un objet HashMap.
  */
@@ -7,14 +7,20 @@ package modele;
 
 import java.util.HashMap;
 
+/** 
+ * Liste des catégories de type HashMap. Il ne peut pas y avoir plusieurs fois
+ * des catégories de même intitulé.
+ * @author mateo.faussurier
+ *
+ */
 public class ListeCategorie {
 	
-	// Liste contenant les catégories, la clé est l'équivalante à l'intitulé d'une catégorie
-	// Cette intitulé est unique.
+	// Liste contenant les catégories, la clé est l'équivalante à l'intitulé
+        // d'une catégorie. Cette intitulé est unique.
 	HashMap<String, Categorie> listeCategorie;
 	
 	/**
-	 * Construit un objet ListeCategorie.
+	 * Construit un objet ListeCategorie vide.
 	 */
 	public ListeCategorie() {
 		listeCategorie = new HashMap<>();
