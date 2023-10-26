@@ -79,11 +79,6 @@ public class Question {
 		return false; 
 	}
 	
-	public boolean supprimerQuestion() {
-		//TODO ecrire le corps...
-		return false;
-	}
-	
 	public boolean ajouterQuestion(Question question) {
 		//TODO ecrire le corps...
 		return false;
