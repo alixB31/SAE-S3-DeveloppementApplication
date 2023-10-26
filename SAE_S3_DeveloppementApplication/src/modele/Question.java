@@ -68,4 +68,26 @@ public class Question {
 		//TODO ecrire le corps...
 		return false;
 	}
+	
+	public boolean modifierFeedBackQuestion(String nouveauFeedBack) {
+		//TODO ecrire le corps...
+		return false;
+	}
+	
+	public boolean supprimerReponseFausse(String reponse) {
+		//TODO ecrire le corps...
+		return false; 
+	}
+	
+	public boolean supprimerQuestion() {
+		//TODO ecrire le corps...
+		return false;
+	}
+	
+	public boolean ajouterQuestion(Question question) {
+		//TODO ecrire le corps...
+		return false;
+	}
+	
+	
 }
