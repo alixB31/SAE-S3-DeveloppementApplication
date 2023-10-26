@@ -68,6 +68,7 @@ public class ListeQuestion {
 	}
 
 	/** TODO comment method role
+	 * @param question 
 	 * @param categorie
 	 * @return estAjoutee, true si la catégorie est ajoutée, false sinon.
 	 */

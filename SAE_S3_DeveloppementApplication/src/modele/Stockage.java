@@ -43,8 +43,22 @@ public class Stockage {
 	    return listeCategorie.ajouterElementListeCategorie(categorie);
 	}
 
+	/** TODO comment method role
+	 * @param question
+	 * @return
+	 */
 	public boolean ajouterQuestion(Question question) {
 		return listeQuestion.ajouterElementListeQuestion(question);
 		
+	}
+	
+	/**
+	 * Retourne la liste des questions ayant la même catégorie que celle en
+	 * paramètre.
+	 * @param categorie la catégorie qui filtre les questions.
+	 * @return ListeQuestion, la liste des questions correspondantes.
+	 */
+	public ListeQuestion listeQuestionParCategorie(Categorie categorie) {
+	    return this.listeQuestion.listeQuestionParCategorie(categorie, this);
 	}
 }

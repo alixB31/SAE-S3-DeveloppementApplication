@@ -87,7 +87,7 @@ public class ListeCategorie {
      * @param nouvelleCategorie
      * @return estModifiee, true si la catégorie est modifiée, false sinon.
      */
-    public boolean modifierCategorie(Categorie ancienneCategorie, String nouvelleIntitule) {
+    public boolean modifierElementListeCategorie(Categorie ancienneCategorie, String nouvelleIntitule) {
         boolean estModifiee = false;
         if (elementEstDansListeCategorie(ancienneCategorie.getIntituleCategorie())) {
             ancienneCategorie.setIntituleCategorie(nouvelleIntitule);

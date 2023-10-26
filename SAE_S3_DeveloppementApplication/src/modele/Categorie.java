@@ -48,15 +48,14 @@ public class Categorie {
 	
 	/** TODO comment method role
 	 * @param stockage
-	 * @return
+	 * @return true si l'ajout c'est effectué, false sinon
 	 */
 	public boolean ajouterCategorie(Stockage stockage) {
-	    stockage.ajouterCategorie(this);
-	    return true;
+	    return stockage.ajouterCategorie(this);
 	}
 	
 	/**
-	 * @param intitule
+	 * @param intitule , écrit l'intitule d'une catégorie
 	 */
 	public void setIntituleCategorie(String intitule) {
 	    this.intituleCategorie = intitule;
