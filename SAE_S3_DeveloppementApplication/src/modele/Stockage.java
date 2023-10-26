@@ -34,4 +34,12 @@ public class Stockage {
 	public HashMap getListeCategorie() {
 		return listeCategorie.getListeCategorie();
 	}
+	
+	/** TODO comment method role
+	 * @param categorie
+	 * @return
+	 */
+	public boolean ajouterCategorie(Categorie categorie) {
+	    return listeCategorie.ajouterCategorie(categorie);
+	}
 }

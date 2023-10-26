@@ -26,14 +26,26 @@ public class ListeCategorie {
 		listeCategorie = new HashMap<>();
 	}
 	
+	/** 
+	 * 
+	 * @return
+	 */
 	public HashMap getListeCategorie() {
 		return listeCategorie;
 	}
 	
+	/** TODO comment method role
+	 * @param cle
+	 * @return
+	 */
 	public Categorie getElementListeCategorie(String cle) {
 		return listeCategorie.get(cle);
 	}
 	
+	/** TODO comment method role
+	 * @param cle
+	 * @return
+	 */
 	public boolean supprimerElementListeCategorie(String cle) {
 		boolean estSupprime = false;
 		if (elementEstDansListeCategorie(cle) && !cle.equals("Général")) {
@@ -43,9 +55,28 @@ public class ListeCategorie {
 		return estSupprime;
 	}
 	
-	public boolean elementEstDansListeCategorie(String cle) {
-		return listeCategorie.containsKey(cle);
+	/** TODO comment method role
+	 * @param intitule
+	 * @return l'élément de la catégorie correspondant à son intitulé
+	 */
+	public boolean elementEstDansListeCategorie(String intitule) {
+		return listeCategorie.containsKey(intitule);
 	}
 	
+	/** TODO comment method role
+	 * @param categorie
+	 * @return estAjoutee, true si la catégorie est ajoutée, false sinon.
+	 */
+	public boolean ajouterCategorie(Categorie categorie) {
+	    boolean estAjoutee = false;
+	    String intitule = categorie.getIntituleCategorie();
+	    if (!elementEstDansListeCategorie(intitule) && !intitule.isEmpty() 
+	            && !intitule.isBlank() && !intitule.equals("Général")) {
+	        listeCategorie.put(intitule, categorie);
+	        estAjoutee = true;
+	    }
+	    
+	    return estAjoutee;
+	}
 	
 }

@@ -41,4 +41,19 @@ public class Categorie {
 		return estModifier;
 	}	
 	
+	/**
+	 * @return intituleCategorie, l'intitule de la catégorie courrante.
+	 */
+	public String getIntituleCategorie() {
+	    return intituleCategorie;
+	}
+	
+	/** TODO comment method role
+	 * @param stockage
+	 * @return
+	 */
+	public boolean ajouterCategorie(Stockage stockage) {
+	    stockage.ajouterCategorie(this);
+	    return true;
+	}
 }
