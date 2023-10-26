@@ -1,17 +1,24 @@
-/*
- * 
+/**
+ * Categorie.java									26 octobre 2023 
+ * IUT de Rodez, no copyright ni "copyleft"
  */
+
 
 package modele;
 
 /**
- * 
+ * Classe regroupant l'ensemble des methodes servant a la gestion des categories 
+ * @author F.Bernad, A.Brouzes, R.Britelle
  */
 public class Categorie {
 
+	/* intitule de la categorie */
 	public String intituleCategorie;
 	
+	
+	
 	/**
+	 * Constructeur d'une categorie
 	 * @param intitule
 	 */
 	public Categorie(String intitule) {
@@ -19,6 +26,7 @@ public class Categorie {
 	}
 	
 	/**
+	 * Supprime la categorie appelante
 	 * @return
 	 */
 	public boolean supprimerCategorie() {
@@ -26,7 +34,8 @@ public class Categorie {
 	}
 	
 	/**
-	 * @param intitule
+	 * Modifie l'intitule de la categorie appelante
+	 * @param intitule nouveau intitule de la categorie 
 	 * @return
 	 */
 	public boolean modifierCategorie(String intitule) {
