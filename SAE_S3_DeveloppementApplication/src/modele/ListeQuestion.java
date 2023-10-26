@@ -35,7 +35,7 @@ public class ListeQuestion {
 		}
 		
 		/**
-		 * getter d'une question en particulier dans la liste
+		 * getter d'une question dans la liste
 		 * @param cle designant la question que l'on veut getter
 		 * @return la question / l'element
 		 */
@@ -44,8 +44,9 @@ public class ListeQuestion {
 		}
 		
 		/**
-		 * @param cle
-		 * @return
+		 * delete d'une question dans la liste 
+		 * @param cle designant la question qui va être supprime
+		 * @return true si la question à bien été supprimé, false sinon
 		 */
 		public boolean supprimerElementListeQuestion(String cle) {
 			boolean estSupprime = false;
@@ -57,7 +58,8 @@ public class ListeQuestion {
 		}
 		
 		/**
-		 * @param cle
+		 * verifie si une question est deja dans la liste
+		 * @param cle 
 		 * @return
 		 */
 		public boolean elementEstDansListeQuestion(String cle) {
