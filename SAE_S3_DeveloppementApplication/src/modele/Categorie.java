@@ -13,9 +13,7 @@ package modele;
 public class Categorie {
 
 	/* intitule de la categorie */
-	public String intituleCategorie;
-	
-	
+	private String intituleCategorie;
 	
 	/**
 	 * Constructeur d'une categorie
@@ -55,5 +53,12 @@ public class Categorie {
 	public boolean ajouterCategorie(Stockage stockage) {
 	    stockage.ajouterCategorie(this);
 	    return true;
+	}
+	
+	/**
+	 * @param intitule
+	 */
+	public void setIntituleCategorie(String intitule) {
+	    this.intituleCategorie = intitule;
 	}
 }
