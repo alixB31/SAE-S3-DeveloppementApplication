@@ -38,50 +38,20 @@ public class Question {
 		this.feedBackQuestion = feedBack;
 	}
 	
-	/**
-	 * @param nouvelleCategorie
+	/** TODO comment method role
+	 * @param stockage
+	 * @return
 	 */
-	public boolean modifierCategorieQuestion(Categorie nouvelleCategorie) {
-		//TODO ecrire le corps...
-		return false;
+	public boolean ajouterQuestion(Stockage stockage) {
+	    stockage.ajouterQuestion(this);
+	    return true;
 	}
 	
 	/**
-	 * @param nouvelleDifficulte
+	 * @return intituleCategorie, l'intitule de la catégorie courrante.
 	 */
-	public boolean modifierDifficulteQuestion(int nouvelleDifficulte) {
-		//TODO ecrire le corps...
-		return false;
-	}
-	
-	public boolean modifierReponseFausseQuestion(String[] nouvelleReponseFausse) {
-		//TODO ecrire le corps...
-		return false;
-	}
-	
-	public boolean modifierReponseJusteQuestion(String nouvelleReponseJuste) {
-		//TODO ecrire le corps...
-		return false;
-	}
-	
-	public boolean ajouterReponseFausse(String nouvelleReponseFausse) {
-		//TODO ecrire le corps...
-		return false;
-	}
-	
-	public boolean modifierFeedBackQuestion(String nouveauFeedBack) {
-		//TODO ecrire le corps...
-		return false;
-	}
-	
-	public boolean supprimerReponseFausse(String reponse) {
-		//TODO ecrire le corps...
-		return false; 
-	}
-	
-	public boolean ajouterQuestion(Question question) {
-		//TODO ecrire le corps...
-		return false;
+	public String getIntituleQuestion() {
+	    return intituleQuestion;
 	}
 	
 	

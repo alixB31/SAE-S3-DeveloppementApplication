@@ -42,4 +42,9 @@ public class Stockage {
 	public boolean ajouterCategorie(Categorie categorie) {
 	    return listeCategorie.ajouterCategorie(categorie);
 	}
+
+	public boolean ajouterQuestion(Question question) {
+		return listeQuestion.ajouterQuestion(question);
+		
+	}
 }

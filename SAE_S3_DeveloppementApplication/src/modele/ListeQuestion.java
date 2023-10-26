@@ -65,4 +65,19 @@ public class ListeQuestion {
 		public boolean elementEstDansListeQuestion(String cle) {
 			return listeQuestion.containsKey(cle);
 		}
+		
+		/** TODO comment method role
+		 * @param categorie
+		 * @return estAjoutee, true si la catégorie est ajoutée, false sinon.
+		 */
+		public boolean ajouterQuestion(Question question) {
+		    boolean estAjoutee = false;
+		    String intitule = question.getIntituleQuestion();
+		    if (!elementEstDansListeQuestion(intitule) && !intitule.isEmpty() && !intitule.isBlank()) {
+		        listeQuestion.put(intitule, question);
+		        estAjoutee = true;
+		    }
+		    
+		    return estAjoutee;
+		}
 }
