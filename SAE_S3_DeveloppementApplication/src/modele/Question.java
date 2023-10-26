@@ -53,6 +53,16 @@ public class Question {
 	public String getIntituleQuestion() {
 	    return intituleQuestion;
 	}
+
+	/**
+	 * @param nouvelIntitule
+	 */
+	public void setIntituleQuestion(String nouvelIntitule) {
+		this.intituleQuestion = nouvelIntitule;
+	}
 	
+	public Categorie getCategorieDeQuestion() {
+		return this.categorieQuestion;
+	}
 	
 }

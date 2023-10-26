@@ -5,6 +5,7 @@
 package modele;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Liste des questions de type HashMap.
@@ -80,4 +81,39 @@ public class ListeQuestion {
 
 		return estAjoutee;
 	}
+	
+	/**
+     * Modifie une catégorie, on ne peut modifier que l'intitulé d'une catégorie.
+     * Les questions liées à une catégorie sont modifiées au sein de la classe
+     * ListeQuestion.java.
+     * @param ancienneCategorie
+     * @param nouvelleIntitule 
+     * @param nouvelleCategorie
+     * @return estModifiee, true si la catégorie est modifiée, false sinon.
+     */
+    public boolean modifierQuestion(Question ancienneQuestion, String nouvelIntitule) {
+        boolean estModifiee = false;
+        if (elementEstDansListeQuestion(ancienneQuestion.getIntituleQuestion())) {
+            ancienneQuestion.setIntituleQuestion(nouvelIntitule);
+            estModifiee = true;
+        }
+        return estModifiee;
+    }
+    
+    /**
+     * @param categorie
+     * @return
+     */
+    public ListeQuestion listeQuestionParCategorie(Categorie categorie, Stockage stockage) {
+    	ListeQuestion listeQuestionParCategorie = new ListeQuestion();
+    	for (Map.Entry mapEntry: listeQuestion.entrySet()) {
+    		Question question = (Question) mapEntry.getValue();
+    		if(question.getCategorieDeQuestion().equals(categorie)) {
+    			listeQuestionParCategorie.listeQuestion.put(question.getIntituleQuestion(), question);
+    		}
+    		
+    	}
+    	return listeQuestionParCategorie;
+    }
+
 }
