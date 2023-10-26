@@ -25,28 +25,20 @@ public class Categorie {
 		this.intituleCategorie = intitule;
 	}
 	
-	/**
-	 * Supprime la categorie appelante
-	 * @return
-	 */
-	public boolean supprimerCategorie() {
-		return false;
-	}
 	
 	/**
 	 * Modifie l'intitule de la categorie appelante
 	 * @param intitule nouveau intitule de la categorie 
-	 * @return
+	 * @return true une fois l'operation faite
 	 */
 	public boolean modifierCategorie(String intitule) {
-		return false;
-	}
+		//  TODO vérifier que la categorie existe dans le Stockage
+		boolean estModifier = false;
+		this.intituleCategorie = intitule;
+		if (this.intituleCategorie == intitule) {
+			estModifier = true;
+		} 
+		return estModifier;
+	}	
 	
-	/**
-	 * @param intitule
-	 * @return
-	 */
-	public boolean ajouterCategorie(String intitule) {
-		return false;
-	}
 }
