@@ -60,7 +60,7 @@ public class ListeQuestion {
 	/**
 	 * verifie si une question est deja dans la liste
 	 * @param cle 
-	 * @return
+	 * @return true si la question est dans la liste, false sinon
 	 */
 	public boolean elementEstDansListeQuestion(String cle) {
 		return listeQuestion.containsKey(cle);

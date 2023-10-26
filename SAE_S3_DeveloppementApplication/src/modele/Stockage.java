@@ -40,11 +40,11 @@ public class Stockage {
 	 * @return
 	 */
 	public boolean ajouterCategorie(Categorie categorie) {
-	    return listeCategorie.ajouterCategorie(categorie);
+	    return listeCategorie.ajouterElementListeCategorie(categorie);
 	}
 
 	public boolean ajouterQuestion(Question question) {
-		return listeQuestion.ajouterQuestion(question);
+		return listeQuestion.ajouterElementListeQuestion(question);
 		
 	}
 }
