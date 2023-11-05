@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.PartieController">
+   <children>
+      <Text layoutX="507.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
+         <font>
+            <Font name="System Bold Italic" size="46.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnRetour" layoutX="37.0" layoutY="640.0" mnemonicParsing="false" onAction="#RetourMenu" prefHeight="34.0" prefWidth="107.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 25px;" text="Retour">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Text layoutX="137.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez le nombre de questions :">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="140.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez le niveau de difficultés :">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="138.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez la catégorie :">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <RadioButton layoutX="151.0" layoutY="207.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="68.0" text="5">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="nombreQuestion" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="353.0" layoutY="209.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="68.0" text="10" toggleGroup="$nombreQuestion">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="547.0" layoutY="209.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="68.0" text="15" toggleGroup="$nombreQuestion">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="749.0" layoutY="211.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="68.0" text="20" toggleGroup="$nombreQuestion">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="142.0" layoutY="329.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="139.0" text="Indifférent">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="choixDifficultes" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="356.0" layoutY="329.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="68.0" text="1" toggleGroup="$choixDifficultes">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="540.0" layoutY="330.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="68.0" text="2" toggleGroup="$choixDifficultes">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="750.0" layoutY="328.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="68.0" text="3" toggleGroup="$choixDifficultes">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </RadioButton>
+      <SplitMenuButton layoutX="137.0" layoutY="445.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="248.0" text="Toutes les catégories">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </SplitMenuButton>
+      <Button fx:id="btnLancer" layoutX="919.0" layoutY="641.0" mnemonicParsing="false" onAction="#LancerQuiz" prefHeight="34.0" prefWidth="107.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Lancer">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
