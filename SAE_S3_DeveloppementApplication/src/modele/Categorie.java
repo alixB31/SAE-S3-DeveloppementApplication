@@ -40,13 +40,14 @@ public class Categorie {
 	}	
 	
 	/**
-	 * @return intituleCategorie, l'intitule de la catégorie courrante.
+	 * @return intituleCategorie, l'intitule de la catégorie courante.
 	 */
 	public String getIntituleCategorie() {
 	    return intituleCategorie;
 	}
 	
-	/** TODO comment method role
+	/** 
+	 * Ajoute la categorie appelante au stockage
 	 * @param stockage
 	 * @return true si l'ajout c'est effectué, false sinon
 	 */

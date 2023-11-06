@@ -20,14 +20,13 @@ public class ListeCategorie {
     HashMap<String, Categorie> listeCategorie;
 
     /**
-     * Construit un objet ListeCategorie vide.
+     * Construit une HashMap ListeCategorie vide.
      */
     public ListeCategorie() {
         listeCategorie = new HashMap<>();
     }
 
     /** 
-     * 
      * @return
      */
     public HashMap getListeCategorie() {
@@ -63,9 +62,10 @@ public class ListeCategorie {
         return listeCategorie.containsKey(intitule);
     }
 
-    /** TODO comment method role
+    /** 
+     * Ajoute une categorie a listeCategorie en récuperant son intitule.
      * @param categorie
-     * @return estAjoutee, true si la catégorie est ajoutée, false sinon.
+     * @return estAjoutee, true si la catégorie a était ajoutée, false sinon.
      */
     public boolean ajouterElementListeCategorie(Categorie categorie) {
         boolean estAjoutee = false;
@@ -84,7 +84,6 @@ public class ListeCategorie {
      * ListeQuestion.java.
      * @param ancienneCategorie
      * @param nouvelleIntitule 
-     * @param nouvelleCategorie
      * @return estModifiee, true si la catégorie est modifiée, false sinon.
      */
     public boolean modifierElementListeCategorie(Categorie ancienneCategorie, String nouvelleIntitule) {
