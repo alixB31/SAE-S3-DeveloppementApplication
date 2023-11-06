@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreQuestionController">
+   <children>
+      <Text layoutX="25.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question :" wrappingWidth="125.37238693237305">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Réponse juste :" wrappingWidth="167.37238693237305">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Réponses fausses :" wrappingWidth="212.37238693237305">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnRetour" layoutX="51.0" layoutY="641.0" mnemonicParsing="false" onAction="#retourCategorie" style="-fx-background-color: #C32A4E; -fx-background-radius: 25px;" text="Retour">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnNouvelleReponse" layoutX="825.0" layoutY="627.0" mnemonicParsing="false" onAction="#NouvelleReponses" prefHeight="56.0" prefWidth="196.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Ajouter une réponse">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Text layoutX="183.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="En java, combien y'a t-il de boucles ?">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <RadioButton layoutX="241.0" layoutY="316.0" mnemonicParsing="false" text="10">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="241.0" layoutY="214.0" mnemonicParsing="false" text="3">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="241.0" layoutY="404.0" mnemonicParsing="false" text="12">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="248.0" layoutY="477.0" mnemonicParsing="false" text="6">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="248.0" layoutY="563.0" mnemonicParsing="false" text="5">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </RadioButton>
+      <Button fx:id="btnModifierQuestion" layoutX="811.0" layoutY="30.0" mnemonicParsing="false" onAction="#ModifierQuestion" prefHeight="90.0" prefWidth="93.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="92.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/crayon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnFeedback" layoutX="934.0" layoutY="30.0" mnemonicParsing="false" onAction="#afficherFeedback" prefHeight="96.0" prefWidth="101.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="97.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ampoule.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnEditerRepOk" layoutX="370.0" layoutY="186.0" mnemonicParsing="false" onAction="#EditerRep" prefHeight="68.0" prefWidth="63.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="69.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/crayon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnEditerRepNOk1" layoutX="375.0" layoutY="302.0" mnemonicParsing="false" onAction="#EditerRep" prefHeight="68.0" prefWidth="63.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="69.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/crayon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnEditerRepNOk2" layoutX="374.0" layoutY="387.0" mnemonicParsing="false" onAction="#EditerRep" prefHeight="68.0" prefWidth="63.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="69.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/crayon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnEditerRepNOk3" layoutX="376.0" layoutY="463.0" mnemonicParsing="false" onAction="#EditerRep" prefHeight="68.0" prefWidth="63.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="69.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/crayon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnEditerRepNOk4" layoutX="377.0" layoutY="551.0" mnemonicParsing="false" onAction="#EditerRep" prefHeight="68.0" prefWidth="63.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="69.0" fitWidth="60.0">
+               <image>
+                  <Image url="@../images/crayon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnSuppRepNOk1" layoutX="552.0" layoutY="300.0" mnemonicParsing="false" onAction="#confirmerSupression" prefHeight="68.0" prefWidth="63.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="69.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/croixRouge.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnSuppRepNOk2" layoutX="550.0" layoutY="385.0" mnemonicParsing="false" onAction="#confirmerSupression" prefHeight="68.0" prefWidth="63.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="69.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/croixRouge.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnSuppRepNOk3" layoutX="550.0" layoutY="463.0" mnemonicParsing="false" onAction="#confirmerSupression" prefHeight="68.0" prefWidth="63.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="69.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/croixRouge.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnSuppRepNOk4" layoutX="549.0" layoutY="552.0" mnemonicParsing="false" onAction="#confirmerSupression" prefHeight="68.0" prefWidth="63.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="69.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/croixRouge.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

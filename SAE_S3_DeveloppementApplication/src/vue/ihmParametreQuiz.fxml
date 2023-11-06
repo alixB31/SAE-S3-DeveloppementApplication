@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreController">
+   <children>
+      <Button fx:id="btnNouvelleCategorie" layoutX="855.0" layoutY="591.0" mnemonicParsing="false" onAction="#NouvelleCategorie" prefHeight="85.0" prefWidth="203.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Ajouter catégorie">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Text layoutX="454.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold Italic" size="46.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnCategorie" layoutX="217.0" layoutY="157.0" mnemonicParsing="false" onAction="#paramCategorie" prefHeight="88.0" prefWidth="415.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="JAVA">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCategorie2" layoutX="219.0" layoutY="271.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="88.0" prefWidth="421.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="...">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCategorie3" layoutX="223.0" layoutY="389.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="421.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="...">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnRetour1" layoutX="51.0" layoutY="622.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="34.0" prefWidth="107.0" style="-fx-background-color: #C32A4E; -fx-background-radius:25px;" text="Retour">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="656.0" layoutY="175.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="59.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/croixRouge.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
