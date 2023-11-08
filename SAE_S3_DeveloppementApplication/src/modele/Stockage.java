@@ -37,7 +37,7 @@ public class Stockage {
 	
 	/**
 	 * Ajoute la catégorie en paramètre dans la liste des catégories.
-	 * @param categorie, la catégorie à ajouter.
+	 * @param categorie la catégorie à ajouter.
 	 * @return true si l'ajout a réussi, false sinon.
 	 */
 	public boolean ajouterCategorie(Categorie categorie) {
@@ -45,7 +45,7 @@ public class Stockage {
 	}
 	/**
 	 * Supprime une catégorie de la liste des catégories.
-	 * @param categorie, la catégorie à supprimer.
+	 * @param categorie la catégorie à supprimer.
 	 * @return true si la catégorie est supprimée, false sinon.
 	 */
 	public boolean supprimerElementListeCategorie(Categorie categorie) {
@@ -54,7 +54,7 @@ public class Stockage {
 
 	/**
 	 * Vérifie si une catégorie est présente dans la liste.
-	 * @param categorie, dont on vérifie l'existance dans la liste.
+	 * @param categorie dont on vérifie l'existance dans la liste.
 	 * @return true si la catégorie existe déjà dans la liste, false sinon.
 	 */
 	public boolean elementEstDansListeCategorie(Categorie categorie) {
@@ -63,8 +63,8 @@ public class Stockage {
 	
 	/**
 	 * Modifie la catégorie en paramètre en remplacent l'ancien intitule par le nouveau
-	 * @param ancienneCategorie
-	 * @param nouveauIntitule
+	 * @param ancienneCategorie la catégorie à modifier
+	 * @param nouveauIntitule le nouvel intitulé de la catégorie
 	 * @return true si la modification a réussi, false sinon.
 	 */
 	public boolean modifierElementListeCategorie(Categorie ancienneCategorie, String nouveauIntitule) {
@@ -73,7 +73,7 @@ public class Stockage {
 	
 	/**
 	 * Ajoute la question  en paramètre dans la liste des questions
-	 * @param question, la question à modifier.
+	 * @param question la question à modifier.
 	 * @return true si l'ajout a réussi, false sinon.
 	 */
 	public boolean ajouterQuestion(Question question) {
@@ -90,5 +90,5 @@ public class Stockage {
 	    return listeQuestion.listeQuestionParCategorie(categorie);
 	}
 	
-	// TODO modifier question
+	
 }
