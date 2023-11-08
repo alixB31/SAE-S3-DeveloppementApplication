@@ -69,8 +69,7 @@ public class ListeQuestion {
 
 	/** TODO comment method role
 	 * @param question 
-	 * @param categorie
-	 * @return estAjoutee, true si la catégorie est ajoutée, false sinon.
+	 * @return estAjoutee, true si la question est ajoutée, false sinon.
 	 */
 	public boolean ajouterElementListeQuestion(Question question) {
 		boolean estAjoutee = false;
@@ -84,7 +83,7 @@ public class ListeQuestion {
 	}
 	
 	/**
-     * Modifie une catégorie, on ne peut modifier que l'intitulé d'une catégorie.
+     * Modifie une question, on ne peut modifier que l'intitulé d'une question.
      * Les questions liées à une catégorie sont modifiées au sein de la classe
      * ListeQuestion.java.
      * @param ancienneCategorie
@@ -98,21 +97,22 @@ public class ListeQuestion {
             ancienneQuestion.setIntituleQuestion(nouvelIntitule);
             estModifiee = true;
         }
+        // TODO les modifs des autres paramètres.
         return estModifiee;
     }
     
     /**
-     * @param categorie
-     * @return
+     * Renvoie la liste des questions correpondant à la catégorie en paramètre.
+     * @param categorie, la catégorie dont on veut la liste des questions.
+     * @return listeQuestionCategorie, la liste des questions correspondantes.
      */
-    public ListeQuestion listeQuestionParCategorie(Categorie categorie, Stockage stockage) {
+    public ListeQuestion listeQuestionParCategorie(Categorie categorie) {
     	ListeQuestion listeQuestionParCategorie = new ListeQuestion();
     	for (Map.Entry mapEntry: listeQuestion.entrySet()) {
     		Question question = (Question) mapEntry.getValue();
     		if(question.getCategorieDeQuestion().equals(categorie)) {
     			listeQuestionParCategorie.listeQuestion.put(question.getIntituleQuestion(), question);
     		}
-    		
     	}
     	return listeQuestionParCategorie;
     }

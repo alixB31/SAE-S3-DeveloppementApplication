@@ -35,9 +35,10 @@ public class Stockage {
 		return listeCategorie.getListeCategorie();
 	}
 	
-	/** TODO comment method role
-	 * @param categorie
-	 * @return
+	/**
+	 * Ajoute la catégorie en paramètre dans la liste des catégories.
+	 * @param categorie, la catégorie à ajouter.
+	 * @return true si l'ajout a réussi, false sinon.
 	 */
 	public boolean ajouterCategorie(Categorie categorie) {
 	    return listeCategorie.ajouterElementListeCategorie(categorie);
@@ -64,19 +65,19 @@ public class Stockage {
 	 * Modifie la catégorie en paramètre en remplacent l'ancien intitule par le nouveau
 	 * @param ancienneCategorie
 	 * @param nouveauIntitule
-	 * @return
+	 * @return true si la modification a réussi, false sinon.
 	 */
 	public boolean modifierElementListeCategorie(Categorie ancienneCategorie, String nouveauIntitule) {
 		return listeCategorie.modifierElementListeCategorie(ancienneCategorie, nouveauIntitule);
 	}
 	
-	/** TODO comment method role
-	 * @param question
-	 * @return
+	/**
+	 * Ajoute la question  en paramètre dans la liste des questions
+	 * @param question, la question à modifier.
+	 * @return true si l'ajout a réussi, false sinon.
 	 */
 	public boolean ajouterQuestion(Question question) {
 		return listeQuestion.ajouterElementListeQuestion(question);
-		
 	}
 	
 	/**
@@ -86,6 +87,8 @@ public class Stockage {
 	 * @return ListeQuestion, la liste des questions correspondantes.
 	 */
 	public ListeQuestion listeQuestionParCategorie(Categorie categorie) {
-	    return this.listeQuestion.listeQuestionParCategorie(categorie, this);
+	    return listeQuestion.listeQuestionParCategorie(categorie);
 	}
+	
+	// TODO modifier question
 }
