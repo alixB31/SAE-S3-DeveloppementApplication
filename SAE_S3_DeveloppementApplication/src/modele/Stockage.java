@@ -42,7 +42,34 @@ public class Stockage {
 	public boolean ajouterCategorie(Categorie categorie) {
 	    return listeCategorie.ajouterElementListeCategorie(categorie);
 	}
+	/**
+	 * Supprime une catégorie de la liste des catégories.
+	 * @param categorie, la catégorie à supprimer.
+	 * @return true si la catégorie est supprimée, false sinon.
+	 */
+	public boolean supprimerElementListeCategorie(Categorie categorie) {
+		return listeCategorie.supprimerElementListeCategorie(categorie.getIntituleCategorie());
+	}
 
+	/**
+	 * Vérifie si une catégorie est présente dans la liste.
+	 * @param categorie, dont on vérifie l'existance dans la liste.
+	 * @return true si la catégorie existe déjà dans la liste, false sinon.
+	 */
+	public boolean elementEstDansListeCategorie(Categorie categorie) {
+		return listeCategorie.elementEstDansListeCategorie(categorie.getIntituleCategorie());
+	}
+	
+	/**
+	 * Modifie la catégorie en paramètre en remplacent l'ancien intitule par le nouveau
+	 * @param ancienneCategorie
+	 * @param nouveauIntitule
+	 * @return
+	 */
+	public boolean modifierElementListeCategorie(Categorie ancienneCategorie, String nouveauIntitule) {
+		return listeCategorie.modifierElementListeCategorie(ancienneCategorie, nouveauIntitule);
+	}
+	
 	/** TODO comment method role
 	 * @param question
 	 * @return
