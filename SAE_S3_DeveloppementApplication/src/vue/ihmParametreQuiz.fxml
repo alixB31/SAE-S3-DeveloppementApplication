@@ -28,8 +28,9 @@
       </Button>
       <SplitMenuButton fx:id="CategorieChoisie" layoutX="283.0" layoutY="211.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="358.0" style="-fx-background-color: #5CCAC3;" text="Java">
         <items>
-          <MenuItem mnemonicParsing="false" text="Général" />
-          <MenuItem mnemonicParsing="false" text="Java" />
+          <MenuItem fx:id="general" mnemonicParsing="false" text="Général" />
+          <MenuItem fx:id="java" mnemonicParsing="false" text="Java" />
+            <MenuItem fx:id="bd" mnemonicParsing="false" text="Base de données" />
         </items>
          <font>
             <Font name="System Bold" size="24.0" />
