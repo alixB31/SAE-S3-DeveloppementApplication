@@ -10,26 +10,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
 import vue.Main;
 
-
-/** TODO comment class responsibility (SRP)
- * @author rayanibrahime
- *
- */
 public class ParametreController {
-        @FXML
-        private Button btnCategorie;
 
-        @FXML
-        private Button btnCategorie2;
+    @FXML
+    private Button btnNouvelleCategorie;
 
-        @FXML
-        private Button btnCategorie3;
-
-        @FXML
-        private Button btnNouvelleCategorie;
-
-        @FXML
-        private Button btnRetour;
+    @FXML
+    private Button btnRetour1;
 
         @FXML
         void NouvelleCategorie(ActionEvent event) {
@@ -44,10 +31,5 @@ public class ParametreController {
         @FXML
         void retourMenu(ActionEvent event) {
             Main.retourMenuPrincipal();
-        }
-        
-        @FXML
-        void paramCategorie(ActionEvent event) {
-            Main.voirParamCategorie();
         }
 }
