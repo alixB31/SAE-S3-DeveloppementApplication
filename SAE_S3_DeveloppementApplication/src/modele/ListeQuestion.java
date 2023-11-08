@@ -87,19 +87,64 @@ public class ListeQuestion {
      * Les questions liées à une catégorie sont modifiées au sein de la classe
      * ListeQuestion.java.
      * @param ancienneQuestion l'ancienne question 
-     * @param nouvelIntitule 
+     * @param nouvelIntitule le nouvel intitule de la question
      * @return estModifiee, true si la catégorie est modifiée, false sinon.
      */
-    public boolean modifierQuestion(Question ancienneQuestion, String nouvelIntitule) {
+    public boolean modifierIntituleQuestion(Question ancienneQuestion, String nouvelIntitule) {
         boolean estModifiee = false;
         if (elementEstDansListeQuestion(ancienneQuestion.getIntituleQuestion())) {
             ancienneQuestion.setIntituleQuestion(nouvelIntitule);
             estModifiee = true;
         }
-        // TODO les modifs des autres paramètres.
         return estModifiee;
     }
 
+    public boolean modifierCategorieDeQuestion(Question question, Categorie categorie) {
+    	boolean estModifiee = false;
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
+            question.setCategorieQuestion(categorie);
+            estModifiee = true;
+        }
+        return estModifiee;
+    }
+
+    public boolean modifierDifficulteQuestion(Question question, int difficulte) {
+    	boolean estModifiee = false;
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
+            question.setDifficulteQuestion(difficulte);
+            estModifiee = true;
+        }
+        return estModifiee;
+    }
+    
+    public boolean modifierListeReponsesFaussesQuestion(Question question, String[] reponsesFausses) {
+    	boolean estModifiee = false;
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
+            question.setReponsesFaussesQuestion(reponsesFausses);
+            estModifiee = true;
+        }
+        return estModifiee;
+    }
+    
+    public boolean modifierFeedBackQuestion(Question question, String feedBack) {
+    	boolean estModifiee = false;
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
+            question.setFeedBackQuestion(feedBack);
+            estModifiee = true;
+        }
+        return estModifiee;
+    }
+    
+    public boolean modifierReponseJusteQuestion(Question question, String reponseJuste) {
+    	boolean estModifiee = false;
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
+            question.setReponseJusteQuestion(reponseJuste);
+            estModifiee = true;
+        }
+        return estModifiee;
+    }
+    
+    
     /**
      * Renvoie la liste des questions correpondant à la catégorie en paramètre.
      * @param categorie la catégorie dont on veut la liste des questions.

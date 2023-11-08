@@ -82,5 +82,27 @@ public class Stockage {
 	    return listeQuestion.listeQuestionParCategorie(categorie);
 	}
 	
+	public boolean modifierIntituleQuestion(Question question, String intitule) {
+		return listeQuestion.modifierIntituleQuestion(question, intitule);
+	}
 	
+	public boolean modifierCategorieQuestion(Question question, Categorie categorie) {
+		return listeQuestion.modifierCategorieDeQuestion(question, categorie);
+	}
+	
+	public boolean modifierDifficulteQuestion(Question question, int difficulte) {
+		return listeQuestion.modifierDifficulteQuestion(question, difficulte);
+	}
+	
+	public boolean modifierListeReponsesFaussesQuestion(Question question, String[] reponsesFausses) {
+		return listeQuestion.modifierListeReponsesFaussesQuestion(question, reponsesFausses);
+	}
+	
+	public boolean modifierFeedBackQuestion(Question question, String feedBack) {
+		return listeQuestion.modifierFeedBackQuestion(question, feedBack);
+	}
+	
+	public boolean modifierReponseJusteQuestion(Question question, String reponseJuste) {
+		return listeQuestion.modifierReponseJusteQuestion(question, reponseJuste);
+	}
 }
