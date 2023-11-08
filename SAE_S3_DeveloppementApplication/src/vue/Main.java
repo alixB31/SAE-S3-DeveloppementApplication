@@ -26,6 +26,7 @@ public class Main extends Application {
     private static Scene sceneParametre;
     private static Scene sceneParametreCategorie;
     private static Scene sceneParametreQuestion;
+    private static Scene sceneRepondreQuestion;
     
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -65,6 +66,11 @@ public class Main extends Application {
         chargeurFXMLQuestion.setLocation(getClass().getResource("ihmParametreQuestion.fxml"));
         Parent parametreQuestion = chargeurFXMLQuestion.load();
         sceneParametreQuestion = new Scene(parametreQuestion); 
+        
+        FXMLLoader chargeurFXMLReponseQuestion = new FXMLLoader();
+        chargeurFXMLReponseQuestion.setLocation(getClass().getResource("ihmRepondreQuestion.fxml"));
+        Parent repondreQuestion = chargeurFXMLReponseQuestion.load();
+        sceneRepondreQuestion = new Scene(repondreQuestion);
        
 
         /* Création de la fenêtre principale*/
@@ -132,6 +138,13 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    
+    /**
+     * Lancer une partie        
+     */
+    public static void RepondreQuestion() {
+        fenetrePrincipale.setScene(sceneRepondreQuestion);
     }
     
 }

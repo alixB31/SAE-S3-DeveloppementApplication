@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.RepondreQuestionControleur">
+   <children>
+      <Text layoutX="434.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
+         <font>
+            <Font name="System Bold Italic" size="88.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnValider" layoutX="900.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnValiderAction" prefHeight="52.0" prefWidth="118.0" style="-fx-background-color: #6DE211; -fx-background-radius: 25px;" text="Valider">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+      <Text fx:id="categorieQuestion" layoutX="59.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie" wrappingWidth="83.328125">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="59.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulté : ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="difficultéQuestion" layoutX="135.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="Question" layoutX="178.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="En java, combien y a t'il de type de boucle ?" wrappingWidth="723.4099426269531">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="reponse1" layoutX="178.0" layoutY="270.0" mnemonicParsing="false" text="Reponse 1">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="reponses" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="reponse2" layoutX="178.0" layoutY="320.0" mnemonicParsing="false" text="Reponse 2" toggleGroup="$reponses">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="reponse3" layoutX="178.0" layoutY="370.0" mnemonicParsing="false" text="Reponse 3" toggleGroup="$reponses">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="reponse4" layoutX="178.0" layoutY="420.0" mnemonicParsing="false" text="Reponse 4" toggleGroup="$reponses">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="reponse5" layoutX="178.0" layoutY="470.0" mnemonicParsing="false" text="Reponse 5" toggleGroup="$reponses">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <Text fx:id="pageCourante" layoutX="984.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="1002.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="nbPageMax" layoutX="1018.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

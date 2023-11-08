@@ -23,7 +23,7 @@ public class PartieController {
 
     @FXML
     void LancerQuiz(ActionEvent event) {
-        
+        Main.RepondreQuestion();
     }
 
     @FXML
