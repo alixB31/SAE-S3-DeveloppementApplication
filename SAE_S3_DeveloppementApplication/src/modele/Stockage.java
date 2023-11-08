@@ -52,14 +52,6 @@ public class Stockage {
 		return listeCategorie.supprimerElementListeCategorie(categorie.getIntituleCategorie());
 	}
 
-	/**
-	 * Vérifie si une catégorie est présente dans la liste.
-	 * @param categorie dont on vérifie l'existance dans la liste.
-	 * @return true si la catégorie existe déjà dans la liste, false sinon.
-	 */
-	public boolean elementEstDansListeCategorie(Categorie categorie) {
-		return listeCategorie.elementEstDansListeCategorie(categorie.getIntituleCategorie());
-	}
 	
 	/**
 	 * Modifie la catégorie en paramètre en remplacent l'ancien intitule par le nouveau
