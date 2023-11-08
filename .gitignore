@@ -4,3 +4,4 @@ Bin
 .project
 .settings
 .DS_Store
+/bin/

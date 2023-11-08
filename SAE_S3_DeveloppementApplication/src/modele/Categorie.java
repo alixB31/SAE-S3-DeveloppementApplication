@@ -25,23 +25,6 @@ public class Categorie {
 	
 	
 	/**
-	 * Modifie l'intitule de la categorie appelante
-	 * @param intitule nouveau intitule de la categorie 
-	 * @return true une fois l'operation faite
-	 */
-	public boolean modifierCategorie(String intitule) {
-		//  TODO vérifier que la categorie existe dans le Stockage
-		boolean estModifier = false;
-		if () {
-			this.intituleCategorie = intitule;
-			if (this.intituleCategorie == intitule) {
-				estModifier = true;
-			} 
-		}
-		return estModifier;
-	}	
-	
-	/**
 	 * @return intituleCategorie, l'intitule de la catégorie courante.
 	 */
 	public String getIntituleCategorie() {

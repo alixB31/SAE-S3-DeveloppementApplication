@@ -39,21 +39,20 @@ class TestCategorie {
 		jeuxDeTest.add(new Categorie("Java"));
 		jeuxDeTest.add(new Categorie("Math"));
 		jeuxDeTest.add(new Categorie("JavaFX"));
-		stockageTest = new Stockage();
+		jeuxDeTest.add(new Categorie("Général"));
 		stockageTeste = new Stockage();
 	}
 	
 	@Test
 	void testModifierCategorie() {
-		jeuxDeTest.get(0).modifierCategorie("Python");
+		Map<String, Categorie> mapVoulu = new HashMap<>();
+		mapVoulu.put("Java",jeuxDeTest.get(0));
+		stockageTeste.ajouterCategorie(jeuxDeTest.get(0));
+		stockageTeste.modifierElementListeCategorie(jeuxDeTest.get(0),"Python");
 		assertEquals(jeuxDeTest.get(0).getIntituleCategorie(),"Python");
-		jeuxDeTest.get(1).modifierCategorie("Histoire");
-		assertEquals(jeuxDeTest.get(1).getIntituleCategorie(),"Histoire");
-		jeuxDeTest.get(2).modifierCategorie("Java");
-		assertNotEquals(jeuxDeTest.get(2).getIntituleCategorie(),"JavaFX");
-		assertEquals(jeuxDeTest.get(2).modifierCategorie("Francais"),true);
-		//test de categorie deja existante
-		assertEquals(jeuxDeTest.get(2).modifierCategorie("Java"),false);
+		
+		mapVoulu.put("Math",jeuxDeTest.get(1));
+		assertFalse(stockageTeste.modifierElementListeCategorie(jeuxDeTest.get(1),"Python"));
 	}
 	@Test
 	void testAjouterCategorie() {
@@ -64,9 +63,26 @@ class TestCategorie {
 		stockageTeste.ajouterCategorie(jeuxDeTest.get(1));
 		mapVoulu.put("Math",jeuxDeTest.get(1));
 		assertEquals(stockageTeste.getListeCategorie(),mapVoulu);
-
-
+		assertFalse(stockageTeste.ajouterCategorie(jeuxDeTest.get(3)));
 	}
 	
+	
+	@Test
+	void testSuprimmerCategorie() {
+		Map<String, Categorie> mapVoulu = new HashMap<>();
+		mapVoulu.put("Java",jeuxDeTest.get(0));
+		stockageTeste.ajouterCategorie(jeuxDeTest.get(0));
+		stockageTeste.ajouterCategorie(jeuxDeTest.get(1));
+		stockageTeste.supprimerElementListeCategorie(jeuxDeTest.get(1));
+		assertEquals(stockageTeste.getListeCategorie(),mapVoulu);
+		
+		//supression de la categorie general
+		stockageTeste.ajouterCategorie(jeuxDeTest.get(3));
+		assertFalse(stockageTeste.supprimerElementListeCategorie(jeuxDeTest.get(3)));
+		
+		//supression d'une categorie inexistante
+		stockageTeste.ajouterCategorie(jeuxDeTest.get(3));
+		assertFalse(stockageTeste.supprimerElementListeCategorie(jeuxDeTest.get(1)));
+	}
 	
 }

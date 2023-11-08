@@ -27,7 +27,7 @@ public class ListeCategorie {
     }
 
     /** 
-     * @return
+     * @return listeCategorie
      */
     public HashMap getListeCategorie() {
         return listeCategorie;
@@ -35,7 +35,7 @@ public class ListeCategorie {
 
     /**
      * Retourne la catégorie de la liste correspondant à la clé.
-     * @param cle, l'intitulé de la catégorie représentant la clé de l'ensemble
+     * @param cle , l'intitulé de la catégorie représentant la clé de l'ensemble
      * @return l'objet catégorie correspondant, ou null s'il n'y a aucune
      * correspondance.
      */
@@ -46,7 +46,7 @@ public class ListeCategorie {
 
     /** 
      * Supprime l'éméent de la liste correspondant à la cle en paramètre.
-     * @param cle, l'intitulé de la catégorie représentant la clé de l'ensemble
+     * @param cle , l'intitulé de la catégorie représentant la clé de l'ensemble
      * @return estSupprime true si l'élément c'est supprimé, false sinon
      */
     public boolean supprimerElementListeCategorie(String cle) {
