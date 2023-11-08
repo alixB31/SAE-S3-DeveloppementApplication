@@ -28,10 +28,8 @@ class TestCategorie {
 	
 	private Stockage stockageTest = null;
 	
-	private Stockage stockageTeste = null;
-	
-	/*Liste contenant des sommets de tests*/
-    private List<Categorie> jeuxDeTest;  
+	/*Liste contenant des categories de tests*/
+    private ArrayList<Categorie> jeuxDeTest;  
     
 	@BeforeEach
 	void setUp() throws Exception {
@@ -40,30 +38,30 @@ class TestCategorie {
 		jeuxDeTest.add(new Categorie("Math"));
 		jeuxDeTest.add(new Categorie("JavaFX"));
 		jeuxDeTest.add(new Categorie("Général"));
-		stockageTeste = new Stockage();
+		stockageTest = new Stockage();
 	}
 	
 	@Test
 	void testModifierCategorie() {
 		Map<String, Categorie> mapVoulu = new HashMap<>();
 		mapVoulu.put("Java",jeuxDeTest.get(0));
-		stockageTeste.ajouterCategorie(jeuxDeTest.get(0));
-		stockageTeste.modifierElementListeCategorie(jeuxDeTest.get(0),"Python");
+		stockageTest.ajouterCategorie(jeuxDeTest.get(0));
+		stockageTest.modifierElementListeCategorie(jeuxDeTest.get(0),"Python");
 		assertEquals(jeuxDeTest.get(0).getIntituleCategorie(),"Python");
 		
 		mapVoulu.put("Math",jeuxDeTest.get(1));
-		assertFalse(stockageTeste.modifierElementListeCategorie(jeuxDeTest.get(1),"Python"));
+		assertFalse(stockageTest.modifierElementListeCategorie(jeuxDeTest.get(1),"Python"));
 	}
 	@Test
 	void testAjouterCategorie() {
 		//ajoute une categorie au stockage et compare le resultat avec une hashmap crée a la main
-		stockageTeste.ajouterCategorie(jeuxDeTest.get(0));
+		stockageTest.ajouterCategorie(jeuxDeTest.get(0));
 		Map<String, Categorie> mapVoulu = new HashMap<>();
 		mapVoulu.put("Java",jeuxDeTest.get(0));
-		stockageTeste.ajouterCategorie(jeuxDeTest.get(1));
+		stockageTest.ajouterCategorie(jeuxDeTest.get(1));
 		mapVoulu.put("Math",jeuxDeTest.get(1));
-		assertEquals(stockageTeste.getListeCategorie(),mapVoulu);
-		assertFalse(stockageTeste.ajouterCategorie(jeuxDeTest.get(3)));
+		assertEquals(stockageTest.getListeCategorie(),mapVoulu);
+		assertFalse(stockageTest.ajouterCategorie(jeuxDeTest.get(3)));
 	}
 	
 	
@@ -71,18 +69,18 @@ class TestCategorie {
 	void testSuprimmerCategorie() {
 		Map<String, Categorie> mapVoulu = new HashMap<>();
 		mapVoulu.put("Java",jeuxDeTest.get(0));
-		stockageTeste.ajouterCategorie(jeuxDeTest.get(0));
-		stockageTeste.ajouterCategorie(jeuxDeTest.get(1));
-		stockageTeste.supprimerElementListeCategorie(jeuxDeTest.get(1));
-		assertEquals(stockageTeste.getListeCategorie(),mapVoulu);
+		stockageTest.ajouterCategorie(jeuxDeTest.get(0));
+		stockageTest.ajouterCategorie(jeuxDeTest.get(1));
+		stockageTest.supprimerElementListeCategorie(jeuxDeTest.get(1));
+		assertEquals(stockageTest.getListeCategorie(),mapVoulu);
 		
 		//supression de la categorie general
-		stockageTeste.ajouterCategorie(jeuxDeTest.get(3));
-		assertFalse(stockageTeste.supprimerElementListeCategorie(jeuxDeTest.get(3)));
+		stockageTest.ajouterCategorie(jeuxDeTest.get(3));
+		assertFalse(stockageTest.supprimerElementListeCategorie(jeuxDeTest.get(3)));
 		
 		//supression d'une categorie inexistante
-		stockageTeste.ajouterCategorie(jeuxDeTest.get(3));
-		assertFalse(stockageTeste.supprimerElementListeCategorie(jeuxDeTest.get(1)));
+		stockageTest.ajouterCategorie(jeuxDeTest.get(3));
+		assertFalse(stockageTest.supprimerElementListeCategorie(jeuxDeTest.get(1)));
 	}
 	
 }
