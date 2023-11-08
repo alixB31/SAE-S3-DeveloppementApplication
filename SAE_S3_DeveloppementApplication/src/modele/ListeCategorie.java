@@ -33,17 +33,21 @@ public class ListeCategorie {
         return listeCategorie;
     }
 
-    /** TODO comment method role
-     * @param cle
-     * @return
+    /**
+     * Retourne la catégorie de la liste correspondant à la clé.
+     * @param cle, l'intitulé de la catégorie représentant la clé de l'ensemble
+     * @return l'objet catégorie correspondant, ou null s'il n'y a aucune
+     * correspondance.
      */
     public Categorie getElementListeCategorie(String cle) {
+    	
         return listeCategorie.get(cle);
     }
 
-    /** TODO comment method role
-     * @param cle
-     * @return
+    /** 
+     * Supprime l'éméent de la liste correspondant à la cle en paramètre.
+     * @param cle, l'intitulé de la catégorie représentant la clé de l'ensemble
+     * @return estSupprime true si l'élément c'est supprimé, false sinon
      */
     public boolean supprimerElementListeCategorie(String cle) {
         boolean estSupprime = false;
@@ -54,7 +58,9 @@ public class ListeCategorie {
         return estSupprime;
     }
 
-    /** TODO comment method role
+    /**
+     * Vérifie si l'intitulé d'une catégorie est déjà présent dans la liste
+     * des catégories.
      * @param intitule
      * @return l'élément de la catégorie correspondant à son intitulé
      */
