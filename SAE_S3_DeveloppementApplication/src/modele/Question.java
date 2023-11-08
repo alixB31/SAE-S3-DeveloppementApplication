@@ -48,7 +48,7 @@ public class Question {
 	
 	/** TODO comment method role
 	 * @param stockage
-	 * @return
+	 * @return true
 	 */
 	public boolean ajouterQuestion(Stockage stockage) {
 	    stockage.ajouterQuestion(this);
@@ -103,5 +103,43 @@ public class Question {
          */
         public void setIntituleQuestion(String nouvelIntitule) {
                 this.intituleQuestion = nouvelIntitule;
+        }
+        
+        /**
+         * @param categorie la nouvelle catégorie de la question.
+         */
+        public void setCategorieQuestion(Categorie categorie) {
+            this.categorieQuestion = categorie;
+        }
+        
+        /**
+         * @param difficulte la nouvelle difficulte de la question.
+         */
+        public void setDifficulteQuestion(int difficulte) {
+            this.difficulteQuestion = difficulte;
+        }
+        
+        /**
+         * @param reponsesFausses les nouvelles réponses fausses de la question
+         * courrante.
+         */
+        public void setReponsesFaussesQuestion(String[] reponsesFausses) {
+            this.listeReponsesFausses = reponsesFausses;
+        }
+        
+        /**
+         * @param reponseJuste , la nouvelle réponse juste de la question
+         * courrante.
+         */
+        public void setReponseJusteQuestion(String reponseJuste) {
+            this.reponseJuste = reponseJuste;
+        }
+        
+        /**
+         * TODO comment method role
+         * @param feedBack
+         */
+        public void setFeedBackQuestion(String feedBack) {
+            this.feedBackQuestion = feedBack;
         }
 }
