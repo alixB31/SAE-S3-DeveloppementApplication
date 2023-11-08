@@ -36,6 +36,14 @@ public class Stockage {
 	}
 	
 	/**
+	 * Retourne la liste des questions.
+	 * @return listeQuestion la liste des questions.
+	 */
+	public HashMap getListeQuestion() {
+		return listeQuestion.getListeQuestion();
+	}
+	
+	/**
 	 * Ajoute la catégorie en paramètre dans la liste des catégories.
 	 * @param categorie la catégorie à ajouter.
 	 * @return true si l'ajout a réussi, false sinon.
@@ -94,9 +102,6 @@ public class Stockage {
 		return listeQuestion.modifierDifficulteQuestion(question, difficulte);
 	}
 	
-	public boolean modifierListeReponsesFaussesQuestion(Question question, String[] reponsesFausses) {
-		return listeQuestion.modifierListeReponsesFaussesQuestion(question, reponsesFausses);
-	}
 	
 	public boolean modifierFeedBackQuestion(Question question, String feedBack) {
 		return listeQuestion.modifierFeedBackQuestion(question, feedBack);
