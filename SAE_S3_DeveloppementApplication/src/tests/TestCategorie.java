@@ -28,6 +28,8 @@ class TestCategorie {
 	
 	private Stockage stockageTest = null;
 	
+	private Stockage stockageTeste = null;
+	
 	/*Liste contenant des sommets de tests*/
     private List<Categorie> jeuxDeTest;  
     
@@ -38,6 +40,7 @@ class TestCategorie {
 		jeuxDeTest.add(new Categorie("Math"));
 		jeuxDeTest.add(new Categorie("JavaFX"));
 		stockageTest = new Stockage();
+		stockageTeste = new Stockage();
 	}
 	
 	@Test
@@ -48,17 +51,20 @@ class TestCategorie {
 		assertEquals(jeuxDeTest.get(1).getIntituleCategorie(),"Histoire");
 		jeuxDeTest.get(2).modifierCategorie("Java");
 		assertNotEquals(jeuxDeTest.get(2).getIntituleCategorie(),"JavaFX");
+		assertEquals(jeuxDeTest.get(2).modifierCategorie("Francais"),true);
+		//test de categorie deja existante
+		assertEquals(jeuxDeTest.get(2).modifierCategorie("Java"),false);
 	}
 	@Test
 	void testAjouterCategorie() {
 		//ajoute une categorie au stockage et compare le resultat avec une hashmap crée a la main
-		jeuxDeTest.get(0).ajouterCategorie(stockageTest);
+		stockageTeste.ajouterCategorie(jeuxDeTest.get(0));
 		Map<String, Categorie> mapVoulu = new HashMap<>();
 		mapVoulu.put("Java",jeuxDeTest.get(0));
-		assertEquals(stockageTest.getListeCategorie(),mapVoulu);
-		
-		jeuxDeTest.get(1).ajouterCategorie(stockageTest);
-		assertNotEquals(stockageTest.getListeCategorie(),mapVoulu);
+		stockageTeste.ajouterCategorie(jeuxDeTest.get(1));
+		mapVoulu.put("Math",jeuxDeTest.get(1));
+		assertEquals(stockageTeste.getListeCategorie(),mapVoulu);
+
 
 	}
 	

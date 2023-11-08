@@ -32,10 +32,12 @@ public class Categorie {
 	public boolean modifierCategorie(String intitule) {
 		//  TODO vérifier que la categorie existe dans le Stockage
 		boolean estModifier = false;
-		this.intituleCategorie = intitule;
-		if (this.intituleCategorie == intitule) {
-			estModifier = true;
-		} 
+		if () {
+			this.intituleCategorie = intitule;
+			if (this.intituleCategorie == intitule) {
+				estModifier = true;
+			} 
+		}
 		return estModifier;
 	}	
 	
@@ -46,14 +48,6 @@ public class Categorie {
 	    return intituleCategorie;
 	}
 	
-	/** 
-	 * Ajoute la categorie appelante au stockage
-	 * @param stockage
-	 * @return true si l'ajout c'est effectué, false sinon
-	 */
-	public boolean ajouterCategorie(Stockage stockage) {
-	    return stockage.ajouterCategorie(this);
-	}
 	
 	/**
 	 * @param intitule , écrit l'intitule d'une catégorie
