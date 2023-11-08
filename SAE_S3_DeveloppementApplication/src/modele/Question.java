@@ -135,11 +135,11 @@ public class Question {
 			String nouvelleReponseFausse) {
 		boolean estModifier = false;
 		for (int i = 0; i< listeReponsesFausses.size(); i++) {
-			if (ancienneReponseFausse.equals(nouvelleReponseFausse)) {
+			if (ancienneReponseFausse.equals(listeReponsesFausses.get(i))) {
+				listeReponsesFausses.set(i, nouvelleReponseFausse);
 				estModifier = true;
 			}
 		}
 		return estModifier;
 	}
-	
 }

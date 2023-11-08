@@ -120,7 +120,15 @@ public class ListeQuestion {
     public boolean modifierListeReponsesFaussesQuestion(Question question, String ancienneReponseFausse,
     		String nouvelleReponseFausse) {
     	boolean estModifiee = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
+    	boolean estDansListeReponseFausse = false;
+    	for (int i = 0; i < question.listeReponsesFausses.size(); i++) {
+    		if (question.listeReponsesFausses.get(i).equals(ancienneReponseFausse)) {
+    			estDansListeReponseFausse = true;
+    		}
+    	}
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())
+        		&& !nouvelleReponseFausse.isBlank() && !nouvelleReponseFausse.isEmpty()
+        		&& !estDansListeReponseFausse) {
             question.setReponsesFaussesQuestion(ancienneReponseFausse, nouvelleReponseFausse);
             estModifiee = true;
         }
