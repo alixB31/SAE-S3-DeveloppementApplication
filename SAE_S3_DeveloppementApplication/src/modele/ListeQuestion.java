@@ -117,13 +117,29 @@ public class ListeQuestion {
         return estModifiee;
     }
     
-    public boolean modifierListeReponsesFaussesQuestion(Question question, String[] reponsesFausses) {
+    public boolean modifierListeReponsesFaussesQuestion(Question question, String ancienneReponseFausse,
+    		String nouvelleReponseFausse) {
     	boolean estModifiee = false;
         if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
-            question.setReponsesFaussesQuestion(reponsesFausses);
+            question.setReponsesFaussesQuestion(ancienneReponseFausse, nouvelleReponseFausse);
             estModifiee = true;
         }
         return estModifiee;
+    }
+    
+    public boolean ajouterReponseFausse(Question question,String reponseFausse) {
+    	boolean estModifiee = false;
+    	boolean estDansListeReponseFausse = false;
+    	for (int i = 0; i < question.listeReponsesFausses.size(); i++) {
+    		if (question.listeReponsesFausses.get(i).equals(reponseFausse)) {
+    			estDansListeReponseFausse = true;
+    		}
+    	}
+		if (!reponseFausse.isBlank() && !reponseFausse.isBlank() && !estDansListeReponseFausse) {
+			question.ajouterReponseFausse(reponseFausse);
+			estModifiee = true;
+		}
+		return estModifiee;
     }
     
     public boolean modifierFeedBackQuestion(Question question, String feedBack) {
