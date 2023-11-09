@@ -47,17 +47,4 @@ public class ParametreController {
     void retourMenu(ActionEvent event) {
         Main.retourMenuPrincipal();
     }
-
-    @FXML
-    public void choixCategorie(ActionEvent event) {
-    	java.setOnAction((e)-> {
-    	    System.out.print("Java");
-    	});
-    	bd.setOnAction((e)-> {
-    	    System.out.print("Base de données");
-    	});
-    	general.setOnAction((e)-> {
-    	    System.out.print("Général");
-    	});
-    }
 }
