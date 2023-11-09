@@ -92,7 +92,9 @@ public class ListeQuestion {
      */
     public boolean modifierIntituleQuestion(Question ancienneQuestion, String nouvelIntitule) {
         boolean estModifiee = false;
-        if (elementEstDansListeQuestion(ancienneQuestion.getIntituleQuestion())) {
+        if (elementEstDansListeQuestion(ancienneQuestion.getIntituleQuestion())
+        		&& !nouvelIntitule.isBlank() && !nouvelIntitule.isEmpty()
+        		&& nouvelIntitule != null) {
             ancienneQuestion.setIntituleQuestion(nouvelIntitule);
             estModifiee = true;
         }
@@ -101,7 +103,8 @@ public class ListeQuestion {
 
     public boolean modifierCategorieDeQuestion(Question question, Categorie categorie) {
     	boolean estModifiee = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())
+        		&& categorie != null) {
             question.setCategorieQuestion(categorie);
             estModifiee = true;
         }
@@ -145,7 +148,8 @@ public class ListeQuestion {
     
     public boolean modifierFeedBackQuestion(Question question, String feedBack) {
     	boolean estModifiee = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())
+        		&& !feedBack.isBlank() && !feedBack.isEmpty()) {
             question.setFeedBackQuestion(feedBack);
             estModifiee = true;
         }
@@ -154,7 +158,8 @@ public class ListeQuestion {
     
     public boolean modifierReponseJusteQuestion(Question question, String reponseJuste) {
     	boolean estModifiee = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())
+        		&& !reponseJuste.isBlank() && !reponseJuste.isEmpty()) {
             question.setReponseJusteQuestion(reponseJuste);
             estModifiee = true;
         }
