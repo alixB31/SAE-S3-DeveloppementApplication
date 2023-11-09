@@ -41,7 +41,7 @@ class TestQuestion {
 		listeReponsesFausses.add("10");
 		
 		jeuxDeTestQuestion.add(new Question("Combien y a t'il de nombre boucle en java ?",jeuxDeTest.get(0),1,listeReponsesFausses,"3","il y a 3 boucles"));
-		jeuxDeTestQuestion.add(new Question("3+2",jeuxDeTest.get(1),1,listeReponsesFausses,"5",""));
+		jeuxDeTestQuestion.add(new Question("3+2",jeuxDeTest.get(1),1,listeReponsesFausses,"5","3 + 2 = 5"));
 		stockageTest = new Stockage();
 	}
 	
@@ -58,6 +58,17 @@ class TestQuestion {
 		
 		
 		//tester si trop de reponse Fausse
+	}
+	
+	@Test
+	void testSupprimerQuestion() {
+		Map<String, Question> mapVoulu = new HashMap<>();
+		stockageTest.supprimerElementListeQuestion("Combien y a t'il de nombre boucle en java ?");
+		mapVoulu.remove("Combien y a t'il de nombre boucle en java ?",jeuxDeTestQuestion.get(0));
+		int nbQuestion = stockageTest.getListeQuestion().size();
+		assertEquals(mapVoulu.size(), nbQuestion + 1);
+		
+		// pas testé car JUnit ne fonctionne pas
 	}
 
 }
