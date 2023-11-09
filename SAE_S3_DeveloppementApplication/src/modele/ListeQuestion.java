@@ -129,7 +129,12 @@ public class ListeQuestion {
         if (elementEstDansListeQuestion(question.getIntituleQuestion())
         		&& !nouvelleReponseFausse.isBlank() && !nouvelleReponseFausse.isEmpty()
         		&& !estDansListeReponseFausse) {
-            question.setReponsesFaussesQuestion(ancienneReponseFausse, nouvelleReponseFausse);
+        	for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
+    			if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {
+    				question.setReponsesFaussesQuestion(i, nouvelleReponseFausse);
+    			}
+    		}
+            
             estModifiee = true;
         }
         return estModifiee;
@@ -184,5 +189,6 @@ public class ListeQuestion {
         }
         return listeQuestionParCategorie;
     }
-
+    
+//    public boolean supprimerReponseFausse(Question question, )
 }

@@ -131,15 +131,12 @@ public class Question {
 		this.listeReponsesFausses.add(reponseFausse);
 	}
 	
-	public boolean setReponsesFaussesQuestion(String ancienneReponseFausse,
+	public void setReponsesFaussesQuestion(int indice,
 			String nouvelleReponseFausse) {
-		boolean estModifier = false;
-		for (int i = 0; i< listeReponsesFausses.size(); i++) {
-			if (ancienneReponseFausse.equals(listeReponsesFausses.get(i))) {
-				listeReponsesFausses.set(i, nouvelleReponseFausse);
-				estModifier = true;
-			}
-		}
-		return estModifier;
+			listeReponsesFausses.set(indice, nouvelleReponseFausse);
+	}
+	
+	public void supprimerReponseFausseQuestion(int indice) {
+		this.listeReponsesFausses.remove(indice);
 	}
 }

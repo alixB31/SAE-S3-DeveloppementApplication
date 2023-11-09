@@ -102,12 +102,18 @@ public class Stockage {
 		return listeQuestion.modifierDifficulteQuestion(question, difficulte);
 	}
 	
-	
 	public boolean modifierFeedBackQuestion(Question question, String feedBack) {
 		return listeQuestion.modifierFeedBackQuestion(question, feedBack);
 	}
 	
 	public boolean modifierReponseJusteQuestion(Question question, String reponseJuste) {
 		return listeQuestion.modifierReponseJusteQuestion(question, reponseJuste);
+	}
+	public boolean ajouterReponseFausseQuestion(Question question, String reponseFausse) {
+		return listeQuestion.ajouterReponseFausse(question, reponseFausse);
+	}
+	
+	public boolean supprimerElementListeQuestion(String intitule) {
+		return listeQuestion.supprimerElementListeQuestion(intitule);
 	}
 }
