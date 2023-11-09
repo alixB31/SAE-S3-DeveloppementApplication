@@ -95,7 +95,11 @@ public class Stockage {
 	}
 	
 	public boolean modifierCategorieQuestion(Question question, Categorie categorie) {
-		return listeQuestion.modifierCategorieDeQuestion(question, categorie);
+		boolean estModifiee = false;
+		if (listeCategorie.elementEstDansListeCategorie(categorie.getIntituleCategorie())) {
+			estModifiee = listeQuestion.modifierCategorieDeQuestion(question, categorie);
+		}
+		return estModifiee;
 	}
 	
 	public boolean modifierDifficulteQuestion(Question question, int difficulte) {

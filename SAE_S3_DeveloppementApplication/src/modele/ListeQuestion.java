@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class ListeQuestion {
 
-    /*
+    /**
      * Liste contenant les questions du quiz, cle correspont à la cle 
      * dans la liste pour acceder à une question.
      * l'intitule d'une question est unique.
@@ -67,8 +67,8 @@ public class ListeQuestion {
         return listeQuestion.containsKey(cle);
     }
 
-    /** TODO comment method role
-     * @param question 
+    /**
+     * @param question  la question à ajouter à la liste des questions.
      * @return estAjoutee, true si la question est ajoutée, false sinon.
      */
     public boolean ajouterElementListeQuestion(Question question) {
@@ -86,21 +86,28 @@ public class ListeQuestion {
      * Modifie une question, on ne peut modifier que l'intitulé d'une question.
      * Les questions liées à une catégorie sont modifiées au sein de la classe
      * ListeQuestion.java.
-     * @param ancienneQuestion l'ancienne question 
-     * @param nouvelIntitule le nouvel intitule de la question
-     * @return estModifiee, true si la catégorie est modifiée, false sinon.
+     * @param question la question dont on modifie l'intitulé.
+     * @param nouvelIntitule le nouvel intitule de la question.
+     * @return estModifiee est true si la catégorie est modifiée, false sinon.
      */
-    public boolean modifierIntituleQuestion(Question ancienneQuestion, String nouvelIntitule) {
+    public boolean modifierIntituleQuestion(Question question, String nouvelIntitule) {
         boolean estModifiee = false;
-        if (elementEstDansListeQuestion(ancienneQuestion.getIntituleQuestion())
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())
         		&& !nouvelIntitule.isBlank() && !nouvelIntitule.isEmpty()
         		&& nouvelIntitule != null) {
-            ancienneQuestion.setIntituleQuestion(nouvelIntitule);
+            question.setIntituleQuestion(nouvelIntitule);
             estModifiee = true;
         }
         return estModifiee;
     }
 
+    /**
+     * Modifie la catégorie d'une question existante dans la liste. Il faut que
+     * la catégorie ne soit pas null et qu'elle existe dans la liste des catégories.
+     * @param question la question dont on modifie la catégorie.
+     * @param categorie la catégorie qui remplacera l'ancienne.
+     * @return estModifiee est true si la catégorie est modifée, false sinon.
+     */
     public boolean modifierCategorieDeQuestion(Question question, Categorie categorie) {
     	boolean estModifiee = false;
         if (elementEstDansListeQuestion(question.getIntituleQuestion())
@@ -111,9 +118,17 @@ public class ListeQuestion {
         return estModifiee;
     }
 
+    /**
+     * Mofifie la difficulté d'une question. Une difficulté ne peut être égale
+     * qu'à 
+     * @param question
+     * @param difficulte
+     * @return
+     */
     public boolean modifierDifficulteQuestion(Question question, int difficulte) {
     	boolean estModifiee = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())
+        		&& (difficulte == 1 || difficulte == 2 || difficulte == 3)) {
             question.setDifficulteQuestion(difficulte);
             estModifiee = true;
         }
