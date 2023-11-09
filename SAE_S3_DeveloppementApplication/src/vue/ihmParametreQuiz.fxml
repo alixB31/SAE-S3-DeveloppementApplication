@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.image.Image?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreController">
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreController">
    <children>
       <Button fx:id="btnNouvelleCategorie" layoutX="855.0" layoutY="591.0" mnemonicParsing="false" onAction="#NouvelleCategorie" prefHeight="85.0" prefWidth="203.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Ajouter catégorie">
          <font>
@@ -54,5 +55,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <ComboBox fx:id="comboBox" layoutX="287.0" layoutY="401.0" prefHeight="76.0" prefWidth="358.0" promptText="Choisir une catégorie" />
    </children>
 </AnchorPane>

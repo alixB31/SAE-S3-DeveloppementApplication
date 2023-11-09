@@ -7,6 +7,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.text.Text;
 import vue.Main;
 
+/** TODO comment class responsibility (SRP)
+ * @author rayanibrahime
+ * @author nathangirardin
+ */
 public class RepondreQuestionControleur {
 
     @FXML
