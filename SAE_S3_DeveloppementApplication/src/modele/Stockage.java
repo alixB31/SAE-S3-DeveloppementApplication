@@ -116,4 +116,8 @@ public class Stockage {
 	public boolean supprimerElementListeQuestion(String intitule) {
 		return listeQuestion.supprimerElementListeQuestion(intitule);
 	}
+	
+	public boolean supprimerReponseFausseQuestion(Question question, String ancienneReponseFausse) {
+		return listeQuestion.supprimerReponseFausse(question, ancienneReponseFausse);
+	}
 }

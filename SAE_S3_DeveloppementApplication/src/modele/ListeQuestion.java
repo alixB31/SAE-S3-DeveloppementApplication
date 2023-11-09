@@ -120,15 +120,9 @@ public class ListeQuestion {
     public boolean modifierListeReponsesFaussesQuestion(Question question, String ancienneReponseFausse,
     		String nouvelleReponseFausse) {
     	boolean estModifiee = false;
-    	boolean estDansListeReponseFausse = false;
-    	for (int i = 0; i < question.listeReponsesFausses.size(); i++) {
-    		if (question.listeReponsesFausses.get(i).equals(ancienneReponseFausse)) {
-    			estDansListeReponseFausse = true;
-    		}
-    	}
         if (elementEstDansListeQuestion(question.getIntituleQuestion())
         		&& !nouvelleReponseFausse.isBlank() && !nouvelleReponseFausse.isEmpty()
-        		&& !estDansListeReponseFausse) {
+        		&& !question.reponseFausseExiste(nouvelleReponseFausse)) {
         	for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
     			if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {
     				question.setReponsesFaussesQuestion(i, nouvelleReponseFausse);
@@ -142,13 +136,7 @@ public class ListeQuestion {
     
     public boolean ajouterReponseFausse(Question question,String reponseFausse) {
     	boolean estModifiee = false;
-    	boolean estDansListeReponseFausse = false;
-    	for (int i = 0; i < question.listeReponsesFausses.size(); i++) {
-    		if (question.listeReponsesFausses.get(i).equals(reponseFausse)) {
-    			estDansListeReponseFausse = true;
-    		}
-    	}
-		if (!reponseFausse.isBlank() && !reponseFausse.isBlank() && !estDansListeReponseFausse) {
+		if (!reponseFausse.isBlank() && !reponseFausse.isBlank() && !question.reponseFausseExiste(reponseFausse)) {
 			question.ajouterReponseFausse(reponseFausse);
 			estModifiee = true;
 		}
@@ -190,5 +178,17 @@ public class ListeQuestion {
         return listeQuestionParCategorie;
     }
     
-//    public boolean supprimerReponseFausse(Question question, )
+    public boolean supprimerReponseFausse(Question question, String ancienneReponseFausse) {
+    	boolean estSupprimeReponseFausse = false;
+    	if (question.reponseFausseExiste(question.getIntituleQuestion())) {
+    		for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
+    			if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {
+    				estSupprimeReponseFausse = true;
+    				question.supprimerReponseFausseQuestion(i);
+    			}
+    		}
+    		question.supprimerReponseFausseQuestion(0);
+    	}
+    	return estSupprimeReponseFausse;
+    }
 }
