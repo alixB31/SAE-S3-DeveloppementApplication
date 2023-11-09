@@ -139,7 +139,8 @@ public class ListeQuestion {
     
     public boolean ajouterReponseFausse(Question question,String reponseFausse) {
     	boolean estModifiee = false;
-		if (!reponseFausse.isBlank() && !reponseFausse.isBlank() && !question.reponseFausseExiste(reponseFausse)) {
+		if (!reponseFausse.isBlank() && !reponseFausse.isBlank() && !question.reponseFausseExiste(reponseFausse)
+				&& question.getReponsesFaussesQuestion().size() < 4) {
 			question.ajouterReponseFausse(reponseFausse);
 			estModifiee = true;
 		}
@@ -185,7 +186,8 @@ public class ListeQuestion {
     
     public boolean supprimerReponseFausse(Question question, String ancienneReponseFausse) {
     	boolean estSupprimeReponseFausse = false;
-    	if (question.reponseFausseExiste(question.getIntituleQuestion())) {
+    	if (question.reponseFausseExiste(question.getIntituleQuestion())
+    			&& question.listeReponsesFausses.size() > 1) {
     		for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
     			if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {
     				estSupprimeReponseFausse = true;

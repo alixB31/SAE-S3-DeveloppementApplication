@@ -120,25 +120,50 @@ public class Question {
 	}
 
 	/**
-	 * TODO comment method role
-	 * @param feedBack
+	 * @param feedBack le nouveau feedback de la questoion.
 	 */
 	public void setFeedBackQuestion(String feedBack) {
 		this.feedBackQuestion = feedBack;
 	}
 	
+	/**
+	 * Ajoute une réponse fausse à la liste des réponses fausses.
+	 * Il y a obligatoirement entre 1 et 4 réponse(s) fausse(s).
+	 * Une réponse fausse ne peut être qu'une fois dans la liste
+	 * des réponses fausses d'une question.
+	 * @param reponseFausse la réponse fausse à ajouter.
+	 */
 	public void ajouterReponseFausse(String reponseFausse) {
 		this.listeReponsesFausses.add(reponseFausse);
 	}
-	
+	/**
+	 * Modifie une réponse fausse déjà existante. La nouvelle réponse fausse
+	 * doit être unique dans la liste des réponses fausses d'une question.
+	 * @param indice celui correspondant à la réponse fausse que l'on modifie.
+	 * @param nouvelleReponseFausse la nouvelle version de la réponse fausse
+	 * qui remplace l'ancienne.
+	 */
 	public void setReponsesFaussesQuestion(int indice,
 			String nouvelleReponseFausse) {
 			listeReponsesFausses.set(indice, nouvelleReponseFausse);
 	}
 	
+	/**
+	 * Une réponse fausse ne peut être supprimé que s'il en existe au moins 2.
+	 * @param indice l'indice de la liste des réponses fausses correspondant
+	 * à la réponse fausse que l'on supprime.
+	 */
 	public void supprimerReponseFausseQuestion(int indice) {
 		this.listeReponsesFausses.remove(indice);
 	}
+	
+	/**
+	 * Vérifie si une réponse fausse existe dans la liste des réponses fausses
+	 * d'une question.
+	 * @param reponseFausseATester la réponse dont on vérifie l'existance.
+	 * @return  estDansListeReponseFausse est true si la réponse se trouve dans
+	 * la liste, false sinon.
+	 */
 	public boolean reponseFausseExiste(String reponseFausseATester) {
 		boolean estDansListeReponseFausse = false;
 		for (int i = 0; i < listeReponsesFausses.size(); i++) {
