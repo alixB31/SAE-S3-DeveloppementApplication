@@ -139,4 +139,13 @@ public class Question {
 	public void supprimerReponseFausseQuestion(int indice) {
 		this.listeReponsesFausses.remove(indice);
 	}
+	public boolean reponseFausseExiste(String reponseFausseATester) {
+		boolean estDansListeReponseFausse = false;
+		for (int i = 0; i < listeReponsesFausses.size(); i++) {
+    		if (listeReponsesFausses.get(i).equals(reponseFausseATester)) {
+    			estDansListeReponseFausse = true;
+    		}
+    	}
+		return estDansListeReponseFausse;
+	}
 }
