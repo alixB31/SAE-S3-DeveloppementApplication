@@ -51,7 +51,8 @@ public class ListeQuestion {
      */
     public boolean supprimerElementListeQuestion(String cle) {
         boolean estSupprime = false;
-        if (elementEstDansListeQuestion(cle) && !cle.equals("Général")) {
+        // je crois qu'on s'en fous que la question sois dans general
+        if (elementEstDansListeQuestion(cle)) {
             listeQuestion.remove(cle);
             estSupprime = true;
         }
