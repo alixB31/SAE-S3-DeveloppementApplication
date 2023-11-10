@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ScoreQuizController">
+   <children>
+      <Text layoutX="434.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
+         <font>
+            <Font name="System Bold Italic" size="88.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnTerminer" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnTerminerAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #6DE211; -fx-background-radius: 25px;" text="Suivant">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+      <Text fx:id="categorieQuestion" layoutX="59.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie" wrappingWidth="83.328125">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="234.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous avez eu" wrappingWidth="153.00997924804688">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="score" layoutX="387.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?" wrappingWidth="10.353515625">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="404.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="10.353515625">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="nbQuestion" layoutX="422.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?" wrappingWidth="10.353515625">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="texteEncouragement" layoutX="440.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="vous pouvez encore vous améliorer " wrappingWidth="405.8100891113281">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="234.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question n°">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="234.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question n°">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="234.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question n°">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="234.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question n°">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="234.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question n°">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="feedBackQuestionUn" layoutX="407.0" layoutY="249.0" mnemonicParsing="false" onAction="#feedBackQuestionUnAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ampoule.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fx:id="reponseVisuelleQuestionUn" fitHeight="35.0" fitWidth="35.0" layoutX="357.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/valider.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="reponseVisuelleQuestionDeux" fitHeight="35.0" fitWidth="35.0" layoutX="357.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/croix.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="reponseVisuelleQuestionTrois" fitHeight="35.0" fitWidth="35.0" layoutX="357.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/valider.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="reponseVisuelleQuestionQuatre" fitHeight="35.0" fitWidth="35.0" layoutX="357.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/valider.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="reponseVisuelleQuestionCinq" fitHeight="35.0" fitWidth="35.0" layoutX="357.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/valider.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="feedBackQuestionDeux" layoutX="407.0" layoutY="319.0" mnemonicParsing="false" onAction="#feedBackQuestionDeuxAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ampoule.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="feedBackQuestionTrois" layoutX="407.0" layoutY="389.0" mnemonicParsing="false" onAction="#feedBackQuestionTroisAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ampoule.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="feedBackQuestionQuatre" layoutX="407.0" layoutY="459.0" mnemonicParsing="false" onAction="#feedBackQuestionQuatreAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ampoule.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="feedBackQuestionCinq" layoutX="407.0" layoutY="529.0" mnemonicParsing="false" onAction="#feedBackQuestionCinqAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ampoule.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Text fx:id="numeroQuestionUn" layoutX="328.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="numeroQuestionDeux" layoutX="328.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="numeroQuestionTrois" layoutX="328.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="numeroQuestionQuatre" layoutX="328.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="numeroQuestionCinq" layoutX="328.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

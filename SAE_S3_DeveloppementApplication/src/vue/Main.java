@@ -28,6 +28,7 @@ public class Main extends Application {
     private static Scene sceneParametreCategorie;
     private static Scene sceneParametreQuestion;
     private static Scene sceneRepondreQuestion;
+    private static Scene sceneScoreQuiz;
     
     public static Stockage stockage;
     
@@ -74,6 +75,11 @@ public class Main extends Application {
         chargeurFXMLReponseQuestion.setLocation(getClass().getResource("ihmRepondreQuestion.fxml"));
         Parent repondreQuestion = chargeurFXMLReponseQuestion.load();
         sceneRepondreQuestion = new Scene(repondreQuestion);
+        
+        FXMLLoader chargeurFXMLScoreQuiz = new FXMLLoader();
+        chargeurFXMLScoreQuiz.setLocation(getClass().getResource("ihmScoreQuiz.fxml"));
+        Parent ScoreQuiz = chargeurFXMLScoreQuiz.load();
+        sceneScoreQuiz = new Scene(ScoreQuiz);
        
 
         /* Création de la fenêtre principale*/
@@ -150,5 +156,10 @@ public class Main extends Application {
     public static void RepondreQuestion() {
         fenetrePrincipale.setScene(sceneRepondreQuestion);
     }
+
+	public static void ihmScoreQuiz() {
+		fenetrePrincipale.setScene(sceneScoreQuiz);
+		
+	}
     
 }
