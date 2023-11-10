@@ -60,7 +60,7 @@ public class ListeQuestion {
     }
 
     /**
-     * verifie si une question est deja dans la liste
+     * Verifie si une question est deja dans la liste
      * @param cle 
      * @return true si la question est dans la liste, false sinon
      */
@@ -69,6 +69,7 @@ public class ListeQuestion {
     }
 
     /**
+     * Ajoute une question dans la liste des questions du Stockage courrant.
      * @param question  la question à ajouter à la liste des questions.
      * @return estAjoutee, true si la question est ajoutée, false sinon.
      */
@@ -121,10 +122,10 @@ public class ListeQuestion {
 
     /**
      * Mofifie la difficulté d'une question. Une difficulté ne peut être égale
-     * qu'à 
-     * @param question
-     * @param difficulte
-     * @return
+     * qu'à 1, 2 ou 3.
+     * @param question la question dont on modifie la difficulté.
+     * @param difficulte la nouvelle difficulté.
+     * @return estModifiee est true si la difficulte est modifiée, false sinon.
      */
     public boolean modifierDifficulteQuestion(Question question, int difficulte) {
     	boolean estModifiee = false;
@@ -136,12 +137,20 @@ public class ListeQuestion {
         return estModifiee;
     }
     
+    /**
+     * Modifie un élément de la liste des réponses fausses.
+     * @param question la question dont on modifie la réponse fausse
+     * @param ancienneReponseFausse l'ancienne réponse fausse.
+     * @param nouvelleReponseFausse la nouvelle réponse fausse.
+     * @return estModifiee si la réponse fausse de la question est modifée, false sinon.
+     */
     public boolean modifierListeReponsesFaussesQuestion(Question question, String ancienneReponseFausse,
     		String nouvelleReponseFausse) {
     	boolean estModifiee = false;
         if (elementEstDansListeQuestion(question.getIntituleQuestion())
         		&& !nouvelleReponseFausse.isBlank() && !nouvelleReponseFausse.isEmpty()
-        		&& !question.reponseFausseExiste(nouvelleReponseFausse)) {
+        		&& (!question.reponseFausseExiste(nouvelleReponseFausse) || ancienneReponseFausse.equals(nouvelleReponseFausse))
+        		&& question.reponseFausseExiste(ancienneReponseFausse)) {
         	for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
     			if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {
     				question.setReponsesFaussesQuestion(i, nouvelleReponseFausse);
@@ -153,6 +162,15 @@ public class ListeQuestion {
         return estModifiee;
     }
     
+    /**
+     * Ajoute une réponse fausse à la liste des réponse fausses.
+     * Il ne peut y avoir que 4 réponses fausses maximum.
+     * Il ne peut pas y avoir deux réponses fausses identiques au sein de
+     * la même question.
+     * @param question la question dont on veux ajouter une réponse fausse
+     * @param reponseFausse la réponse que l'on ajoute.
+     * @return estModifiee est true si la modification c'est effectuée, false sinon.
+     */
     public boolean ajouterReponseFausse(Question question,String reponseFausse) {
     	boolean estModifiee = false;
 		if (!reponseFausse.isBlank() && !reponseFausse.isBlank() && !question.reponseFausseExiste(reponseFausse)
@@ -163,16 +181,32 @@ public class ListeQuestion {
 		return estModifiee;
     }
     
+    /**
+     * Modifie le feedback de la question. Une question n'a pas forcément
+     * de feedBack mais un feedBack ne peut être enregistré vide ou
+     * rempli uniquement d'espace.
+     * @param question la question dont on veut modifier le feedback.
+     * @param feedBack la nouvelle version du feedBack
+     * @return estModifiee true si le feedBack est modifié, false sinon;
+     */
     public boolean modifierFeedBackQuestion(Question question, String feedBack) {
-    	boolean estModifiee = false;
+    	boolean estModifie = false;
         if (elementEstDansListeQuestion(question.getIntituleQuestion())
         		&& !feedBack.isBlank() && !feedBack.isEmpty()) {
             question.setFeedBackQuestion(feedBack);
-            estModifiee = true;
+            estModifie = true;
         }
-        return estModifiee;
+        return estModifie;
     }
     
+    /**
+     * Modifie la réponse juste d'une question. La réponse juste est
+     * obligatoire. Elle doit être obligatoirement remplie d'au moins
+     * un caractère. Le text de la réponse juste ne peut pas être blanc.
+     * @param question la question dont on modifie la réponse juste.
+     * @param reponseJuste la nouvelle réponse juste.
+     * @return modifiee est true si la réponse juste est modifiée, false sinon.
+     */
     public boolean modifierReponseJusteQuestion(Question question, String reponseJuste) {
     	boolean estModifiee = false;
         if (elementEstDansListeQuestion(question.getIntituleQuestion())
@@ -200,6 +234,13 @@ public class ListeQuestion {
         return listeQuestionParCategorie;
     }
     
+    /**
+     * Supprime les questions en fonction de leur catégorie.
+     * @param categorie la catégorie des questions à supprimer.
+     * @return sontSupprimees est true si les questions sont supprimées,
+     * false sinon.
+     */
+
     public boolean supprimerQuestionParCategorie(Categorie categorie) {
     	boolean sontSupprimees = false;
     	
@@ -213,9 +254,15 @@ public class ListeQuestion {
     	return sontSupprimees;
     }
     
+    /**
+     * Supprime une réponse fausse.
+     * @param question la question dont on modifie la réponse fausse.
+     * @param ancienneReponseFausse L'ancieen réponse fausse à supprimer.
+     * @return
+     */
     public boolean supprimerReponseFausse(Question question, String ancienneReponseFausse) {
     	boolean estSupprimeReponseFausse = false;
-    	if (question.reponseFausseExiste(question.getIntituleQuestion())
+    	if (question.reponseFausseExiste(ancienneReponseFausse)
     			&& question.listeReponsesFausses.size() > 1) {
     		for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
     			if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {
@@ -223,7 +270,6 @@ public class ListeQuestion {
     				question.supprimerReponseFausseQuestion(i);
     			}
     		}
-    		question.supprimerReponseFausseQuestion(0);
     	}
     	return estSupprimeReponseFausse;
     }
