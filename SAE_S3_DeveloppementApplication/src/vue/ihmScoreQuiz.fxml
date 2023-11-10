@@ -7,14 +7,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ScoreQuizController">
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ScoreQuizController">
    <children>
       <Text layoutX="434.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
          <font>
             <Font name="System Bold Italic" size="88.0" />
          </font>
       </Text>
-      <Button fx:id="btnTerminer" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnTerminerAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #6DE211; -fx-background-radius: 25px;" text="Suivant">
+      <Button fx:id="btnTerminer" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnTerminerAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #6DE211; -fx-background-radius: 10px;" text="Suivant">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>

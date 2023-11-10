@@ -11,17 +11,17 @@
 
 <AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreCategorieController">
    <children>
-      <Button fx:id="btnSuivant" layoutX="855.0" layoutY="591.0" mnemonicParsing="false" onAction="#pageSuivante" prefHeight="85.0" prefWidth="203.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Suivant">
+      <Button fx:id="btnSuivant" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#pageSuivante" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 10px;" text="Suivant">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Text layoutX="310.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie: " textAlignment="CENTER">
+      <Text layoutX="51.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie: " textAlignment="CENTER">
          <font>
             <Font name="System Bold Italic" size="27.0" />
          </font>
       </Text>
-      <Button fx:id="btnRetour1" layoutX="51.0" layoutY="622.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="34.0" prefWidth="107.0" style="-fx-background-color: #C32A4E; -fx-background-radius:25px;" text="Retour">
+      <Button fx:id="btnRetour1" layoutX="50.0" layoutY="620.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -54,10 +54,15 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label fx:id="nomCategorie" layoutX="492.0" layoutY="67.0" text="?">
+      <Label fx:id="nomCategorie" layoutX="183.0" layoutY="66.0" text="?">
          <font>
             <Font size="46.0" />
          </font>
       </Label>
+      <Text layoutX="353.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUESTIONS">
+         <font>
+            <Font name="System Bold Italic" size="88.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
