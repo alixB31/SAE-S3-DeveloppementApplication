@@ -29,6 +29,7 @@ class TestQuestion {
     /* liste trop longue de reponse fausse */
     private ArrayList<String> listeReponsesFaussesTropLongue = new ArrayList();
     
+    
 	@BeforeEach
 	void setUp() throws Exception {
 		jeuxDeTest = new ArrayList<>(5);
@@ -36,6 +37,7 @@ class TestQuestion {
 		jeuxDeTest.add(new Categorie("Java"));
 		jeuxDeTest.add(new Categorie("Math"));
 		jeuxDeTest.add(new Categorie("Général"));
+		jeuxDeTest.add(new Categorie("categoriePasDansListe"));
 		
 		listeReponsesFausses.add("2");
 		listeReponsesFausses.add("7");
@@ -51,12 +53,16 @@ class TestQuestion {
 		jeuxDeTestQuestion.add(new Question("3+1",jeuxDeTest.get(1),1,listeReponsesFaussesTropLongue,"4","3 + 1 = 4"));
 		jeuxDeTestQuestion.add(new Question("3+3",jeuxDeTest.get(2),1,listeReponsesFausses,"6","3 + 3 = 6"));
 		stockageTest = new Stockage();
+		stockageTest.ajouterCategorie(jeuxDeTest.get(0));
+		stockageTest.ajouterCategorie(jeuxDeTest.get(1));
+		stockageTest.ajouterCategorie(jeuxDeTest.get(2));
 	}
 	
 	@Test
 	void testAjouterQuestion() {
 		Map<String, Question> mapVoulu = new HashMap<>();
 		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(0));
+		
 		mapVoulu.put("Combien y a t'il de nombre boucle en java ?",jeuxDeTestQuestion.get(0));
 		assertEquals(stockageTest.getListeQuestion(),mapVoulu);
 		
@@ -105,11 +111,11 @@ class TestQuestion {
 	void testModifierCategorieQuestion() {
 		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(1));
 		//cas ou la nouvelle categorie n'existe pas 
-		assertFalse(stockageTest.modifierCategorieQuestion(jeuxDeTestQuestion.get(1),jeuxDeTest.get(0)));		
+		assertFalse(stockageTest.modifierCategorieQuestion(jeuxDeTestQuestion.get(1),jeuxDeTest.get(3)));		
 		//cas ou la nouvelle categorie existe
-		stockageTest.ajouterCategorie(jeuxDeTest.get(0));
-		stockageTest.modifierCategorieQuestion(jeuxDeTestQuestion.get(1),jeuxDeTest.get(0));
-		assertEquals(jeuxDeTestQuestion.get(1).getCategorieDeQuestion(),jeuxDeTest.get(0));
+		stockageTest.ajouterCategorie(jeuxDeTest.get(3));
+		stockageTest.modifierCategorieQuestion(jeuxDeTestQuestion.get(1),jeuxDeTest.get(3));
+		assertEquals(jeuxDeTestQuestion.get(1).getCategorieDeQuestion(),jeuxDeTest.get(3));
 
 	}
 
@@ -132,6 +138,80 @@ class TestQuestion {
 		assertEquals(jeuxDeTestQuestion.get(1).getFeedBackQuestion(),"le résultat est 5");
 		//cas ou feedback vide
 		assertFalse(stockageTest.modifierFeedBackQuestion(jeuxDeTestQuestion.get(1),""));
+		//cas ou la question n'existe pas 
+		assertFalse(stockageTest.modifierFeedBackQuestion(jeuxDeTestQuestion.get(3),"2"));
 
 	}
+	
+	@Test
+	void testModifierReponseJusteQuestion() {
+		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(1));
+		stockageTest.modifierReponseJusteQuestion(jeuxDeTestQuestion.get(1),"55");
+		assertEquals(jeuxDeTestQuestion.get(1).getReponseJusteQuestion(),"55");
+		//cas ou reponse vide 
+		assertFalse(stockageTest.modifierReponseJusteQuestion(jeuxDeTestQuestion.get(1),""));
+		//cas ou la question n'existe pas 
+		assertFalse(stockageTest.modifierReponseJusteQuestion(jeuxDeTestQuestion.get(3),"55"));
+		
+	}
+	
+	@Test
+	void testAjouterReponseFausseQuestion() {
+		ArrayList arrayVoulu = new ArrayList<>();
+		arrayVoulu.add("2");
+		arrayVoulu.add("7");
+		arrayVoulu.add("10");
+		arrayVoulu.add("55");
+		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(1));
+		stockageTest.ajouterReponseFausseQuestion(jeuxDeTestQuestion.get(1),"55");
+		assertEquals(jeuxDeTestQuestion.get(1).getReponsesFaussesQuestion(),arrayVoulu);
+		//cas avec plus de 4 reponses fausses
+		assertFalse(stockageTest.ajouterReponseFausseQuestion(jeuxDeTestQuestion.get(1),"trop long"));
+		//cas ou la nouvelle reponses fausses est fausses
+		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(0));
+		assertFalse(stockageTest.ajouterReponseFausseQuestion(jeuxDeTestQuestion.get(0),""));
+	}
+	
+	@Test
+	void testSupprimerReponseFausseQuestion() {
+		ArrayList arrayVoulu = new ArrayList<>();
+		arrayVoulu.add("7");
+		arrayVoulu.add("10");
+		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(1));
+		stockageTest.supprimerReponseFausseQuestion(jeuxDeTestQuestion.get(1),"2");
+		assertEquals(jeuxDeTestQuestion.get(1).getReponsesFaussesQuestion(),arrayVoulu);
+		
+		ArrayList arrayVoulu2 = new ArrayList<>();
+		stockageTest.ajouterReponseFausseQuestion(jeuxDeTestQuestion.get(0),"2");
+		arrayVoulu2.add("10");
+		arrayVoulu2.add("2");
+		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(0));
+		stockageTest.supprimerReponseFausseQuestion(jeuxDeTestQuestion.get(0),"7");
+		assertEquals(jeuxDeTestQuestion.get(0).getReponsesFaussesQuestion(),arrayVoulu2);
+		
+		//suppresion jusqu'a qu'il n'y ai plus de reponses fausses
+		stockageTest.supprimerReponseFausseQuestion(jeuxDeTestQuestion.get(0),"2");
+		assertFalse(stockageTest.supprimerReponseFausseQuestion(jeuxDeTestQuestion.get(0),"10"));
+	}
+	
+	@Test
+	void testModifierListeReponseFausseQuestion() {
+		ArrayList arrayVoulu = new ArrayList<>();
+		arrayVoulu.add("2000");
+		arrayVoulu.add("7");
+		arrayVoulu.add("10");
+		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(1));
+		stockageTest.modifierListeReponseFausseQuestion(jeuxDeTestQuestion.get(1),"2","2000");
+		assertEquals(jeuxDeTestQuestion.get(1).getReponsesFaussesQuestion(),arrayVoulu);
+		// cas ou on modifie par la meme reponse
+		assertTrue(stockageTest.modifierListeReponseFausseQuestion(jeuxDeTestQuestion.get(1),"7","7"));
+		// cas ou on modifie par une reponse vide
+		assertFalse(stockageTest.modifierListeReponseFausseQuestion(jeuxDeTestQuestion.get(1),"7",""));
+		// cas ou on modifie une reponse inexistante
+		assertFalse(stockageTest.modifierListeReponseFausseQuestion(jeuxDeTestQuestion.get(1),"50","25"));
+		
+		
+	}
+	
+	
 }
