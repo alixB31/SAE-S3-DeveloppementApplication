@@ -97,8 +97,11 @@ public class ListeQuestion {
         if (elementEstDansListeQuestion(question.getIntituleQuestion())
         		&& !nouvelIntitule.isBlank() && !nouvelIntitule.isEmpty()
         		&& nouvelIntitule != null) {
-            question.setIntituleQuestion(nouvelIntitule);
-            estModifiee = true;
+           if (this.supprimerElementListeQuestion(question.getIntituleQuestion())) {
+        	   question.setIntituleQuestion(nouvelIntitule);
+        	   this.ajouterElementListeQuestion(question);
+        	   estModifiee = true;
+           }
         }
         return estModifiee;
     }
