@@ -161,8 +161,8 @@ public class ListeQuestion {
     }
     
     /**
-     * Ajoute une réponse fausse à la liste des réponse fausses;
-     * @param question
+     * Ajoute une réponse fausse à la liste des réponse fausses.
+     * @param question la question dont on 
      * @param reponseFausse
      * @return
      */
@@ -176,6 +176,12 @@ public class ListeQuestion {
 		return estModifiee;
     }
     
+    /**
+     * 
+     * @param question
+     * @param feedBack
+     * @return
+     */
     public boolean modifierFeedBackQuestion(Question question, String feedBack) {
     	boolean estModifiee = false;
         if (elementEstDansListeQuestion(question.getIntituleQuestion())
@@ -236,7 +242,6 @@ public class ListeQuestion {
     				question.supprimerReponseFausseQuestion(i);
     			}
     		}
-    		question.supprimerReponseFausseQuestion(0);
     	}
     	return estSupprimeReponseFausse;
     }
