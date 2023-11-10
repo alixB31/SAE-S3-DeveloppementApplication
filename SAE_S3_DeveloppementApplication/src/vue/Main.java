@@ -82,7 +82,6 @@ public class Main extends Application {
         Parent ScoreQuiz = chargeurFXMLScoreQuiz.load();
         sceneScoreQuiz = new Scene(ScoreQuiz);
        
-
         /* Création de la fenêtre principale*/
         primaryStage.setTitle("Quiz");
         primaryStage.setHeight(720);
@@ -131,7 +130,7 @@ public class Main extends Application {
      * Afficher les paramètres d'une catégorie
      *
      */
-    public static void voirParamCategorie(String categorieCourrante) {
+    public static void voirParamCategorie() {
         fenetrePrincipale.setScene(sceneParametreCategorie);
     }
     

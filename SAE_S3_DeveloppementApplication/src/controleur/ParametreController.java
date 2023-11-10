@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -41,7 +42,7 @@ public class ParametreController {
 
     @FXML
     private ComboBox<String> comboBox;
-
+    
     @FXML
     void nouvelleCategorieAction(ActionEvent event) {
         try {
@@ -117,7 +118,10 @@ public class ParametreController {
     @FXML
     void suivant(ActionEvent event) {
         try {
-            Main.voirParamCategorie(comboBox.getValue());
+        	ParametreCategorieController controller1 = new ParametreCategorieController();
+        	controller1.setNomCategorie(comboBox.getValue());
+//        	ParametreCategorieController.setNomCategorie(comboBox.getValue());
+        	Main.voirParamCategorie();
         } catch (Exception e) {
             // Gérer l'exception (afficher un message d'erreur, journaliser, etc.)
             e.printStackTrace();

@@ -40,7 +40,15 @@ public class ParametreCategorieController {
     private Button btnSuivant;
 
     @FXML
+    private Label nomCategorie = new Label();
+    
+    @FXML
     private ComboBox<String> comboBoxCategorie;
+    
+    public void setNomCategorie(String nomCategorie) {
+    	this.nomCategorie.setText(nomCategorie);
+    }
+    
 
     @FXML
     void ajouterQuestion(ActionEvent event) {
