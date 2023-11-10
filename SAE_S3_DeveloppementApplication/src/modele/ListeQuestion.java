@@ -60,7 +60,7 @@ public class ListeQuestion {
     }
 
     /**
-     * verifie si une question est deja dans la liste
+     * Verifie si une question est deja dans la liste
      * @param cle 
      * @return true si la question est dans la liste, false sinon
      */
@@ -69,6 +69,7 @@ public class ListeQuestion {
     }
 
     /**
+     * Ajoute une question dans la liste des questions du Stockage courrant.
      * @param question  la question à ajouter à la liste des questions.
      * @return estAjoutee, true si la question est ajoutée, false sinon.
      */
@@ -148,7 +149,7 @@ public class ListeQuestion {
     	boolean estModifiee = false;
         if (elementEstDansListeQuestion(question.getIntituleQuestion())
         		&& !nouvelleReponseFausse.isBlank() && !nouvelleReponseFausse.isEmpty()
-        		&& !question.reponseFausseExiste(nouvelleReponseFausse)) {
+        		&& (!question.reponseFausseExiste(nouvelleReponseFausse) || ancienneReponseFausse.equals(nouvelleReponseFausse))) {
         	for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
     			if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {
     				question.setReponsesFaussesQuestion(i, nouvelleReponseFausse);
@@ -162,9 +163,12 @@ public class ListeQuestion {
     
     /**
      * Ajoute une réponse fausse à la liste des réponse fausses.
-     * @param question la question dont on 
-     * @param reponseFausse
-     * @return
+     * Il ne peut y avoir que 4 réponses fausses maximum.
+     * Il ne peut pas y avoir deux réponses fausses identiques au sein de
+     * la même question.
+     * @param question la question dont on veux ajouter une réponse fausse
+     * @param reponseFausse la réponse que l'on ajoute.
+     * @return estModifiee est true si la modification c'est effectuée, false sinon.
      */
     public boolean ajouterReponseFausse(Question question,String reponseFausse) {
     	boolean estModifiee = false;
@@ -177,21 +181,31 @@ public class ListeQuestion {
     }
     
     /**
-     * 
-     * @param question
-     * @param feedBack
-     * @return
+     * Modifie le feedback de la question. Une question n'a pas forcément
+     * de feedBack mais un feedBack ne peut être enregistré vide ou
+     * rempli uniquement d'espace.
+     * @param question la question dont on veut modifier le feedback.
+     * @param feedBack la nouvelle version du feedBack
+     * @return estModifiee true si le feedBack est modifié, false sinon;
      */
     public boolean modifierFeedBackQuestion(Question question, String feedBack) {
-    	boolean estModifiee = false;
+    	boolean estModifie = false;
         if (elementEstDansListeQuestion(question.getIntituleQuestion())
         		&& !feedBack.isBlank() && !feedBack.isEmpty()) {
             question.setFeedBackQuestion(feedBack);
-            estModifiee = true;
+            estModifie = true;
         }
-        return estModifiee;
+        return estModifie;
     }
     
+    /**
+     * Modifie la réponse juste d'une question. La réponse juste est
+     * obligatoire. Elle doit être obligatoirement remplie d'au moins
+     * un caractère. Le text de la réponse juste ne peut pas être blanc.
+     * @param question la question dont on modifie la réponse juste.
+     * @param reponseJuste la nouvelle réponse juste.
+     * @return modifiee est true si la réponse juste est modifiée, false sinon.
+     */
     public boolean modifierReponseJusteQuestion(Question question, String reponseJuste) {
     	boolean estModifiee = false;
         if (elementEstDansListeQuestion(question.getIntituleQuestion())
@@ -219,6 +233,11 @@ public class ListeQuestion {
         return listeQuestionParCategorie;
     }
     
+    /**
+     * Supprime les questions en fonction de leur catégorie.
+     * @param categorie
+     * @return
+     */
     public boolean supprimerQuestionParCategorie(Categorie categorie) {
     	boolean sontSupprimees = false;
     	
