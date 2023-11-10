@@ -236,10 +236,11 @@ public class ListeQuestion {
     
     /**
      * Supprime les questions en fonction de leur catégorie.
-     * @param categorie la catégorie dont on veut supprimer les questions
-     * 
-     * @return
+     * @param categorie la catégorie des questions à supprimer.
+     * @return sontSupprimees est true si les questions sont supprimées,
+     * false sinon.
      */
+
     public boolean supprimerQuestionParCategorie(Categorie categorie) {
     	boolean sontSupprimees = false;
     	
@@ -253,6 +254,12 @@ public class ListeQuestion {
     	return sontSupprimees;
     }
     
+    /**
+     * Supprime une réponse fausse.
+     * @param question la question dont on modifie la réponse fausse.
+     * @param ancienneReponseFausse L'ancieen réponse fausse à supprimer.
+     * @return
+     */
     public boolean supprimerReponseFausse(Question question, String ancienneReponseFausse) {
     	boolean estSupprimeReponseFausse = false;
     	if (question.reponseFausseExiste(ancienneReponseFausse)
