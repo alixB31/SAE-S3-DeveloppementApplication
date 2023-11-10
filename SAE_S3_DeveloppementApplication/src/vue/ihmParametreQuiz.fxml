@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreController">
    <children>
-      <Button fx:id="btnNouvelleCategorie" layoutX="900.0" layoutY="620.0" mnemonicParsing="false" onAction="#NouvelleCategorie" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Suivant">
+      <Button fx:id="btnSuivant" layoutX="900.0" layoutY="620.0" mnemonicParsing="false" onAction="#suivant" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Suivant">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -20,12 +20,12 @@
             <Font name="System Bold Italic" size="72.0" />
          </font>
       </Text>
-      <Button fx:id="btnRetour1" layoutX="50.0" layoutY="620.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #C32A4E; -fx-background-radius:25px;" text="Retour">
+      <Button fx:id="btnRetour" layoutX="50.0" layoutY="620.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #C32A4E; -fx-background-radius:25px;" text="Retour">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="740.0" layoutY="237.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="40.0" style="-fx-background-color: #5CCAC3;">
+      <Button fx:id="btnDelete" layoutX="740.0" layoutY="237.0" mnemonicParsing="false" onAction="#deleteCategorieAction" prefHeight="36.0" prefWidth="40.0" style="-fx-background-color: #5CCAC3;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -34,7 +34,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="664.0" layoutY="231.0" mnemonicParsing="false" style="-fx-background-color: #5CCAC3;">
+      <Button fx:id="btnModifier" layoutX="664.0" layoutY="231.0" mnemonicParsing="false" onAction="#modifierCategorieAction" style="-fx-background-color: #5CCAC3;">
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,7 +44,7 @@
          </graphic>
       </Button>
       <ComboBox fx:id="comboBox" layoutX="295.0" layoutY="228.0" prefHeight="76.0" prefWidth="358.0" promptText="Choisir une catégorie" />
-      <Button layoutX="812.0" layoutY="234.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="71.0" style="-fx-background-color: #5CCAC3;">
+      <Button fx:id="btnAjouter" layoutX="812.0" layoutY="234.0" mnemonicParsing="false" onAction="#nouvelleCategorieAction" prefHeight="63.0" prefWidth="71.0" style="-fx-background-color: #5CCAC3;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
