@@ -200,6 +200,19 @@ public class ListeQuestion {
         return listeQuestionParCategorie;
     }
     
+    public boolean supprimerQuestionParCategorie(Categorie categorie) {
+    	boolean sontSupprimees = false;
+    	
+    	for (Map.Entry mapEntry: listeQuestion.entrySet()) {
+    		Question questionFactice = (Question)mapEntry.getValue();
+            if (questionFactice.getCategorieDeQuestion().equals(categorie)) {
+            	supprimerElementListeQuestion((String)mapEntry.getKey());
+            }
+            sontSupprimees = true;
+        }
+    	return sontSupprimees;
+    }
+    
     public boolean supprimerReponseFausse(Question question, String ancienneReponseFausse) {
     	boolean estSupprimeReponseFausse = false;
     	if (question.reponseFausseExiste(question.getIntituleQuestion())
