@@ -243,14 +243,17 @@ public class ListeQuestion {
 
     public boolean supprimerQuestionParCategorie(Categorie categorie) {
     	boolean sontSupprimees = false;
-    	
-    	for (Map.Entry mapEntry: listeQuestion.entrySet()) {
-    		Question questionFactice = (Question)mapEntry.getValue();
-            if (questionFactice.getCategorieDeQuestion().equals(categorie)) {
-            	supprimerElementListeQuestion((String)mapEntry.getKey());
+    	if (this.listeQuestionParCategorie(categorie).getListeQuestion().size() == 0) {
+    		sontSupprimees = true;
+    	} else {
+    		for (Map.Entry mapEntry: listeQuestion.entrySet()) {
+        		Question questionFactice = (Question)mapEntry.getValue();
+                if (questionFactice.getCategorieDeQuestion().equals(categorie)) {
+                	supprimerElementListeQuestion((String)mapEntry.getKey());
+                }
+                sontSupprimees = true;
             }
-            sontSupprimees = true;
-        }
+    	}
     	return sontSupprimees;
     }
     
@@ -272,5 +275,19 @@ public class ListeQuestion {
     		}
     	}
     	return estSupprimeReponseFausse;
+    }
+    
+    public boolean modifierQuestionParCategorie(Categorie categorie, Categorie nouvelleCategorie) {
+    	boolean sontModifiees = false;
+    	if (this.listeQuestionParCategorie(categorie).getListeQuestion().size() == 0) {
+    		sontModifiees = true;
+    	}
+    	for (Map.Entry question: listeQuestion.entrySet()) {
+    		if (((Question)question.getValue()).getCategorieDeQuestion().equals(categorie)) {
+    			this.modifierCategorieDeQuestion((Question)question.getValue(), nouvelleCategorie);
+    			sontModifiees = true;
+    		}
+    	}
+    	return sontModifiees;
     }
 }

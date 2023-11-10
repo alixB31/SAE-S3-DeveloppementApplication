@@ -56,6 +56,8 @@ public class ParametreController {
             	
             	if (Main.stockage.ajouterCategorie(new Categorie(result))) {
             		comboBox.getItems().add(result);
+
+            		System.out.println(Main.stockage.getListeCategorie());
             	} else {
             		//TODO afficher que pas ajouté
             	}
@@ -74,7 +76,12 @@ public class ParametreController {
 
             Optional<ButtonType> option = boiteAlerte.showAndWait();
             if (option.isPresent() && option.get() == ButtonType.YES) {
-                comboBox.getItems().remove(comboBox.getValue());
+            	if (Main.stockage.supprimerElementListeCategorie((Categorie)Main.stockage.getListeCategorie().get(comboBox.getValue()))) {
+            		comboBox.getItems().remove(comboBox.getValue());
+            		System.out.println(Main.stockage.getListeCategorie());
+            	} else {
+            		//TODO
+            	}
             }
         } catch (Exception e) {
             // Gérer l'exception (afficher un message d'erreur, journaliser, etc.)
@@ -94,7 +101,12 @@ public class ParametreController {
 
             String result = boiteSaisie.getResult();
             if (result != null && !result.isEmpty()) {
-                comboBox.getItems().set(comboBox.getItems().indexOf(categorieCourante), result);
+            	if (Main.stockage.modifierElementListeCategorie((Categorie)Main.stockage.getListeCategorie().get(comboBox.getValue()), result)) {
+            		comboBox.getItems().set(comboBox.getItems().indexOf(categorieCourante), result);
+            		System.out.println(Main.stockage.getListeCategorie());
+            	}
+                
+                
             }
         } catch (Exception e) {
             // Gérer l'exception (afficher un message d'erreur, journaliser, etc.)

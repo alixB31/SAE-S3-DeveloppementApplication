@@ -86,21 +86,6 @@ public class ListeCategorie {
         return estAjoutee;
     }
 
-    /**
-     * Modifie une catégorie, on ne peut modifier que l'intitulé d'une catégorie.
-     * Les questions liées à une catégorie sont modifiées au sein de la classe
-     * ListeQuestion.java.
-     * @param ancienneCategorie
-     * @param nouvelleIntitule 
-     * @return estModifiee, true si la catégorie est modifiée, false sinon.
-     */
-    public boolean modifierElementListeCategorie(Categorie ancienneCategorie, String nouvelleIntitule) {
-        boolean estModifiee = false;
-        if (elementEstDansListeCategorie(ancienneCategorie.getIntituleCategorie())) {
-            ancienneCategorie.setIntituleCategorie(nouvelleIntitule);
-            estModifiee = true;
-        }
-        return estModifiee;
-    }
+
 
 }
