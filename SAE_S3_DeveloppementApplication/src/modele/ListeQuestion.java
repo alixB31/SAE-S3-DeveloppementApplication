@@ -121,10 +121,10 @@ public class ListeQuestion {
 
     /**
      * Mofifie la difficulté d'une question. Une difficulté ne peut être égale
-     * qu'à 
-     * @param question
-     * @param difficulte
-     * @return
+     * qu'à 1, 2 ou 3.
+     * @param question la question dont on modifie la difficulté.
+     * @param difficulte la nouvelle difficulté.
+     * @return estModifiee est true si la difficulte est modifiée, false sinon.
      */
     public boolean modifierDifficulteQuestion(Question question, int difficulte) {
     	boolean estModifiee = false;
@@ -136,6 +136,13 @@ public class ListeQuestion {
         return estModifiee;
     }
     
+    /**
+     * Modifie un élément de la liste des réponses fausses.
+     * @param question la question dont on modifie la réponse fausse
+     * @param ancienneReponseFausse l'ancienne réponse fausse.
+     * @param nouvelleReponseFausse la nouvelle réponse fausse.
+     * @return estModifiee si la réponse fausse de la question est modifée, false sinon.
+     */
     public boolean modifierListeReponsesFaussesQuestion(Question question, String ancienneReponseFausse,
     		String nouvelleReponseFausse) {
     	boolean estModifiee = false;
@@ -153,6 +160,12 @@ public class ListeQuestion {
         return estModifiee;
     }
     
+    /**
+     * Ajoute une réponse fausse à la liste des réponse fausses;
+     * @param question
+     * @param reponseFausse
+     * @return
+     */
     public boolean ajouterReponseFausse(Question question,String reponseFausse) {
     	boolean estModifiee = false;
 		if (!reponseFausse.isBlank() && !reponseFausse.isBlank() && !question.reponseFausseExiste(reponseFausse)
@@ -215,7 +228,7 @@ public class ListeQuestion {
     
     public boolean supprimerReponseFausse(Question question, String ancienneReponseFausse) {
     	boolean estSupprimeReponseFausse = false;
-    	if (question.reponseFausseExiste(question.getIntituleQuestion())
+    	if (question.reponseFausseExiste(ancienneReponseFausse)
     			&& question.listeReponsesFausses.size() > 1) {
     		for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
     			if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {

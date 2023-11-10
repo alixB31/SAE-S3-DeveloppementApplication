@@ -15,8 +15,10 @@ import java.util.HashMap;
  */
 public class ListeCategorie {
 
-    // Liste contenant les catégories, la clé est l'équivalante à l'intitulé
-    // d'une catégorie. Cette intitulé est unique.
+    /**
+     * Liste contenant les catégories, la clé est l'équivalante à l'intitulé
+     * d'une catégorie. Cette intitulé est unique.
+     */
     HashMap<String, Categorie> listeCategorie;
 
     /**
@@ -27,7 +29,7 @@ public class ListeCategorie {
     }
 
     /** 
-     * @return listeCategorie
+     * @return listeCategorie la liste contenant les catégories.
      */
     public HashMap getListeCategorie() {
         return listeCategorie;
