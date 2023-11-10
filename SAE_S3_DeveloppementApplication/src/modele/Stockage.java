@@ -57,7 +57,10 @@ public class Stockage {
 	 * @return true si la catégorie est supprimée, false sinon.
 	 */
 	public boolean supprimerElementListeCategorie(Categorie categorie) {
-		return listeCategorie.supprimerElementListeCategorie(categorie.getIntituleCategorie());
+		boolean toutEstSupprime = true;
+		toutEstSupprime &= listeQuestion.supprimerQuestionParCategorie(categorie);
+		toutEstSupprime &= listeCategorie.supprimerElementListeCategorie(categorie.getIntituleCategorie());
+		return toutEstSupprime;
 	}
 
 	
@@ -77,7 +80,11 @@ public class Stockage {
 	 * @return true si l'ajout a réussi, false sinon.
 	 */
 	public boolean ajouterQuestion(Question question) {
-		return listeQuestion.ajouterElementListeQuestion(question);
+		boolean estAjoutee = false;
+		if (listeCategorie.elementEstDansListeCategorie(question.getCategorieDeQuestion().getIntituleCategorie())) {
+			estAjoutee = listeQuestion.ajouterElementListeQuestion(question);
+		}
+		return estAjoutee;
 	}
 	
 	/**
@@ -123,5 +130,11 @@ public class Stockage {
 	
 	public boolean supprimerReponseFausseQuestion(Question question, String ancienneReponseFausse) {
 		return listeQuestion.supprimerReponseFausse(question, ancienneReponseFausse);
+	}
+	
+	public boolean modifierListeReponseFausseQuestion(Question question, String ancienneReponseFausse,
+			String nouvelleReponseFausse) {
+		return listeQuestion.modifierListeReponsesFaussesQuestion(question, ancienneReponseFausse,
+	    		nouvelleReponseFausse);
 	}
 }
