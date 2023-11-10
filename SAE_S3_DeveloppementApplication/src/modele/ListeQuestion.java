@@ -149,7 +149,8 @@ public class ListeQuestion {
     	boolean estModifiee = false;
         if (elementEstDansListeQuestion(question.getIntituleQuestion())
         		&& !nouvelleReponseFausse.isBlank() && !nouvelleReponseFausse.isEmpty()
-        		&& (!question.reponseFausseExiste(nouvelleReponseFausse) || ancienneReponseFausse.equals(nouvelleReponseFausse))) {
+        		&& (!question.reponseFausseExiste(nouvelleReponseFausse) || ancienneReponseFausse.equals(nouvelleReponseFausse))
+        		&& (!question.reponseFausseExiste(ancienneReponseFausse))) {
         	for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
     			if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {
     				question.setReponsesFaussesQuestion(i, nouvelleReponseFausse);
@@ -235,7 +236,8 @@ public class ListeQuestion {
     
     /**
      * Supprime les questions en fonction de leur catégorie.
-     * @param categorie
+     * @param categorie la catégorie dont on veut supprimer les question
+     * 
      * @return
      */
     public boolean supprimerQuestionParCategorie(Categorie categorie) {
