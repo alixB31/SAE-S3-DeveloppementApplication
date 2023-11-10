@@ -14,6 +14,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextInputDialog;
 import vue.Main;
+import modele.*;
 
 /**
  * TODO comment class responsibility (SRP)
@@ -52,7 +53,12 @@ public class ParametreController {
 
             String result = boiteSaisie.getResult();
             if (result != null && !result.isEmpty()) {
-                comboBox.getItems().add(result);
+            	
+            	if (Main.stockage.ajouterCategorie(new Categorie(result))) {
+            		comboBox.getItems().add(result);
+            	} else {
+            		//TODO afficher que pas ajouté
+            	}
             }
         } catch (Exception e) {
             // Gérer l'exception (afficher un message d'erreur, journaliser, etc.)
