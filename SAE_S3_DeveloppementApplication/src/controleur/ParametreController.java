@@ -21,23 +21,20 @@ import vue.Main;
  */
 public class ParametreController {
 
-    @FXML
-    private SplitMenuButton CategorieChoisie;
+	@FXML
+    private Button btnAjouter;
 
     @FXML
-    private MenuItem bd;
+    private Button btnDelete;
 
     @FXML
-    private Button btnNouvelleCategorie;
+    private Button btnModifier;
 
     @FXML
-    private Button btnRetour1;
+    private Button btnRetour;
 
     @FXML
-    private MenuItem general;
-
-    @FXML
-    private MenuItem java;
+    private Button btnSuivant;
     
     @FXML
     private ComboBox<String> comboBox;
@@ -57,4 +54,25 @@ public class ParametreController {
     void retourMenu(ActionEvent event) {
         Main.retourMenuPrincipal();
     }
+    
+    @FXML
+    void deleteCategorieAction(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void modifierCategorieAction(ActionEvent event) {
+    	String categorieCourante =  comboBox.getSelectedItem().toString();
+    	TextInputDialog boiteSaisie = new TextInputDialog(categorieCourante);
+        boiteSaisie.setHeaderText("Ajouter une nouvelle catégorie");
+        boiteSaisie.setTitle("Catégorie");
+        boiteSaisie.setContentText("Entrez le nom de votre nouvelle catégorie: ");
+        boiteSaisie.showAndWait();
+    }
+
+    @FXML
+    void suivant(ActionEvent event) {
+    	Main.voirParamCategorie();
+    }
+
 }
