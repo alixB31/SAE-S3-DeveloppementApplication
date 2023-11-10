@@ -48,7 +48,7 @@ public class RepondreQuestionControleur {
 
     @FXML
     void btnValiderAction(ActionEvent event) {
-    	Main.RepondreQuestion();
+    	Main.ihmScoreQuiz();
     }
 
 }
