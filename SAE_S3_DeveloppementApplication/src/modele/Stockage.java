@@ -1,7 +1,7 @@
 package modele;
 
 import java.util.HashMap;
-
+import java.util.Map;
 /** TODO comment class responsibility (SRP)
  * @author mateo.faussurier
  *
@@ -58,7 +58,7 @@ public class Stockage {
 	 */
 	public boolean supprimerElementListeCategorie(Categorie categorie) {
 		boolean toutEstSupprime = true;
-		toutEstSupprime &= listeQuestion.supprimerQuestionParCategorie(categorie);
+//		toutEstSupprime &= listeQuestion.supprimerQuestionParCategorie(categorie);
 		toutEstSupprime &= listeCategorie.supprimerElementListeCategorie(categorie.getIntituleCategorie());
 		return toutEstSupprime;
 	}
@@ -71,7 +71,19 @@ public class Stockage {
 	 * @return true si la modification a réussi, false sinon.
 	 */
 	public boolean modifierElementListeCategorie(Categorie ancienneCategorie, String nouveauIntitule) {
-		return listeCategorie.modifierElementListeCategorie(ancienneCategorie, nouveauIntitule);
+		
+		boolean estModifiee = true;
+		if (!listeCategorie.elementEstDansListeCategorie(nouveauIntitule)
+				&& !nouveauIntitule.isBlank() && !nouveauIntitule.isEmpty()
+				&& !ancienneCategorie.getIntituleCategorie().equals("Général")) {
+			Categorie categorie = new Categorie(nouveauIntitule);
+	    	estModifiee &= listeCategorie.ajouterElementListeCategorie(categorie);
+	    	estModifiee &= listeQuestion.modifierQuestionParCategorie(ancienneCategorie, categorie);
+	    	estModifiee &= listeCategorie.supprimerElementListeCategorie(ancienneCategorie.getIntituleCategorie());
+		} else {
+			estModifiee = false;
+		}
+		return estModifiee;
 	}
 	
 	/**
