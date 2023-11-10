@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
@@ -87,15 +88,18 @@ public class ParametreCategorieController {
         dialog.getDialogPane().setContent(grid);
         
         // Ajouter les boutons OK et Annuler
-        ButtonType okButton = new ButtonType("OK");
-        ButtonType cancelButton = new ButtonType("Annuler");
+        ButtonType okButton = new ButtonType("OK", ButtonData.OK_DONE);
+        ButtonType cancelButton = new ButtonType("Annuler", ButtonData.CANCEL_CLOSE);
         dialog.getDialogPane().getButtonTypes().addAll(okButton, cancelButton);
-        
+        // Vérifier quelle radio a été sélectionnée
+        RadioButton selectedRadio = (RadioButton) toggleGroup.getSelectedToggle();
         
         // Récupérer le résultat sélectionné lorsque le bouton OK est cliqué
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == okButton) {
-                return textField.getText();
+            	if (!textField.getText().trim().isEmpty() && !textFieldVrai.getText().trim().isEmpty()) {
+                    return textField.getText();
+                }
             }
             return null;
         });
