@@ -102,7 +102,8 @@ public class ParametreQuestionController {
 
     @FXML
     void retourCategorie(ActionEvent event) {
-        Main.voirParamCategorie();
+    	//
+        Main.voirParamCategorie("Général");
     }
 
 }

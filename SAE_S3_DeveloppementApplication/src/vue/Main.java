@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import modele.Categorie;
 import modele.Stockage;
 
 
@@ -130,7 +131,7 @@ public class Main extends Application {
      * Afficher les paramètres d'une catégorie
      *
      */
-    public static void voirParamCategorie() {
+    public static void voirParamCategorie(String categorieCourrante) {
         fenetrePrincipale.setScene(sceneParametreCategorie);
     }
     
@@ -147,7 +148,8 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
     	stockage = new Stockage();
-        launch(args);
+        stockage.ajouterCategorie(new Categorie("Général"));
+    	launch(args);
     }
     
     /**

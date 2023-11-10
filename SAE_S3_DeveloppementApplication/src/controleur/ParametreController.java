@@ -117,7 +117,7 @@ public class ParametreController {
     @FXML
     void suivant(ActionEvent event) {
         try {
-            Main.voirParamCategorie();
+            Main.voirParamCategorie(comboBox.getValue());
         } catch (Exception e) {
             // Gérer l'exception (afficher un message d'erreur, journaliser, etc.)
             e.printStackTrace();
