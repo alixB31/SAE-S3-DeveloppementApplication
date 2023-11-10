@@ -38,7 +38,7 @@ class TestCategorie {
 		jeuxDeTest.add(new Categorie("Math"));
 		jeuxDeTest.add(new Categorie("JavaFX"));
 		jeuxDeTest.add(new Categorie("Général"));
-		stockageTest = new Stockage();
+		stockageTest = new Stockage(); 
 	}
 	
 	@Test
