@@ -78,7 +78,7 @@ public class ParametreController {
         boiteSaisie.setTitle("Catégorie");
         boiteSaisie.setContentText("Entrez le nouveau nom de votre catégorie : ");
         boiteSaisie.showAndWait();
-//        comboBox.getItems().set(comboBox.get,boiteSaisie.getResult());
+        comboBox.getItems().set(comboBox.getItems().indexOf(categorieCourante),boiteSaisie.getResult());
     }
 
     @FXML
