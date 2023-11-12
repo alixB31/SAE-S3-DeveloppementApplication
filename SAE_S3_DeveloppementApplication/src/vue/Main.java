@@ -4,6 +4,9 @@
  */
 package vue;
 
+import java.io.IOException;
+
+import controleur.ParametreCategorieController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +33,7 @@ public class Main extends Application {
     private static Scene sceneParametreQuestion;
     private static Scene sceneRepondreQuestion;
     private static Scene sceneScoreQuiz;
-    
+    private static FXMLLoader chargeurFXMLCategorie = new FXMLLoader();
     public static Stockage stockage;
     
     @Override
@@ -61,10 +64,7 @@ public class Main extends Application {
         sceneParametre = new Scene(parametre); 
         
         /* on crée la vue des paramètres des catégories*/
-        FXMLLoader chargeurFXMLCategorie = new FXMLLoader();
         chargeurFXMLCategorie.setLocation(getClass().getResource("ihmParametreCategorie.fxml"));
-        Parent parametreCategorie = chargeurFXMLCategorie.load();
-        sceneParametreCategorie = new Scene(parametreCategorie); 
         
         /* on crée la vue des paramètres des questions*/
         FXMLLoader chargeurFXMLQuestion = new FXMLLoader();
@@ -128,9 +128,17 @@ public class Main extends Application {
     
     /**
      * Afficher les paramètres d'une catégorie
+     * @throws IOException 
      *
      */
-    public static void voirParamCategorie() {
+    public static void voirParamCategorie(String categorie) throws IOException {
+    	
+        Parent parametreCategorie = chargeurFXMLCategorie.load();
+        
+        ParametreCategorieController controller1 = chargeurFXMLCategorie.getController();
+    	controller1.setNomCategorie(categorie);
+    	controller1.nomCategorie.setText(categorie);
+        sceneParametreCategorie = new Scene(parametreCategorie); 
         fenetrePrincipale.setScene(sceneParametreCategorie);
     }
     

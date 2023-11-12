@@ -118,10 +118,9 @@ public class ParametreController {
     @FXML
     void suivant(ActionEvent event) {
         try {
-        	ParametreCategorieController controller1 = new ParametreCategorieController();
-        	controller1.setNomCategorie(comboBox.getValue());
+        	
 //        	ParametreCategorieController.setNomCategorie(comboBox.getValue());
-        	Main.voirParamCategorie();
+        	Main.voirParamCategorie(comboBox.getValue());
         } catch (Exception e) {
             // Gérer l'exception (afficher un message d'erreur, journaliser, etc.)
             e.printStackTrace();
