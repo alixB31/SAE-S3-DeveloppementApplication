@@ -9,17 +9,17 @@
 
 <AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.MenuController">
    <children>
-      <Button fx:id="btnLancerPartie" alignment="CENTER" contentDisplay="CENTER" layoutX="340.0" layoutY="175.0" mnemonicParsing="false" onAction="#lancerPartie" prefHeight="115.0" prefWidth="400.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Lancer un quiz" textAlignment="CENTER">
+      <Button fx:id="btnLancerPartie" alignment="CENTER" contentDisplay="CENTER" layoutX="347.0" layoutY="171.0" mnemonicParsing="false" onAction="#lancerPartie" prefHeight="115.0" prefWidth="400.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Lancer un quiz" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Button>
-      <Button fx:id="btnParam" alignment="CENTER" contentDisplay="CENTER" layoutX="340.0" layoutY="325.0" mnemonicParsing="false" onAction="#lancerParam" prefHeight="115.0" prefWidth="400.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Paramètres" textAlignment="CENTER">
+      <Button fx:id="btnParam" alignment="CENTER" contentDisplay="CENTER" layoutX="347.0" layoutY="325.0" mnemonicParsing="false" onAction="#lancerParam" prefHeight="115.0" prefWidth="400.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Paramètres" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Button>
-      <Button fx:id="btnImportExport" alignment="CENTER" contentDisplay="CENTER" layoutX="340.0" layoutY="475.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="400.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Import/Export" textAlignment="CENTER">
+      <Button fx:id="btnImportExport" alignment="CENTER" contentDisplay="CENTER" layoutX="347.0" layoutY="475.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="400.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Import/Export" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -29,7 +29,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Text layoutX="443.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
+      <Text layoutX="448.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
          <font>
             <Font name="System Bold Italic" size="88.0" />
          </font>
@@ -39,7 +39,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnJoueur" layoutX="686.0" layoutY="39.0" mnemonicParsing="false" onAction="#btnJoueurAction" prefHeight="5.0" prefWidth="6.0" style="-fx-background-color: #5CCAC3;">
+      <Button fx:id="btnJoueur" layoutX="698.0" layoutY="48.0" mnemonicParsing="false" onAction="#btnJoueurAction" prefHeight="5.0" prefWidth="6.0" style="-fx-background-color: #5CCAC3;">
          <graphic>
             <ImageView fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
