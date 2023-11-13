@@ -11,9 +11,9 @@
 
 <AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreCategorieController">
    <children>
-      <Text layoutX="51.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie : " textAlignment="CENTER">
+      <Text layoutX="60.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie : " textAlignment="CENTER">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Text>
       <Button fx:id="btnRetour1" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour">
@@ -49,9 +49,9 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label fx:id="nomCategorie" layoutX="160.0" layoutY="82.0" text="?">
+      <Label fx:id="nomCategorie" layoutX="146.0" layoutY="84.0" text="?">
          <font>
-            <Font size="20.0" />
+            <Font size="16.0" />
          </font>
       </Label>
       <Text layoutX="337.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Questions">

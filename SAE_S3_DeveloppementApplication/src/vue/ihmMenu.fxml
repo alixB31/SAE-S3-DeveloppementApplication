@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -38,15 +36,6 @@
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
-      </Button>
-      <Button fx:id="btnJoueur" layoutX="699.0" layoutY="40.0" mnemonicParsing="false" onAction="#btnJoueurAction" prefHeight="5.0" prefWidth="6.0" style="-fx-background-color: #5CCAC3;">
-         <graphic>
-            <ImageView fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/user.png" />
-               </image>
-            </ImageView>
-         </graphic>
       </Button>
    </children>
 </AnchorPane>
