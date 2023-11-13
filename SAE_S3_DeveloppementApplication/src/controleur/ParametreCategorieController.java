@@ -153,10 +153,10 @@ public class ParametreCategorieController {
 				}
 
 				//création de la nouvelle question
-				if (Main.stockage.ajouterQuestion(new Question(textField.getText().trim(), CategorieCourante, difficulte, null, textFieldVrai.getText(), feedBack))) {
+				if (Main.stockage.ajouterQuestion(new Question(textField.getText().trim(), CategorieCourante, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack))) {
 					comboBoxCategorie.getItems().add(textField.getText());
 					
-            		System.out.println(Main.stockage.getListeQuestion());
+            		System.out.println(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getCategorieDeQuestion().getIntituleCategorie());
             	} else {
             		// peu etre modifier cela 
             		Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -240,6 +240,7 @@ public class ParametreCategorieController {
 		 * Création d'une boîte d'alerte de type confirmation.
 		 * Elle est dotée de 2 boutons : oui et non
 		 */
+		
 		Alert boiteAlerte = new Alert(Alert.AlertType.CONFIRMATION,
 				"Confirmez-vous votre choix ?",
 				ButtonType.YES, ButtonType.NO);

@@ -127,6 +127,7 @@ public class ParametreController {
 //        	ParametreCategorieController.setNomCategorie(comboBox.getValue());
         	if (comboBox.getValue() != null) {
         		Main.voirParamCategorie(comboBox.getValue());
+        		
         	} else {
         		// peu etre modifier cela 
         		Alert alert = new Alert(Alert.AlertType.WARNING);

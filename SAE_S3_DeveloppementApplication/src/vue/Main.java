@@ -140,7 +140,7 @@ public class Main extends Application {
     	// Initialise le nom de la catégorie dans le label correspondant dans
     	// la nouvelle ihm.
     	controller.nomCategorie.setText(categorie);
-        
+    	controller.comboBoxCategorie.getItems().clear();
     	// TODO Initialiser la liste de questions de la catégorie sélectionnée.
     	ArrayList<Question> listeQuestionParCategorie = stockage.listeQuestionParCategorie((Categorie)stockage.getListeCategorie().get(categorie));
     	for (int i = 0; i<listeQuestionParCategorie.size(); i++) {
