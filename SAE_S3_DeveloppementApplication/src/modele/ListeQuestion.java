@@ -4,6 +4,7 @@
  */
 package modele;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -226,12 +227,12 @@ public class ListeQuestion {
      * @param categorie la catégorie dont on veut la liste des questions.
      * @return listeQuestionCategorie, la liste des questions correspondantes.
      */
-    public ListeQuestion listeQuestionParCategorie(Categorie categorie) {
-        ListeQuestion listeQuestionParCategorie = new ListeQuestion();
+    public ArrayList listeQuestionParCategorie(Categorie categorie) {
+        ArrayList<Question> listeQuestionParCategorie = new ArrayList<>();
         for (Map.Entry mapEntry: listeQuestion.entrySet()) {
             Question question = (Question) mapEntry.getValue();
             if(question.getCategorieDeQuestion().equals(categorie)) {
-                listeQuestionParCategorie.listeQuestion.put(question.getIntituleQuestion(), question);
+                listeQuestionParCategorie.add(question);
             }
         }
         return listeQuestionParCategorie;
@@ -243,16 +244,15 @@ public class ListeQuestion {
      * @return sontSupprimees est true si les questions sont supprimées,
      * false sinon.
      */
-
     public boolean supprimerQuestionParCategorie(Categorie categorie) {
     	boolean sontSupprimees = false;
-    	if (this.listeQuestionParCategorie(categorie).getListeQuestion().size() == 0) {
+    	ArrayList<Question> listeQuestionParCategorie = listeQuestionParCategorie(categorie);
+    	if (listeQuestionParCategorie.size() == 0) {
     		sontSupprimees = true;
     	} else {
-    		for (Map.Entry mapEntry: listeQuestion.entrySet()) {
-        		Question questionFactice = (Question)mapEntry.getValue();
-                if (questionFactice.getCategorieDeQuestion().equals(categorie)) {
-                	supprimerElementListeQuestion((String)mapEntry.getKey());
+    		for (int i = 0; i < listeQuestionParCategorie.size(); i++) {
+                if (listeQuestionParCategorie.get(i).getCategorieDeQuestion().equals(categorie)) {
+                	supprimerElementListeQuestion(listeQuestionParCategorie.get(i).getIntituleQuestion());
                 }
                 sontSupprimees = true;
             }
@@ -282,7 +282,7 @@ public class ListeQuestion {
     
     public boolean modifierQuestionParCategorie(Categorie categorie, Categorie nouvelleCategorie) {
     	boolean sontModifiees = false;
-    	if (this.listeQuestionParCategorie(categorie).getListeQuestion().size() == 0) {
+    	if (this.listeQuestionParCategorie(categorie).size() == 0) {
     		sontModifiees = true;
     	}
     	for (Map.Entry question: listeQuestion.entrySet()) {

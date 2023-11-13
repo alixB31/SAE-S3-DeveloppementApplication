@@ -1,5 +1,6 @@
 package modele;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 /** TODO comment class responsibility (SRP)
@@ -105,7 +106,7 @@ public class Stockage {
 	 * @param categorie la catégorie qui filtre les questions.
 	 * @return ListeQuestion, la liste des questions correspondantes.
 	 */
-	public ListeQuestion listeQuestionParCategorie(Categorie categorie) {
+	public ArrayList<Question> listeQuestionParCategorie(Categorie categorie) {
 	    return listeQuestion.listeQuestionParCategorie(categorie);
 	}
 	

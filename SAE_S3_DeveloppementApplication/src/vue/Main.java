@@ -5,6 +5,8 @@
 package vue;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import controleur.ParametreCategorieController;
@@ -14,8 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import modele.Categorie;
-import modele.Stockage;
+import modele.*;
 
 
 
@@ -146,11 +147,10 @@ public class Main extends Application {
     	controller.nomCategorie.setText(categorie);
         
     	// TODO Initialiser la liste de questions de la catégorie sélectionnée.
-//    	for (Map.Entry entry : stockage.listeQuestionParCategorie((Categorie)stockage.getListeCategorie().get(categorie)).getListeQuestion().entrySet()) {
-//    		
-//    	}
-//    	controller.comboBoxCategorie.getItems().add(stockage.listeQuestionParCategorie((Categorie)stockage.getListeCategorie().get(categorie)).getListeQuestion());
-    	
+    	ArrayList<Question> listeQuestionParCategorie = stockage.listeQuestionParCategorie((Categorie)stockage.getListeCategorie().get(categorie));
+    	for (int i = 0; i<listeQuestionParCategorie.size(); i++) {
+    		controller.comboBoxCategorie.getItems().add(listeQuestionParCategorie.get(i).getIntituleQuestion());
+    	}
     	// Ouvre la nouvelle ihm des paramètres de la catégorie sélectionnée.
         fenetrePrincipale.setScene(sceneParametreCategorie);
     }

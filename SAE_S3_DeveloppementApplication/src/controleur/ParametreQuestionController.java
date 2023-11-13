@@ -5,6 +5,8 @@
 package controleur;
 
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -101,8 +103,8 @@ public class ParametreQuestionController {
     }
 
     @FXML
-    void retourCategorie(ActionEvent event) {
-        Main.voirParamCategorie();
+    void retourCategorie(ActionEvent event) throws IOException {
+        Main.voirParamCategorie("");
     }
 
 }
