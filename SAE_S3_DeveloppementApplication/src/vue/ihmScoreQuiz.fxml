@@ -7,9 +7,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ScoreQuizController">
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ScoreQuizController">
    <children>
-      <Text layoutX="434.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
+      <Text layoutX="434.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
          <font>
             <Font name="System Bold Italic" size="88.0" />
          </font>
@@ -19,9 +19,9 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Text fx:id="categorieQuestion" layoutX="59.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie" wrappingWidth="83.328125">
+      <Text fx:id="categorieQuestion" layoutX="59.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie" wrappingWidth="92.9281005859375">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Text>
       <Text layoutX="234.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous avez eu" wrappingWidth="153.00997924804688">

@@ -24,22 +24,22 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Button>
-      <Button fx:id="btnQuitter" layoutX="43.0" layoutY="632.0" mnemonicParsing="false" onAction="#quitterQuiz" prefHeight="34.0" prefWidth="107.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Quitter">
+      <Button fx:id="btnQuitter" layoutX="60.0" layoutY="632.0" mnemonicParsing="false" onAction="#quitterQuiz" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Quitter">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Text layoutX="448.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
+      <Text layoutX="434.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
          <font>
             <Font name="System Bold Italic" size="88.0" />
          </font>
       </Text>
-      <Button fx:id="btnNotice" layoutX="940.0" layoutY="628.0" mnemonicParsing="false" onAction="#VoirNotice" prefHeight="34.0" prefWidth="107.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 10;" text="Notice">
+      <Button fx:id="btnNotice" layoutX="870.0" layoutY="628.0" mnemonicParsing="false" onAction="#VoirNotice" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 10;" text="Notice">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="btnJoueur" layoutX="698.0" layoutY="48.0" mnemonicParsing="false" onAction="#btnJoueurAction" prefHeight="5.0" prefWidth="6.0" style="-fx-background-color: #5CCAC3;">
+      <Button fx:id="btnJoueur" layoutX="699.0" layoutY="40.0" mnemonicParsing="false" onAction="#btnJoueurAction" prefHeight="5.0" prefWidth="6.0" style="-fx-background-color: #5CCAC3;">
          <graphic>
             <ImageView fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                <image>

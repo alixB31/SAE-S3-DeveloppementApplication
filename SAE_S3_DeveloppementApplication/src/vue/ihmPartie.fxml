@@ -11,14 +11,14 @@
 
 <AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.PartieController">
    <children>
-      <Text layoutX="448.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
+      <Text layoutX="434.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
          <font>
             <Font name="System Bold Italic" size="88.0" />
          </font>
       </Text>
-      <Button fx:id="btnRetour" layoutX="50.0" layoutY="620.0" mnemonicParsing="false" onAction="#RetourMenu" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour">
+      <Button fx:id="btnRetour" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#RetourMenu" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Button>
       <Text layoutX="140.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez le nombre de questions :">
@@ -93,7 +93,7 @@
       </SplitMenuButton>
       <Button fx:id="btnLancer" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#LancerQuiz" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 10px;" text="Lancer">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Button>
    </children>

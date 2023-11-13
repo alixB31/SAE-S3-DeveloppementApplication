@@ -8,24 +8,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreController">
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreController">
    <children>
       <Button fx:id="btnSuivant" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#suivant" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 10px;" text="Suivant">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Text layoutX="376.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie" textAlignment="CENTER">
+      <Text layoutX="341.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie" textAlignment="CENTER">
          <font>
             <Font name="System Bold Italic" size="88.0" />
          </font>
       </Text>
-      <Button fx:id="btnRetour" layoutX="50.0" layoutY="620.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour">
+      <Button fx:id="btnRetour" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="btnDelete" layoutX="818.0" layoutY="207.0" mnemonicParsing="false" onAction="#deleteCategorieAction" prefHeight="78.0" prefWidth="79.0" style="-fx-background-color: #5CCAC3;">
+      <Button fx:id="btnDelete" layoutX="773.0" layoutY="273.0" mnemonicParsing="false" onAction="#deleteCategorieAction" prefHeight="78.0" prefWidth="79.0" style="-fx-background-color: #5CCAC3;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -34,19 +34,19 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnModifier" layoutX="719.0" layoutY="214.0" mnemonicParsing="false" onAction="#modifierCategorieAction" prefHeight="70.0" prefWidth="58.0" style="-fx-background-color: #5CCAC3;">
+      <Button fx:id="btnModifier" layoutX="687.0" layoutY="277.0" mnemonicParsing="false" onAction="#modifierCategorieAction" prefHeight="70.0" prefWidth="58.0" style="-fx-background-color: #5CCAC3;">
          <graphic>
-            <ImageView fitHeight="59.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="60.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/crayon.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <ComboBox fx:id="comboBox" layoutX="342.0" layoutY="207.0" prefHeight="96.0" prefWidth="345.0" />
-      <Button fx:id="btnAjouter" layoutX="933.0" layoutY="213.0" mnemonicParsing="false" onAction="#nouvelleCategorieAction" prefHeight="62.0" prefWidth="42.0" style="-fx-background-color: #5CCAC3;">
+      <ComboBox fx:id="comboBox" layoutX="212.0" layoutY="264.0" prefHeight="96.0" prefWidth="345.0" />
+      <Button fx:id="btnAjouter" layoutX="601.0" layoutY="284.0" mnemonicParsing="false" onAction="#nouvelleCategorieAction" prefHeight="62.0" prefWidth="42.0" style="-fx-background-color: #5CCAC3;">
          <graphic>
-            <ImageView fitHeight="64.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/ajouter.png" />
                </image>

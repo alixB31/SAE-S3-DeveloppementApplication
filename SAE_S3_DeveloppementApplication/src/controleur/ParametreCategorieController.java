@@ -218,12 +218,6 @@ public class ParametreCategorieController {
 
 	}
 
-
-	@FXML
-	void pageSuivante(ActionEvent event) {
-		Main.voirParamQuestion();
-	}
-
 	@FXML
 	void retourMenu(ActionEvent event) {
 		Main.lancerParametre();
