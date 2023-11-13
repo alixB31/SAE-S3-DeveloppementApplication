@@ -53,14 +53,19 @@ public class ParametreController {
             boiteSaisie.showAndWait();
 
             String result = boiteSaisie.getResult();
-            if (result != null && !result.isEmpty()) {
+            if (result != null && !result.isEmpty() ) {
             	
-            	if (Main.stockage.ajouterCategorie(new Categorie(result))) {
-            		comboBox.getItems().add(result);
+            	if (Main.stockage.ajouterCategorie(new Categorie(result.trim()))) {
+            		comboBox.getItems().add(result.trim());
 
             		System.out.println(Main.stockage.getListeCategorie());
             	} else {
-            		//TODO afficher que pas ajouté
+            		// peu etre modifier cela 
+            		Alert alert = new Alert(Alert.AlertType.WARNING);
+    				alert.setTitle("Catégorie déja existante");
+    				alert.setHeaderText(null);
+    				alert.setContentText("L'intitulé de la catégorie que vous voulez créer existe déjà ou ne peut pas étre vide.");
+    				alert.showAndWait();
             	}
             }
         } catch (Exception e) {
@@ -120,7 +125,17 @@ public class ParametreController {
         try {
         	
 //        	ParametreCategorieController.setNomCategorie(comboBox.getValue());
-        	Main.voirParamCategorie(comboBox.getValue());
+        	if (comboBox.getValue() != null) {
+        		Main.voirParamCategorie(comboBox.getValue());
+        	} else {
+        		// peu etre modifier cela 
+        		Alert alert = new Alert(Alert.AlertType.WARNING);
+				alert.setTitle("Choisissez une catégorie");
+				alert.setHeaderText(null);
+				alert.setContentText("Choisissez une catégorie avant d'appuyer sur suivant.");
+				alert.showAndWait();
+        	}
+        	
         } catch (Exception e) {
             // Gérer l'exception (afficher un message d'erreur, journaliser, etc.)
             e.printStackTrace();

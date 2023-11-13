@@ -4,6 +4,7 @@
  */
 package controleur;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import javafx.event.ActionEvent;
@@ -24,6 +25,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import modele.*;
 import vue.Main;
 
 /**
@@ -46,6 +48,13 @@ public class ParametreCategorieController {
 	public Label nomCategorie;
 
 	private String categorieChoisi;
+	
+	private int difficulte;
+	
+	private String feedBack;
+	
+	/** Liste des réponses fausses d'une question, il y en a de 1 à 4*/
+	private ArrayList<String> listeReponsesFausses;
 	
 	@FXML
 	public ComboBox<String> comboBoxCategorie;
@@ -113,24 +122,48 @@ public class ParametreCategorieController {
 		Button boutonValider = new Button("Valider");
 		Button boutonAnnuler = new Button("Annuler");
 		boutonValider.setDisable(true);
-
+		
+		//categorie courante de la question a créer
+		Categorie CategorieCourante = (Categorie) Main.stockage.getListeCategorie().get(categorieChoisi);
+		
 		boutonValider.setOnAction(e -> {
 			if (!textField.getText().isEmpty() && !textFieldVrai.getText().isEmpty() && !textFieldFaux.getText().isEmpty()
 					&& (radio1.isSelected() || radio2.isSelected() || radio3.isSelected())) {
-				System.out.println("Intitulé de la question : " + textField.getText());
-				comboBoxCategorie.getItems().add(textField.getText());
-				System.out.println("Difficulté de la question : " +
-						(radio1.isSelected() ? "1" : (radio2.isSelected() ? "2" : "3")));
-				System.out.println("Réponse vraie : " + textFieldVrai.getText());
-				System.out.println("Réponse fausse : " + textFieldFaux.getText());
+				
+				//recuperation de la radio sélectionnez 
+				difficulte = (radio1.isSelected()) ? 1 : (radio2.isSelected()) ? 2 : (radio3.isSelected()) ? 3 : 0;
+				// création de l'array list des réponses fausses.
+				listeReponsesFausses = new ArrayList<>();
+				//ajout des reponses fausses a l'array list si elles sont différent de null et de ""
+				listeReponsesFausses.add(textFieldFaux.getText());
+				if (textFieldFaux2.getText() !=null && !textFieldFaux2.getText().isBlank() && textFieldFaux2.getText().trim() != "" ) {
+					listeReponsesFausses.add(textFieldFaux2.getText());
+				}
+				if (textFieldFaux3.getText() !=null && !textFieldFaux3.getText().isBlank() && textFieldFaux3.getText().trim() != "" ) {
+					listeReponsesFausses.add(textFieldFaux3.getText());
+				}
+				if (textFieldFaux4.getText() !=null && !textFieldFaux4.getText().isBlank() && textFieldFaux4.getText().trim() != "" ) {
+					listeReponsesFausses.add(textFieldFaux4.getText());
+				}
+				if (textFieldFeedBack.getText() !=null && !textFieldFeedBack.getText().isBlank() && textFieldFeedBack.getText().trim() != "" ) {
+					feedBack = textFieldFeedBack.getText();
+				}
+
+				//création de la nouvelle question
+				if (Main.stockage.ajouterQuestion(new Question(textField.getText().trim(), CategorieCourante, difficulte, null, textFieldVrai.getText(), feedBack))) {
+					comboBoxCategorie.getItems().add(textField.getText());
+					
+            		System.out.println(Main.stockage.getListeQuestion());
+            	} else {
+            		// peu etre modifier cela 
+            		Alert alert = new Alert(Alert.AlertType.WARNING);
+    				alert.setTitle("Question déja existante");
+    				alert.setHeaderText(null);
+    				alert.setContentText("L'intitulé de la question que vous voulez créer existe déjà dans cette catégorie.");
+    				alert.showAndWait();
+            	}
 				popupStage.close();
-			} else {
-				// Afficher une alerte pour informer l'utilisateur de remplir tous les champs
-				Alert alert = new Alert(Alert.AlertType.WARNING);
-				alert.setTitle("Champs manquants");
-				alert.setHeaderText(null);
-				alert.setContentText("Veuillez remplir tous les champs.");
-				alert.showAndWait();
+				
 			}
 		});
 
