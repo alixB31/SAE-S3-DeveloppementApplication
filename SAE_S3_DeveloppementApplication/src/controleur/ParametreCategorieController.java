@@ -216,7 +216,11 @@ public class ParametreCategorieController {
 
 		Optional<ButtonType> option = boiteAlerte.showAndWait();
 		if (option.get() == ButtonType.YES) { // clic sur "oui"
-			comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());
+			if(Main.stockage.supprimerElementListeQuestion(comboBoxCategorie.getValue())) {
+				comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());
+			} else {
+				// La suppression a échoué - Pop-up
+			}
 		}
 	}
 }

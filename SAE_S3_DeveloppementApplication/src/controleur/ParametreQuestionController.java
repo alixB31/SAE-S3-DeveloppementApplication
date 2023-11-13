@@ -60,7 +60,7 @@ public class ParametreQuestionController {
 
     @FXML
     private Button btnSuppRepNOk4;
-
+    
     @FXML
     void EditerRep(ActionEvent event) {
         /*on crée l'interface pour modifier l'intitulé d'une question*/
