@@ -77,9 +77,9 @@ public class ParametreCategorieController {
 		radio3.setToggleGroup(toggleGroup);
 
 		// Ajouter des marges aux boutons radio
-		GridPane.setMargin(radio1, new Insets(5, 0, 0, 30));
-		GridPane.setMargin(radio2, new Insets(5, 0, 0, 50));
-		GridPane.setMargin(radio3, new Insets(5, 0, 0, 70));
+		GridPane.setMargin(radio1, new Insets(5, 0, 0, 5));
+		GridPane.setMargin(radio2, new Insets(5, 0, 0, - 465));
+		GridPane.setMargin(radio3, new Insets(5, 0, 0, - 435));
 
 		// Créer un champ de saisie (TextField)
 		TextField textField = new TextField();
@@ -96,6 +96,9 @@ public class ParametreCategorieController {
 		textFieldFaux4.setPromptText("optionnel");
 		TextField textFieldFeedBack = new TextField();
 		textFieldFeedBack.setPromptText("optionnel");
+		
+	        // Agrandir la taille du TextField
+                textField.setPrefWidth(500);
 
 		Stage popupStage = new Stage();
 		popupStage.initModality(Modality.APPLICATION_MODAL);
@@ -109,13 +112,13 @@ public class ParametreCategorieController {
 
 
 		// Ajout des éléments au layout de la popup
-		popupLayout.addRow(0, new Label("intitilé de la question:"), textField);
+		popupLayout.addRow(0, new Label("Intitulé de la question:"), textField);
 		popupLayout.addRow(1, new Label("Difficulté de la question:"), radio1, radio2, radio3);
 		popupLayout.addRow(2, new Label("Réponse vrai:"), textFieldVrai);
 		popupLayout.addRow(3, new Label("Réponse fausse:"), textFieldFaux);
-		popupLayout.addRow(4, new Label("Réponse fausse:"), textFieldFaux2);
-		popupLayout.addRow(5, new Label("Réponse fausse:"), textFieldFaux3);
-		popupLayout.addRow(6, new Label("Réponse fausse:"), textFieldFaux4);
+		popupLayout.addRow(4, new Label(""), textFieldFaux2);
+		popupLayout.addRow(5, new Label(""), textFieldFaux3);
+		popupLayout.addRow(6, new Label(""), textFieldFaux4);
 		popupLayout.addRow(7, new Label("FeedBack:"), textFieldFeedBack);
 
 		// Bouton de validation
@@ -209,7 +212,7 @@ public class ParametreCategorieController {
 		popupLayout.addRow(8, boutonAnnuler);
 
 		// Configuration de la scène de la popup
-		Scene popupScene = new Scene(popupLayout, 500, 350);
+		Scene popupScene = new Scene(popupLayout, 750, 350);
 		popupStage.setScene(popupScene);
 		popupStage.showAndWait();
 
