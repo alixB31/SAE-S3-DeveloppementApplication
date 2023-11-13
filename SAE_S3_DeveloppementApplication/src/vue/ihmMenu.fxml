@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.MenuController">
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.MenuController">
    <children>
       <Button fx:id="btnLancerPartie" alignment="CENTER" contentDisplay="CENTER" layoutX="415.0" layoutY="200.0" mnemonicParsing="false" onAction="#lancerPartie" prefHeight="73.0" prefWidth="270.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Lancer un quiz" textAlignment="CENTER">
          <font>
@@ -36,6 +38,15 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
+      </Button>
+      <Button fx:id="btnJoueur" layoutX="961.0" layoutY="49.0" mnemonicParsing="false" onAction="#btnJoueurAction" prefHeight="5.0" prefWidth="6.0" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="52.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/user.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>
