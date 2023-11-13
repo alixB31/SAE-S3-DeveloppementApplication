@@ -47,7 +47,7 @@ public class ParametreCategorieController {
 
 	private String categorieChoisi;
 	@FXML
-	private ComboBox<String> comboBoxCategorie;
+	public ComboBox<String> comboBoxCategorie;
 
 	public void setNomCategorie(String categorie) {
 		categorieChoisi = categorie;

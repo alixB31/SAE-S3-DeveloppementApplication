@@ -5,6 +5,7 @@
 package vue;
 
 import java.io.IOException;
+import java.util.Map;
 
 import controleur.ParametreCategorieController;
 import javafx.application.Application;
@@ -65,6 +66,8 @@ public class Main extends Application {
         
         /* on crée la vue des paramètres des catégories*/
         chargeurFXMLCategorie.setLocation(getClass().getResource("ihmParametreCategorie.fxml"));
+        Parent parametreCategorie = chargeurFXMLCategorie.load();
+        sceneParametreCategorie = new Scene(parametreCategorie);
         
         /* on crée la vue des paramètres des questions*/
         FXMLLoader chargeurFXMLQuestion = new FXMLLoader();
@@ -132,13 +135,23 @@ public class Main extends Application {
      *
      */
     public static void voirParamCategorie(String categorie) throws IOException {
-    	
-        Parent parametreCategorie = chargeurFXMLCategorie.load();
+    	// Crée un objet contrôleur du nouveau contrôleur.
+        ParametreCategorieController controller = chargeurFXMLCategorie.getController();
         
-        ParametreCategorieController controller1 = chargeurFXMLCategorie.getController();
-    	controller1.setNomCategorie(categorie);
-    	controller1.nomCategorie.setText(categorie);
-        sceneParametreCategorie = new Scene(parametreCategorie); 
+        // Ajoute le nom de la catégorie dans la variable.
+    	controller.setNomCategorie(categorie);
+    	
+    	// Initialise le nom de la catégorie dans le label correspondant dans
+    	// la nouvelle ihm.
+    	controller.nomCategorie.setText(categorie);
+        
+    	// TODO Initialiser la liste de questions de la catégorie sélectionnée.
+//    	for (Map.Entry entry : stockage.listeQuestionParCategorie((Categorie)stockage.getListeCategorie().get(categorie)).getListeQuestion().entrySet()) {
+//    		
+//    	}
+//    	controller.comboBoxCategorie.getItems().add(stockage.listeQuestionParCategorie((Categorie)stockage.getListeCategorie().get(categorie)).getListeQuestion());
+    	
+    	// Ouvre la nouvelle ihm des paramètres de la catégorie sélectionnée.
         fenetrePrincipale.setScene(sceneParametreCategorie);
     }
     
