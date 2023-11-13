@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import controleur.ParametreCategorieController;
+import controleur.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +36,7 @@ public class Main extends Application {
     private static Scene sceneRepondreQuestion;
     private static Scene sceneScoreQuiz;
     private static FXMLLoader chargeurFXMLCategorie = new FXMLLoader();
+    
     public static Stockage stockage;
     
     @Override
@@ -160,7 +161,7 @@ public class Main extends Application {
      *
      */
     public static void voirParamQuestion() {
-        fenetrePrincipale.setScene(sceneParametreQuestion);
+    	fenetrePrincipale.setScene(sceneParametreQuestion);
     }
     
     /**

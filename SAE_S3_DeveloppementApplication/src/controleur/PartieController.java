@@ -7,6 +7,7 @@ package controleur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleGroup;
 import vue.Main;
 
 /** TODO comment class responsibility (SRP)
@@ -22,10 +23,20 @@ public class PartieController {
     private Button btnRetour;
 
     @FXML
+    private ToggleGroup nombreQuestion;
+    
+    @FXML
+    private ToggleGroup choixDifficultes;
+    
+    @FXML
     void LancerQuiz(ActionEvent event) {
         Main.RepondreQuestion();
     }
 
+    private void initialize() {
+    	
+    }
+    
     @FXML
     void RetourMenu(ActionEvent event) {
         Main.retourMenuPrincipal();
