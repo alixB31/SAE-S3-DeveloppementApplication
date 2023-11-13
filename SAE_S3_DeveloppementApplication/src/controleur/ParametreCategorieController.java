@@ -46,6 +46,7 @@ public class ParametreCategorieController {
 	public Label nomCategorie;
 
 	private String categorieChoisi;
+	
 	@FXML
 	public ComboBox<String> comboBoxCategorie;
 
@@ -73,11 +74,19 @@ public class ParametreCategorieController {
 
 		// Créer un champ de saisie (TextField)
 		TextField textField = new TextField();
-		textField.setPromptText("?");
+		textField.setPromptText("obligatoire");
 		TextField textFieldVrai = new TextField();
-		textFieldVrai.setPromptText("?");
+		textFieldVrai.setPromptText("obligatoire");
 		TextField textFieldFaux = new TextField();
-		textFieldFaux.setPromptText("?");
+		textFieldFaux.setPromptText("obligatoire");
+		TextField textFieldFaux2 = new TextField();
+		textFieldFaux2.setPromptText("optionnel");
+		TextField textFieldFaux3 = new TextField();
+		textFieldFaux3.setPromptText("optionnel");
+		TextField textFieldFaux4 = new TextField();
+		textFieldFaux4.setPromptText("optionnel");
+		TextField textFieldFeedBack = new TextField();
+		textFieldFeedBack.setPromptText("optionnel");
 
 		Stage popupStage = new Stage();
 		popupStage.initModality(Modality.APPLICATION_MODAL);
@@ -95,6 +104,10 @@ public class ParametreCategorieController {
 		popupLayout.addRow(1, new Label("Difficulté de la question:"), radio1, radio2, radio3);
 		popupLayout.addRow(2, new Label("Réponse vrai:"), textFieldVrai);
 		popupLayout.addRow(3, new Label("Réponse fausse:"), textFieldFaux);
+		popupLayout.addRow(4, new Label("Réponse fausse:"), textFieldFaux2);
+		popupLayout.addRow(5, new Label("Réponse fausse:"), textFieldFaux3);
+		popupLayout.addRow(6, new Label("Réponse fausse:"), textFieldFaux4);
+		popupLayout.addRow(7, new Label("FeedBack:"), textFieldFeedBack);
 
 		// Bouton de validation
 		Button boutonValider = new Button("Valider");
@@ -157,22 +170,13 @@ public class ParametreCategorieController {
 				textFieldFaux.getText().trim().isEmpty() ||
 				(newValue == null)
 				));
-//		// Activation du bouton de validation lorsque tous les champs sont remplis
-//		textField.textProperty().addListener((observable, oldValue, newValue) ->
-//		boutonValider.setDisable(newValue.trim().isEmpty()));
-//
-//		textFieldVrai.textProperty().addListener((observable, oldValue, newValue) ->
-//		boutonValider.setDisable(newValue.trim().isEmpty()));
-//
-//		textFieldFaux.textProperty().addListener((observable, oldValue, newValue) ->
-//		boutonValider.setDisable(newValue.trim().isEmpty()));
 
 		// Ajout du bouton de validation et d'annulation au layout de la popup
-		popupLayout.addRow(4, boutonValider);
-		popupLayout.addRow(4, boutonAnnuler);
+		popupLayout.addRow(8, boutonValider);
+		popupLayout.addRow(8, boutonAnnuler);
 
 		// Configuration de la scène de la popup
-		Scene popupScene = new Scene(popupLayout, 500, 200);
+		Scene popupScene = new Scene(popupLayout, 500, 350);
 		popupStage.setScene(popupScene);
 		popupStage.showAndWait();
 
