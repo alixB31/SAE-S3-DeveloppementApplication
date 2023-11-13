@@ -11,11 +11,6 @@
 
 <AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreCategorieController">
    <children>
-      <Button fx:id="btnSuivant" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#pageSuivante" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 10px;" text="Suivant">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
       <Text layoutX="51.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie: " textAlignment="CENTER">
          <font>
             <Font name="System Bold Italic" size="27.0" />
@@ -26,8 +21,8 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <ComboBox fx:id="comboBoxCategorie" layoutX="342.0" layoutY="207.0" prefHeight="96.0" prefWidth="345.0" />
-      <Button fx:id="ajouterQuestion" layoutX="933.0" layoutY="213.0" mnemonicParsing="false" onAction="#ajouterQuestion" prefHeight="62.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
+      <ComboBox fx:id="comboBoxCategorie" layoutX="342.0" layoutY="286.0" prefHeight="96.0" prefWidth="345.0" />
+      <Button fx:id="ajouterQuestion" layoutX="932.0" layoutY="298.0" mnemonicParsing="false" onAction="#ajouterQuestion" prefHeight="62.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
          <graphic>
             <ImageView fitHeight="64.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -36,7 +31,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnDelete" layoutX="818.0" layoutY="207.0" mnemonicParsing="false" onAction="#deleteQuestion" prefHeight="78.0" prefWidth="79.0" style="-fx-background-color: #5CCAC3;">
+      <Button fx:id="btnDelete" layoutX="820.0" layoutY="295.0" mnemonicParsing="false" onAction="#deleteQuestion" prefHeight="78.0" prefWidth="79.0" style="-fx-background-color: #5CCAC3;">
          <graphic>
             <ImageView fitHeight="117.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -45,7 +40,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="editerQuestion" layoutX="719.0" layoutY="214.0" mnemonicParsing="false" onAction="#editerIntitulerQuestion" prefHeight="70.0" prefWidth="58.0" style="-fx-background-color: #5CCAC3;">
+      <Button fx:id="editerQuestion" layoutX="718.0" layoutY="299.0" mnemonicParsing="false" onAction="#editerIntitulerQuestion" prefHeight="70.0" prefWidth="58.0" style="-fx-background-color: #5CCAC3;">
          <graphic>
             <ImageView fitHeight="59.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -59,7 +54,7 @@
             <Font size="46.0" />
          </font>
       </Label>
-      <Text layoutX="353.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUESTIONS">
+      <Text layoutX="353.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUESTIONS">
          <font>
             <Font name="System Bold Italic" size="88.0" />
          </font>

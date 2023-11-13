@@ -32,7 +32,6 @@ public class Main extends Application {
     private static Scene scenePartie;
     private static Scene sceneParametre;
     private static Scene sceneParametreCategorie;
-    private static Scene sceneParametreQuestion;
     private static Scene sceneRepondreQuestion;
     private static Scene sceneScoreQuiz;
     private static FXMLLoader chargeurFXMLCategorie = new FXMLLoader();
@@ -71,11 +70,6 @@ public class Main extends Application {
         Parent parametreCategorie = chargeurFXMLCategorie.load();
         sceneParametreCategorie = new Scene(parametreCategorie);
         
-        /* on crée la vue des paramètres des questions*/
-        FXMLLoader chargeurFXMLQuestion = new FXMLLoader();
-        chargeurFXMLQuestion.setLocation(getClass().getResource("ihmParametreQuestion.fxml"));
-        Parent parametreQuestion = chargeurFXMLQuestion.load();
-        sceneParametreQuestion = new Scene(parametreQuestion); 
         
         FXMLLoader chargeurFXMLReponseQuestion = new FXMLLoader();
         chargeurFXMLReponseQuestion.setLocation(getClass().getResource("ihmRepondreQuestion.fxml"));
@@ -156,14 +150,7 @@ public class Main extends Application {
         fenetrePrincipale.setScene(sceneParametreCategorie);
     }
     
-    /**
-     * Affiche les paramètres d'une question
-     *
-     */
-    public static void voirParamQuestion() {
-    	fenetrePrincipale.setScene(sceneParametreQuestion);
-    }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -180,9 +167,9 @@ public class Main extends Application {
         fenetrePrincipale.setScene(sceneRepondreQuestion);
     }
 
-	public static void ihmScoreQuiz() {
-		fenetrePrincipale.setScene(sceneScoreQuiz);
+    public static void ihmScoreQuiz() {
+	fenetrePrincipale.setScene(sceneScoreQuiz);
 		
-	}
+    }
     
 }
