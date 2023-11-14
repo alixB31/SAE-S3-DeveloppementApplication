@@ -164,6 +164,7 @@ public class Main extends Application {
      * Lancer une partie        
      */
     public static void RepondreQuestion() {
+//    	Quiz quiz = new Quiz();
         fenetrePrincipale.setScene(sceneRepondreQuestion);
     }
 

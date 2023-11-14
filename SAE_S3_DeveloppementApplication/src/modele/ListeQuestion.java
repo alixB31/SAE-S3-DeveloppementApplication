@@ -294,6 +294,11 @@ public class ListeQuestion {
     	return sontModifiees;
     }
     
+    /**
+     * 
+     * @param quiz
+     * @return
+     */
     public ArrayList<Question> listeQuestionFiltreDifficulteCategorieTaille(Quiz quiz) {
     	ArrayList<Question> listeProvisoire = listeQuestionParCategorie(quiz.getCategorie());
     	for (Map.Entry entry : listeQuestion.entrySet()) {
