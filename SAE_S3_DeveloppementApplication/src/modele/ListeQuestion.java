@@ -293,4 +293,25 @@ public class ListeQuestion {
     	}
     	return sontModifiees;
     }
+    
+    public ArrayList<Question> listeQuestionFiltreDifficulteCategorieTaille(Quiz quiz) {
+    	ArrayList<Question> listeProvisoire = listeQuestionParCategorie(quiz.getCategorie());
+    	for (Map.Entry entry : listeQuestion.entrySet()) {
+    		if (quiz.getDifficulte()==0
+    				|| ((Question)entry).getDifficulteQuestion() == quiz.getDifficulte()) {
+    			listeProvisoire.add((Question)entry.getValue());
+    		}
+    	}
+    	int indice;
+    	int longueurListeProvisoire = listeProvisoire.size();
+    	ArrayList<Question> listeFinale = new ArrayList<>();
+    	
+    	for (int i = 0; i< quiz.getNombreQuestions();i++) {
+    		indice =(int) (Math.random() * (longueurListeProvisoire - 1));
+    		listeFinale.add(listeProvisoire.get(indice));
+    		listeProvisoire.remove(indice);
+    		longueurListeProvisoire--;
+    	}
+    	return listeProvisoire;
+    }
 }

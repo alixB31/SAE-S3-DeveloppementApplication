@@ -32,10 +32,6 @@ public class PartieController {
     void LancerQuiz(ActionEvent event) {
         Main.RepondreQuestion();
     }
-
-    private void initialize() {
-    	
-    }
     
     @FXML
     void RetourMenu(ActionEvent event) {
