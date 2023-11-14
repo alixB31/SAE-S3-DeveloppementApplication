@@ -4,11 +4,19 @@
  */
 package controleur;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import vue.Main;
+import modele.Quiz;
+import modele.Categorie;
+import modele.Question;
 
 /** TODO comment class responsibility (SRP)
  * @author rayanibrahime
@@ -29,8 +37,38 @@ public class PartieController {
     private ToggleGroup choixDifficultes;
     
     @FXML
+    private ComboBox comboBoxCategorie;
+    
+    @FXML
     void LancerQuiz(ActionEvent event) {
-        Main.RepondreQuestion();
+    	if (comboBoxCategorie.getValue() == null) {
+    		//TODO pop-up Aucune catégorie sélectionnée (la partie ne se lance pas)
+    	} else {
+    		RadioButton difficulte = (RadioButton)choixDifficultes.getSelectedToggle();
+    		RadioButton nbQuestion = (RadioButton)nombreQuestion.getSelectedToggle();
+    		Quiz quiz = new Quiz(Integer.parseInt(difficulte.getText()),1,
+					(Categorie)Main.stockage.getListeCategorie().get(comboBoxCategorie.getValue()),
+					Main.stockage);
+    		Main.stockage.listeQuestionFiltreDifficulteCategorieTaille(quiz);
+    		if (quiz.quantiteQuestionOk(Integer.parseInt(nbQuestion.getText()))) {
+    			Main.RepondreQuestion(quiz);
+    		} else if (quiz.getNombreQuestions()!=0){
+    			//TODO Pop-up pas assez de question
+    			// Le nombre de question trouvées est : nbQuestion.getText() Attention c'est déjà une String.
+    			// Si le joueur veux continuer alors il continu.
+    			Main.RepondreQuestion(quiz);
+    		} else {
+    			// Il n'y a aucune questions correspondantes
+    			//Pop-up mais pas de possibilité de continuer
+    		}
+    		
+    	}
+    }
+    
+    public void setListeCategorie(HashMap<String, Categorie> listeCategorie) {
+    	for (Map.Entry entry : listeCategorie.entrySet()) {
+    		comboBoxCategorie.getItems().add(((Categorie)entry.getValue()).getIntituleCategorie());
+    	}
     }
     
     @FXML

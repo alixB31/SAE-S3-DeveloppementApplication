@@ -43,6 +43,7 @@ public class MenuController {
 
     @FXML 
     void lancerPartie(ActionEvent event) {
+    	
        Main.lancerPartie();
     }
     

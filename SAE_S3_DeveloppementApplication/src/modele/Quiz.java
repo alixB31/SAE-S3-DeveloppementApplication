@@ -16,7 +16,7 @@ public class Quiz {
 	
 	public Quiz(int difficulte, int nombreQuestions, Categorie categorie, Stockage stockage) {
 		this.difficulte = difficulte;
-		listeQuestion = new ArrayList<>();//stockage.listeQuestionFiltreDifficulteCategorie();
+		listeQuestion = stockage.listeQuestionFiltreDifficulteCategorieTaille(this);
 		this.nombreQuestions = nombreQuestions;
 		if (stockage.getListeCategorie().containsKey(categorie.getIntituleCategorie())) {
 			this.categorie = categorie;
@@ -40,5 +40,17 @@ public class Quiz {
 	
 	public Categorie getCategorie() {
 		return categorie;
+	}
+	
+	public ArrayList<Question> getListeQuestion(){
+		return listeQuestion;
+	}
+	
+	public boolean quantiteQuestionOk(int quantiteChoisi) {
+		return listeQuestion.size()>=quantiteChoisi;
+	}
+	
+	public void setNombreQuestion(int nombreQuestion) {
+		this.nombreQuestions = nombreQuestion;
 	}
 }

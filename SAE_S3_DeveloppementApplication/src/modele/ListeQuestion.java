@@ -309,6 +309,7 @@ public class ListeQuestion {
     		listeProvisoire.remove(indice);
     		longueurListeProvisoire--;
     	}
-    	return listeProvisoire;
+    	quiz.setNombreQuestion(listeFinale.size());
+    	return listeFinale;
     }
 }
