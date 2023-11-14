@@ -172,6 +172,7 @@ public class Stockage {
      * @return true si l'importation est réussie, false sinon.
      */
     public boolean importCSV(String filePath) {
+    	boolean estImporte = false;
         try {
             Scanner scanner = new Scanner(new File(filePath));
 
@@ -214,18 +215,19 @@ public class Stockage {
 
                 // Ajouter la question à la liste des questions.
                 listeQuestion.ajouterElementListeQuestion(question);
+                estImporte = true;
             }
 
             // Fermer le scanner.
             scanner.close();
 
             // Indiquer que l'importation est réussie.
-            return true;
+            return estImporte;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             // Indiquer que l'importation a échoué.
-            return false;
+            return estImporte;
         }
     }
 }
