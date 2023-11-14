@@ -1,8 +1,11 @@
 package modele;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 /** TODO comment class responsibility (SRP)
  * @author mateo.faussurier
  *
@@ -157,7 +160,72 @@ public class Stockage {
 		return toutEstBon;
 		
 	}
+	
 	public ArrayList<Question> listeQuestionFiltreDifficulteCategorieTaille(Quiz quiz){
 		return listeQuestion.listeQuestionFiltreDifficulteCategorieTaille(quiz);
 	}
+	
+	/**
+     * Importe les données depuis un fichier CSV.
+     *
+     * @param filePath Le chemin du fichier CSV à importer.
+     * @return true si l'importation est réussie, false sinon.
+     */
+    public boolean importCSV(String filePath) {
+        try {
+            Scanner scanner = new Scanner(new File(filePath));
+
+            // Ignorer la première ligne du fichier CSV (en-tête).
+            if (scanner.hasNextLine()) {
+                scanner.nextLine();
+            }
+
+            // Parcourir les lignes du fichier CSV.
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] data = line.split(";");
+
+                Categorie categorieCourante;
+                
+				// Vérifier si la catégorie existe déjà dans la liste.
+                if (listeCategorie.elementEstDansListeCategorie(data[0])) {
+                    categorieCourante = listeCategorie.getElementListeCategorie(data[0]);
+                } else {
+                    categorieCourante = new Categorie(data[0]);
+                    listeCategorie.ajouterElementListeCategorie(categorieCourante);
+                }
+
+                // Créer une liste des réponses fausses.
+                ArrayList<String> reponsesFausses = new ArrayList<>();
+                reponsesFausses.add(data[4]);
+                reponsesFausses.add(data[5]);
+                reponsesFausses.add(data[6]);
+                reponsesFausses.add(data[7]);
+
+                // Créer une nouvelle question.
+                Question question = new Question(
+                        data[2],
+                        categorieCourante,
+                        Integer.parseInt(data[1]),
+                        reponsesFausses,
+                        data[3],
+                        data[8]
+                );
+
+                // Ajouter la question à la liste des questions.
+                listeQuestion.ajouterElementListeQuestion(question);
+            }
+
+            // Fermer le scanner.
+            scanner.close();
+
+            // Indiquer que l'importation est réussie.
+            return true;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            // Indiquer que l'importation a échoué.
+            return false;
+        }
+    }
 }
