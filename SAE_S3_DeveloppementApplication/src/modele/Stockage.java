@@ -145,11 +145,11 @@ public class Stockage {
 		return listeQuestion.supprimerReponseFausse(question, ancienneReponseFausse);
 	}
 	
-//	public boolean modifierListeReponseFausseQuestion(Question question, String ancienneReponseFausse,
-//			String nouvelleReponseFausse) {
-//		return listeQuestion.modifierListeReponsesFaussesQuestion(question, ancienneReponseFausse,
-//	    		nouvelleReponseFausse);
-//	}
+	public boolean modifierListeReponseFausseQuestion(Question question, String ancienneReponseFausse,
+			String nouvelleReponseFausse) {
+		return listeQuestion.modifierListeReponsesFaussesQuestion(question, ancienneReponseFausse,
+	    		nouvelleReponseFausse);
+	}
 	
 	public boolean modifierQuestion(Question question, String intitule, Categorie categorie, int difficulte, 
 			ArrayList<String> liste, String reponse, String feedBack) {
