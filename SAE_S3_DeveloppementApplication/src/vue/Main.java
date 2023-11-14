@@ -163,8 +163,7 @@ public class Main extends Application {
     /**
      * Lancer une partie        
      */
-    public static void RepondreQuestion() {
-//    	Quiz quiz = new Quiz();
+    public static void RepondreQuestion(Quiz quiz) {
         fenetrePrincipale.setScene(sceneRepondreQuestion);
     }
 
