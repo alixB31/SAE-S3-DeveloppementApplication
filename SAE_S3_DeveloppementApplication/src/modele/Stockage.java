@@ -157,4 +157,7 @@ public class Stockage {
 		return toutEstBon;
 		
 	}
+	public ArrayList<Question> listeQuestionFiltreDifficulteCategorieTaille(Quiz quiz){
+		return listeQuestion.listeQuestionFiltreDifficulteCategorieTaille(quiz);
+	}
 }
