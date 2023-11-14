@@ -148,21 +148,21 @@ public class ListeQuestion {
      * @param nouvelleReponseFausse la nouvelle réponse fausse.
      * @return estModifiee si la réponse fausse de la question est modifée, false sinon.
      */
-    public boolean modifierListeReponsesFaussesQuestion(Question question, String ancienneReponseFausse,
-    		String nouvelleReponseFausse) {
+    public boolean modifierListeReponsesFaussesQuestion(Question question,
+    		ArrayList<String> liste) {
     	boolean estModifiee = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())
-        		&& !nouvelleReponseFausse.isBlank() && !nouvelleReponseFausse.isEmpty()
-        		&& (!question.reponseFausseExiste(nouvelleReponseFausse) || ancienneReponseFausse.equals(nouvelleReponseFausse))
-        		&& question.reponseFausseExiste(ancienneReponseFausse)) {
-        	for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
-    			if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {
-    				question.setReponsesFaussesQuestion(i, nouvelleReponseFausse);
-    			}
-    		}
+        //if (elementEstDansListeQuestion(question.getIntituleQuestion())
+        	//	&& !nouvelleReponseFausse.isBlank() && !nouvelleReponseFausse.isEmpty()
+        	//	&& (!question.reponseFausseExiste(nouvelleReponseFausse) || ancienneReponseFausse.equals(nouvelleReponseFausse))
+        	//	&& question.reponseFausseExiste(ancienneReponseFausse)) {
+        	//for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
+    		//	if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {
+    		//		question.setReponsesFaussesQuestion(i, nouvelleReponseFausse);
+    		//	}
+    		//}
             
             estModifiee = true;
-        }
+      //  }
         return estModifiee;
     }
     

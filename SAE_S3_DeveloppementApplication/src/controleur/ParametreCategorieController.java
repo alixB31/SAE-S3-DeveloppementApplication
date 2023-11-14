@@ -252,19 +252,19 @@ public class ParametreCategorieController {
 
 		// Créer un champ de saisie (TextField)
 		TextField textField = new TextField();
-		textField.setPromptText("obligatoire");
+		textField.setPromptText(ancienIntitule);
 		TextField textFieldVrai = new TextField();
-		textFieldVrai.setPromptText("obligatoire");
+		textFieldVrai.setPromptText(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getReponseJusteQuestion());
 		TextField textFieldFaux = new TextField();
-		textFieldFaux.setPromptText("obligatoire");
+		textFieldFaux.setPromptText(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getReponseJusteQuestion());
 		TextField textFieldFaux2 = new TextField();
-		textFieldFaux2.setPromptText("optionnel");
+		textFieldFaux2.setPromptText(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getReponseJusteQuestion());
 		TextField textFieldFaux3 = new TextField();
-		textFieldFaux3.setPromptText("optionnel");
+		textFieldFaux3.setPromptText(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getReponseJusteQuestion());
 		TextField textFieldFaux4 = new TextField();
-		textFieldFaux4.setPromptText("optionnel");
+		textFieldFaux4.setPromptText(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getReponseJusteQuestion());
 		TextField textFieldFeedBack = new TextField();
-		textFieldFeedBack.setPromptText("optionnel");
+		textFieldFeedBack.setPromptText(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getFeedBackQuestion());
 
 		// Agrandir la taille du TextField
 		textField.setPrefWidth(500);
