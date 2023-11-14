@@ -141,9 +141,8 @@ public class ParametreCategorieController {
 				if (textFieldFaux4.getText() !=null && !textFieldFaux4.getText().isBlank() && textFieldFaux4.getText().trim() != "" ) {
 					listeReponsesFausses.add(textFieldFaux4.getText());
 				}
-				if (textFieldFeedBack.getText() !=null && !textFieldFeedBack.getText().isBlank() && textFieldFeedBack.getText().trim() != "" ) {
-					feedBack = textFieldFeedBack.getText();
-				}
+				feedBack = textFieldFeedBack.getText();
+
 
 				//création de la nouvelle question
 				if (Main.stockage.ajouterQuestion(new Question(textField.getText().trim(), categorieCourante, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack))) {
@@ -151,7 +150,9 @@ public class ParametreCategorieController {
 					System.out.println(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getCategorieDeQuestion().getIntituleCategorie());
 					Main.stockage.supprimerElementListeQuestion(comboBoxCategorie.getValue());
 					System.out.println(Main.stockage.getListeQuestion());
-				} 
+				} else {
+					ParametreController.afficherAlerte("Question non ajoutable","Une question avec le même intitulé existe déjà");
+				}
 				popupStage.close();
 
 			}
@@ -229,13 +230,20 @@ public class ParametreCategorieController {
 
 	@FXML
 	void editerIntitulerQuestion(ActionEvent event) {
-		
+
 		// ancien intitulé 
 		String ancienIntitule = comboBoxCategorie.getValue();
 		//categorie courante de la question a modifier
 		Categorie categorieCourante = (Categorie) Main.stockage.getListeCategorie().get(categorieChoisi);
 		// question courante
 		Question questionCourante = (Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue());
+		// reponse vrai précédente
+		String ancienneReponseVrai = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponseJusteQuestion();
+		// ancien feedback
+		String ancienFeedback = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getFeedBackQuestion();	
+		// nombre de reponses fausses de l'ancienne question 
+		int nombreReponseFausse = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().size();
+		
 		// Créer des boutons radio
 		ToggleGroup toggleGroup = new ToggleGroup();
 		RadioButton radio1 = new RadioButton("1");
@@ -252,19 +260,46 @@ public class ParametreCategorieController {
 
 		// Créer un champ de saisie (TextField)
 		TextField textField = new TextField();
-		textField.setPromptText(ancienIntitule);
+		textField.setText(ancienIntitule);
 		TextField textFieldVrai = new TextField();
-		textFieldVrai.setPromptText(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getReponseJusteQuestion());
+		textFieldVrai.setText(ancienneReponseVrai);
+		
+		//affiche la premiere reponse fausse
 		TextField textFieldFaux = new TextField();
-		textFieldFaux.setPromptText(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getReponseJusteQuestion());
+		if (((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(0) !=null && 
+				((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(0) != "") {
+			String ancienneFausse1 = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(0);
+			textFieldFaux.setText(ancienneFausse1);
+		} 	
 		TextField textFieldFaux2 = new TextField();
-		textFieldFaux2.setPromptText(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getReponseJusteQuestion());
+		//si il y a plus de 1 reponse fausse, affiche les autres
+		if (nombreReponseFausse>1) {
+			if (((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(1) !=null && 
+					((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(1) != "") {
+				String ancienneFausse2 = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(1);
+				textFieldFaux2.setText(ancienneFausse2);
+			}
+		} 
 		TextField textFieldFaux3 = new TextField();
-		textFieldFaux3.setPromptText(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getReponseJusteQuestion());
+		if (nombreReponseFausse>2) {
+			if (((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(2) !=null && 
+					((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(2) != "") {
+				String ancienneFausse3 = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(2);
+				textFieldFaux3.setText(ancienneFausse3);
+			}
+		}
 		TextField textFieldFaux4 = new TextField();
-		textFieldFaux4.setPromptText(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getReponseJusteQuestion());
+		if (nombreReponseFausse>3) {
+			if (((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(3) !=null && 
+					((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(3) != "") {
+				String ancienneFausse4 = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(3);
+				textFieldFaux4.setText(ancienneFausse4);
+			}
+		}
+		
+		
 		TextField textFieldFeedBack = new TextField();
-		textFieldFeedBack.setPromptText(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getFeedBackQuestion());
+		textFieldFeedBack.setText(ancienFeedback);
 
 		// Agrandir la taille du TextField
 		textField.setPrefWidth(500);
@@ -314,18 +349,19 @@ public class ParametreCategorieController {
 				if (textFieldFaux4.getText() !=null && !textFieldFaux4.getText().isBlank() && textFieldFaux4.getText().trim() != "" ) {
 					listeReponsesFausses.add(textFieldFaux4.getText());
 				}
-				if (textFieldFeedBack.getText() !=null && !textFieldFeedBack.getText().isBlank() && textFieldFeedBack.getText().trim() != "" ) {
-					feedBack = textFieldFeedBack.getText();
-				}
+				
+				feedBack = textFieldFeedBack.getText();
+
 
 				//modification de la question
-				if (Main.stockage.modifierQuestion(questionCourante,comboBoxCategorie.getValue(), categorieCourante, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack)) {
-					comboBoxCategorie.getItems().add(textField.getText());
+				if (Main.stockage.modifierQuestion(questionCourante,textField.getText(), categorieCourante, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack)) {
 					comboBoxCategorie.getItems().set(comboBoxCategorie.getItems().indexOf(ancienIntitule), textField.getText().trim());
 					comboBoxCategorie.setValue(textField.getText().trim());
-					System.out.println(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getFeedBackQuestion());
-
-				} 
+					System.out.println((((Question) Main.stockage.getListeQuestion().get(textField.getText())).getFeedBackQuestion()));
+					
+				} else {
+					ParametreController.afficherAlerte("Question non modifiable","Une question avec le même intitulé existe déjà");
+				}
 				popupStage.close();
 
 			}

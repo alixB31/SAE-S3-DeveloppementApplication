@@ -100,8 +100,9 @@ public class ListeQuestion {
         		&& nouvelIntitule != null) {
            if (this.supprimerElementListeQuestion(question.getIntituleQuestion())) {
         	   question.setIntituleQuestion(nouvelIntitule);
-        	   this.ajouterElementListeQuestion(question);
-        	   estModifiee = true;
+        	   if (this.ajouterElementListeQuestion(question)) {
+        		   estModifiee = true;
+        	   }  
            }
         }
         return estModifiee;
@@ -151,18 +152,10 @@ public class ListeQuestion {
     public boolean modifierListeReponsesFaussesQuestion(Question question,
     		ArrayList<String> liste) {
     	boolean estModifiee = false;
-        //if (elementEstDansListeQuestion(question.getIntituleQuestion())
-        	//	&& !nouvelleReponseFausse.isBlank() && !nouvelleReponseFausse.isEmpty()
-        	//	&& (!question.reponseFausseExiste(nouvelleReponseFausse) || ancienneReponseFausse.equals(nouvelleReponseFausse))
-        	//	&& question.reponseFausseExiste(ancienneReponseFausse)) {
-        	//for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
-    		//	if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {
-    		//		question.setReponsesFaussesQuestion(i, nouvelleReponseFausse);
-    		//	}
-    		//}
-            
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())){
+    		question.setReponsesFaussesQuestion(liste);      
             estModifiee = true;
-      //  }
+      	}
         return estModifiee;
     }
     
@@ -195,8 +188,7 @@ public class ListeQuestion {
      */
     public boolean modifierFeedBackQuestion(Question question, String feedBack) {
     	boolean estModifie = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())
-        		&& !feedBack.isBlank() && !feedBack.isEmpty()) {
+        if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
             question.setFeedBackQuestion(feedBack);
             estModifie = true;
         }

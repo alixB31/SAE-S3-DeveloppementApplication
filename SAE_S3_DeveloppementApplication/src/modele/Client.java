@@ -20,7 +20,7 @@ public class Client {
     public static void main(String[] args) {
         try {
             // Connexion au serveur sur le port 12345
-            Socket socket = new Socket("127.0.0.1", 12345);
+            Socket socket = new Socket("10.2.1.29", 12345);
 
             // Obtention du flux de sortie vers le serveur
             BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());

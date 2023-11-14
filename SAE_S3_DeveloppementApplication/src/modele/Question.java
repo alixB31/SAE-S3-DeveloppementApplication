@@ -143,9 +143,9 @@ public class Question {
 	 * @param nouvelleReponseFausse la nouvelle version de la réponse fausse
 	 * qui remplace l'ancienne.
 	 */
-	public void setReponsesFaussesQuestion(int indice,
-			String nouvelleReponseFausse) {
-			listeReponsesFausses.set(indice, nouvelleReponseFausse);
+	public void setReponsesFaussesQuestion(ArrayList<String> liste) {
+			this.listeReponsesFausses = liste;
+
 	}
 	
 	/**
