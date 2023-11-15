@@ -174,6 +174,7 @@ public class Stockage {
     public boolean importCSV(String filePath) {
         boolean estImporte = false;
         Scanner scanner = null;
+        int compteur=0;
 
         try {
             scanner = new Scanner(new File(filePath));
@@ -188,44 +189,41 @@ public class Stockage {
                 String line = scanner.nextLine();
                 String[] data = line.split(";");
 
-                if (data.length >= 9) { // Assurez-vous que la ligne a suffisamment de colonnes.
+                Categorie categorieCourante;
 
-                    Categorie categorieCourante;
-
-                    // Vérifier si la catégorie existe déjà dans la liste.
-                    if (listeCategorie.elementEstDansListeCategorie(data[0])) {
-                        categorieCourante = listeCategorie.getElementListeCategorie(data[0]);
-                    } else {
-                        categorieCourante = new Categorie(data[0]);
-                        listeCategorie.ajouterElementListeCategorie(categorieCourante);
-                    }
-
-                    // Créer une liste des réponses fausses.
-                    ArrayList<String> reponsesFausses = new ArrayList<>();
-                    reponsesFausses.add(data[4]);
-                    reponsesFausses.add(data[5]);
-                    reponsesFausses.add(data[6]);
-                    reponsesFausses.add(data[7]);
-
-                    // Créer une nouvelle question.
-                    Question question = new Question(
-                            data[2],
-                            categorieCourante,
-                            Integer.parseInt(data[1]),
-                            reponsesFausses,
-                            data[3],
-                            data[8]
-                    );
-
-                    // Ajouter la question à la liste des questions.
-                    listeQuestion.ajouterElementListeQuestion(question);
-                    estImporte = true;
+                // Vérifier si la catégorie existe déjà dans la liste.
+                if (listeCategorie.elementEstDansListeCategorie(data[0])) {
+                    categorieCourante = listeCategorie.getElementListeCategorie(data[0]);
                 } else {
-                    // Gérer le cas où la ligne n'a pas suffisamment de colonnes.
-                    System.out.println("La ligne ne contient pas suffisamment de colonnes : " + line);
+                    categorieCourante = new Categorie(data[0]);
+                    listeCategorie.ajouterElementListeCategorie(categorieCourante);
                 }
+
+                // Créer une liste des réponses fausses.
+                ArrayList<String> reponsesFausses = new ArrayList<>();
+                reponsesFausses.add(getSafeValue(data, 4));
+                reponsesFausses.add(getSafeValue(data, 5));
+                reponsesFausses.add(getSafeValue(data, 6));
+                reponsesFausses.add(getSafeValue(data, 7));
+
+                // Créer une nouvelle question.
+                Question question = new Question(
+                        getSafeValue(data, 2),
+                        categorieCourante,
+                        parseIntOrDefault(data[1]),
+                        reponsesFausses,
+                        getSafeValue(data, 3),
+                        getSafeValue(data, 8)
+                );
+
+                // Ajouter la question à la liste des questions.
+                listeQuestion.ajouterElementListeQuestion(question);
+                System.out.println(question);
+                compteur++;
+                estImporte = true;
             }
 
+            System.out.println(compteur);
             // Indiquer que l'importation est réussie.
             return estImporte;
 
@@ -237,6 +235,20 @@ public class Stockage {
             if (scanner != null) {
                 scanner.close();
             }
+        }
+    }
+    
+ // Méthode pour obtenir une valeur sûre à partir d'un tableau
+    private String getSafeValue(String[] array, int index) {
+        return (index >= 0 && index < array.length) ? array[index] : "";
+    }
+
+    // Méthode pour convertir une chaîne en entier ou retourner une valeur par défaut
+    private int parseIntOrDefault(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0; // ou une autre valeur par défaut selon vos besoins
         }
     }
     
