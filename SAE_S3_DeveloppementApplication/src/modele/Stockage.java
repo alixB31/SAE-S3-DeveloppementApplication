@@ -154,7 +154,7 @@ public class Stockage {
 		boolean toutEstBon = false;
 		if (listeQuestion.modifierIntituleQuestion(question, intitule) && listeQuestion.modifierDifficulteQuestion(question, difficulte)
 			 && listeQuestion.modifierListeReponsesFaussesQuestion(question, liste) &&	listeQuestion.modifierReponseJusteQuestion(question, reponse)
-			 && listeQuestion.modifierFeedBackQuestion(question, feedBack)) {
+			 && listeQuestion.modifierFeedBackQuestion(question, feedBack) && listeQuestion.modifierCategorieDeQuestion(question, categorie)) {
 			toutEstBon = true;
 		}
 		return toutEstBon;

@@ -148,7 +148,7 @@ public class ParametreCategorieController {
 				feedBack = textFieldFeedBack.getText();
 
 
-				//création de la nouvelle question
+				//création de la nouvelle question et ajout a la liste des questions
 				if (Main.stockage.ajouterQuestion(new Question(textField.getText().trim(), categorieCourante, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack))) {
 
 					comboBoxCategorie.getItems().add(textField.getText());
@@ -257,6 +257,7 @@ public class ParametreCategorieController {
 			comboBox.getItems().add(((Categorie) mapEntry.getValue()).getIntituleCategorie());
 			
 		}
+		//préselection de la catégorie actuelle de la question
 		comboBox.setValue(categorieCourante.getIntituleCategorie());
 		// Créer des boutons radio
 		ToggleGroup toggleGroup = new ToggleGroup();
@@ -380,14 +381,20 @@ public class ParametreCategorieController {
 				}
 
 				feedBack = textFieldFeedBack.getText();
-
-
+				
+				
+				Categorie nouvelleCategorie = (Categorie) Main.stockage.getListeCategorie().get(comboBox.getValue()); 
+				
 				//modification de la question
-				if (Main.stockage.modifierQuestion(questionCourante,textField.getText(), categorieCourante, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack)) {
+				if (Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack)
+						&& nouvelleCategorie == categorieCourante) {
+					
 					comboBoxCategorie.getItems().set(comboBoxCategorie.getItems().indexOf(ancienIntitule), textField.getText().trim());
 					comboBoxCategorie.setValue(textField.getText().trim());
-					System.out.println((((Question) Main.stockage.getListeQuestion().get(textField.getText())).getDifficulteQuestion()));
-
+					
+				} else if(Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack)
+						&& nouvelleCategorie != categorieCourante) {
+					comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());
 				} else {
 					ParametreController.afficherAlerte("Question non modifiable","Une question avec le même intitulé existe déjà");
 				}
@@ -450,3 +457,5 @@ public class ParametreCategorieController {
 		System.out.println(categorie);
 	}
 }
+//&& listeQuestion.modifierCategorieDeQuestion(question, categorie)
+//&& question.getCategorieDeQuestion()==getElementListeQuestion(intitule).getCategorieDeQuestion()
