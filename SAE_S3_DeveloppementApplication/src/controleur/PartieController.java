@@ -39,6 +39,10 @@ public class PartieController {
     @FXML
     private ComboBox comboBoxCategorie;
     
+    public ComboBox getComboBoxCategorie() {
+    	return comboBoxCategorie;
+    }
+    
     @FXML
     void LancerQuiz(ActionEvent event) {
     	if (comboBoxCategorie.getValue() == null) {

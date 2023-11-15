@@ -35,6 +35,7 @@ public class Main extends Application {
     private static Scene sceneRepondreQuestion;
     private static Scene sceneScoreQuiz;
     private static FXMLLoader chargeurFXMLCategorie = new FXMLLoader();
+    private static FXMLLoader chargeurFXMLPartie = new FXMLLoader();
     
     public static Stockage stockage;
     
@@ -54,7 +55,7 @@ public class Main extends Application {
         sceneNotice = new Scene(notice); 
         
         /* on crée la vue de la partie */
-        FXMLLoader chargeurFXMLPartie = new FXMLLoader();
+        
         chargeurFXMLPartie.setLocation(getClass().getResource("ihmPartie.fxml"));
         Parent partie = chargeurFXMLPartie.load();
         scenePartie = new Scene(partie); 
@@ -108,6 +109,13 @@ public class Main extends Application {
      * Lancer une partie        
      */
     public static void lancerPartie() {
+    	// Création du contrôleur
+    	PartieController controller = chargeurFXMLPartie.getController();
+    	// On vide la liste déroulante des catégories
+    	controller.getComboBoxCategorie().getItems().clear();
+    	// On ajoute la liste des catégories existantes dans la liste déroulante.
+    	controller.setListeCategorie(stockage.getListeCategorie());
+    	// Lancement de la fenètre.
         fenetrePrincipale.setScene(scenePartie);
     }
     
