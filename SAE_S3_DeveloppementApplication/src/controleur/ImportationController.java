@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
+import vue.Main;
 
 public class ImportationController {
 
@@ -75,36 +76,11 @@ public class ImportationController {
 
     @FXML
     void btnRetour(ActionEvent event) {
-
+    	Main.retourMenuPrincipal();
     }
 
     @FXML
     void btnSuivantExportAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void feedBackQuestionCinqAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void feedBackQuestionDeuxAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void feedBackQuestionQuatreAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void feedBackQuestionTroisAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void feedBackQuestionUnAction(ActionEvent event) {
 
     }
 

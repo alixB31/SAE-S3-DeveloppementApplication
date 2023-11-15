@@ -52,4 +52,8 @@ public class MenuController {
        Main.lancerParametre();
     }
     
+    @FXML
+    void btnImportExportAction(ActionEvent event) {
+    	Main.ihmImportationExportation();
+    }
 }
