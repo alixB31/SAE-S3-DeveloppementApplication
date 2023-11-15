@@ -18,11 +18,6 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="feedBackQuestionUn" layoutX="407.0" layoutY="249.0" mnemonicParsing="false" onAction="#feedBackQuestionUnAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
-      <Button fx:id="feedBackQuestionDeux" layoutX="407.0" layoutY="319.0" mnemonicParsing="false" onAction="#feedBackQuestionDeuxAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
-      <Button fx:id="feedBackQuestionTrois" layoutX="407.0" layoutY="389.0" mnemonicParsing="false" onAction="#feedBackQuestionTroisAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
-      <Button fx:id="feedBackQuestionQuatre" layoutX="407.0" layoutY="459.0" mnemonicParsing="false" onAction="#feedBackQuestionQuatreAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
-      <Button fx:id="feedBackQuestionCinq" layoutX="407.0" layoutY="529.0" mnemonicParsing="false" onAction="#feedBackQuestionCinqAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
       <Text layoutX="126.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Import : ">
          <font>
             <Font size="36.0" />
