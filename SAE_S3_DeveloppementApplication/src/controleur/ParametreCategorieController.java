@@ -5,6 +5,8 @@
 package controleur;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import javafx.event.ActionEvent;
@@ -17,7 +19,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
@@ -56,6 +57,9 @@ public class ParametreCategorieController {
 
 	@FXML
 	public ComboBox<String> comboBoxCategorie;
+	
+	@FXML
+	public ComboBox<String> comboBox;
 
 	@FXML
 	void ajouterQuestion(ActionEvent event) {
@@ -146,10 +150,10 @@ public class ParametreCategorieController {
 
 				//création de la nouvelle question
 				if (Main.stockage.ajouterQuestion(new Question(textField.getText().trim(), categorieCourante, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack))) {
+
 					comboBoxCategorie.getItems().add(textField.getText());
-					System.out.println(((Question) Main.stockage.getListeQuestion().get(textField.getText())).getCategorieDeQuestion().getIntituleCategorie());
 					Main.stockage.supprimerElementListeQuestion(comboBoxCategorie.getValue());
-					System.out.println(Main.stockage.getListeQuestion());
+					comboBoxCategorie.setValue(textField.getText());
 				} else {
 					ParametreController.afficherAlerte("Question non ajoutable","Une question avec le même intitulé existe déjà");
 				}
@@ -243,15 +247,39 @@ public class ParametreCategorieController {
 		String ancienFeedback = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getFeedBackQuestion();	
 		// nombre de reponses fausses de l'ancienne question 
 		int nombreReponseFausse = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().size();
+		// difficulté de l'ancienne question 
+		int ancienneDifficulte = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getDifficulteQuestion();
 		
+		//comboBox de toute les catégories
+		comboBox = new ComboBox<>();
+		HashMap<String, Categorie> map = Main.stockage.getListeCategorie();
+		for (Map.Entry mapEntry: map.entrySet()) {
+			comboBox.getItems().add(((Categorie) mapEntry.getValue()).getIntituleCategorie());
+			
+		}
+		comboBox.setValue(categorieCourante.getIntituleCategorie());
 		// Créer des boutons radio
 		ToggleGroup toggleGroup = new ToggleGroup();
 		RadioButton radio1 = new RadioButton("1");
+
+
 		radio1.setToggleGroup(toggleGroup);
 		RadioButton radio2 = new RadioButton("2");
 		radio2.setToggleGroup(toggleGroup);
 		RadioButton radio3 = new RadioButton("3");
 		radio3.setToggleGroup(toggleGroup);
+		//préselectionne l'ancienne difficuté
+		switch (ancienneDifficulte) {
+		case 1:
+			radio1.setSelected(true);
+			break;
+		case 2:
+			radio2.setSelected(true);
+			break;
+		default: 
+			radio3.setSelected(true);
+		}
+
 
 		// Ajouter des marges aux boutons radio
 		GridPane.setMargin(radio1, new Insets(5, 0, 0, 5));
@@ -263,7 +291,7 @@ public class ParametreCategorieController {
 		textField.setText(ancienIntitule);
 		TextField textFieldVrai = new TextField();
 		textFieldVrai.setText(ancienneReponseVrai);
-		
+
 		//affiche la premiere reponse fausse
 		TextField textFieldFaux = new TextField();
 		if (((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(0) !=null && 
@@ -296,8 +324,8 @@ public class ParametreCategorieController {
 				textFieldFaux4.setText(ancienneFausse4);
 			}
 		}
-		
-		
+
+
 		TextField textFieldFeedBack = new TextField();
 		textFieldFeedBack.setText(ancienFeedback);
 
@@ -324,6 +352,7 @@ public class ParametreCategorieController {
 		popupLayout.addRow(5, new Label(""), textFieldFaux3);
 		popupLayout.addRow(6, new Label(""), textFieldFaux4);
 		popupLayout.addRow(7, new Label("FeedBack:"), textFieldFeedBack);
+		popupLayout.addRow(8, new Label("Categorie:"), comboBox);
 
 		// Bouton de validation
 		Button boutonValider = new Button("Valider");
@@ -349,7 +378,7 @@ public class ParametreCategorieController {
 				if (textFieldFaux4.getText() !=null && !textFieldFaux4.getText().isBlank() && textFieldFaux4.getText().trim() != "" ) {
 					listeReponsesFausses.add(textFieldFaux4.getText());
 				}
-				
+
 				feedBack = textFieldFeedBack.getText();
 
 
@@ -357,8 +386,8 @@ public class ParametreCategorieController {
 				if (Main.stockage.modifierQuestion(questionCourante,textField.getText(), categorieCourante, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack)) {
 					comboBoxCategorie.getItems().set(comboBoxCategorie.getItems().indexOf(ancienIntitule), textField.getText().trim());
 					comboBoxCategorie.setValue(textField.getText().trim());
-					System.out.println((((Question) Main.stockage.getListeQuestion().get(textField.getText())).getFeedBackQuestion()));
-					
+					System.out.println((((Question) Main.stockage.getListeQuestion().get(textField.getText())).getDifficulteQuestion()));
+
 				} else {
 					ParametreController.afficherAlerte("Question non modifiable","Une question avec le même intitulé existe déjà");
 				}
@@ -412,10 +441,10 @@ public class ParametreCategorieController {
 		Scene popupScene = new Scene(popupLayout, 750, 350);
 		popupStage.setScene(popupScene);
 		popupStage.showAndWait();
-		
-		
+
+
 	}
-	
+
 	public void setNomCategorie(String categorie) {
 		categorieChoisi = categorie;
 		System.out.println(categorie);

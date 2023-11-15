@@ -8,7 +8,6 @@ import java.util.Optional;
 import javafx.scene.control.Tooltip;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -52,12 +51,12 @@ public class ParametreController {
 		boiteSaisie.setContentText("Entrez le nom de votre nouvelle catégorie: ");
 		boiteSaisie.showAndWait();
 
-		String result = boiteSaisie.getResult();
-		if (result != null && !result.isEmpty() ) {
+		String resultat = boiteSaisie.getResult();
+		if (resultat != null && !resultat.isEmpty() ) {
 
-			if (Main.stockage.ajouterCategorie(new Categorie(result.trim()))) {
-				comboBox.getItems().add(result.trim());
-
+			if (Main.stockage.ajouterCategorie(new Categorie(resultat.trim()))) {
+				comboBox.getItems().add(resultat.trim());
+				comboBox.setValue(resultat.trim());
 				System.out.println(Main.stockage.getListeCategorie());
 			} else {
 				afficherAlerte("Catégorie déja existante","L'intitulé de la catégorie que vous voulez créer existe déjà ou ne peut pas étre vide.");
@@ -99,11 +98,11 @@ public class ParametreController {
 		boiteSaisie.showAndWait();
 	    
 
-		String result = boiteSaisie.getResult();
-		if (result != null && !result.isEmpty()) {
-			if (Main.stockage.modifierElementListeCategorie((Categorie)Main.stockage.getListeCategorie().get(comboBox.getValue()), result)) {
-				comboBox.getItems().set(comboBox.getItems().indexOf(categorieCourante), result);
-				comboBox.setValue(result);
+		String resultat = boiteSaisie.getResult();
+		if (resultat != null && !resultat.isEmpty()) {
+			if (Main.stockage.modifierElementListeCategorie((Categorie)Main.stockage.getListeCategorie().get(comboBox.getValue()), resultat)) {
+				comboBox.getItems().set(comboBox.getItems().indexOf(categorieCourante), resultat);
+				comboBox.setValue(resultat);
 				System.out.println(comboBox.getValue());
 			} 
 		} 
