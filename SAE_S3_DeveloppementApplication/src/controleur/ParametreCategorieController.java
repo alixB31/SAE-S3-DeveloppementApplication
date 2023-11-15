@@ -152,7 +152,7 @@ public class ParametreCategorieController {
 				if (Main.stockage.ajouterQuestion(new Question(textField.getText().trim(), categorieCourante, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack))) {
 
 					comboBoxCategorie.getItems().add(textField.getText());
-					Main.stockage.supprimerElementListeQuestion(comboBoxCategorie.getValue());
+					//Main.stockage.supprimerElementListeQuestion(comboBoxCategorie.getValue());
 					comboBoxCategorie.setValue(textField.getText());
 				} else {
 					ParametreController.afficherAlerte("Question non ajoutable","Une question avec le même intitulé existe déjà");
@@ -386,15 +386,30 @@ public class ParametreCategorieController {
 				Categorie nouvelleCategorie = (Categorie) Main.stockage.getListeCategorie().get(comboBox.getValue()); 
 				
 				//modification de la question
-				if (Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack)
-						&& nouvelleCategorie == categorieCourante) {
+				if (nouvelleCategorie == categorieCourante 
+						&&	Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack)) {
 					
 					comboBoxCategorie.getItems().set(comboBoxCategorie.getItems().indexOf(ancienIntitule), textField.getText().trim());
 					comboBoxCategorie.setValue(textField.getText().trim());
 					
-				} else if(Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack)
-						&& nouvelleCategorie != categorieCourante) {
-					comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());
+				} else if(nouvelleCategorie != categorieCourante && Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack)) {
+					System.out.println("On est ici ");
+//					boolean existeDeja = false;
+//					ArrayList<Question> listeQuestionParCategorie = Main.stockage.listeQuestionParCategorie((Categorie)Main.stockage.getListeCategorie().get(nouvelleCategorie));
+//					System.out.println(listeQuestionParCategorie.size());
+//					for (int i = 0; i<listeQuestionParCategorie.size(); i++) {
+//						System.out.println("aaaaaaaaaaaaaa");
+//						if(listeQuestionParCategorie.get(i).getIntituleQuestion()==textField.getText()) {
+//							existeDeja = true;
+//							
+//						}
+//			    	}
+//					if (existeDeja == false) {
+						comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());
+//					} else {
+//						ParametreController.afficherAlerte("Question non transferable","Une question avec le même intitulé existe déjà dans la catégorie cible");
+//					}
+					
 				} else {
 					ParametreController.afficherAlerte("Question non modifiable","Une question avec le même intitulé existe déjà");
 				}
@@ -457,5 +472,4 @@ public class ParametreCategorieController {
 		System.out.println(categorie);
 	}
 }
-//&& listeQuestion.modifierCategorieDeQuestion(question, categorie)
-//&& question.getCategorieDeQuestion()==getElementListeQuestion(intitule).getCategorieDeQuestion()
+//(!elementEstDansListeQuestion(intitule) || (elementEstDansListeQuestion(intitule) && question.getCategorieDeQuestion()!=getElementListeQuestion(intitule).getCategorieDeQuestion()))
