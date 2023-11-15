@@ -19,27 +19,21 @@ class TestImportation {
     @Test
     void testImportSucces() {
         Stockage stockage = new Stockage();
-        String testFilePath = "D:\\BUT2\\SAE-S3-DeveloppementApplication\\SAE-S3-DeveloppementApplication\\SAE_S3_DeveloppementApplication\\questionsbasiques.csv";
-        boolean importSuccess = stockage.importCSV(testFilePath);
+        String testFilePath = "D:\\programmationjava\\SAE-S3-DeveloppementApplication\\SAE_S3_DeveloppementApplication\\\\questionsbasiques.csv";
 
-        assertTrue(importSuccess);
+        assertTrue(stockage.importCSV(testFilePath));
     }
     
     @Test
     void testImportNonVide() {
         Stockage stockage = new Stockage();
-        String testFilePath = "D:\\BUT2\\SAE-S3-DeveloppementApplication\\SAE-S3-DeveloppementApplication\\SAE_S3_DeveloppementApplication\\questionsbasiques.csv";
-        boolean importSuccess = stockage.importCSV(testFilePath);
-
-        assertTrue(importSuccess);
-    	
+        String testFilePath = "D:\\programmationjava\\SAE-S3-DeveloppementApplication\\SAE_S3_DeveloppementApplication\\\\questionsbasiques.csv";
+        stockage.importCSV(testFilePath);
+        
         Map<String, Question> questionsMap = stockage.getListeQuestion();
 
         assertTrue(!questionsMap.isEmpty());
 
-        for (Map.Entry<String, Question> entry : questionsMap.entrySet()) {
-            System.out.println("Clé : " + entry.getKey());
-        }
     }
 }
 

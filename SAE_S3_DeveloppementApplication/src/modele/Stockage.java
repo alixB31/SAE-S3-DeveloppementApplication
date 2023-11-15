@@ -174,7 +174,6 @@ public class Stockage {
     public boolean importCSV(String filePath) {
         boolean estImporte = false;
         Scanner scanner = null;
-        int compteur=0;
 
         try {
             scanner = new Scanner(new File(filePath));
@@ -189,41 +188,54 @@ public class Stockage {
                 String line = scanner.nextLine();
                 String[] data = line.split(";");
 
-                Categorie categorieCourante;
+                if (data.length >= 5) {  // Assurez-vous qu'il y a au moins 3 valeurs obligatoires
+                    Categorie categorieCourante;
 
-                // Vérifier si la catégorie existe déjà dans la liste.
-                if (listeCategorie.elementEstDansListeCategorie(data[0])) {
-                    categorieCourante = listeCategorie.getElementListeCategorie(data[0]);
+                    String categorieValue = data[0];
+                    if (listeCategorie.elementEstDansListeCategorie(categorieValue)) {
+                        categorieCourante = listeCategorie.getElementListeCategorie(categorieValue);
+                    } else {
+                        categorieCourante = new Categorie(categorieValue);
+                        listeCategorie.ajouterElementListeCategorie(categorieCourante);
+                    }
+
+                    // Vérifier qu'au moins une des valeurs obligatoires n'est pas vide.
+                    if (!data[0].isEmpty() && !data[1].isEmpty() && !data[2].isEmpty() && !data[3].isEmpty()) {
+
+                    	if (!data[4].isEmpty() || !data[5].isEmpty() || !data[6].isEmpty() || !data[7].isEmpty()) {
+	                        // Créer une liste des réponses fausses.
+	                        ArrayList<String> reponsesFausses = new ArrayList<>();
+	                        reponsesFausses.add(getSafeValue(data, 4));
+	                        reponsesFausses.add(getSafeValue(data, 5));
+	                        reponsesFausses.add(getSafeValue(data, 6));
+	                        reponsesFausses.add(getSafeValue(data, 7));
+	
+	                        // Créer une nouvelle question.
+	                        Question question = new Question(
+	                                getSafeValue(data, 2),
+	                                categorieCourante,
+	                                parseIntOrDefault(data[1]),
+	                                reponsesFausses,
+	                                getSafeValue(data, 3),
+	                                getSafeValue(data, 8)
+	                        );
+	
+	                        // Ajouter la question à la liste des questions.
+	                        listeQuestion.ajouterElementListeQuestion(question);
+	                        estImporte = true;
+                    	} else {
+                    		System.err.println("Au moins une des valeurs data[4], data[5], data[6], ou data[7] doit être remplie.");
+                    	}
+                    } else {
+                        System.err.println("Les valeurs obligatoires data[0], data[1], data[2] et data[3] doivent être remplies.");
+                    }
                 } else {
-                    categorieCourante = new Categorie(data[0]);
-                    listeCategorie.ajouterElementListeCategorie(categorieCourante);
+                    System.err.println("Ligne incorrecte dans le fichier CSV : " + line);
                 }
-
-                // Créer une liste des réponses fausses.
-                ArrayList<String> reponsesFausses = new ArrayList<>();
-                reponsesFausses.add(getSafeValue(data, 4));
-                reponsesFausses.add(getSafeValue(data, 5));
-                reponsesFausses.add(getSafeValue(data, 6));
-                reponsesFausses.add(getSafeValue(data, 7));
-
-                // Créer une nouvelle question.
-                Question question = new Question(
-                        getSafeValue(data, 2),
-                        categorieCourante,
-                        parseIntOrDefault(data[1]),
-                        reponsesFausses,
-                        getSafeValue(data, 3),
-                        getSafeValue(data, 8)
-                );
-
-                // Ajouter la question à la liste des questions.
-                listeQuestion.ajouterElementListeQuestion(question);
-                System.out.println(question);
-                compteur++;
-                estImporte = true;
             }
 
-            System.out.println(compteur);
+
+
             // Indiquer que l'importation est réussie.
             return estImporte;
 
@@ -238,7 +250,7 @@ public class Stockage {
         }
     }
     
- // Méthode pour obtenir une valeur sûre à partir d'un tableau
+    // Méthode pour obtenir une valeur sûre à partir d'un tableau
     private String getSafeValue(String[] array, int index) {
         return (index >= 0 && index < array.length) ? array[index] : "";
     }
