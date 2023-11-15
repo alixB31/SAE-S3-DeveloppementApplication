@@ -18,14 +18,17 @@ public class Quiz {
 	
 	private boolean[] listeResultatReponse;
 	
-	public Quiz(int difficulte, int nombreQuestions, Categorie categorie, Stockage stockage) {
+	public Quiz(int difficulte, Categorie categorie, Stockage stockage) {
 		this.difficulte = difficulte;
 		listeQuestion = stockage.listeQuestionFiltreDifficulteCategorieTaille(this);
+		this.nombreQuestions = listeQuestion.size();
 		this.listeResultatReponse = new boolean[listeQuestion.size()];
-		if (stockage.getListeCategorie().containsKey(categorie.getIntituleCategorie())) {
+		if (categorie != null && stockage.getListeCategorie().containsKey(categorie.getIntituleCategorie())) {
 			this.categorie = categorie;
+		} else if (categorie == null) {
+			System.out.println("Aucune catégorie n'est disponible!");
 		} else {
-			throw new IllegalArgumentException("La catégorie n'existe pas dans la liste des catégories"
+			System.out.println("La catégorie n'existe pas dans la liste des catégories"
 					+ " associé au stockage.");
 		}
 	}
@@ -55,7 +58,7 @@ public class Quiz {
 	}
 	
 	public boolean quantiteQuestionOk(int quantiteChoisi) {
-		return listeQuestion.size()>=quantiteChoisi;
+		return this.nombreQuestions>=quantiteChoisi;
 	}
 	
 	public void setNombreQuestion(int nombreQuestion) {

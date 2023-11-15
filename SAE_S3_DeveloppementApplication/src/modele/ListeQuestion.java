@@ -295,10 +295,11 @@ public class ListeQuestion {
     	ArrayList<Question> listeProvisoire = listeQuestionParCategorie(quiz.getCategorie());
     	for (Map.Entry entry : listeQuestion.entrySet()) {
     		if (quiz.getDifficulte()==0
-    				|| ((Question)entry).getDifficulteQuestion() == quiz.getDifficulte()) {
+    				|| ((Question)entry.getValue()).getDifficulteQuestion() == quiz.getDifficulte()) {
     			listeProvisoire.add((Question)entry.getValue());
     		}
     	}
+    	System.out.println(listeProvisoire.toString());
     	int indice;
     	int longueurListeProvisoire = listeProvisoire.size();
     	ArrayList<Question> listeFinale = new ArrayList<>();

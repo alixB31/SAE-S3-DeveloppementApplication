@@ -49,14 +49,19 @@ public class PartieController {
     		//TODO pop-up Aucune catégorie sélectionnée (la partie ne se lance pas)
     	} else {
     		RadioButton difficulte = (RadioButton)choixDifficultes.getSelectedToggle();
+    		int difficulteReelle;
+    		if (difficulte.getText().equals("Indifférent")) {
+    			difficulteReelle = 0;
+    		} else {
+    			difficulteReelle = Integer.parseInt(difficulte.getText());
+    		}
     		RadioButton nbQuestion = (RadioButton)nombreQuestion.getSelectedToggle();
-    		Quiz quiz = new Quiz(Integer.parseInt(difficulte.getText()),1,
-					(Categorie)Main.stockage.getListeCategorie().get(comboBoxCategorie.getValue()),
-					Main.stockage);
-    		Main.stockage.listeQuestionFiltreDifficulteCategorieTaille(quiz);
+    		Quiz quiz = new Quiz(difficulteReelle,(Categorie)Main.stockage.
+    				getListeCategorie().get(comboBoxCategorie.getValue()),
+    				Main.stockage);
     		if (quiz.quantiteQuestionOk(Integer.parseInt(nbQuestion.getText()))) {
     			Main.repondreQuestion(quiz , 0);
-    		} else if (quiz.getNombreQuestions()!=0){
+    		} else if (true){ //quiz.getNombreQuestions()!=0
     			//TODO Pop-up pas assez de question
     			// Le nombre de question trouvées est : nbQuestion.getText() Attention c'est déjà une String.
     			// Si le joueur veux continuer alors il continu.
@@ -64,12 +69,16 @@ public class PartieController {
     		} else {
     			// Il n'y a aucune questions correspondantes
     			//Pop-up mais pas de possibilité de continuer
+    			System.out.println("Pas de question disponible.");
     		}
-    		
     	}
     }
     
     public void setListeCategorie(HashMap<String, Categorie> listeCategorie) {
+    	comboBoxCategorie.getItems().add("Indifférent");
+    	// La valeur par défaut est "Indifférent"
+    	comboBoxCategorie.getSelectionModel().selectFirst();
+    	// Ajout des catégories existantes.
     	for (Map.Entry entry : listeCategorie.entrySet()) {
     		comboBoxCategorie.getItems().add(((Categorie)entry.getValue()).getIntituleCategorie());
     	}

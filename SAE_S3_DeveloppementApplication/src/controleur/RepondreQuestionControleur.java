@@ -1,11 +1,15 @@
 package controleur;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import modele.Quiz;
+import modele.Question;
 import vue.Main;
 
 /** TODO comment class responsibility (SRP)
@@ -47,6 +51,9 @@ public class RepondreQuestionControleur {
     @FXML
     private RadioButton reponse5;
 
+    @FXML
+    private ToggleGroup reponses;
+    
     private Quiz quiz;
     
     private int indiceQuestionCourrante;
@@ -86,5 +93,12 @@ public class RepondreQuestionControleur {
     
     public void setNombreQuestionTotal(String nombreQuestionTotal) {
     	this.nbPageMax.setText(nombreQuestionTotal);
+    }
+    
+    public void setListeReponse(Question question) {
+    	ArrayList<String> listeReponses = Main.stockage.getListeReponsesOrdreAleatoire(question.getIntituleQuestion());
+    	for (int i = 0; i < listeReponses.size(); i++) {
+    		new RadioButton(listeReponses.get(i)).setToggleGroup(reponses);
+    	}
     }
 }
