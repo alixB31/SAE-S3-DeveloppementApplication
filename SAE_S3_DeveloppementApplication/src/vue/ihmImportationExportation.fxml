@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ImportationController">
+   <children>
+      <Text layoutX="248.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Import/Export">
+         <font>
+            <Font name="System Bold Italic" size="88.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnRetour" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnRetour" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="feedBackQuestionUn" layoutX="407.0" layoutY="249.0" mnemonicParsing="false" onAction="#feedBackQuestionUnAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
+      <Button fx:id="feedBackQuestionDeux" layoutX="407.0" layoutY="319.0" mnemonicParsing="false" onAction="#feedBackQuestionDeuxAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
+      <Button fx:id="feedBackQuestionTrois" layoutX="407.0" layoutY="389.0" mnemonicParsing="false" onAction="#feedBackQuestionTroisAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
+      <Button fx:id="feedBackQuestionQuatre" layoutX="407.0" layoutY="459.0" mnemonicParsing="false" onAction="#feedBackQuestionQuatreAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
+      <Button fx:id="feedBackQuestionCinq" layoutX="407.0" layoutY="529.0" mnemonicParsing="false" onAction="#feedBackQuestionCinqAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
+      <Text layoutX="126.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Import : ">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="126.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Export : ">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <TextField fx:id="cheminDeFichier" layoutX="289.0" layoutY="243.0" prefHeight="53.0" prefWidth="474.0" />
+      <TextField fx:id="ipExport" layoutX="288.0" layoutY="419.0" prefHeight="53.0" prefWidth="474.0" />
+      <Button fx:id="btnSuivantExport" layoutX="804.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnSuivantExportAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" text="Suivant">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnParcourir" layoutX="804.0" layoutY="244.0" mnemonicParsing="false" onAction="#btnParcourirAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" text="Parcourir">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
