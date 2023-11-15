@@ -17,26 +17,26 @@ import java.util.Map;
 class TestImportation {
 
     @Test
-    void testImportCSV() {
-        // Créer un objet de la classe Stockage.
+    void testImportSucces() {
         Stockage stockage = new Stockage();
-
-        // Chemin du fichier CSV fictif pour les tests.
-        String testFilePath = "D:/BUT2/SAE-S3-DeveloppementApplication/questionsbasiques.xls";
-
-        // Appeler la méthode que vous souhaitez tester.
+        String testFilePath = "D:\\BUT2\\SAE-S3-DeveloppementApplication\\SAE-S3-DeveloppementApplication\\SAE_S3_DeveloppementApplication\\received.csv";
         boolean importSuccess = stockage.importCSV(testFilePath);
 
-        // Vérifier les résultats.
         assertTrue(importSuccess);
-        
-        // Obtenir la liste des questions depuis la ListeQuestion.
+    }
+    
+    @Test
+    void testInportNonVide() {
+        Stockage stockage = new Stockage();
+        String testFilePath = "D:\\BUT2\\SAE-S3-DeveloppementApplication\\SAE-S3-DeveloppementApplication\\SAE_S3_DeveloppementApplication\\received.csv";
+        boolean importSuccess = stockage.importCSV(testFilePath);
+
+        assertTrue(importSuccess);
+    	
         Map<String, Question> questionsMap = stockage.getListeQuestion();
 
-        // Vérifier que la map des questions n'est pas vide.
-        assertFalse(questionsMap.isEmpty());
+        assertTrue(!questionsMap.isEmpty());
 
-        // Afficher les valeurs stockées.
         for (Map.Entry<String, Question> entry : questionsMap.entrySet()) {
             System.out.println("Clé : " + entry.getKey() + ", Valeur : " + entry.getValue());
         }

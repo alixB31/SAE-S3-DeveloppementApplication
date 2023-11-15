@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import modele.Stockage;
 import javafx.stage.FileChooser.ExtensionFilter;
 import vue.Main;
 
@@ -44,7 +45,12 @@ public class ImportationController {
         // Traiter le fichier sélectionné (vous pouvez ajouter votre logique ici)
         if (selectedFile != null) {
         	cheminDeFichier.setText(selectedFile.getAbsolutePath());
-            System.out.println("fichier selectionné : "+cheminDeFichier);
+            System.out.println("fichier selectionné : " + selectedFile.getAbsolutePath());
+            if (Main.stockage.importCSV(selectedFile.getAbsolutePath())) {
+            	System.out.print("le fichier à bien été importé");
+            } else {
+            	System.out.print("le fichier n'a pas été importé");
+            }
             // Ajoutez ici le code pour traiter le fichier sélectionné
         } else {
             System.out.println("Aucun fichier sélectionné.");

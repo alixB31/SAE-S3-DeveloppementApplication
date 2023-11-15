@@ -172,9 +172,11 @@ public class Stockage {
      * @return true si l'importation est réussie, false sinon.
      */
     public boolean importCSV(String filePath) {
-    	boolean estImporte = false;
+        boolean estImporte = false;
+        Scanner scanner = null;
+
         try {
-            Scanner scanner = new Scanner(new File(filePath));
+            scanner = new Scanner(new File(filePath));
 
             // Ignorer la première ligne du fichier CSV (en-tête).
             if (scanner.hasNextLine()) {
@@ -186,40 +188,43 @@ public class Stockage {
                 String line = scanner.nextLine();
                 String[] data = line.split(";");
 
-                Categorie categorieCourante;
-                
-				// Vérifier si la catégorie existe déjà dans la liste.
-                if (listeCategorie.elementEstDansListeCategorie(data[0])) {
-                    categorieCourante = listeCategorie.getElementListeCategorie(data[0]);
+                if (data.length >= 9) { // Assurez-vous que la ligne a suffisamment de colonnes.
+
+                    Categorie categorieCourante;
+
+                    // Vérifier si la catégorie existe déjà dans la liste.
+                    if (listeCategorie.elementEstDansListeCategorie(data[0])) {
+                        categorieCourante = listeCategorie.getElementListeCategorie(data[0]);
+                    } else {
+                        categorieCourante = new Categorie(data[0]);
+                        listeCategorie.ajouterElementListeCategorie(categorieCourante);
+                    }
+
+                    // Créer une liste des réponses fausses.
+                    ArrayList<String> reponsesFausses = new ArrayList<>();
+                    reponsesFausses.add(data[4]);
+                    reponsesFausses.add(data[5]);
+                    reponsesFausses.add(data[6]);
+                    reponsesFausses.add(data[7]);
+
+                    // Créer une nouvelle question.
+                    Question question = new Question(
+                            data[2],
+                            categorieCourante,
+                            Integer.parseInt(data[1]),
+                            reponsesFausses,
+                            data[3],
+                            data[8]
+                    );
+
+                    // Ajouter la question à la liste des questions.
+                    listeQuestion.ajouterElementListeQuestion(question);
+                    estImporte = true;
                 } else {
-                    categorieCourante = new Categorie(data[0]);
-                    listeCategorie.ajouterElementListeCategorie(categorieCourante);
+                    // Gérer le cas où la ligne n'a pas suffisamment de colonnes.
+                    System.out.println("La ligne ne contient pas suffisamment de colonnes : " + line);
                 }
-
-                // Créer une liste des réponses fausses.
-                ArrayList<String> reponsesFausses = new ArrayList<>();
-                reponsesFausses.add(data[4]);
-                reponsesFausses.add(data[5]);
-                reponsesFausses.add(data[6]);
-                reponsesFausses.add(data[7]);
-
-                // Créer une nouvelle question.
-                Question question = new Question(
-                        data[2],
-                        categorieCourante,
-                        Integer.parseInt(data[1]),
-                        reponsesFausses,
-                        data[3],
-                        data[8]
-                );
-
-                // Ajouter la question à la liste des questions.
-                listeQuestion.ajouterElementListeQuestion(question);
-                estImporte = true;
             }
-
-            // Fermer le scanner.
-            scanner.close();
 
             // Indiquer que l'importation est réussie.
             return estImporte;
@@ -228,6 +233,10 @@ public class Stockage {
             e.printStackTrace();
             // Indiquer que l'importation a échoué.
             return estImporte;
+        } finally {
+            if (scanner != null) {
+                scanner.close();
+            }
         }
     }
     
