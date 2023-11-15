@@ -36,6 +36,7 @@ public class Main extends Application {
     private static Scene sceneScoreQuiz;
     private static FXMLLoader chargeurFXMLCategorie = new FXMLLoader();
     private static FXMLLoader chargeurFXMLPartie = new FXMLLoader();
+    private static FXMLLoader chargeurFXMLReponseQuestion = new FXMLLoader();
     
     public static Stockage stockage;
     
@@ -72,7 +73,7 @@ public class Main extends Application {
         sceneParametreCategorie = new Scene(parametreCategorie);
         
         
-        FXMLLoader chargeurFXMLReponseQuestion = new FXMLLoader();
+        
         chargeurFXMLReponseQuestion.setLocation(getClass().getResource("ihmRepondreQuestion.fxml"));
         Parent repondreQuestion = chargeurFXMLReponseQuestion.load();
         sceneRepondreQuestion = new Scene(repondreQuestion);
@@ -171,8 +172,28 @@ public class Main extends Application {
     /**
      * Lancer une partie        
      */
-    public static void RepondreQuestion(Quiz quiz) {
-        fenetrePrincipale.setScene(sceneRepondreQuestion);
+    public static void repondreQuestion(Quiz quiz , int indice) {
+    	RepondreQuestionControleur controller = chargeurFXMLReponseQuestion.getController();
+        // Initialisation du quiz et la position de la question à présenter
+    	controller.setQuiz(quiz);
+        controller.setIndiceQuestion(indice);
+        
+        // Initialisation des données à écrire sur la page
+        
+        // Niveau de difficulté
+        String niveauDifficulte = "indifferent";
+        if(quiz.getDifficulte() != 0) {
+        	niveauDifficulte = quiz.getDifficulte() + "";
+        }
+        controller.setDifficulte(niveauDifficulte);
+        
+        // Categorie choisie
+        //TODO
+        // numero question en cours
+        //TODO
+        // nombre de question total avec vérif
+        //TODO
+    	fenetrePrincipale.setScene(sceneRepondreQuestion);
     }
 
     public static void ihmScoreQuiz() {

@@ -302,14 +302,15 @@ public class ListeQuestion {
     	int indice;
     	int longueurListeProvisoire = listeProvisoire.size();
     	ArrayList<Question> listeFinale = new ArrayList<>();
-    	
+    	if (quiz.getNombreQuestions() > longueurListeProvisoire) {
+    		quiz.setNombreQuestion(listeProvisoire.size());
+    	}
     	for (int i = 0; i< quiz.getNombreQuestions();i++) {
     		indice =(int) (Math.random() * (longueurListeProvisoire - 1));
     		listeFinale.add(listeProvisoire.get(indice));
     		listeProvisoire.remove(indice);
     		longueurListeProvisoire--;
     	}
-    	quiz.setNombreQuestion(listeFinale.size());
     	return listeFinale;
     }
 }

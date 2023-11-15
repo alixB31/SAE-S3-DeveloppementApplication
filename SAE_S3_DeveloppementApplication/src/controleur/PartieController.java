@@ -55,12 +55,12 @@ public class PartieController {
 					Main.stockage);
     		Main.stockage.listeQuestionFiltreDifficulteCategorieTaille(quiz);
     		if (quiz.quantiteQuestionOk(Integer.parseInt(nbQuestion.getText()))) {
-    			Main.RepondreQuestion(quiz);
+    			Main.repondreQuestion(quiz , 0);
     		} else if (quiz.getNombreQuestions()!=0){
     			//TODO Pop-up pas assez de question
     			// Le nombre de question trouvées est : nbQuestion.getText() Attention c'est déjà une String.
     			// Si le joueur veux continuer alors il continu.
-    			Main.RepondreQuestion(quiz);
+    			Main.repondreQuestion(quiz, 0);
     		} else {
     			// Il n'y a aucune questions correspondantes
     			//Pop-up mais pas de possibilité de continuer
