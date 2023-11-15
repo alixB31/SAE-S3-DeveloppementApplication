@@ -5,7 +5,7 @@
 package controleur;
 
 import java.util.Optional;
-
+import javafx.scene.control.Tooltip;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,6 +68,7 @@ public class ParametreController {
 
 	@FXML
 	void deleteCategorieAction(ActionEvent event) {
+	    if (comboBox.getValue() != null) {
 		Alert boiteAlerte = new Alert(Alert.AlertType.CONFIRMATION, "Confirmez-vous votre choix ?",
 				ButtonType.YES, ButtonType.NO);
 
@@ -77,20 +78,26 @@ public class ParametreController {
 				comboBox.getItems().remove(comboBox.getValue());
 				System.out.println(Main.stockage.getListeCategorie());
 			} else {
-				//TODO
+			    afficherAlerte("Suppresion Catégorie","La suppresion de la catégorie a échoué");
 			}
 		}
+	    } else {
+	       Tooltip tooltipSup = new Tooltip("Impossible de supprimer une catégorie");
+	       Tooltip.install(btnDelete, tooltipSup);
+	       afficherAlerte("Impossible supprimer catégorie","Impossible de supprimer une catégorie pour l'instant");
+	    }
 	}
 
 	@FXML
 	void modifierCategorieAction(ActionEvent event) {
-
+	    if (comboBox.getValue() != null) {
 		String categorieCourante = comboBox.getValue();
 		TextInputDialog boiteSaisie = new TextInputDialog(categorieCourante);
 		boiteSaisie.setHeaderText("Modifier la catégorie : " + categorieCourante);
 		boiteSaisie.setTitle("Catégorie");
 		boiteSaisie.setContentText("Entrez le nouveau nom de votre catégorie : ");
 		boiteSaisie.showAndWait();
+	    
 
 		String result = boiteSaisie.getResult();
 		if (result != null && !result.isEmpty()) {
@@ -98,10 +105,13 @@ public class ParametreController {
 				comboBox.getItems().set(comboBox.getItems().indexOf(categorieCourante), result);
 				comboBox.setValue(result);
 				System.out.println(comboBox.getValue());
-			}
-
-
-		}
+			} 
+		} 
+	    } else {
+	        Tooltip tooltip = new Tooltip("Impossible de modifier une catégorie");
+	        Tooltip.install(btnModifier, tooltip);
+	              afficherAlerte("Impossible modifier catégorie","Impossible de modifier une catégorie pour l'instant");
+	    }
 
 	}
 
@@ -129,12 +139,15 @@ public class ParametreController {
 
 	}
 	
+	/** TODO comment method role
+	 * @param titre
+	 * @param message
+	 */
 	public static void afficherAlerte(String titre, String message) {
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle(titre);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-	
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle(titre);
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.showAndWait();
+        }
 }
