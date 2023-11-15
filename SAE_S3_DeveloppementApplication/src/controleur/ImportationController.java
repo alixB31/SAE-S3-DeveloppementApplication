@@ -26,21 +26,6 @@ public class ImportationController {
     private TextField cheminDeFichier;
 
     @FXML
-    private Button feedBackQuestionCinq;
-
-    @FXML
-    private Button feedBackQuestionDeux;
-
-    @FXML
-    private Button feedBackQuestionQuatre;
-
-    @FXML
-    private Button feedBackQuestionTrois;
-
-    @FXML
-    private Button feedBackQuestionUn;
-
-    @FXML
     private TextField ipExport;
 
     @FXML
@@ -72,8 +57,6 @@ public class ImportationController {
         }
     }
 
-        
-
     @FXML
     void btnRetour(ActionEvent event) {
     	Main.retourMenuPrincipal();
@@ -83,5 +66,4 @@ public class ImportationController {
     void btnSuivantExportAction(ActionEvent event) {
 
     }
-
 }
