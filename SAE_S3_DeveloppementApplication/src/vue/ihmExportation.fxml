@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ExporterController">
+   <children>
+      <Text layoutX="322.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Questions">
+         <font>
+            <Font name="System Bold Italic" size="88.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnRetour" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnRetour" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="comboBoxCategorie" layoutX="139.0" layoutY="77.0" onAction="#comboBoxCategorieAction" prefWidth="150.0" />
+      <Button fx:id="btnSelectionnerTout" layoutX="762.0" layoutY="60.0" mnemonicParsing="false" onAction="#btnSelectionnerToutAction" prefHeight="85.0" prefWidth="188.0" style="-fx-background-color: #FFFFFF;" text="Sélectionner &#10;tout" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnRetour1" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnRetour" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 10px;" text="Exporter">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+      <Pane layoutX="206.0" layoutY="172.0" prefHeight="400.0" prefWidth="639.0">
+         <children>
+            <ScrollBar fx:id="scrollBar" depthTest="ENABLE" layoutX="625.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="14.0" />
+            <TextFlow layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="398.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;" textAlignment="CENTER">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="En java Combien y a t'il de boucle ?">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+            <CheckBox layoutX="581.0" layoutY="14.0" mnemonicParsing="false">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </CheckBox>
+            <TextFlow layoutX="14.0" layoutY="67.0" prefHeight="35.0" prefWidth="398.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;" textAlignment="CENTER">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="En java Combien y a t'il de boucle ?">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+            <CheckBox layoutX="581.0" layoutY="67.0" mnemonicParsing="false">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </CheckBox>
+            <TextFlow layoutX="14.0" layoutY="122.0" prefHeight="35.0" prefWidth="398.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;" textAlignment="CENTER">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="En java Combien y a t'il de boucle ?">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+            <CheckBox layoutX="581.0" layoutY="122.0" mnemonicParsing="false">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </CheckBox>
+         </children>
+      </Pane>
+      <Separator layoutX="206.0" layoutY="160.0" prefHeight="25.0" prefWidth="639.0" />
+      <Separator layoutX="206.0" layoutY="560.0" prefHeight="25.0" prefWidth="639.0" />
+      <Separator layoutX="194.0" layoutY="172.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="25.0" />
+   </children>
+</AnchorPane>

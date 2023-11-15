@@ -35,6 +35,7 @@ public class Main extends Application {
     private static Scene sceneRepondreQuestion;
     private static Scene sceneScoreQuiz;
     private static Scene sceneImportationExportation;
+    private static Scene sceneExportation;
     private static FXMLLoader chargeurFXMLParametre= new FXMLLoader();
     private static FXMLLoader chargeurFXMLCategorie = new FXMLLoader();
     private static FXMLLoader chargeurFXMLPartie = new FXMLLoader();
@@ -89,10 +90,15 @@ public class Main extends Application {
         chargeurFXMLImportationExportation.setLocation(getClass().getResource("ihmImportationExportation.fxml"));
         Parent ImportationExportation = chargeurFXMLImportationExportation.load();
         sceneImportationExportation = new Scene(ImportationExportation);
+        
+        FXMLLoader chargeurFXMLExportation = new FXMLLoader();
+        chargeurFXMLExportation.setLocation(getClass().getResource("ihmExportation.fxml"));
+        Parent Exportation = chargeurFXMLExportation.load();
+        sceneExportation = new Scene(Exportation);
        
         /* Création de la fenêtre principale*/
         primaryStage.setTitle("Quiz");
-        primaryStage.setHeight(720);
+        primaryStage.setHeight(740);
         primaryStage.setWidth(1080);
         primaryStage.setScene(sceneMenu);
         fenetrePrincipale = primaryStage;
@@ -218,8 +224,11 @@ public class Main extends Application {
     }
     
     public static void ihmImportationExportation() {
-    	fenetrePrincipale.setScene(sceneImportationExportation);
-    		
+    	fenetrePrincipale.setScene(sceneImportationExportation);		
+    }
+    
+    public static void ihmExportation() {
+    	fenetrePrincipale.setScene(sceneExportation);		
     }
     
 }

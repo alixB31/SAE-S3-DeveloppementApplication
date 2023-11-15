@@ -64,6 +64,6 @@ public class ImportationController {
 
     @FXML
     void btnSuivantExportAction(ActionEvent event) {
-
+    	Main.ihmExportation();
     }
 }
