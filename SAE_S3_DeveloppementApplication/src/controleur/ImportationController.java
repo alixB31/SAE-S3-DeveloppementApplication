@@ -35,13 +35,6 @@ public class ImportationController {
         // Titre de la fenêtre de parcours
         fileChooser.setTitle("Parcourir");
 
-        // Filtres pour les types de fichiers (vous pouvez les personnaliser)
-        fileChooser.getExtensionFilters().addAll(
-            new ExtensionFilter("Fichiers texte", "*.txt"),
-            new ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"),
-            new ExtensionFilter("Tous les fichiers", "*.*")
-        );
-
         // Accéder à la fenêtre principale (Stage) à partir de l'événement
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
@@ -50,7 +43,8 @@ public class ImportationController {
 
         // Traiter le fichier sélectionné (vous pouvez ajouter votre logique ici)
         if (selectedFile != null) {
-            System.out.println("Fichier sélectionné : " + selectedFile.getAbsolutePath());
+        	cheminDeFichier.setText(selectedFile.getAbsolutePath());
+            System.out.println("fichier selectionné : "+cheminDeFichier);
             // Ajoutez ici le code pour traiter le fichier sélectionné
         } else {
             System.out.println("Aucun fichier sélectionné.");
