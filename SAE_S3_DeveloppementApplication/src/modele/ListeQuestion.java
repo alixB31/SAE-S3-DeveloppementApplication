@@ -313,4 +313,8 @@ public class ListeQuestion {
     	}
     	return listeFinale;
     }
+    
+    public ArrayList<String> getReponsesOrdreAleatoire(Question question) {
+    	return question.getListeReponsesOrdreAleatoire();
+    }
 }

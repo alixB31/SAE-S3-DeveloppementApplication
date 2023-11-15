@@ -173,4 +173,22 @@ public class Question {
     	}
 		return estDansListeReponseFausse;
 	}
+	
+	public ArrayList<String> getListeReponsesOrdreAleatoire(){
+		ArrayList<String> listeReponsesFinale = new ArrayList<>();
+    	// Ajout des réponses dans la liste.
+    	ArrayList<String> listeReponses = getReponsesFaussesQuestion();
+    	
+    	// Ajout de la réponse juste;
+    	listeReponses.add(getReponseJusteQuestion());
+    	int indice;
+    	// Mise dans un ordre aléatoire
+    	int longueur = listeReponses.size();
+    	for (int i = 0; i <longueur;i++) {
+	    	 indice = (int)Math.random()*listeReponses.size()-1;
+	    	 listeReponsesFinale.add(listeReponses.get(indice));
+	    	 listeReponses.remove(indice);
+    	}
+    	return listeReponsesFinale;
+    }
 }

@@ -230,4 +230,8 @@ public class Stockage {
             return estImporte;
         }
     }
+    
+    public ArrayList<String> getListeReponsesOrdreAleatoire(String nomQuestion) {
+    	return listeQuestion.getReponsesOrdreAleatoire(listeQuestion.getElementListeQuestion(nomQuestion));
+    }
 }
