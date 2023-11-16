@@ -122,6 +122,7 @@ public class Main extends Application {
         // TODO Initialiser la liste de questions de la catégorie sélectionnée.
         HashMap<String, Categorie> listeCategorie = stockage.getListeCategorie();
         
+        controller.comboBox.getItems().clear();
         for (Categorie categorie : listeCategorie.values()) {
             controller.comboBox.getItems().add(categorie.getIntituleCategorie());
         }

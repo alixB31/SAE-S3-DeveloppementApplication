@@ -192,7 +192,7 @@ public class Stockage {
                     Categorie categorieCourante;
 
                     String categorieValue = data[0];
-                    if (listeCategorie.elementEstDansListeCategorie(categorieValue)) {
+                    if (listeCategorie.elementEstDansListeCategorie(categorieValue.trim())) {
                         categorieCourante = listeCategorie.getElementListeCategorie(categorieValue);
                     } else {
                         categorieCourante = new Categorie(categorieValue);
