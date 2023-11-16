@@ -194,11 +194,14 @@ public class Main extends Application {
         controller.setDifficulte(niveauDifficulte);
         
         // Categorie choisie
-        //TODO
+        controller.setCategorie(quiz.getCategorie().getIntituleCategorie());
+        
         // numero question en cours
-        //TODO
+        controller.setNumeroQuestion(indice+"");
+        
         // nombre de question total avec vérif
-        //TODO
+        controller.setNombreQuestionTotal(quiz.getNombreQuestions()+"");
+        
     	fenetrePrincipale.setScene(sceneRepondreQuestion);
     }
 
