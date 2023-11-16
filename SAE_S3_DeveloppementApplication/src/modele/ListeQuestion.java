@@ -52,7 +52,7 @@ public class ListeQuestion {
      */
     public boolean supprimerElementListeQuestion(String cle) {
         boolean estSupprime = false;
-        // je crois qu'on s'en fous que la question sois dans general
+
         if (elementEstDansListeQuestion(cle)) {
             listeQuestion.remove(cle);
             estSupprime = true;
@@ -77,8 +77,10 @@ public class ListeQuestion {
     public boolean ajouterElementListeQuestion(Question question) {
         boolean estAjoutee = false;
         String intitule = question.getIntituleQuestion();
-        if (!elementEstDansListeQuestion(intitule) && !intitule.isEmpty() && !intitule.isBlank()) {
-            listeQuestion.put(intitule, question);
+        String categorie = question.getCategorieDeQuestion().getIntituleCategorie();
+        String concatenation = intitule+categorie;
+        if (!elementEstDansListeQuestion(concatenation) && !intitule.isEmpty() && !intitule.isBlank()) {
+            listeQuestion.put(concatenation, question);
             estAjoutee = true;
         }
 
@@ -93,12 +95,12 @@ public class ListeQuestion {
      * @param nouvelIntitule le nouvel intitule de la question.
      * @return estModifiee est true si la catégorie est modifiée, false sinon.
      */
-    public boolean modifierIntituleQuestion(Question question, String nouvelIntitule) {
+    public boolean modifierIntituleQuestion(Question question, String nouvelIntitule, String concatenation) {
         boolean estModifiee = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())
+        if (elementEstDansListeQuestion(concatenation/*question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie()*/)
         		&& !nouvelIntitule.isBlank() && !nouvelIntitule.isEmpty()
         		&& nouvelIntitule != null) {
-           if (this.supprimerElementListeQuestion(question.getIntituleQuestion())) {
+           if (this.supprimerElementListeQuestion(concatenation)) {
         	   question.setIntituleQuestion(nouvelIntitule);
         	   if (this.ajouterElementListeQuestion(question)) {
         		   estModifiee = true;
@@ -117,8 +119,8 @@ public class ListeQuestion {
      */
     public boolean modifierCategorieDeQuestion(Question question, Categorie categorie) {
     	boolean estModifiee = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())
-        		&& categorie != null) {
+        if (/*elementEstDansListeQuestion(question.getIntituleQuestion())
+        		&& */categorie != null) {
             question.setCategorieQuestion(categorie);
             estModifiee = true;
         }
@@ -132,11 +134,12 @@ public class ListeQuestion {
      * @param difficulte la nouvelle difficulté.
      * @return estModifiee est true si la difficulte est modifiée, false sinon.
      */
-    public boolean modifierDifficulteQuestion(Question question, int difficulte) {
+    public boolean modifierDifficulteQuestion(Question question, int difficulte, String concatenation) {
     	boolean estModifiee = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())
+        if (elementEstDansListeQuestion(concatenation)
         		&& (difficulte == 1 || difficulte == 2 || difficulte == 3)) {
             question.setDifficulteQuestion(difficulte);
+           
             estModifiee = true;
         }
         return estModifiee;
@@ -150,11 +153,12 @@ public class ListeQuestion {
      * @return estModifiee si la réponse fausse de la question est modifée, false sinon.
      */
     public boolean modifierListeReponsesFaussesQuestion(Question question,
-    		ArrayList<String> liste) {
+    		ArrayList<String> liste, String concatenation) {
     	boolean estModifiee = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())){
+        if (elementEstDansListeQuestion(concatenation)){
     		question.setReponsesFaussesQuestion(liste);      
             estModifiee = true;
+
       	}
         return estModifiee;
     }
@@ -186,9 +190,9 @@ public class ListeQuestion {
      * @param feedBack la nouvelle version du feedBack
      * @return estModifiee true si le feedBack est modifié, false sinon;
      */
-    public boolean modifierFeedBackQuestion(Question question, String feedBack) {
+    public boolean modifierFeedBackQuestion(Question question, String feedBack, String concatenation) {
     	boolean estModifie = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())) {
+        if (elementEstDansListeQuestion(concatenation)) {
             question.setFeedBackQuestion(feedBack);
             estModifie = true;
         }
@@ -203,9 +207,9 @@ public class ListeQuestion {
      * @param reponseJuste la nouvelle réponse juste.
      * @return modifiee est true si la réponse juste est modifiée, false sinon.
      */
-    public boolean modifierReponseJusteQuestion(Question question, String reponseJuste) {
+    public boolean modifierReponseJusteQuestion(Question question, String reponseJuste, String concatenation) {
     	boolean estModifiee = false;
-        if (elementEstDansListeQuestion(question.getIntituleQuestion())
+        if (elementEstDansListeQuestion(concatenation)
         		&& !reponseJuste.isBlank() && !reponseJuste.isEmpty()) {
             question.setReponseJusteQuestion(reponseJuste);
             estModifiee = true;

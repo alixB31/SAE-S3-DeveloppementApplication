@@ -150,11 +150,11 @@ public class Stockage {
 	
 	
 	public boolean modifierQuestion(Question question, String intitule, Categorie categorie, int difficulte, 
-			ArrayList<String> liste, String reponse, String feedBack) {
+			ArrayList<String> liste, String reponse, String feedBack, String concatenation) {
 		boolean toutEstBon = false;
-		if (listeQuestion.modifierIntituleQuestion(question, intitule) && listeQuestion.modifierDifficulteQuestion(question, difficulte)
-			 && listeQuestion.modifierListeReponsesFaussesQuestion(question, liste) &&	listeQuestion.modifierReponseJusteQuestion(question, reponse)
-			 && listeQuestion.modifierFeedBackQuestion(question, feedBack) && listeQuestion.modifierCategorieDeQuestion(question, categorie)) {
+		if ( listeQuestion.modifierDifficulteQuestion(question, difficulte, concatenation) && listeQuestion.modifierListeReponsesFaussesQuestion(question, liste, concatenation) 
+			 &&	listeQuestion.modifierReponseJusteQuestion(question, reponse, concatenation) && listeQuestion.modifierFeedBackQuestion(question, feedBack, concatenation) 
+			  && listeQuestion.modifierIntituleQuestion(question, intitule, concatenation) && listeQuestion.modifierCategorieDeQuestion(question, categorie)) {
 			toutEstBon = true;
 		}
 		return toutEstBon;

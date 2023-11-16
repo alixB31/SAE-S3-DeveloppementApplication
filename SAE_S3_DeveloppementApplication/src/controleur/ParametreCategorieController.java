@@ -224,7 +224,8 @@ public class ParametreCategorieController {
 		Optional<ButtonType> option = boiteAlerte.showAndWait();
 
 		if (option.get() == ButtonType.YES) { // clic sur "oui"
-			if(Main.stockage.supprimerElementListeQuestion(comboBoxCategorie.getValue())) {
+			if(Main.stockage.supprimerElementListeQuestion(comboBoxCategorie.getValue()+categorieChoisi)) {
+				System.out.println(comboBoxCategorie.getValue()+categorieChoisi);
 				comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());
 			} else {
 				ParametreController.afficherAlerte("Suppresion Question","La suppresion de la question a échoué");
@@ -240,15 +241,18 @@ public class ParametreCategorieController {
 		//categorie courante de la question a modifier
 		Categorie categorieCourante = (Categorie) Main.stockage.getListeCategorie().get(categorieChoisi);
 		// question courante
-		Question questionCourante = (Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue());
+		String concatenation = ancienIntitule+categorieCourante.getIntituleCategorie();
+		
+		System.out.println(Main.stockage.getListeQuestion().get(concatenation));
+		Question questionCourante = (Question) Main.stockage.getListeQuestion().get(concatenation);
 		// reponse vrai précédente
-		String ancienneReponseVrai = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponseJusteQuestion();
+		String ancienneReponseVrai = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponseJusteQuestion();
 		// ancien feedback
-		String ancienFeedback = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getFeedBackQuestion();	
+		String ancienFeedback = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getFeedBackQuestion();	
 		// nombre de reponses fausses de l'ancienne question 
-		int nombreReponseFausse = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().size();
+		int nombreReponseFausse = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().size();
 		// difficulté de l'ancienne question 
-		int ancienneDifficulte = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getDifficulteQuestion();
+		int ancienneDifficulte = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getDifficulteQuestion();
 		
 		//comboBox de toute les catégories
 		comboBox = new ComboBox<>();
@@ -295,33 +299,33 @@ public class ParametreCategorieController {
 
 		//affiche la premiere reponse fausse
 		TextField textFieldFaux = new TextField();
-		if (((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(0) !=null && 
-				((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(0) != "") {
-			String ancienneFausse1 = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(0);
+		if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(0) !=null && 
+				((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(0) != "") {
+			String ancienneFausse1 = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(0);
 			textFieldFaux.setText(ancienneFausse1);
 		} 	
 		TextField textFieldFaux2 = new TextField();
 		//si il y a plus de 1 reponse fausse, affiche les autres
 		if (nombreReponseFausse>1) {
-			if (((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(1) !=null && 
-					((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(1) != "") {
-				String ancienneFausse2 = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(1);
+			if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(1) !=null && 
+					((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(1) != "") {
+				String ancienneFausse2 = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(1);
 				textFieldFaux2.setText(ancienneFausse2);
 			}
 		} 
 		TextField textFieldFaux3 = new TextField();
 		if (nombreReponseFausse>2) {
-			if (((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(2) !=null && 
-					((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(2) != "") {
-				String ancienneFausse3 = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(2);
+			if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(2) !=null && 
+					((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(2) != "") {
+				String ancienneFausse3 = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(2);
 				textFieldFaux3.setText(ancienneFausse3);
 			}
 		}
 		TextField textFieldFaux4 = new TextField();
 		if (nombreReponseFausse>3) {
-			if (((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(3) !=null && 
-					((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(3) != "") {
-				String ancienneFausse4 = ((Question) Main.stockage.getListeQuestion().get(comboBoxCategorie.getValue())).getReponsesFaussesQuestion().get(3);
+			if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(3) !=null && 
+					((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(3) != "") {
+				String ancienneFausse4 = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(3);
 				textFieldFaux4.setText(ancienneFausse4);
 			}
 		}
@@ -335,7 +339,7 @@ public class ParametreCategorieController {
 
 		Stage popupStage = new Stage();
 		popupStage.initModality(Modality.APPLICATION_MODAL);
-		popupStage.setTitle("Nouvelle Question");
+		popupStage.setTitle("Modifier Question");
 
 		// Configuration du layout de la popup
 		GridPane popupLayout = new GridPane();
@@ -384,34 +388,23 @@ public class ParametreCategorieController {
 				
 				
 				Categorie nouvelleCategorie = (Categorie) Main.stockage.getListeCategorie().get(comboBox.getValue()); 
-				
+				//System.out.println(Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack, concatenation)+"  total");
 				//modification de la question
 				if (nouvelleCategorie == categorieCourante 
-						&&	Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack)) {
-					
+						&&	Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack, concatenation)) {
+					System.out.println("On est laaaaa ");
 					comboBoxCategorie.getItems().set(comboBoxCategorie.getItems().indexOf(ancienIntitule), textField.getText().trim());
 					comboBoxCategorie.setValue(textField.getText().trim());
-					
-				} else if(nouvelleCategorie != categorieCourante && Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack)) {
-					System.out.println("On est ici ");
-//					boolean existeDeja = false;
-//					ArrayList<Question> listeQuestionParCategorie = Main.stockage.listeQuestionParCategorie((Categorie)Main.stockage.getListeCategorie().get(nouvelleCategorie));
-//					System.out.println(listeQuestionParCategorie.size());
-//					for (int i = 0; i<listeQuestionParCategorie.size(); i++) {
-//						System.out.println("aaaaaaaaaaaaaa");
-//						if(listeQuestionParCategorie.get(i).getIntituleQuestion()==textField.getText()) {
-//							existeDeja = true;
-//							
-//						}
-//			    	}
-//					if (existeDeja == false) {
-						comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());
-//					} else {
-//						ParametreController.afficherAlerte("Question non transferable","Une question avec le même intitulé existe déjà dans la catégorie cible");
-//					}
-					
+				
+				//on regarde si la question existe deja dans la nouvelle catégorie
+				} else if(nouvelleCategorie != categorieCourante && !Main.stockage.getListeQuestion().containsKey(concatenation)) {			
+					Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack, concatenation);
+					comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());				
+					//si elle existe pas on l'enleve de la comboBox de la categorie courrante,sinon on ne peut pas la trasférer et rien ne se passe	
+				} else if(nouvelleCategorie != categorieCourante && Main.stockage.getListeQuestion().containsKey(concatenation)){
+					ParametreController.afficherAlerte("Question non transférable","Une question avec le même intitulé existe déjà dans la catégorie cible");
 				} else {
-					ParametreController.afficherAlerte("Question non modifiable","Une question avec le même intitulé existe déjà");
+					ParametreController.afficherAlerte("Question non modifiable","Une question avec le même intitulé existe déjà dans cette catégorie");
 				}
 				popupStage.close();
 
