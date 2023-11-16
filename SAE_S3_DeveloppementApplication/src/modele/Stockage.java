@@ -193,9 +193,9 @@ public class Stockage {
 
                     String categorieValue = data[0];
                     if (listeCategorie.elementEstDansListeCategorie(categorieValue.trim())) {
-                        categorieCourante = listeCategorie.getElementListeCategorie(categorieValue);
+                        categorieCourante = listeCategorie.getElementListeCategorie(categorieValue.trim());
                     } else {
-                        categorieCourante = new Categorie(categorieValue);
+                        categorieCourante = new Categorie(categorieValue.trim());
                         listeCategorie.ajouterElementListeCategorie(categorieCourante);
                     }
 
