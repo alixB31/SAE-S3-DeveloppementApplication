@@ -41,7 +41,7 @@ public class ParametreController {
 	private Button btnSuivant;
 
 	@FXML
-	private ComboBox<String> comboBox;
+	public ComboBox<String> comboBox;
 
 	@FXML
 	void nouvelleCategorieAction(ActionEvent event) {
