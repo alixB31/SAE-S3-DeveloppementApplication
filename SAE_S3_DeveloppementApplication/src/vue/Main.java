@@ -36,6 +36,7 @@ public class Main extends Application {
     private static Scene sceneScoreQuiz;
     private static Scene sceneImportationExportation;
     private static Scene sceneExportation;
+    private static Scene sceneEnvoie;
     private static FXMLLoader chargeurFXMLParametre= new FXMLLoader();
     private static FXMLLoader chargeurFXMLCategorie = new FXMLLoader();
     private static FXMLLoader chargeurFXMLPartie = new FXMLLoader();
@@ -59,13 +60,11 @@ public class Main extends Application {
         sceneNotice = new Scene(notice); 
         
         /* on crée la vue de la partie */
-        
         chargeurFXMLPartie.setLocation(getClass().getResource("ihmPartie.fxml"));
         Parent partie = chargeurFXMLPartie.load();
         scenePartie = new Scene(partie); 
         
         /* on crée la vue des paramètres */
-  
         chargeurFXMLParametre.setLocation(getClass().getResource("ihmParametreQuiz.fxml"));
         Parent parametre = chargeurFXMLParametre.load();
         sceneParametre = new Scene(parametre); 
@@ -93,6 +92,12 @@ public class Main extends Application {
         chargeurFXMLExportation.setLocation(getClass().getResource("ihmExportation.fxml"));
         Parent Exportation = chargeurFXMLExportation.load();
         sceneExportation = new Scene(Exportation);
+        
+        /* on crée la vue de l'envoie */
+        FXMLLoader chargeurFXMLEnvoie = new FXMLLoader();
+        chargeurFXMLEnvoie.setLocation(getClass().getResource("ihmEnvoie.fxml"));
+        Parent envoie = chargeurFXMLEnvoie.load();
+        sceneEnvoie = new Scene(envoie); 
        
         /* Création de la fenêtre principale*/
         primaryStage.setTitle("Quiz");
