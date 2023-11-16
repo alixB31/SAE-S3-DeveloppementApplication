@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import modele.Quiz;
 import modele.Question;
@@ -53,6 +54,9 @@ public class RepondreQuestionControleur {
 
     @FXML
     private ToggleGroup reponses;
+    
+    @FXML
+    private VBox reponsesBox;
     
     private Quiz quiz;
     
@@ -102,7 +106,9 @@ public class RepondreQuestionControleur {
     public void setListeReponse(Question question) {
     	ArrayList<String> listeReponses = Main.stockage.getListeReponsesOrdreAleatoire(question.getIntituleQuestion());
     	for (int i = 0; i < listeReponses.size(); i++) {
-    		new RadioButton(listeReponses.get(i)).setToggleGroup(reponses);
+    		RadioButton button = new RadioButton(listeReponses.get(i));
+    		button.setToggleGroup(reponses);
+    		reponsesBox.getChildren().add(button);
     	}
     }
 }

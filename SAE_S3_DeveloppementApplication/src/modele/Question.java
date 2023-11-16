@@ -185,7 +185,7 @@ public class Question {
     	// Mise dans un ordre aléatoire
     	int longueur = listeReponses.size();
     	for (int i = 0; i <longueur;i++) {
-	    	 indice = (int)Math.random()*listeReponses.size()-1;
+	    	 indice = (int)Math.random()*listeReponses.size();
 	    	 listeReponsesFinale.add(listeReponses.get(indice));
 	    	 listeReponses.remove(indice);
     	}

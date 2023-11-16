@@ -75,8 +75,6 @@ public class Main extends Application {
         Parent parametreCategorie = chargeurFXMLCategorie.load();
         sceneParametreCategorie = new Scene(parametreCategorie);
         
-        
-        
         chargeurFXMLReponseQuestion.setLocation(getClass().getResource("ihmRepondreQuestion.fxml"));
         Parent repondreQuestion = chargeurFXMLReponseQuestion.load();
         sceneRepondreQuestion = new Scene(repondreQuestion);
@@ -210,7 +208,11 @@ public class Main extends Application {
         controller.setDifficulte(niveauDifficulte);
         
         // Categorie choisie
-        controller.setCategorie(quiz.getCategorie().getIntituleCategorie());
+        if (quiz.getCategorie() == null) {
+        	controller.setCategorie("Indifférent");
+        } else {
+        	controller.setCategorie(quiz.getCategorie().getIntituleCategorie());
+        }
         
         // numero question en cours
         controller.setNumeroQuestion(indice+1+"");
@@ -220,6 +222,9 @@ public class Main extends Application {
         
         // La questioj à afficher
         controller.setQuestion(quiz.getListeQuestion().get(indice).getIntituleQuestion());
+        
+        // Liste des réponses
+        controller.setListeReponse(quiz.getListeQuestion().get(indice));
         
     	fenetrePrincipale.setScene(sceneRepondreQuestion);
     }

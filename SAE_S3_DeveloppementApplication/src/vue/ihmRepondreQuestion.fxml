@@ -58,5 +58,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
+      <VBox fx:id="reponsesBox" layoutX="178.0" layoutY="260.0" prefHeight="344.0" prefWidth="642.0" />
    </children>
 </AnchorPane>

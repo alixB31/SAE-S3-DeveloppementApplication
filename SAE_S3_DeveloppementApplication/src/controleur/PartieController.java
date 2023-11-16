@@ -55,9 +55,15 @@ public class PartieController {
     		} else {
     			difficulteReelle = Integer.parseInt(difficulte.getText());
     		}
+    		Categorie categorie;
+    		if (((String)comboBoxCategorie.getValue()).equals("Indifférent")) {
+    			categorie = null;
+    		} else {
+    			categorie = new Categorie((String)comboBoxCategorie.getValue());
+    		}
+    			
     		RadioButton nbQuestion = (RadioButton)nombreQuestion.getSelectedToggle();
-    		Quiz quiz = new Quiz(difficulteReelle,(Categorie)Main.stockage.
-    				getListeCategorie().get(comboBoxCategorie.getValue()),
+    		Quiz quiz = new Quiz(difficulteReelle,categorie,
     				Main.stockage);
     		if (quiz.quantiteQuestionOk(Integer.parseInt(nbQuestion.getText()))) {
     			Main.repondreQuestion(quiz , 0);
