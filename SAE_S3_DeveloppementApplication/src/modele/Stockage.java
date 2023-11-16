@@ -264,7 +264,7 @@ public class Stockage {
         }
     }
     
-    public ArrayList<String> getListeReponsesOrdreAleatoire(String nomQuestion) {
-    	return listeQuestion.getReponsesOrdreAleatoire(listeQuestion.getElementListeQuestion(nomQuestion));
+    public ArrayList<String> getListeReponsesOrdreAleatoire(String nomQuestionNomCategorie) {
+    	return listeQuestion.getReponsesOrdreAleatoire(listeQuestion.getElementListeQuestion(nomQuestionNomCategorie));
     }
 }

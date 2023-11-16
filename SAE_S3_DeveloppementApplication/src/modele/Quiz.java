@@ -74,6 +74,20 @@ public class Quiz {
 	}
 	
 	public boolean estJuste(String reponseChoisie, int indiceQuestion) {
-		return reponseChoisie.equals(listeQuestion.get(indiceQuestion));
+		return reponseChoisie.equals(listeQuestion.get(indiceQuestion).getReponseJusteQuestion());
+	}
+	
+	public ArrayList<Question> getCinqQuestions(int indicePage) {
+    	int nombreQuestionAAfficher = listeQuestion.size()-(5*indicePage);
+    	int indiceMinimum = indicePage*5;;
+		if(nombreQuestionAAfficher>=5) {
+			nombreQuestionAAfficher = 5;
+		}
+
+		ArrayList<Question> listeQuestion = new ArrayList<>();
+    	for (int i = indiceMinimum; i < nombreQuestionAAfficher ;i++) {
+    		listeQuestion.add(listeQuestion.get(indiceMinimum));
+    	}
+		return listeQuestion;
 	}
 }

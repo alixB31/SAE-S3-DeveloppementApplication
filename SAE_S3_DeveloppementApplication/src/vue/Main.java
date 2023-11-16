@@ -215,7 +215,7 @@ public class Main extends Application {
         
         // Categorie choisie
         if (quiz.getCategorie() == null) {
-        	controller.setCategorie("Indifférent");
+        	controller.setCategorie("Toutes les catégories");
         } else {
         	controller.setCategorie(quiz.getCategorie().getIntituleCategorie());
         }

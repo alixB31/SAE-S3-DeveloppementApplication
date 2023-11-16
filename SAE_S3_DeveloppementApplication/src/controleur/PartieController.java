@@ -81,7 +81,7 @@ public class PartieController {
     }
     
     public void setListeCategorie(HashMap<String, Categorie> listeCategorie) {
-    	comboBoxCategorie.getItems().add("Indifférent");
+    	comboBoxCategorie.getItems().add("Toutes les catégories");
     	// La valeur par défaut est "Indifférent"
     	comboBoxCategorie.getSelectionModel().selectFirst();
     	// Ajout des catégories existantes.

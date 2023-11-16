@@ -67,9 +67,16 @@ public class RepondreQuestionControleur {
     	// Renvoie sur une question s'il en reste, sinon envoie
     	// sur la page des résultats.
     	if (reponsesToggle.getSelectedToggle()!=null) {
-    		if (indiceQuestionCourrante <= quiz.getNombreQuestions()) {
-    			quiz.estJuste((String)reponsesToggle.getSelectedToggle()
-    					.getUserData(), indiceQuestionCourrante);
+    		
+    		
+    		RadioButton reponse = (RadioButton)reponsesToggle.getSelectedToggle();
+    		System.out.println(reponse.getText());
+    		if(quiz.estJuste(reponse.getText(), indiceQuestionCourrante)) {
+				quiz.ajouterResultat(indiceQuestionCourrante, true);
+			} else {
+				quiz.ajouterResultat(indiceQuestionCourrante, false);
+			}
+    		if (indiceQuestionCourrante+1 < quiz.getNombreQuestions()) {
     			indiceQuestionCourrante++;
         		Main.repondreQuestion(quiz, indiceQuestionCourrante);
         	} else {
@@ -109,12 +116,19 @@ public class RepondreQuestionControleur {
     }
     
     public void setListeReponse(Question question) {
-    	ArrayList<String> listeReponses = Main.stockage.getListeReponsesOrdreAleatoire(question.getIntituleQuestion());
-    	
+    	reponsesBox.getChildren().clear();
+    	ArrayList<String> listeReponses = Main.stockage.getListeReponsesOrdreAleatoire(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie());
+        
+    	boolean premierElement = true;
     	for (int i = 0; i < listeReponses.size(); i++) {
+    		
     		RadioButton button = new RadioButton(listeReponses.get(i));
     		button.setToggleGroup(reponsesToggle);
+    		if(premierElement) {
+    			button.setSelected(true);
+    		}
     		reponsesBox.getChildren().add(button);
+    		premierElement = false;
     	}
     	reponsesBox.setSpacing(20); // Peut être le modiffier en fonction du nombre de question
     }

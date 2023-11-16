@@ -1,13 +1,19 @@
 package controleur;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import vue.Main;
+import modele.Question;
+import modele.Quiz;
 
 public class ScoreQuizController {
 	
@@ -70,7 +76,22 @@ public class ScoreQuizController {
 
     @FXML
     private Text texteEncouragement;
+    
+    @FXML
+    private VBox vBoxFeedback;
 
+    
+    public void setCategorie(String nomCategorie) {
+    	categorieQuestion.setText(nomCategorie);
+    }
+    
+    public void setNote(String noteObtenue, String nombreTotalDeQuestion) {
+    	score.setText(noteObtenue);
+    	nbQuestion.setText(nombreTotalDeQuestion);
+    }
+    
+    //TODO le nom du joueur s'il existe
+    
     @FXML
     void btnTerminerAction(ActionEvent event) {
     	// TODO repeter la page celon le nombres de questions (5 questions = 0 repetitions, 20 questions = 3 répétitions)
@@ -125,6 +146,18 @@ public class ScoreQuizController {
    	   	boitefeedBack.setTitle("FeedBack Question n°"); // TODO ajouter le numero de la question
    	   	boitefeedBack.setHeaderText("FeedBack"); 
    	   	boitefeedBack.showAndWait(); 
+    }
+    
+    public void setListeQuestion(Quiz quiz, int numeroDePage) {
+    	ArrayList<Question> listeQuestions = quiz.getCinqQuestions(numeroDePage);
+    	for (int i = 0; i <listeQuestions.size(); i++) {
+    		HBox hbox = new HBox(10);
+    		Text textQuestion = new Text("Question n°" + ((numeroDePage*5)+i));
+    		//TODO l'image
+    		//TODO le feedback
+    		hbox.getChildren().add(textQuestion);
+    		vBoxFeedback.getChildren().add(hbox);
+    	}
     }
 
 }
