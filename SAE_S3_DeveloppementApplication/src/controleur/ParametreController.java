@@ -5,6 +5,9 @@
 package controleur;
 
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javafx.scene.control.Tooltip;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -52,7 +55,7 @@ public class ParametreController {
 		boiteSaisie.showAndWait();
 
 		String resultat = boiteSaisie.getResult();
-		if (resultat != null && !resultat.isEmpty() ) {
+		if (resultat != null && !resultat.isEmpty() && verifierRegex(resultat)) {
 
 			if (Main.stockage.ajouterCategorie(new Categorie(resultat.trim()))) {
 				comboBox.getItems().add(resultat.trim());
@@ -62,6 +65,8 @@ public class ParametreController {
 				afficherAlerte("Catégorie déja existante","L'intitulé de la catégorie que vous voulez créer existe déjà ou ne peut pas étre vide.");
 
 			}
+		} else {
+		    afficherAlerte("Catégorie vide","L'intitulé de la catégorie que vous voulez créer ne peut pas étre vide ou dépasser 20 caractères.");
 		}
 	}
 
@@ -148,5 +153,25 @@ public class ParametreController {
             alert.setHeaderText(null);
             alert.setContentText(message);
             alert.showAndWait();
+        }
+	
+	       /**
+         * Vérifier que la taille de catégorie ne dépasse pas 
+         * 20 caractères
+         * @param intitule
+         * @return true si le regex est OK 
+         */
+        public boolean verifierRegex(String intitule) {
+            String nomCategorie = intitule;
+            String regex = "^.{1,20}$";
+            
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(nomCategorie);
+            
+            if (matcher.matches()) {
+                return true;
+            } else {
+                return false;
+            }
         }
 }
