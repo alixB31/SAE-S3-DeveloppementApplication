@@ -300,18 +300,21 @@ public class ListeQuestion {
     		}
     	}
     	System.out.println(listeProvisoire.toString());
+    	// IL EST LA LE PB 
     	int indice;
     	int longueurListeProvisoire = listeProvisoire.size();
     	ArrayList<Question> listeFinale = new ArrayList<>();
-    	if (quiz.getNombreQuestions() > longueurListeProvisoire) {
+    	if (quiz.getNombreQuestions()== 0 || quiz.getNombreQuestions() > longueurListeProvisoire) {
     		quiz.setNombreQuestion(listeProvisoire.size());
     	}
     	for (int i = 0; i< quiz.getNombreQuestions();i++) {
     		indice =(int) (Math.random() * (longueurListeProvisoire - 1));
     		listeFinale.add(listeProvisoire.get(indice));
+    		System.out.println(listeFinale.toString());
     		listeProvisoire.remove(indice);
     		longueurListeProvisoire--;
     	}
+    	System.out.println("Fin "+listeFinale.toString());
     	return listeFinale;
     }
     

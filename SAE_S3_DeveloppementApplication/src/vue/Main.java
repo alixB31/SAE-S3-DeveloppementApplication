@@ -197,10 +197,13 @@ public class Main extends Application {
         controller.setCategorie(quiz.getCategorie().getIntituleCategorie());
         
         // numero question en cours
-        controller.setNumeroQuestion(indice+"");
+        controller.setNumeroQuestion(indice+1+"");
         
         // nombre de question total avec vérif
         controller.setNombreQuestionTotal(quiz.getNombreQuestions()+"");
+        
+        // La questioj à afficher
+        controller.setQuestion(quiz.getListeQuestion().get(indice).getIntituleQuestion());
         
     	fenetrePrincipale.setScene(sceneRepondreQuestion);
     }
