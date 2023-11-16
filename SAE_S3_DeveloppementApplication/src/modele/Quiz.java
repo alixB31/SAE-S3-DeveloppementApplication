@@ -72,4 +72,8 @@ public class Quiz {
 		}
 		System.out.println("Pas d'ajout de résultat!");
 	}
+	
+	public boolean estJuste(String reponseChoisie, int indiceQuestion) {
+		return reponseChoisie.equals(listeQuestion.get(indiceQuestion));
+	}
 }

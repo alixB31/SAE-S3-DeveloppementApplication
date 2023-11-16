@@ -60,16 +60,24 @@ public class RepondreQuestionControleur {
     private int indiceQuestionCourrante;
     
     @FXML
+    private ToggleGroup reponsesToggle = new ToggleGroup();
+    
+    @FXML
     void btnValiderAction(ActionEvent event) {
-    	
-    	// Renvoie sur une question ou s'il en reste, sinon envoie
-    	// sur la page des résultat.
-    	if (indiceQuestionCourrante <= quiz.getNombreQuestions()) {
-    		Main.repondreQuestion(quiz, indiceQuestionCourrante);
+    	// Renvoie sur une question s'il en reste, sinon envoie
+    	// sur la page des résultats.
+    	if (reponsesToggle.getSelectedToggle()!=null) {
+    		if (indiceQuestionCourrante <= quiz.getNombreQuestions()) {
+    			quiz.estJuste((String)reponsesToggle.getSelectedToggle()
+    					.getUserData(), indiceQuestionCourrante);
+    			indiceQuestionCourrante++;
+        		Main.repondreQuestion(quiz, indiceQuestionCourrante);
+        	} else {
+        		Main.ihmScoreQuiz();
+        	}
     	} else {
-    		Main.ihmScoreQuiz();
+    		// TODO pop-up Pas de réponse sélectionnée.
     	}
-    	
     }
 
     public void setQuiz(Quiz quiz) {
@@ -102,7 +110,7 @@ public class RepondreQuestionControleur {
     
     public void setListeReponse(Question question) {
     	ArrayList<String> listeReponses = Main.stockage.getListeReponsesOrdreAleatoire(question.getIntituleQuestion());
-    	ToggleGroup reponsesToggle = new ToggleGroup();
+    	
     	for (int i = 0; i < listeReponses.size(); i++) {
     		RadioButton button = new RadioButton(listeReponses.get(i));
     		button.setToggleGroup(reponsesToggle);
