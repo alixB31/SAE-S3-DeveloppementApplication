@@ -51,9 +51,6 @@ public class RepondreQuestionControleur {
 
     @FXML
     private RadioButton reponse5;
-
-    @FXML
-    private ToggleGroup reponses;
     
     @FXML
     private VBox reponsesBox;
@@ -105,10 +102,12 @@ public class RepondreQuestionControleur {
     
     public void setListeReponse(Question question) {
     	ArrayList<String> listeReponses = Main.stockage.getListeReponsesOrdreAleatoire(question.getIntituleQuestion());
+    	ToggleGroup reponsesToggle = new ToggleGroup();
     	for (int i = 0; i < listeReponses.size(); i++) {
     		RadioButton button = new RadioButton(listeReponses.get(i));
-    		button.setToggleGroup(reponses);
+    		button.setToggleGroup(reponsesToggle);
     		reponsesBox.getChildren().add(button);
     	}
+    	reponsesBox.setSpacing(20); // Peut être le modiffier en fonction du nombre de question
     }
 }

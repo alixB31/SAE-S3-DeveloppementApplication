@@ -1,6 +1,7 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Les objets question contiennent les paramètres d'une question. Les questions
@@ -175,20 +176,10 @@ public class Question {
 	}
 	
 	public ArrayList<String> getListeReponsesOrdreAleatoire(){
-		ArrayList<String> listeReponsesFinale = new ArrayList<>();
-    	// Ajout des réponses dans la liste.
     	ArrayList<String> listeReponses = getReponsesFaussesQuestion();
-    	
     	// Ajout de la réponse juste;
     	listeReponses.add(getReponseJusteQuestion());
-    	int indice;
-    	// Mise dans un ordre aléatoire
-    	int longueur = listeReponses.size();
-    	for (int i = 0; i <longueur;i++) {
-	    	 indice = (int)Math.random()*listeReponses.size();
-	    	 listeReponsesFinale.add(listeReponses.get(indice));
-	    	 listeReponses.remove(indice);
-    	}
-    	return listeReponsesFinale;
+    	Collections.shuffle(listeReponses);
+    	return listeReponses;
     }
 }
