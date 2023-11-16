@@ -61,7 +61,7 @@ public class PartieController {
     				Main.stockage);
     		if (quiz.quantiteQuestionOk(Integer.parseInt(nbQuestion.getText()))) {
     			Main.repondreQuestion(quiz , 0);
-    		} else if (true){ //quiz.getNombreQuestions()!=0
+    		} else if (quiz.getNombreQuestions()!=0){
     			//TODO Pop-up pas assez de question
     			// Le nombre de question trouvées est : nbQuestion.getText() Attention c'est déjà une String.
     			// Si le joueur veux continuer alors il continu.

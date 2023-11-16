@@ -38,7 +38,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fx:id="Question" layoutX="178.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="En java, combien y a t'il de type de boucle ?" wrappingWidth="723.4099426269531">
+      <Text fx:id="question" layoutX="178.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="En java, combien y a t'il de type de boucle ?" wrappingWidth="723.4099426269531">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

@@ -19,7 +19,7 @@ import vue.Main;
 public class RepondreQuestionControleur {
 
     @FXML
-    private Text Question;
+    private Text question;
 
     @FXML
     private Button btnValider;
@@ -93,6 +93,10 @@ public class RepondreQuestionControleur {
     
     public void setNombreQuestionTotal(String nombreQuestionTotal) {
     	this.nbPageMax.setText(nombreQuestionTotal);
+    }
+    
+    public void setQuestion(String question) {
+    	this.question.setText(question);
     }
     
     public void setListeReponse(Question question) {
