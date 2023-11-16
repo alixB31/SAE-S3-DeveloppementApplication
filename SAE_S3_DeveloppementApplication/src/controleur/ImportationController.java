@@ -4,8 +4,10 @@ import java.io.File;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import modele.Stockage;
@@ -48,8 +50,10 @@ public class ImportationController {
             System.out.println("fichier selectionné : " + selectedFile.getAbsolutePath());
             if (Main.stockage.importCSV(selectedFile.getAbsolutePath())) {
             	System.out.print("le fichier à bien été importé");
+            	afficherInformation("Fichier importé", "Le fichier a bien été importé");
             } else {
-            	System.out.print("le fichier n'a pas été importé");
+            	System.out.print("Le fichier n'a pas été importé");
+            	afficherInformation("Fichier non importé", "Le fichier n'a pas été importé");
             }
             // Ajoutez ici le code pour traiter le fichier sélectionné
         } else {
@@ -65,5 +69,19 @@ public class ImportationController {
     @FXML
     void btnSuivantExportAction(ActionEvent event) {
     	Main.ihmExportation();
+    }
+    
+    /** 
+     * Affiche un message pour confirmer l'import
+     * d'un fichier csv
+     * @param titre
+     * @param message
+     */
+    public static void afficherInformation(String titre, String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(titre);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
