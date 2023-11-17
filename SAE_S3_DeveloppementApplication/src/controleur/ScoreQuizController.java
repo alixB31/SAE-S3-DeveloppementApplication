@@ -1,5 +1,6 @@
 package controleur;
 
+import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
@@ -95,7 +96,7 @@ public class ScoreQuizController {
     @FXML
     void btnTerminerAction(ActionEvent event) {
     	// TODO repeter la page celon le nombres de questions (5 questions = 0 repetitions, 20 questions = 3 répétitions)
-    	Main.ihmScoreQuiz();
+    	Main.ihmScoreQuiz(null);
     }
 
     @FXML
@@ -153,8 +154,20 @@ public class ScoreQuizController {
     	for (int i = 0; i <listeQuestions.size(); i++) {
     		HBox hbox = new HBox(10);
     		Text textQuestion = new Text("Question n°" + ((numeroDePage*5)+i));
-    		//TODO l'image
-    		//TODO le feedback
+    		
+    		// Mise en place du bouton vert ou rouge
+    		String cheminImageVerteOuRouge = "images/";
+    		if (quiz.getResultatDeQuestion(i)) {
+    			cheminImageVerteOuRouge += "valider.png";
+    		} else {
+    			cheminImageVerteOuRouge = "croix.pbg";
+    		}
+    		Button buttonCorrectIncorrect = new Button();
+            Image image = new Image(cheminImageVerteOuRouge);
+            ImageView imageView = new ImageView(image);
+            imageView.setFitWidth(35);
+            imageView.setFitHeight(35);
+            //TODO le feedback
     		hbox.getChildren().add(textQuestion);
     		vBoxFeedback.getChildren().add(hbox);
     	}

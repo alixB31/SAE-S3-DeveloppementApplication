@@ -37,10 +37,6 @@ public class Quiz {
 		score++;
 	}
 	
-	public void initialiserListeQuestionQuiz() {
-		
-	}
-	
 	public int getDifficulte() {
 		return difficulte;
 	}
@@ -89,5 +85,13 @@ public class Quiz {
     		listeQuestion.add(listeQuestion.get(indiceMinimum));
     	}
 		return listeQuestion;
+	}
+	
+	public boolean getResultatDeQuestion(int indice) {
+		return listeResultatReponse[indice];
+	}
+	
+	public int getScoreFinal() {
+		return score;
 	}
 }

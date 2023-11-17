@@ -41,6 +41,7 @@ public class Main extends Application {
     private static FXMLLoader chargeurFXMLCategorie = new FXMLLoader();
     private static FXMLLoader chargeurFXMLPartie = new FXMLLoader();
     private static FXMLLoader chargeurFXMLReponseQuestion = new FXMLLoader();
+    private static FXMLLoader chargeurFXMLScoreQuiz = new FXMLLoader();
     
     public static Stockage stockage;
     
@@ -78,7 +79,7 @@ public class Main extends Application {
         Parent repondreQuestion = chargeurFXMLReponseQuestion.load();
         sceneRepondreQuestion = new Scene(repondreQuestion);
         
-        FXMLLoader chargeurFXMLScoreQuiz = new FXMLLoader();
+        
         chargeurFXMLScoreQuiz.setLocation(getClass().getResource("ihmScoreQuiz.fxml"));
         Parent ScoreQuiz = chargeurFXMLScoreQuiz.load();
         sceneScoreQuiz = new Scene(ScoreQuiz);
@@ -235,7 +236,10 @@ public class Main extends Application {
     	fenetrePrincipale.setScene(sceneRepondreQuestion);
     }
 
-    public static void ihmScoreQuiz() {
+    public static void ihmScoreQuiz(Quiz quiz) {
+    	ScoreQuizController controller = chargeurFXMLScoreQuiz.getController();
+    	controller.setCategorie(quiz.getCategorie().getIntituleCategorie());
+    	controller.setNote(quiz.getScoreFinal()+"", STYLESHEET_CASPIAN);
     	fenetrePrincipale.setScene(sceneScoreQuiz);
 		
     }

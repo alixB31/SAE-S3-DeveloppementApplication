@@ -73,6 +73,7 @@ public class RepondreQuestionControleur {
     		System.out.println(reponse.getText());
     		if(quiz.estJuste(reponse.getText(), indiceQuestionCourrante)) {
 				quiz.ajouterResultat(indiceQuestionCourrante, true);
+				quiz.incrementerScore();
 			} else {
 				quiz.ajouterResultat(indiceQuestionCourrante, false);
 			}
@@ -80,7 +81,7 @@ public class RepondreQuestionControleur {
     			indiceQuestionCourrante++;
         		Main.repondreQuestion(quiz, indiceQuestionCourrante);
         	} else {
-        		Main.ihmScoreQuiz();
+        		Main.ihmScoreQuiz(quiz);
         	}
     	} else {
     		// TODO pop-up Pas de réponse sélectionnée.
