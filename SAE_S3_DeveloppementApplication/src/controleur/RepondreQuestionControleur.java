@@ -81,7 +81,7 @@ public class RepondreQuestionControleur {
     			indiceQuestionCourrante++;
         		Main.repondreQuestion(quiz, indiceQuestionCourrante);
         	} else {
-        		Main.ihmScoreQuiz(quiz);
+        		Main.ihmScoreQuiz(quiz, 0);
         	}
     	} else {
     		// TODO pop-up Pas de réponse sélectionnée.

@@ -18,8 +18,9 @@ public class Quiz {
 	
 	private boolean[] listeResultatReponse;
 	
-	public Quiz(int difficulte, Categorie categorie, Stockage stockage) {
+	public Quiz(int difficulte,int nombreQuestion, Categorie categorie, Stockage stockage) {
 		this.difficulte = difficulte;
+		nombreQuestions = nombreQuestion;
 		listeQuestion = stockage.listeQuestionFiltreDifficulteCategorieTaille(this);
 		this.nombreQuestions = listeQuestion.size();
 		this.listeResultatReponse = new boolean[listeQuestion.size()];
@@ -66,7 +67,6 @@ public class Quiz {
 			listeResultatReponse[indice] = resultat;
 			System.out.println("Ajout du résultat.");
 		}
-		System.out.println("Pas d'ajout de résultat!");
 	}
 	
 	public boolean estJuste(String reponseChoisie, int indiceQuestion) {
@@ -75,16 +75,15 @@ public class Quiz {
 	
 	public ArrayList<Question> getCinqQuestions(int indicePage) {
     	int nombreQuestionAAfficher = listeQuestion.size()-(5*indicePage);
-    	int indiceMinimum = indicePage*5;;
+    	int indiceMinimum = indicePage*5;
 		if(nombreQuestionAAfficher>=5) {
 			nombreQuestionAAfficher = 5;
 		}
-
-		ArrayList<Question> listeQuestion = new ArrayList<>();
+		ArrayList<Question> listeCinqQuestion = new ArrayList<>();
     	for (int i = indiceMinimum; i < nombreQuestionAAfficher ;i++) {
-    		listeQuestion.add(listeQuestion.get(indiceMinimum));
+    		listeCinqQuestion.add(listeQuestion.get(indiceMinimum));
     	}
-		return listeQuestion;
+		return listeCinqQuestion;
 	}
 	
 	public boolean getResultatDeQuestion(int indice) {

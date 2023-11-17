@@ -161,7 +161,7 @@ public class ScoreQuizController {
     	for (int i = 0; i <listeQuestions.size(); i++) {
     		HBox hbox = new HBox(30);
     		Text textQuestion = new Text("Question n°" + ((numeroDePage*5)+1+i));
-    		
+
     		// Mise en place du bouton vert ou rouge
     		String cheminImageVerteOuRouge = "./images/";
     		if (quiz.getResultatDeQuestion(i)) {

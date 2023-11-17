@@ -56,14 +56,14 @@ public class PartieController {
     			difficulteReelle = Integer.parseInt(difficulte.getText());
     		}
     		Categorie categorie;
-    		if (((String)comboBoxCategorie.getValue()).equals("Indifférent")) {
+    		if (((String)comboBoxCategorie.getValue()).equals("Toutes les catégories")) {
     			categorie = null;
     		} else {
     			categorie = new Categorie((String)comboBoxCategorie.getValue());
     		}
     			
     		RadioButton nbQuestion = (RadioButton)nombreQuestion.getSelectedToggle();
-    		Quiz quiz = new Quiz(difficulteReelle,categorie,
+    		Quiz quiz = new Quiz(difficulteReelle,Integer.parseInt(nbQuestion.getText()),categorie,
     				Main.stockage);
     		if (quiz.quantiteQuestionOk(Integer.parseInt(nbQuestion.getText()))) {
     			Main.repondreQuestion(quiz , 0);
