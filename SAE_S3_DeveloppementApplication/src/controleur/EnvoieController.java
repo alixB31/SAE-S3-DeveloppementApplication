@@ -40,32 +40,38 @@ public class EnvoieController {
     @FXML
     void afficherIp(ActionEvent event) {
         // Obtenir l'adresse IP de la machine locale
-        try {
-            
-            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+    	// Obtenir l'adresse IP de la machine locale
+    	try {
+    	    Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
 
-            while (interfaces.hasMoreElements()) {
-                NetworkInterface networkInterface = interfaces.nextElement();
+    	    while (interfaces.hasMoreElements()) {
+    	        NetworkInterface networkInterface = interfaces.nextElement();
 
-                if (networkInterface.isUp() && !networkInterface.isLoopback()) {
-                    Enumeration<InetAddress> addresses = networkInterface.getInetAddresses();
+    	        if (networkInterface.isUp() && !networkInterface.isLoopback()) {
+    	            Enumeration<InetAddress> addresses = networkInterface.getInetAddresses();
 
-                    while (addresses.hasMoreElements()) {
-                        InetAddress address = addresses.nextElement();
-                        adresseIP = address.getHostAddress();
-                        
-                    }
-                }
-            }
-            if (adresseIP != null) {
-                afficherIP("AdresseIP", "Votre adresseIP est : " + adresseIP);
-            } else {
-                afficherIP("", "test");
-            }
-           
-        } catch (SocketException e) {
-            e.printStackTrace();
-        }
+    	            while (addresses.hasMoreElements()) {
+    	                InetAddress address = addresses.nextElement();
+
+    	                // Vérifier si c'est une adresse IPv4
+    	                if (address.getHostAddress().indexOf(':') == -1) {
+    	                    // Cette condition filtre les adresses IPv4
+    	                    adresseIP = address.getHostAddress();
+    	                    break; // Arrête la boucle dès qu'une adresse IPv4 est trouvée
+    	                }
+    	            }
+    	        }
+    	    }
+
+    	    if (adresseIP != null) {
+    	        afficherIP("AdresseIP", "Votre adresseIP est : " + adresseIP);
+    	    } else {
+    	        afficherIP("", "test");
+    	    }
+
+    	} catch (SocketException e) {
+    	    e.printStackTrace();
+    	}
     }
 
     @FXML
