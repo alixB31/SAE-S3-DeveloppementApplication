@@ -21,17 +21,19 @@ public class Quiz {
 	public Quiz(int difficulte,int nombreQuestion, Categorie categorie, Stockage stockage) {
 		this.difficulte = difficulte;
 		nombreQuestions = nombreQuestion;
-		listeQuestion = stockage.listeQuestionFiltreDifficulteCategorieTaille(this);
-		this.nombreQuestions = listeQuestion.size();
-		this.listeResultatReponse = new boolean[listeQuestion.size()];
 		if (categorie != null && stockage.getListeCategorie().containsKey(categorie.getIntituleCategorie())) {
 			this.categorie = categorie;
+			System.out.println(categorie.getIntituleCategorie());
 		} else if (categorie == null) {
 			System.out.println("Aucune catégorie n'est disponible!");
 		} else {
 			System.out.println("La catégorie n'existe pas dans la liste des catégories"
-					+ " associé au stockage.");
+					+ " associée au stockage.");
 		}
+		listeQuestion = stockage.listeQuestionFiltreDifficulteCategorieTaille(this);
+		this.nombreQuestions = listeQuestion.size();
+		this.listeResultatReponse = new boolean[listeQuestion.size()];
+		
 	}
 	
 	public void incrementerScore() {

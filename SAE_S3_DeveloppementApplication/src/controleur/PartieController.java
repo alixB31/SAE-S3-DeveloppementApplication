@@ -54,14 +54,14 @@ public class PartieController {
     			difficulteReelle = 0;
     		} else {
     			difficulteReelle = Integer.parseInt(difficulte.getText());
+    			System.out.println("Diff est a " + difficulteReelle);
     		}
     		Categorie categorie;
     		if (((String)comboBoxCategorie.getValue()).equals("Toutes les catégories")) {
     			categorie = null;
     		} else {
-    			categorie = new Categorie((String)comboBoxCategorie.getValue());
+    			categorie = (Categorie)Main.stockage.getListeCategorie().get((String)comboBoxCategorie.getValue());
     		}
-    			
     		RadioButton nbQuestion = (RadioButton)nombreQuestion.getSelectedToggle();
     		Quiz quiz = new Quiz(difficulteReelle,Integer.parseInt(nbQuestion.getText()),categorie,
     				Main.stockage);

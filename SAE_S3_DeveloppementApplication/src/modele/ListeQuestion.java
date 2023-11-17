@@ -6,6 +6,7 @@ package modele;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -224,7 +225,7 @@ public class ListeQuestion implements Serializable{
      * @param categorie la catégorie dont on veut la liste des questions.
      * @return listeQuestionCategorie, la liste des questions correspondantes.
      */
-    public ArrayList listeQuestionParCategorie(Categorie categorie) {
+    public ArrayList<Question> listeQuestionParCategorie(Categorie categorie) {
         ArrayList<Question> listeQuestionParCategorie = new ArrayList<>();
         for (Map.Entry mapEntry: listeQuestion.entrySet()) {
             Question question = (Question) mapEntry.getValue();
@@ -297,30 +298,24 @@ public class ListeQuestion implements Serializable{
      * @return
      */
     public ArrayList<Question> listeQuestionFiltreDifficulteCategorieTaille(Quiz quiz) {
-    	ArrayList<Question> listeProvisoire = listeQuestionParCategorie(quiz.getCategorie());
-    	for (Map.Entry entry : listeQuestion.entrySet()) {
-    		if (quiz.getDifficulte()==0
-    				|| ((Question)entry.getValue()).getDifficulteQuestion() == quiz.getDifficulte()) {
-    			listeProvisoire.add((Question)entry.getValue());
+    	System.out.println("nom cat :" + quiz.getCategorie().getIntituleCategorie());
+    	ArrayList<Question> listeFiltree = listeQuestionParCategorie(quiz.getCategorie());
+    	Collections.shuffle(listeFiltree);
+    	
+    	// Filtrage de la difficulté
+    	for (int i = 0; i< listeFiltree.size(); i++) {
+    		if (listeFiltree.get(i).getDifficulteQuestion()!= quiz.getDifficulte()) {
+    			listeFiltree.remove(i);
     		}
     	}
-    	System.out.println(listeProvisoire.toString());
-    	// IL EST LA LE PB 
-    	int indice;
-    	int longueurListeProvisoire = listeProvisoire.size();
-    	ArrayList<Question> listeFinale = new ArrayList<>();
-    	if (quiz.getNombreQuestions()== 0 || quiz.getNombreQuestions() > longueurListeProvisoire) {
-    		quiz.setNombreQuestion(listeProvisoire.size());
+    	if (quiz.getNombreQuestions()== 0 || quiz.getNombreQuestions() > listeFiltree.size()) {
+    		quiz.setNombreQuestion(listeFiltree.size());
     	}
-    	for (int i = 0; i< quiz.getNombreQuestions();i++) {
-    		indice =(int) (Math.random() * (longueurListeProvisoire - 1));
-    		listeFinale.add(listeProvisoire.get(indice));
-    		System.out.println(listeFinale.toString());
-    		listeProvisoire.remove(indice);
-    		longueurListeProvisoire--;
+    	for (int i = quiz.getNombreQuestions(); i < listeFiltree.size(); i++) {
+    		listeFiltree.remove(i);
     	}
-    	System.out.println("Fin "+listeFinale.toString());
-    	return listeFinale;
+    	
+    	return listeFiltree;
     }
     
     public ArrayList<String> getReponsesOrdreAleatoire(Question question) {
