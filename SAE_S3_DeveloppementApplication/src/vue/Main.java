@@ -241,10 +241,18 @@ public class Main extends Application {
     	fenetrePrincipale.setScene(sceneRepondreQuestion);
     }
 
-    public static void ihmScoreQuiz(Quiz quiz) {
+    public static void ihmScoreQuiz(Quiz quiz, int indicePageResultat) {
     	ScoreQuizController controller = chargeurFXMLScoreQuiz.getController();
-    	controller.setCategorie(quiz.getCategorie().getIntituleCategorie());
-    	controller.setNote(quiz.getScoreFinal()+"", STYLESHEET_CASPIAN);
+    	String nomCategorie;
+    	if (quiz.getCategorie() == null) {
+    		nomCategorie = "Toutes les catégories";
+    	} else {
+    		nomCategorie = quiz.getCategorie().getIntituleCategorie();
+    	}
+    	controller.setCategorie(nomCategorie);
+    	controller.setNote(quiz.getScoreFinal()+"", quiz.getNombreQuestions()+"");
+    	controller.setNumeroDePage(indicePageResultat);
+    	controller.setListeQuestion(quiz);
     	fenetrePrincipale.setScene(sceneScoreQuiz);
 		
     }
