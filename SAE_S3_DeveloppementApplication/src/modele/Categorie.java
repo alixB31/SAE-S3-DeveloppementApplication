@@ -6,11 +6,13 @@
 
 package modele;
 
+import java.io.Serializable;
+
 /**
  * Classe regroupant l'ensemble des methodes servant a la gestion des categories 
  * @author F.Bernad, A.Brouzes, R.Britelle
  */
-public class Categorie {
+public class Categorie implements Serializable{
 
 	/* intitule de la categorie */
 	private String intituleCategorie;

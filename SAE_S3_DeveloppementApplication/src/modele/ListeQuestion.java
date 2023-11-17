@@ -4,6 +4,7 @@
  */
 package modele;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.Map;
  * Liste des questions de type HashMap.
  * @author Nathan Girardin, Mateo Faussurier, Rayan Ibrahim, Alix Brugier
  */
-public class ListeQuestion {
+public class ListeQuestion implements Serializable{
 
     /**
      * Liste contenant les questions du quiz, cle correspont à la cle 

@@ -2,6 +2,10 @@ package modele;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +14,7 @@ import java.util.Scanner;
  * @author mateo.faussurier
  *
  */
-public class Stockage {
+public class Stockage implements Serializable{
 	
 	// objet ListeCategorie contenant les catégories du serveur
 	ListeCategorie listeCategorie;
@@ -266,5 +270,42 @@ public class Stockage {
     
     public ArrayList<String> getListeReponsesOrdreAleatoire(String nomQuestionNomCategorie) {
     	return listeQuestion.getReponsesOrdreAleatoire(listeQuestion.getElementListeQuestion(nomQuestionNomCategorie));
+    }
+    
+    /**
+     * Cette méthode crée des objets de type Point et PointNom, ensuite elle les
+     * sérialise dans un fichier dont le nom est passé en paramètre
+     * @param nomFichier 
+     * @param une chaîne contenant le nom du fichier à créer
+     * @throws EchecSerialisationRestauration 
+     */
+    public void serialiser(String nomFichier)throws EchecSerialisationRestauration  {
+        // Création et écriture dans le fichier
+        try {
+            // Déclaration et création du fichier qui recevra les objets
+            ObjectOutputStream fluxEcriture = new ObjectOutputStream(
+                    new FileOutputStream(nomFichier));
+            // Ecriture des objets du tableau table dans le fichier
+            fluxEcriture.writeObject(this);
+            // Fermeture du fichier
+            fluxEcriture.close();
+        } catch (IOException e) { // problème fichier
+            throw new EchecSerialisationRestauration("Problème d'accès au fichier " + nomFichier + ". Echec de la sérialisation.");
+        }
+    }
+    
+    /**
+     * Exception lev�e si probl�me d'acc�s au fichier lors de la 
+     * s�rialisation ou restauration d'une instance de type Stockage
+     */
+    public static class EchecSerialisationRestauration extends Exception {
+
+        /**
+         * Constructeur avec en argument un message d�crivant l'erreur
+         * @param message  un texte expliquant la cause pr�cise de l'erreur
+         */
+        public EchecSerialisationRestauration(String message) {
+            super(message);
+        }
     }
 }

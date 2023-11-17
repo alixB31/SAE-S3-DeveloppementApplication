@@ -5,6 +5,7 @@
  */
 package modele;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /** 
@@ -13,7 +14,7 @@ import java.util.HashMap;
  * @author mateo.faussurier
  *
  */
-public class ListeCategorie {
+public class ListeCategorie implements Serializable{
 
     /**
      * Liste contenant les catégories, la clé est l'équivalante à l'intitulé

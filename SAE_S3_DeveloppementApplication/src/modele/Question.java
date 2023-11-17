@@ -1,5 +1,6 @@
 package modele;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -9,7 +10,7 @@ import java.util.Collections;
  * créer et supprimer des questions.
  * @author mateo.faussurier
  */
-public class Question {
+public class Question implements Serializable{
 
 	/** une question est toujours liée à une catégorie */
 	public Categorie categorieQuestion;
