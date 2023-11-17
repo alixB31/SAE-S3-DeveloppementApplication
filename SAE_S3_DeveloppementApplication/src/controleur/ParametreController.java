@@ -63,7 +63,7 @@ public class ParametreController {
 				comboBox.setValue(resultat.trim());
 				System.out.println(Main.stockage.getListeCategorie());
 			} else {
-				afficherAlerte("Catégorie déja existante","L'intitulé de la catégorie que vous voulez créer existe déjà ou ne peut pas étre vide.");
+				afficherAlerte("Catégorie déja existante","L'intitulé de la catégorie que vous voulez créer existe déjà.");
 
 			}
 		} else {
