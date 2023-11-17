@@ -303,7 +303,7 @@ public class ParametreCategorieController {
 			// Ajouter des marges aux boutons radio
 			GridPane.setMargin(radio1, new Insets(5, 0, 0, 5));
 			GridPane.setMargin(radio2, new Insets(5, 0, 0, - 465));
-			GridPane.setMargin(radio3, new Insets(5, 0, 0, - 435));
+			GridPane.setMargin(radio3, new Insets(5, 0, 0, - 490));
 
 			// Créer un champ de saisie (TextField)
 			TextField textField = new TextField();
@@ -469,7 +469,7 @@ public class ParametreCategorieController {
 			popupLayout.addRow(8, boutonAnnuler);
 
 			// Configuration de la scène de la popup
-			Scene popupScene = new Scene(popupLayout, 750, 350);
+			Scene popupScene = new Scene(popupLayout, 800, 400);
 			popupStage.setScene(popupScene);
 			popupStage.showAndWait();
 		}
