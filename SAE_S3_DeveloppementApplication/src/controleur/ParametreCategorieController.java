@@ -46,18 +46,23 @@ public class ParametreCategorieController {
 	@FXML
 	public Label nomCategorie;
 
+	/** Catégorie de la page actuelle*/
 	private String categorieChoisi;
 
+	/** Difficulté d'une question de niveau 1 à 3*/
 	private int difficulte;
 
+	/** Feedback d'une question*/
 	private String feedBack;
 
 	/** Liste des réponses fausses d'une question, il y en a de 1 à 4*/
 	private ArrayList<String> listeReponsesFausses;
 
+	/** ComboBox de la liste des questions d'une catégorie*/
 	@FXML
 	public ComboBox<String> comboBoxCategorie;
-	
+
+	/** ComboBox de la liste des catégories*/
 	@FXML
 	public ComboBox<String> comboBox;
 
@@ -150,7 +155,6 @@ public class ParametreCategorieController {
 
 				//création de la nouvelle question et ajout a la liste des questions
 				if (Main.stockage.ajouterQuestion(new Question(textField.getText().trim(), categorieCourante, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack))) {
-
 					comboBoxCategorie.getItems().add(textField.getText());
 					//Main.stockage.supprimerElementListeQuestion(comboBoxCategorie.getValue());
 					comboBoxCategorie.setValue(textField.getText());
@@ -217,18 +221,22 @@ public class ParametreCategorieController {
 
 	@FXML
 	void deleteQuestion(ActionEvent event) {
+		//vérifie qu'une question a bien était sélectionnée
+		if (comboBoxCategorie.getValue() == null) {
+			ParametreController.afficherAlerte("Choisissez une question","Vous devez sélectionner une question pour pouvoir la supprimer");
+		} else {
+			Alert boiteAlerte = new Alert(Alert.AlertType.CONFIRMATION,
+					"Confirmez-vous votre choix ?",
+					ButtonType.YES, ButtonType.NO);
+			Optional<ButtonType> option = boiteAlerte.showAndWait();
 
-		Alert boiteAlerte = new Alert(Alert.AlertType.CONFIRMATION,
-				"Confirmez-vous votre choix ?",
-				ButtonType.YES, ButtonType.NO);
-		Optional<ButtonType> option = boiteAlerte.showAndWait();
+			if (option.get() == ButtonType.YES) { // clic sur "oui"
+				if(Main.stockage.supprimerElementListeQuestion(comboBoxCategorie.getValue()+categorieChoisi)) {
 
-		if (option.get() == ButtonType.YES) { // clic sur "oui"
-			if(Main.stockage.supprimerElementListeQuestion(comboBoxCategorie.getValue()+categorieChoisi)) {
-				System.out.println(comboBoxCategorie.getValue()+categorieChoisi);
-				comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());
-			} else {
-				ParametreController.afficherAlerte("Suppresion Question","La suppresion de la question a échoué");
+					comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());
+				} else {
+					ParametreController.afficherAlerte("Suppresion Question","La suppresion de la question a échoué");
+				}
 			}
 		}
 	}
@@ -236,233 +244,240 @@ public class ParametreCategorieController {
 	@FXML
 	void editerIntitulerQuestion(ActionEvent event) {
 
-		// ancien intitulé 
-		String ancienIntitule = comboBoxCategorie.getValue();
-		//categorie courante de la question a modifier
-		Categorie categorieCourante = (Categorie) Main.stockage.getListeCategorie().get(categorieChoisi);
-		// question courante
-		String concatenation = ancienIntitule+categorieCourante.getIntituleCategorie();
-		
-		System.out.println(Main.stockage.getListeQuestion().get(concatenation));
-		Question questionCourante = (Question) Main.stockage.getListeQuestion().get(concatenation);
-		// reponse vrai précédente
-		String ancienneReponseVrai = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponseJusteQuestion();
-		// ancien feedback
-		String ancienFeedback = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getFeedBackQuestion();	
-		// nombre de reponses fausses de l'ancienne question 
-		int nombreReponseFausse = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().size();
-		// difficulté de l'ancienne question 
-		int ancienneDifficulte = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getDifficulteQuestion();
-		
-		//comboBox de toute les catégories
-		comboBox = new ComboBox<>();
-		HashMap<String, Categorie> map = Main.stockage.getListeCategorie();
-		for (Map.Entry mapEntry: map.entrySet()) {
-			comboBox.getItems().add(((Categorie) mapEntry.getValue()).getIntituleCategorie());
-			
-		}
-		//préselection de la catégorie actuelle de la question
-		comboBox.setValue(categorieCourante.getIntituleCategorie());
-		// Créer des boutons radio
-		ToggleGroup toggleGroup = new ToggleGroup();
-		RadioButton radio1 = new RadioButton("1");
+		//vérifie qu'une question a bien était sélectionnée
+		if (comboBoxCategorie.getValue() == null) {
+			ParametreController.afficherAlerte("Choisissez une question","Vous devez sélectionner une question pour pouvoir la modifier");
+		} else {
+
+			// ancien intitulé 
+			String ancienIntitule = comboBoxCategorie.getValue();
+			//categorie courante de la question a modifier
+			Categorie categorieCourante = (Categorie) Main.stockage.getListeCategorie().get(categorieChoisi);
+			// question courante
+			String concatenation = ancienIntitule+categorieCourante.getIntituleCategorie();
 
 
-		radio1.setToggleGroup(toggleGroup);
-		RadioButton radio2 = new RadioButton("2");
-		radio2.setToggleGroup(toggleGroup);
-		RadioButton radio3 = new RadioButton("3");
-		radio3.setToggleGroup(toggleGroup);
-		//préselectionne l'ancienne difficuté
-		switch (ancienneDifficulte) {
-		case 1:
-			radio1.setSelected(true);
-			break;
-		case 2:
-			radio2.setSelected(true);
-			break;
-		default: 
-			radio3.setSelected(true);
-		}
 
+			Question questionCourante = (Question) Main.stockage.getListeQuestion().get(concatenation);
+			// reponse vrai précédente
+			String ancienneReponseVrai = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponseJusteQuestion();
+			// ancien feedback
+			String ancienFeedback = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getFeedBackQuestion();	
+			// nombre de reponses fausses de l'ancienne question 
+			int nombreReponseFausse = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().size();
+			// difficulté de l'ancienne question 
+			int ancienneDifficulte = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getDifficulteQuestion();
 
-		// Ajouter des marges aux boutons radio
-		GridPane.setMargin(radio1, new Insets(5, 0, 0, 5));
-		GridPane.setMargin(radio2, new Insets(5, 0, 0, - 465));
-		GridPane.setMargin(radio3, new Insets(5, 0, 0, - 435));
+			//comboBox de toute les catégories
+			comboBox = new ComboBox<>();
+			HashMap<String, Categorie> map = Main.stockage.getListeCategorie();
+			for (Map.Entry mapEntry: map.entrySet()) {
+				comboBox.getItems().add(((Categorie) mapEntry.getValue()).getIntituleCategorie());
 
-		// Créer un champ de saisie (TextField)
-		TextField textField = new TextField();
-		textField.setText(ancienIntitule);
-		TextField textFieldVrai = new TextField();
-		textFieldVrai.setText(ancienneReponseVrai);
-
-		//affiche la premiere reponse fausse
-		TextField textFieldFaux = new TextField();
-		if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(0) !=null && 
-				((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(0) != "") {
-			String ancienneFausse1 = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(0);
-			textFieldFaux.setText(ancienneFausse1);
-		} 	
-		TextField textFieldFaux2 = new TextField();
-		//si il y a plus de 1 reponse fausse, affiche les autres
-		if (nombreReponseFausse>1) {
-			if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(1) !=null && 
-					((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(1) != "") {
-				String ancienneFausse2 = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(1);
-				textFieldFaux2.setText(ancienneFausse2);
 			}
-		} 
-		TextField textFieldFaux3 = new TextField();
-		if (nombreReponseFausse>2) {
-			if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(2) !=null && 
-					((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(2) != "") {
-				String ancienneFausse3 = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(2);
-				textFieldFaux3.setText(ancienneFausse3);
+			//préselection de la catégorie actuelle de la question
+			comboBox.setValue(categorieCourante.getIntituleCategorie());
+			// Créer des boutons radio
+			ToggleGroup toggleGroup = new ToggleGroup();
+			RadioButton radio1 = new RadioButton("1");
+
+
+			radio1.setToggleGroup(toggleGroup);
+			RadioButton radio2 = new RadioButton("2");
+			radio2.setToggleGroup(toggleGroup);
+			RadioButton radio3 = new RadioButton("3");
+			radio3.setToggleGroup(toggleGroup);
+			//préselectionne l'ancienne difficuté
+			switch (ancienneDifficulte) {
+			case 1:
+				radio1.setSelected(true);
+				break;
+			case 2:
+				radio2.setSelected(true);
+				break;
+			default: 
+				radio3.setSelected(true);
 			}
-		}
-		TextField textFieldFaux4 = new TextField();
-		if (nombreReponseFausse>3) {
-			if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(3) !=null && 
-					((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(3) != "") {
-				String ancienneFausse4 = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(3);
-				textFieldFaux4.setText(ancienneFausse4);
+
+
+			// Ajouter des marges aux boutons radio
+			GridPane.setMargin(radio1, new Insets(5, 0, 0, 5));
+			GridPane.setMargin(radio2, new Insets(5, 0, 0, - 465));
+			GridPane.setMargin(radio3, new Insets(5, 0, 0, - 435));
+
+			// Créer un champ de saisie (TextField)
+			TextField textField = new TextField();
+			textField.setText(ancienIntitule);
+			TextField textFieldVrai = new TextField();
+			textFieldVrai.setText(ancienneReponseVrai);
+
+			//affiche la premiere reponse fausse
+			TextField textFieldFaux = new TextField();
+			if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(0) !=null && 
+					((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(0) != "") {
+				String ancienneFausse1 = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(0);
+				textFieldFaux.setText(ancienneFausse1);
+			} 	
+			TextField textFieldFaux2 = new TextField();
+			//si il y a plus de 1 reponse fausse, affiche les autres
+			if (nombreReponseFausse>1) {
+				if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(1) !=null && 
+						((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(1) != "") {
+					String ancienneFausse2 = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(1);
+					textFieldFaux2.setText(ancienneFausse2);
+				}
+			} 
+			TextField textFieldFaux3 = new TextField();
+			if (nombreReponseFausse>2) {
+				if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(2) !=null && 
+						((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(2) != "") {
+					String ancienneFausse3 = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(2);
+					textFieldFaux3.setText(ancienneFausse3);
+				}
 			}
-		}
-
-
-		TextField textFieldFeedBack = new TextField();
-		textFieldFeedBack.setText(ancienFeedback);
-
-		// Agrandir la taille du TextField
-		textField.setPrefWidth(500);
-
-		Stage popupStage = new Stage();
-		popupStage.initModality(Modality.APPLICATION_MODAL);
-		popupStage.setTitle("Modifier Question");
-
-		// Configuration du layout de la popup
-		GridPane popupLayout = new GridPane();
-		popupLayout.setPadding(new Insets(10, 10, 10, 10));
-		popupLayout.setVgap(8);
-		popupLayout.setHgap(10);
-
-
-		// Ajout des éléments au layout de la popup
-		popupLayout.addRow(0, new Label("Intitulé de la question:"), textField);
-		popupLayout.addRow(1, new Label("Difficulté de la question:"), radio1, radio2, radio3);
-		popupLayout.addRow(2, new Label("Réponse vrai:"), textFieldVrai);
-		popupLayout.addRow(3, new Label("Réponse fausse:"), textFieldFaux);
-		popupLayout.addRow(4, new Label(""), textFieldFaux2);
-		popupLayout.addRow(5, new Label(""), textFieldFaux3);
-		popupLayout.addRow(6, new Label(""), textFieldFaux4);
-		popupLayout.addRow(7, new Label("FeedBack:"), textFieldFeedBack);
-		popupLayout.addRow(8, new Label("Categorie:"), comboBox);
-
-		// Bouton de validation
-		Button boutonValider = new Button("Valider");
-		Button boutonAnnuler = new Button("Annuler");
-		boutonValider.setDisable(true);
-
-		boutonValider.setOnAction(e -> {
-			if (!textField.getText().isEmpty() && !textFieldVrai.getText().isEmpty() && !textFieldFaux.getText().isEmpty()
-					&& (radio1.isSelected() || radio2.isSelected() || radio3.isSelected())) {
-
-				//recuperation de la radio sélectionnez 
-				difficulte = (radio1.isSelected()) ? 1 : (radio2.isSelected()) ? 2 : (radio3.isSelected()) ? 3 : 0;
-				// création de l'array list des réponses fausses.
-				listeReponsesFausses = new ArrayList<>();
-				//ajout des reponses fausses a l'array list si elles sont différent de null et de ""
-				listeReponsesFausses.add(textFieldFaux.getText());
-				if (textFieldFaux2.getText() !=null && !textFieldFaux2.getText().isBlank() && textFieldFaux2.getText().trim() != "" ) {
-					listeReponsesFausses.add(textFieldFaux2.getText());
+			TextField textFieldFaux4 = new TextField();
+			if (nombreReponseFausse>3) {
+				if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(3) !=null && 
+						((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(3) != "") {
+					String ancienneFausse4 = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(3);
+					textFieldFaux4.setText(ancienneFausse4);
 				}
-				if (textFieldFaux3.getText() !=null && !textFieldFaux3.getText().isBlank() && textFieldFaux3.getText().trim() != "" ) {
-					listeReponsesFausses.add(textFieldFaux3.getText());
-				}
-				if (textFieldFaux4.getText() !=null && !textFieldFaux4.getText().isBlank() && textFieldFaux4.getText().trim() != "" ) {
-					listeReponsesFausses.add(textFieldFaux4.getText());
-				}
+			}
 
-				feedBack = textFieldFeedBack.getText();
-				
-				
-				Categorie nouvelleCategorie = (Categorie) Main.stockage.getListeCategorie().get(comboBox.getValue()); 
-				//System.out.println(Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack, concatenation)+"  total");
-				//modification de la question
-				if (nouvelleCategorie == categorieCourante 
-						&&	Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack, concatenation)) {
-					System.out.println("On est laaaaa ");
-					comboBoxCategorie.getItems().set(comboBoxCategorie.getItems().indexOf(ancienIntitule), textField.getText().trim());
-					comboBoxCategorie.setValue(textField.getText().trim());
-				
-				//on regarde si la question existe deja dans la nouvelle catégorie
-				} else if(nouvelleCategorie != categorieCourante && !Main.stockage.getListeQuestion().containsKey(concatenation)) {			
-					Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack, concatenation);
-					comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());				
-					//si elle existe pas on l'enleve de la comboBox de la categorie courrante,sinon on ne peut pas la trasférer et rien ne se passe	
-				} else if(nouvelleCategorie != categorieCourante && Main.stockage.getListeQuestion().containsKey(concatenation)){
-					ParametreController.afficherAlerte("Question non transférable","Une question avec le même intitulé existe déjà dans la catégorie cible");
-				} else {
-					ParametreController.afficherAlerte("Question non modifiable","Une question avec le même intitulé existe déjà dans cette catégorie");
+
+			TextField textFieldFeedBack = new TextField();
+			textFieldFeedBack.setText(ancienFeedback);
+
+			// Agrandir la taille du TextField
+			textField.setPrefWidth(500);
+
+			Stage popupStage = new Stage();
+			popupStage.initModality(Modality.APPLICATION_MODAL);
+			popupStage.setTitle("Modifier Question");
+
+			// Configuration du layout de la popup
+			GridPane popupLayout = new GridPane();
+			popupLayout.setPadding(new Insets(10, 10, 10, 10));
+			popupLayout.setVgap(8);
+			popupLayout.setHgap(10);
+
+
+			// Ajout des éléments au layout de la popup
+			popupLayout.addRow(0, new Label("Intitulé de la question:"), textField);
+			popupLayout.addRow(1, new Label("Difficulté de la question:"), radio1, radio2, radio3);
+			popupLayout.addRow(2, new Label("Réponse vrai:"), textFieldVrai);
+			popupLayout.addRow(3, new Label("Réponse fausse:"), textFieldFaux);
+			popupLayout.addRow(4, new Label(""), textFieldFaux2);
+			popupLayout.addRow(5, new Label(""), textFieldFaux3);
+			popupLayout.addRow(6, new Label(""), textFieldFaux4);
+			popupLayout.addRow(7, new Label("FeedBack:"), textFieldFeedBack);
+			popupLayout.addRow(8, new Label("Categorie:"), comboBox);
+
+			// Bouton de validation
+			Button boutonValider = new Button("Valider");
+			Button boutonAnnuler = new Button("Annuler");
+			boutonValider.setDisable(true);
+
+			boutonValider.setOnAction(e -> {
+				if (!textField.getText().isEmpty() && !textFieldVrai.getText().isEmpty() && !textFieldFaux.getText().isEmpty()
+						&& (radio1.isSelected() || radio2.isSelected() || radio3.isSelected())) {
+
+					//recuperation de la radio sélectionnez 
+					difficulte = (radio1.isSelected()) ? 1 : (radio2.isSelected()) ? 2 : (radio3.isSelected()) ? 3 : 0;
+					// création de l'array list des réponses fausses.
+					listeReponsesFausses = new ArrayList<>();
+					//ajout des reponses fausses a l'array list si elles sont différent de null et de ""
+					listeReponsesFausses.add(textFieldFaux.getText());
+					if (textFieldFaux2.getText() !=null && !textFieldFaux2.getText().isBlank() && textFieldFaux2.getText().trim() != "" ) {
+						listeReponsesFausses.add(textFieldFaux2.getText());
+					}
+					if (textFieldFaux3.getText() !=null && !textFieldFaux3.getText().isBlank() && textFieldFaux3.getText().trim() != "" ) {
+						listeReponsesFausses.add(textFieldFaux3.getText());
+					}
+					if (textFieldFaux4.getText() !=null && !textFieldFaux4.getText().isBlank() && textFieldFaux4.getText().trim() != "" ) {
+						listeReponsesFausses.add(textFieldFaux4.getText());
+					}
+
+					feedBack = textFieldFeedBack.getText();
+					Categorie nouvelleCategorie = (Categorie) Main.stockage.getListeCategorie().get(comboBox.getValue()); 
+
+					//nouvelle concatenation qui seras créer si la question change de catégorie.
+					String NouvelleConcatenation = textField.getText()+nouvelleCategorie.getIntituleCategorie();
+
+					//modification de la question
+					if (nouvelleCategorie == categorieCourante 
+							&&	Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack, concatenation)) {
+
+						comboBoxCategorie.getItems().set(comboBoxCategorie.getItems().indexOf(ancienIntitule), textField.getText().trim());
+						comboBoxCategorie.setValue(textField.getText().trim());
+
+						//on regarde si la question existe deja dans la nouvelle catégorie
+					} else if(nouvelleCategorie != categorieCourante && !Main.stockage.getListeQuestion().containsKey(NouvelleConcatenation)) {			
+						Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack, concatenation);
+						comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());				
+						//si elle existe pas on l'enleve de la comboBox de la categorie courrante,sinon on ne peut pas la trasférer et rien ne se passe
+
+					} else if(nouvelleCategorie != categorieCourante && Main.stockage.getListeQuestion().containsKey(NouvelleConcatenation)){
+						ParametreController.afficherAlerte("Question non transférable","Une question avec le même intitulé existe déjà dans la catégorie cible");
+					} else {
+						ParametreController.afficherAlerte("Question non modifiable","Une question avec le même intitulé existe déjà dans cette catégorie");
+					}
+					popupStage.close();
+
 				}
+			});
+
+			boutonAnnuler.setOnAction(e -> {
 				popupStage.close();
+			});
 
-			}
-		});
+			//regarde que tout les textField sois remplis
+			textField.textProperty().addListener((observable, oldValue, newValue) ->
+			boutonValider.setDisable(
+					newValue.trim().isEmpty() ||
+					textFieldVrai.getText().trim().isEmpty() ||
+					textFieldFaux.getText().trim().isEmpty() ||
+					(toggleGroup.getSelectedToggle() == null)
+					));
 
-		boutonAnnuler.setOnAction(e -> {
-			popupStage.close();
-		});
+			textFieldVrai.textProperty().addListener((observable, oldValue, newValue) ->
+			boutonValider.setDisable(
+					textField.getText().trim().isEmpty() ||
+					newValue.trim().isEmpty() ||
+					textFieldFaux.getText().trim().isEmpty() ||
+					(toggleGroup.getSelectedToggle() == null)
+					));
 
-		//regarde que tout les textField sois remplis
-		textField.textProperty().addListener((observable, oldValue, newValue) ->
-		boutonValider.setDisable(
-				newValue.trim().isEmpty() ||
-				textFieldVrai.getText().trim().isEmpty() ||
-				textFieldFaux.getText().trim().isEmpty() ||
-				(toggleGroup.getSelectedToggle() == null)
-				));
+			textFieldFaux.textProperty().addListener((observable, oldValue, newValue) ->
+			boutonValider.setDisable(
+					textField.getText().trim().isEmpty() ||
+					textFieldVrai.getText().trim().isEmpty() ||
+					newValue.trim().isEmpty() ||
+					(toggleGroup.getSelectedToggle() == null)
+					));
 
-		textFieldVrai.textProperty().addListener((observable, oldValue, newValue) ->
-		boutonValider.setDisable(
-				textField.getText().trim().isEmpty() ||
-				newValue.trim().isEmpty() ||
-				textFieldFaux.getText().trim().isEmpty() ||
-				(toggleGroup.getSelectedToggle() == null)
-				));
+			toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) ->
+			boutonValider.setDisable(
+					textField.getText().trim().isEmpty() ||
+					textFieldVrai.getText().trim().isEmpty() ||
+					textFieldFaux.getText().trim().isEmpty() ||
+					(newValue == null)
+					));
 
-		textFieldFaux.textProperty().addListener((observable, oldValue, newValue) ->
-		boutonValider.setDisable(
-				textField.getText().trim().isEmpty() ||
-				textFieldVrai.getText().trim().isEmpty() ||
-				newValue.trim().isEmpty() ||
-				(toggleGroup.getSelectedToggle() == null)
-				));
+			// Ajout du bouton de validation et d'annulation au layout de la popup
+			popupLayout.addRow(8, boutonValider);
+			popupLayout.addRow(8, boutonAnnuler);
 
-		toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) ->
-		boutonValider.setDisable(
-				textField.getText().trim().isEmpty() ||
-				textFieldVrai.getText().trim().isEmpty() ||
-				textFieldFaux.getText().trim().isEmpty() ||
-				(newValue == null)
-				));
-
-		// Ajout du bouton de validation et d'annulation au layout de la popup
-		popupLayout.addRow(8, boutonValider);
-		popupLayout.addRow(8, boutonAnnuler);
-
-		// Configuration de la scène de la popup
-		Scene popupScene = new Scene(popupLayout, 750, 350);
-		popupStage.setScene(popupScene);
-		popupStage.showAndWait();
-
+			// Configuration de la scène de la popup
+			Scene popupScene = new Scene(popupLayout, 750, 350);
+			popupStage.setScene(popupScene);
+			popupStage.showAndWait();
+		}
 
 	}
 
 	public void setNomCategorie(String categorie) {
 		categorieChoisi = categorie;
-		System.out.println(categorie);
 	}
 }
-//(!elementEstDansListeQuestion(intitule) || (elementEstDansListeQuestion(intitule) && question.getCategorieDeQuestion()!=getElementListeQuestion(intitule).getCategorieDeQuestion()))
+
