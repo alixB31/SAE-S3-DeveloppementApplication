@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import modele.*;
+import modele.Stockage.EchecSerialisationRestauration;
 
 
 
@@ -167,6 +168,7 @@ public class Main extends Application {
      *
      */
     public static void voirParamCategorie(String categorie) throws IOException {
+    	
     	// Crée un objet contrôleur du nouveau contrôleur.
         ParametreCategorieController controller = chargeurFXMLCategorie.getController();
         
@@ -189,10 +191,13 @@ public class Main extends Application {
 
     /**
      * @param args the command line arguments
+     * @throws EchecSerialisationRestauration 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EchecSerialisationRestauration {
     	stockage = new Stockage();
+    	stockage.restaurer();
         stockage.ajouterCategorie(new Categorie("Général"));
+        System.out.println(stockage.getListeCategorie());
     	launch(args);
     }
     

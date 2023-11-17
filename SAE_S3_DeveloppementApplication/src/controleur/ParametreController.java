@@ -140,7 +140,7 @@ public class ParametreController {
 
 	@FXML
 	void retourMenu(ActionEvent event) throws EchecSerialisationRestauration {
-		Main.stockage.serialiser("donneesSérialisé.bin");
+		Main.stockage.serialiser();
 		Main.retourMenuPrincipal();
 
 	}

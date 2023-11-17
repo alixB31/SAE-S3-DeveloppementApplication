@@ -1,15 +1,19 @@
 package modele;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import vue.Main;
 /** TODO comment class responsibility (SRP)
  * @author mateo.faussurier
  *
@@ -31,7 +35,6 @@ public class Stockage implements Serializable{
 	public Stockage() {
 		listeCategorie = new ListeCategorie();
 		listeQuestion = new ListeQuestion();
-		listeJoueur = new ListeJoueur();
 	}
 	
 	/** 
@@ -279,20 +282,44 @@ public class Stockage implements Serializable{
      * @param une chaîne contenant le nom du fichier à créer
      * @throws EchecSerialisationRestauration 
      */
-    public void serialiser(String nomFichier)throws EchecSerialisationRestauration  {
+    public void serialiser()throws EchecSerialisationRestauration  {
         // Création et écriture dans le fichier
-        try {
-            // Déclaration et création du fichier qui recevra les objets
-            ObjectOutputStream fluxEcriture = new ObjectOutputStream(
-                    new FileOutputStream(nomFichier));
-            // Ecriture des objets du tableau table dans le fichier
-            fluxEcriture.writeObject(this);
-            // Fermeture du fichier
-            fluxEcriture.close();
-        } catch (IOException e) { // problème fichier
-            throw new EchecSerialisationRestauration("Problème d'accès au fichier " + nomFichier + ". Echec de la sérialisation.");
-        }
+    	try (FileOutputStream fileOut = new FileOutputStream("stockage.ser");
+                ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
+
+               // Sérialisation
+               objectOut.writeObject(Main.stockage);
+
+           } catch (Exception e) {
+        	   throw new EchecSerialisationRestauration("Problème d'accès au fichier " + "stockage.ser" + ". Echec de la sérialisation.");
+           }
+    	
     }
+    
+    /**
+     * Cette méthode lit le fichier dont le nom est passé en paramètre
+     * et restaure les objets qu'il contient.
+     * Ceux-ci peuvent être de type Point ou PointNom
+     * @param nomFichier 
+     * @param une chaîne contenant le nom du fichier à consulter
+     * @throws EchecSerialisationRestauration 
+     */
+    public void restaurer() throws EchecSerialisationRestauration {
+        // déclaration du fichier et lecture dans le fichier
+    	try (FileInputStream fileIn = new FileInputStream("stockage.ser");
+                ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
+
+               // Désérialisation
+               Main.stockage = (Stockage) objectIn.readObject();
+
+               // Utilisez l'objet stockage comme nécessaire...
+
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+
+    }
+    
     
     /**
      * Exception lev�e si probl�me d'acc�s au fichier lors de la 
