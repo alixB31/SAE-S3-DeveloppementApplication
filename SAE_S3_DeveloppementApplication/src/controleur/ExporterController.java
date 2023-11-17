@@ -13,7 +13,7 @@ public class ExporterController {
     private Button btnRetour;
 
     @FXML
-    private Button btnRetour1;
+    private Button btnExporter;
 
     @FXML
     private Button btnSelectionnerTout;
@@ -26,7 +26,7 @@ public class ExporterController {
 
     @FXML
     void btnRetour(ActionEvent event) {
-    	Main.ihmImportationExportation();
+    	Main.retourMenuPrincipal();
     }
 
     @FXML
@@ -38,5 +38,11 @@ public class ExporterController {
     void comboBoxCategorieAction(ActionEvent event) {
 
     }
+    
+    @FXML
+    void btnExporterAction(ActionEvent event) {
+    	Main.ihmEnvoie();
+    }
+
 
 }

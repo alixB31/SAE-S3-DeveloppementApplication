@@ -13,8 +13,11 @@ import vue.Main;
  */
 public class MenuController {
 
+	@FXML
+    private Button btnExport;
+
     @FXML
-    private Button btnImportExport;
+    private Button btnImport;
 
     @FXML
     private Button btnLancerPartie;
@@ -53,7 +56,12 @@ public class MenuController {
     }
     
     @FXML
-    void btnImportExportAction(ActionEvent event) {
-    	Main.ihmImportationExportation();
+    void btnImportAction(ActionEvent event) {
+    	Main.ihmImportation();
+    }
+    
+    @FXML
+    void btnExportAction(ActionEvent event) {
+    	Main.ihmExportation();
     }
 }
