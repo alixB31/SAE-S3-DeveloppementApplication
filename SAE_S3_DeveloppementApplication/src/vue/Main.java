@@ -43,6 +43,9 @@ public class Main extends Application {
     private static FXMLLoader chargeurFXMLPartie = new FXMLLoader();
     private static FXMLLoader chargeurFXMLReponseQuestion = new FXMLLoader();
     private static FXMLLoader chargeurFXMLScoreQuiz = new FXMLLoader();
+    private static FXMLLoader chargeurFXMLImportation = new FXMLLoader();
+    private static FXMLLoader chargeurFXMLExportation = new FXMLLoader();
+    private static FXMLLoader chargeurFXMLEnvoie = new FXMLLoader();
     
     public static Stockage stockage;
     
@@ -85,18 +88,17 @@ public class Main extends Application {
         Parent ScoreQuiz = chargeurFXMLScoreQuiz.load();
         sceneScoreQuiz = new Scene(ScoreQuiz);
         
-        FXMLLoader chargeurFXMLImportation = new FXMLLoader();
+
         chargeurFXMLImportation.setLocation(getClass().getResource("ihmImportation.fxml"));
         Parent Importation = chargeurFXMLImportation.load();
         sceneImportation = new Scene(Importation);
         
-        FXMLLoader chargeurFXMLExportation = new FXMLLoader();
         chargeurFXMLExportation.setLocation(getClass().getResource("ihmExportation.fxml"));
         Parent Exportation = chargeurFXMLExportation.load();
         sceneExportation = new Scene(Exportation);
         
         /* on crée la vue de l'envoie */
-        FXMLLoader chargeurFXMLEnvoie = new FXMLLoader();
+        
         chargeurFXMLEnvoie.setLocation(getClass().getResource("ihmEnvoie.fxml"));
         Parent envoie = chargeurFXMLEnvoie.load();
         sceneEnvoie = new Scene(envoie); 
@@ -262,6 +264,19 @@ public class Main extends Application {
     }
     
     public static void ihmExportation() {
+    	
+    	// Crée un objet contrôleur du nouveau contrôleur.
+        ExporterController controller = chargeurFXMLExportation.getController();
+        
+        // TODO Initialiser la liste de questions de la catégorie sélectionnée.
+        HashMap<String, Categorie> listeCategorie = stockage.getListeCategorie();
+        
+        controller.comboBoxCategorie.getItems().clear();
+        controller.comboBoxCategorie.getItems().add("Toutes les catégories");
+        for (Categorie categorie : listeCategorie.values()) {
+            controller.comboBoxCategorie.getItems().add(categorie.getIntituleCategorie());
+        }
+        fenetrePrincipale.setScene(sceneParametre);
     	fenetrePrincipale.setScene(sceneExportation);		
     }
     
