@@ -39,6 +39,7 @@ public class Main extends Application {
     private static Scene sceneExportation;
     private static Scene sceneEnvoie;
     private static Scene sceneChoix;
+    private static Scene sceneRecevoir;
     private static FXMLLoader chargeurFXMLParametre= new FXMLLoader();
     private static FXMLLoader chargeurFXMLCategorie = new FXMLLoader();
     private static FXMLLoader chargeurFXMLPartie = new FXMLLoader();
@@ -85,6 +86,12 @@ public class Main extends Application {
         chargeurFXMLChoix.setLocation(getClass().getResource("ihmChoixClientServeur.fxml"));
         Parent choix = chargeurFXMLChoix.load();
         sceneChoix = new Scene(choix); 
+        
+        /* on crée la vue du receveur*/
+        FXMLLoader chargeurFXMLRecevoir = new FXMLLoader();
+        chargeurFXMLRecevoir.setLocation(getClass().getResource("ihmRecevoir.fxml"));
+        Parent recevoir = chargeurFXMLRecevoir.load();
+        sceneRecevoir = new Scene(recevoir); 
         
         
         chargeurFXMLReponseQuestion.setLocation(getClass().getResource("ihmRepondreQuestion.fxml"));
@@ -293,5 +300,9 @@ public class Main extends Application {
     
     public static void ihmChoix() {
     	fenetrePrincipale.setScene(sceneChoix);
+    }
+    
+    public static void ihmRecevoir() {
+    	fenetrePrincipale.setScene(sceneRecevoir);
     }
 }

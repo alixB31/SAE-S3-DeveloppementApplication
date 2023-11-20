@@ -30,7 +30,7 @@ public class ExporterController {
     
     @FXML
     void btnRetour(ActionEvent event) {
-    	Main.retourMenuPrincipal();
+    	Main.ihmChoix();
     }
 
     @FXML
