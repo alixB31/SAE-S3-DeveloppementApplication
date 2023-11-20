@@ -15,6 +15,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modele.*;
 import modele.Stockage.EchecSerialisationRestauration;
@@ -196,7 +198,7 @@ public class Main extends Application {
     	// la nouvelle ihm.
     	controller.nomCategorie.setText(categorie);
     	controller.comboBoxCategorie.getItems().clear();
-    	// TODO Initialiser la liste de questions de la catégorie sélectionnée.
+    	// Initialiser la liste de questions de la catégorie sélectionnée.
     	ArrayList<Question> listeQuestionParCategorie = stockage.listeQuestionParCategorie((Categorie)stockage.getListeCategorie().get(categorie));
     	for (int i = 0; i<listeQuestionParCategorie.size(); i++) {
     		controller.comboBoxCategorie.getItems().add(listeQuestionParCategorie.get(i).getIntituleQuestion());
@@ -286,11 +288,24 @@ public class Main extends Application {
         // TODO Initialiser la liste de questions de la catégorie sélectionnée.
         HashMap<String, Categorie> listeCategorie = stockage.getListeCategorie();
         
+        //clear la liste des questions affichés et la comboBox des catégorie
+        controller.vBox.getChildren().clear();
         controller.comboBoxCategorie.getItems().clear();
         controller.comboBoxCategorie.getItems().add("Toutes les catégories");
+        
         for (Categorie categorie : listeCategorie.values()) {
+        	//ajout de tout les catégories a la comboBox de la page d'exportation
             controller.comboBoxCategorie.getItems().add(categorie.getIntituleCategorie());
+            //affichage de la lsite de toutes les questions
+            ArrayList<Question> listeQuestion = Main.stockage.listeQuestionParCategorie((Categorie)Main.stockage.getListeCategorie().get(categorie.getIntituleCategorie()));	
+            for (int y = 0; y<listeQuestion.size(); y++) {
+				CheckBox dynamicCheckBox = new CheckBox(listeQuestion.get(y).getIntituleQuestion());
+				controller.vBox.getChildren().add(dynamicCheckBox);
+			}
         }
+        
+        controller.scrollBarContenu.setContent(controller.vBox);
+        controller.comboBoxCategorie.setValue("Toutes les catégories");
     	fenetrePrincipale.setScene(sceneExportation);		
     }
     
