@@ -1,13 +1,16 @@
 package modele;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -327,4 +330,47 @@ public class Stockage implements Serializable{
             super(message);
         }
     }
+    
+    public boolean exportCSV(ArrayList<Question> listeQuestions) {
+        boolean estExporte = false;
+
+        String fileName = "exported_questions.csv";
+        String filePath = FileSystems.getDefault().getPath(System.getProperty("user.home"), "Downloads", fileName).toString();
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            // Écrire l'en-tête du fichier CSV
+            writer.write("Catégorie;Niveau;Libellé;juste;faux1;faux2;faux3;faux4;feedback");
+            writer.newLine();
+
+            // Parcourir les questions dans la liste et écrire chaque ligne dans le fichier CSV
+            for (Question question : listeQuestions) {
+                // Construire la ligne CSV pour chaque question
+                String line = String.format("%s;%d;%s;%s;%s;%s;%s;%s;%s",
+                        question.getCategorieDeQuestion().getIntituleCategorie(),
+                        question.getDifficulteQuestion(),
+                        question.getIntituleQuestion(),
+                        question.getReponseJusteQuestion(),
+                        question.getReponsesFaussesQuestion().get(0),
+                        question.getReponsesFaussesQuestion().get(1),
+                        question.getReponsesFaussesQuestion().get(2),
+                        question.getReponsesFaussesQuestion().get(3),
+                        question.getFeedBackQuestion());
+
+                // Écrire la ligne dans le fichier
+                writer.write(line);
+                writer.newLine();
+            }
+
+            // Indiquer que l'exportation est réussie
+            estExporte = true;
+
+        } catch (IOException e) {
+            // Gérer les exceptions liées à l'écriture dans le fichier
+            e.printStackTrace();
+        }
+
+        return estExporte;
+    }
 }
+
+
