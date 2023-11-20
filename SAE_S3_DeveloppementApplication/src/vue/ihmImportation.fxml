@@ -2,13 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ImportationController">
    <children>
-      <Text layoutX="248.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Import/Export">
+      <Text layoutX="400.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Import">
          <font>
             <Font name="System Bold Italic" size="88.0" />
          </font>
@@ -18,27 +20,25 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Text layoutX="126.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Import : ">
+      <Text layoutX="105.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Import : ">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <Text layoutX="126.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Export : ">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Text>
-      <TextField fx:id="cheminDeFichier" layoutX="289.0" layoutY="243.0" prefHeight="53.0" prefWidth="474.0" />
-      <TextField fx:id="ipExport" layoutX="288.0" layoutY="419.0" prefHeight="53.0" prefWidth="474.0" />
-      <Button fx:id="btnSuivantExport" layoutX="804.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnSuivantExportAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" text="Suivant">
+      <TextField fx:id="cheminDeFichier" layoutX="248.0" layoutY="306.0" prefHeight="53.0" prefWidth="474.0" />
+      <Button fx:id="btnParcourir" layoutX="823.0" layoutY="304.0" mnemonicParsing="false" onAction="#btnParcourirAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" text="Parcourir">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="btnParcourir" layoutX="804.0" layoutY="244.0" mnemonicParsing="false" onAction="#btnParcourirAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" text="Parcourir">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
+      <Button fx:id="btnValider" layoutX="741.0" layoutY="301.0" mnemonicParsing="false" onAction="#btnValiderAction" style="-fx-background-color: #5CCAC3;">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/valider.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>

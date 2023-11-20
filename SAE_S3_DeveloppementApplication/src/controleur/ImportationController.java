@@ -1,7 +1,6 @@
 package controleur;
 
 import java.io.File;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,8 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import modele.Stockage;
-import javafx.stage.FileChooser.ExtensionFilter;
 import vue.Main;
 
 public class ImportationController {
@@ -21,15 +18,12 @@ public class ImportationController {
 
     @FXML
     private Button btnRetour;
-
+    
     @FXML
-    private Button btnSuivantExport;
+    private Button btnValider;
 
     @FXML
     private TextField cheminDeFichier;
-
-    @FXML
-    private TextField ipExport;
 
     @FXML
     void btnParcourirAction(ActionEvent event) {
@@ -83,5 +77,14 @@ public class ImportationController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    
+    @FXML
+    void btnValiderAction(ActionEvent event) {
+    	if (Main.stockage.importCSV(cheminDeFichier.getText())) {
+			afficherInformation("Fichier importé", "Le fichier a bien été importé");
+		} else {
+			afficherInformation("Fichier non importé", "Le fichier n'a pas été importé");
+		}
     }
 }

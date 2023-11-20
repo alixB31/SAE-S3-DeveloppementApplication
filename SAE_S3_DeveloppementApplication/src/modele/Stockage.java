@@ -223,14 +223,8 @@ public class Stockage {
 	                        // Ajouter la question à la liste des questions.
 	                        listeQuestion.ajouterElementListeQuestion(question);
 	                        estImporte = true;
-                    	} else {
-                    		System.err.println("Au moins une des valeurs data[4], data[5], data[6], ou data[7] doit être remplie.");
                     	}
-                    } else {
-                        System.err.println("Les valeurs obligatoires data[0], data[1], data[2] et data[3] doivent être remplies.");
                     }
-                } else {
-                    System.err.println("Ligne incorrecte dans le fichier CSV : " + line);
                 }
             }
 
@@ -240,7 +234,6 @@ public class Stockage {
             return estImporte;
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             // Indiquer que l'importation a échoué.
             return estImporte;
         } finally {
