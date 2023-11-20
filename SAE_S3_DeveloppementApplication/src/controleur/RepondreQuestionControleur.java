@@ -67,8 +67,6 @@ public class RepondreQuestionControleur {
     	// Renvoie sur une question s'il en reste, sinon envoie
     	// sur la page des résultats.
     	if (reponsesToggle.getSelectedToggle()!=null) {
-    		
-    		
     		RadioButton reponse = (RadioButton)reponsesToggle.getSelectedToggle();
     		System.out.println(reponse.getText());
     		if(quiz.estJuste(reponse.getText(), indiceQuestionCourrante)) {
@@ -83,8 +81,6 @@ public class RepondreQuestionControleur {
         	} else {
         		Main.ihmScoreQuiz(quiz, 0);
         	}
-    	} else {
-    		// TODO pop-up Pas de réponse sélectionnée.
     	}
     }
 
