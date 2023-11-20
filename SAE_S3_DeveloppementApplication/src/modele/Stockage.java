@@ -216,10 +216,9 @@ public class Stockage implements Serializable{
 	                        reponsesFausses.add(getValeurJuste(data, 6));
 	                        reponsesFausses.add(getValeurJuste(data, 7));
 	                        
-                    		System.out.println(reponsesFausses);
                     		//supprime les valeurss vide de la lsite des réponses fausses
                     		reponsesFausses.removeIf(String::isEmpty);
-                    		System.out.println(reponsesFausses);
+
 	                        // Créer une nouvelle question.
 	                        Question question = new Question(
 	                        		getValeurJuste(data, 2),
