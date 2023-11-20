@@ -202,7 +202,7 @@ public class ParametreCategorieController {
 				textField.getText().trim().isEmpty() ||
 				newValue.trim().isEmpty() ||
 				textFieldFaux.getText().trim().isEmpty() ||
-				(toggleGroup.getSelectedToggle() == null)
+				(toggleGroup.getSelectedToggle() == null) 
 				));
 
 		textFieldFaux.textProperty().addListener((observable, oldValue, newValue) ->
