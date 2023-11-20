@@ -54,126 +54,13 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Text layoutX="234.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question n°">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="234.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question n°">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="234.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question n°">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="234.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question n°">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="234.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question n°">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Button fx:id="feedBackQuestionUn" layoutX="407.0" layoutY="249.0" mnemonicParsing="false" onAction="#feedBackQuestionUnAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
-         <graphic>
-            <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/ampoule.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <ImageView fx:id="reponseVisuelleQuestionUn" fitHeight="35.0" fitWidth="35.0" layoutX="357.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/valider.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="reponseVisuelleQuestionDeux" fitHeight="35.0" fitWidth="35.0" layoutX="357.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/croix.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="reponseVisuelleQuestionTrois" fitHeight="35.0" fitWidth="35.0" layoutX="357.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/valider.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="reponseVisuelleQuestionQuatre" fitHeight="35.0" fitWidth="35.0" layoutX="357.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/valider.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="reponseVisuelleQuestionCinq" fitHeight="35.0" fitWidth="35.0" layoutX="357.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/valider.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="feedBackQuestionDeux" layoutX="407.0" layoutY="319.0" mnemonicParsing="false" onAction="#feedBackQuestionDeuxAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
-         <graphic>
-            <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/ampoule.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="feedBackQuestionTrois" layoutX="407.0" layoutY="389.0" mnemonicParsing="false" onAction="#feedBackQuestionTroisAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
-         <graphic>
-            <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/ampoule.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="feedBackQuestionQuatre" layoutX="407.0" layoutY="459.0" mnemonicParsing="false" onAction="#feedBackQuestionQuatreAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
-         <graphic>
-            <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/ampoule.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="feedBackQuestionCinq" layoutX="407.0" layoutY="529.0" mnemonicParsing="false" onAction="#feedBackQuestionCinqAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
-         <graphic>
-            <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/ampoule.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Text fx:id="numeroQuestionUn" layoutX="328.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="numeroQuestionDeux" layoutX="328.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="numeroQuestionTrois" layoutX="328.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="numeroQuestionQuatre" layoutX="328.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="numeroQuestionCinq" layoutX="328.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <VBox fx:id="vBoxFeedback" layoutX="463.0" layoutY="231.0" prefHeight="487.0" prefWidth="618.0" />
+      <Button fx:id="feedBackQuestionUn" layoutX="407.0" layoutY="249.0" mnemonicParsing="false" onAction="#feedBackQuestionUnAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
+      <Button fx:id="feedBackQuestionDeux" layoutX="407.0" layoutY="319.0" mnemonicParsing="false" onAction="#feedBackQuestionDeuxAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
+      <Button fx:id="feedBackQuestionTrois" layoutX="407.0" layoutY="389.0" mnemonicParsing="false" onAction="#feedBackQuestionTroisAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
+      <Button fx:id="feedBackQuestionQuatre" layoutX="407.0" layoutY="459.0" mnemonicParsing="false" onAction="#feedBackQuestionQuatreAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
+      <Button fx:id="feedBackQuestionCinq" layoutX="407.0" layoutY="529.0" mnemonicParsing="false" onAction="#feedBackQuestionCinqAction" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;" />
+      <VBox fx:id="vBoxFeedback" layoutX="231.0" layoutY="216.0" prefHeight="400.0" prefWidth="618.0" />
+      <Button fx:id="swipeGauche" layoutX="401.0" layoutY="635.0" mnemonicParsing="false" onAction="#swipeGaucheQuestionAction" text="&lt;" />
+      <Button fx:id="swipeDroit" layoutX="643.0" layoutY="635.0" mnemonicParsing="false" onAction="#swipeDroitQuestionAction" text="&gt;" />
    </children>
 </AnchorPane>
