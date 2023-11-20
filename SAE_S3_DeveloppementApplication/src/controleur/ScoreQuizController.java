@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -106,8 +107,7 @@ public class ScoreQuizController {
     
     @FXML
     void btnTerminerAction(ActionEvent event) {
-    	// TODO repeter la page celon le nombres de questions (5 questions = 0 repetitions, 20 questions = 3 répétitions)
-    	Main.ihmScoreQuiz(null, 0);
+    	Main.retourMenuPrincipal();
     }
     
     public void setListeQuestion() {
@@ -150,17 +150,16 @@ public class ScoreQuizController {
     		hbox.getChildren().add(textQuestion);
     		hbox.getChildren().add(affichageJusteOuNon);
     		hbox.getChildren().add(feedBackButton);
+    		hbox.setAlignment(Pos.CENTER_LEFT);
     		vBoxFeedback.getChildren().add(hbox);
     	}
     }
     
     @FXML
     void feedBackQuestionAction(int numeroQuestion, String feedback) {
-    	
     	if (feedback == null || feedback.isBlank() || feedback == "") {
     		feedback = "Il n'y a pas d'explication pour cette question.";
     	}
-    	
     	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
     			feedback, ButtonType.OK);
     	boitefeedBack.setTitle("Explication de la Question n°" + (numeroDePage*5+numeroQuestion+1)); 
