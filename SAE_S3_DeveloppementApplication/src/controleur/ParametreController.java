@@ -145,7 +145,8 @@ public class ParametreController {
 
 	}
 	
-	/** TODO comment method role
+	/** 
+	 * Afficher les pop sur toutes les vues
 	 * @param titre
 	 * @param message
 	 */
