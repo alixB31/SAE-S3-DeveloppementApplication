@@ -62,6 +62,6 @@ public class MenuController {
     
     @FXML
     void btnExportAction(ActionEvent event) {
-    	Main.ihmExportation();
+    	Main.ihmChoix();;
     }
 }
