@@ -6,67 +6,41 @@ package controleur;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import modele.Client;
 import vue.Main;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.Enumeration;
 
-/** 
- * Ce contrôleur gère la vue ihmEnvoie
- * @author rayanibrahime
- *
- */
 public class EnvoieController {
+
+    @FXML
+    private static TextField adresseIPServer;
 
     @FXML
     private Button btnEnvoi;
 
     @FXML
-    private Button btnIP;
+    private Button btnRetour;
 
     @FXML
-    private Button btnRetour;
-    
-    private static String adresseIP;
-    
-    @FXML
-    private TextField saisieIP;
+    private static TextField numDePort;
 
     @FXML
     void envoieFichier(ActionEvent event) {
-
+    	ImportationController.afficherInformation("Connexion avec votre ami","Fichier envoyé");
+    	Client.connexionServeur();
     }
 
     @FXML
     void retourMenuPrecedent(ActionEvent event) {
-        Main.ihmExportation();
+    	Main.ihmExportation();
     }
     
-    /** 
-     * Afficher l'adresse IP local 
-     * @param titre
-     * @param message
-     */
-    public static void afficherIP(String titre, String message) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle(titre);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    public static String getAdresseIPSaisie() {
+    	return adresseIPServer.getText();
     }
     
-    /**
-     * Récupère l'adresse IP du joueur 
-     * @return adresseIP
-     */
-    public static String getAdresseIP() {
-        return adresseIP;
+    public static String getNumDePort() {
+    	return numDePort.getText();
     }
-
 }
-
