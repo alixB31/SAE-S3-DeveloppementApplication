@@ -18,7 +18,7 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Text fx:id="categorieQuestion" layoutX="59.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie" wrappingWidth="92.92814636230469">
+      <Text fx:id="categorieQuestion" layoutX="59.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie" wrappingWidth="367.32810974121094">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
