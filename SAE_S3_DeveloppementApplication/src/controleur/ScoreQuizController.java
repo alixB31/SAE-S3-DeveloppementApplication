@@ -121,7 +121,7 @@ public class ScoreQuizController {
 
     		// Mise en place du bouton vert ou rouge
     		String cheminImageVerteOuRouge = "./images/";
-    		if (quiz.getResultatDeQuestion(i)) {
+    		if (quiz.getResultatDeQuestion(i+(numeroDePage*5))) {
     			cheminImageVerteOuRouge += "valider.png";
     		} else {
     			cheminImageVerteOuRouge += "croix.png";
@@ -159,13 +159,13 @@ public class ScoreQuizController {
     void feedBackQuestionAction(int numeroQuestion, String feedback) {
     	
     	if (feedback == null || feedback.isBlank() || feedback == "") {
-    		feedback = "Pas de feedback sur cette question.";
+    		feedback = "Il n'y a pas d'explication pour cette question.";
     	}
     	
     	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
     			feedback, ButtonType.OK);
-    	boitefeedBack.setTitle("FeedBack Question n°" + (numeroDePage*5+numeroQuestion+1)); 
-    	boitefeedBack.setHeaderText("FeedBack");
+    	boitefeedBack.setTitle("Explication de la Question n°" + (numeroDePage*5+numeroQuestion+1)); 
+    	boitefeedBack.setHeaderText(quiz.getListeQuestion().get(numeroDePage*5+numeroQuestion).getIntituleQuestion());
     	boitefeedBack.showAndWait();
     }
     
