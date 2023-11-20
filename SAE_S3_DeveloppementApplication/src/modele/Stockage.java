@@ -193,7 +193,7 @@ public class Stockage implements Serializable{
             // Parcourir les lignes du fichier CSV.
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                String[] data = line.split(";");
+                String[] data = line.split(";(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 
                 if (data.length >= 5) {  // Assurez-vous qu'il y a au moins 5 valeurs obligatoires
                     Categorie categorieCourante;
@@ -208,24 +208,18 @@ public class Stockage implements Serializable{
 
                     // Vérifier qu'au moins une des valeurs obligatoires n'est pas vide.
                     if (!data[0].isEmpty() && !data[1].isEmpty() && !data[2].isEmpty() && !data[3].isEmpty()) {
-
                     	if (!data[4].isEmpty() || !data[5].isEmpty() || !data[6].isEmpty() || !data[7].isEmpty()) {
 	                        // Créer une liste des réponses fausses.
-	                        ArrayList<String> reponsesFausses = new ArrayList<>();
+                    		ArrayList<String> reponsesFausses = new ArrayList<>();
+                    		reponsesFausses.add(getValeurJuste(data, 4));
+	                        reponsesFausses.add(getValeurJuste(data, 5));
+	                        reponsesFausses.add(getValeurJuste(data, 6));
+	                        reponsesFausses.add(getValeurJuste(data, 7));
 	                        
-	                        if (!data[4].isEmpty()) {
-	                        	reponsesFausses.add(getValeurJuste(data, 4));
-	                        }
-	                        if (!data[5].isEmpty()) {
-	                        	reponsesFausses.add(getValeurJuste(data, 5));
-	                        }
-	                        if (!data[6].isEmpty()) {
-	                        	reponsesFausses.add(getValeurJuste(data, 6));
-	                        }
-	                        if (!data[7].isEmpty()) {
-	                        	reponsesFausses.add(getValeurJuste(data, 7));
-	                        }
-	
+                    		System.out.println(reponsesFausses);
+                    		//supprime les valeurss vide de la lsite des réponses fausses
+                    		reponsesFausses.removeIf(String::isEmpty);
+                    		System.out.println(reponsesFausses);
 	                        // Créer une nouvelle question.
 	                        Question question = new Question(
 	                        		getValeurJuste(data, 2),
