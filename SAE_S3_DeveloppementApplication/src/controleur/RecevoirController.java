@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import vue.Main;
 import modele.Serveur;
+import controleur.ParametreController;
 
 public class RecevoirController {
 
@@ -55,9 +56,9 @@ public class RecevoirController {
     	    }
 
     	    if (adresseIP != null) {
-    	        afficherInfo("AdresseIP", "Votre adresseIP est : " + adresseIP);
+    	    	ParametreController.afficherAlerte("AdresseIP", "Votre adresseIP est : " + adresseIP);
     	    } else {
-    	        afficherInfo("", "test");
+    	    	ParametreController.afficherAlerte("", "test");
     	    }
 
     	} catch (SocketException e) {
@@ -67,31 +68,18 @@ public class RecevoirController {
 
     @FXML
     void VoirNumPort(ActionEvent event) {
-    	afficherInfo("Numéro de port","Le numéro de port est : "+ Serveur.getNumPort());
+    	ParametreController.afficherAlerte("Numéro de port","Le numéro de port est : "+ Serveur.getNumPort());
     }
 
     @FXML
     void connexion(ActionEvent event) {
-    	afficherInfo("Connexion avec votre ami","Attente de connexion...");
+    	ParametreController.afficherAlerte("Connexion avec votre ami","Attente de connexion...");
     	Serveur.gererConnexion();
     }
 
     @FXML
     void retourChoix(ActionEvent event) {
     	Main.ihmChoix();
-    }
-    
-    /** 
-     * Afficher l'adresse IP local 
-     * @param titre
-     * @param message
-     */
-    public static void afficherInfo(String titre, String message) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle(titre);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
     
     /**
