@@ -188,7 +188,7 @@ public class Stockage {
                 String line = scanner.nextLine();
                 String[] data = line.split(";");
 
-                if (data.length >= 5) {  // Assurez-vous qu'il y a au moins 3 valeurs obligatoires
+                if (data.length >= 5) {  // Assurez-vous qu'il y a au moins 5 valeurs obligatoires
                     Categorie categorieCourante;
 
                     String categorieValue = data[0];
@@ -205,19 +205,28 @@ public class Stockage {
                     	if (!data[4].isEmpty() || !data[5].isEmpty() || !data[6].isEmpty() || !data[7].isEmpty()) {
 	                        // Créer une liste des réponses fausses.
 	                        ArrayList<String> reponsesFausses = new ArrayList<>();
-	                        reponsesFausses.add(getSafeValue(data, 4));
-	                        reponsesFausses.add(getSafeValue(data, 5));
-	                        reponsesFausses.add(getSafeValue(data, 6));
-	                        reponsesFausses.add(getSafeValue(data, 7));
+	                        
+	                        if (!data[4].isEmpty()) {
+	                        	reponsesFausses.add(getValeurJuste(data, 4));
+	                        }
+	                        if (!data[5].isEmpty()) {
+	                        	reponsesFausses.add(getValeurJuste(data, 5));
+	                        }
+	                        if (!data[6].isEmpty()) {
+	                        	reponsesFausses.add(getValeurJuste(data, 6));
+	                        }
+	                        if (!data[7].isEmpty()) {
+	                        	reponsesFausses.add(getValeurJuste(data, 7));
+	                        }
 	
 	                        // Créer une nouvelle question.
 	                        Question question = new Question(
-	                                getSafeValue(data, 2),
+	                        		getValeurJuste(data, 2),
 	                                categorieCourante,
 	                                parseIntOrDefault(data[1]),
 	                                reponsesFausses,
-	                                getSafeValue(data, 3),
-	                                getSafeValue(data, 8)
+	                                getValeurJuste(data, 3),
+	                                getValeurJuste(data, 8)
 	                        );
 	
 	                        // Ajouter la question à la liste des questions.
@@ -244,7 +253,7 @@ public class Stockage {
     }
     
     // Méthode pour obtenir une valeur sûre à partir d'un tableau
-    private String getSafeValue(String[] array, int index) {
+    private String getValeurJuste(String[] array, int index) {
         return (index >= 0 && index < array.length) ? array[index] : "";
     }
 
