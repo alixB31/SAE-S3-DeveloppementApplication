@@ -103,56 +103,6 @@ public class ScoreQuizController {
     	// TODO repeter la page celon le nombres de questions (5 questions = 0 repetitions, 20 questions = 3 répétitions)
     	Main.ihmScoreQuiz(null, 0);
     }
-
-    @FXML
-    void feedBackQuestionCinqAction(ActionEvent event) {
-    	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
-    			 "Voici le feedBack",
-    			 ButtonType.OK);
-    	boitefeedBack.setTitle("FeedBack Question n°"); // TODO ajouter le numero de la question
-    	boitefeedBack.setHeaderText("FeedBack"); 
-    	boitefeedBack.showAndWait(); 
-    }
-
-    @FXML
-    void feedBackQuestionDeuxAction(ActionEvent event) {
-    	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
-   			 "Voici le feedBack",
-   			 ButtonType.OK);
-	   	boitefeedBack.setTitle("FeedBack Question n°"); // TODO ajouter le numero de la question
-	   	boitefeedBack.setHeaderText("FeedBack"); 
-	   	boitefeedBack.showAndWait(); 
-    }
-
-    @FXML
-    void feedBackQuestionQuatreAction(ActionEvent event) {
-    	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
-      			 "Voici le feedBack",
-      			 ButtonType.OK);
-   	   	boitefeedBack.setTitle("FeedBack Question n°"); // TODO ajouter le numero de la question
-   	   	boitefeedBack.setHeaderText("FeedBack"); 
-   	   	boitefeedBack.showAndWait(); 
-    }
-
-    @FXML
-    void feedBackQuestionTroisAction(ActionEvent event) {
-    	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
-      			 "Voici le feedBack",
-      			 ButtonType.OK);
-   	   	boitefeedBack.setTitle("FeedBack Question n°"); // TODO ajouter le numero de la question
-   	   	boitefeedBack.setHeaderText("FeedBack"); 
-   	   	boitefeedBack.showAndWait(); 
-    }
-
-    @FXML
-    void feedBackQuestionUnAction(ActionEvent event) {
-    	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
-      			 "Voici le feedBack",
-      			 ButtonType.OK);
-   	   	boitefeedBack.setTitle("FeedBack Question n°"); // TODO ajouter le numero de la question
-   	   	boitefeedBack.setHeaderText("FeedBack"); 
-   	   	boitefeedBack.showAndWait(); 
-    }
     
     public void setListeQuestion(Quiz quiz) {
     	ArrayList<Question> listeQuestions = quiz.getCinqQuestions(numeroDePage);
@@ -209,5 +159,14 @@ public class ScoreQuizController {
     	boitefeedBack.setHeaderText("FeedBack");
     	boitefeedBack.showAndWait();
     }
-
+    
+    @FXML
+    void swipeGaucheQuestionAction(){
+    	
+    }
+    
+    @FXML
+    void swipeDroitQuestionAction() {
+    	
+    }
 }
