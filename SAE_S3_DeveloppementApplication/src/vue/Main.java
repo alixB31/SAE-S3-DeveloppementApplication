@@ -266,12 +266,12 @@ public class Main extends Application {
     	} else {
     		nomCategorie = quiz.getCategorie().getIntituleCategorie();
     	}
+    	controller.setQuizScore(quiz);
     	controller.setCategorie(nomCategorie);
     	controller.setNote(quiz.getScoreFinal()+"", quiz.getNombreQuestions()+"");
     	controller.setNumeroDePage(indicePageResultat);
-    	controller.setListeQuestion(quiz);
+    	controller.setListeQuestion();
     	fenetrePrincipale.setScene(sceneScoreQuiz);
-		
     }
     
     public static void ihmImportation() {
