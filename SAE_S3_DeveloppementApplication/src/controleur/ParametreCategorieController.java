@@ -176,7 +176,7 @@ public class ParametreCategorieController {
 						ParametreController.afficherAlerte("Question non ajoutable","Une question avec le même intitulé existe déjà.");
 					}
 				} else {
-					ParametreController.afficherAlerte("Question non ajoutable","Une réponse fausse et la même que la réponse vrai.");
+					ParametreController.afficherAlerte("Question non ajoutable","Une réponse fausse est la même que la réponse vrai.");
 				}
 				
 				popupStage.close();
