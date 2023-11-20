@@ -118,7 +118,9 @@ public class Question  implements Serializable{
 	 * courrante.
 	 */
 	public void setReponseJusteQuestion(String reponseJuste) {
-		this.reponseJuste = reponseJuste;
+		if (!reponseFausseExiste(reponseJuste)) {
+			this.reponseJuste = reponseJuste;
+		}
 	}
 
 	/**
@@ -128,16 +130,7 @@ public class Question  implements Serializable{
 		this.feedBackQuestion = feedBack;
 	}
 	
-	/**
-	 * Ajoute une réponse fausse à la liste des réponses fausses.
-	 * Il y a obligatoirement entre 1 et 4 réponse(s) fausse(s).
-	 * Une réponse fausse ne peut être qu'une fois dans la liste
-	 * des réponses fausses d'une question.
-	 * @param reponseFausse la réponse fausse à ajouter.
-	 */
-	public void ajouterReponseFausse(String reponseFausse) {
-		this.listeReponsesFausses.add(reponseFausse);
-	}
+
 	/**
 	 * Modifie une réponse fausse déjà existante. La nouvelle réponse fausse
 	 * doit être unique dans la liste des réponses fausses d'une question.

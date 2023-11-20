@@ -166,25 +166,6 @@ public class ListeQuestion implements Serializable{
     }
     
     /**
-     * Ajoute une réponse fausse à la liste des réponse fausses.
-     * Il ne peut y avoir que 4 réponses fausses maximum.
-     * Il ne peut pas y avoir deux réponses fausses identiques au sein de
-     * la même question.
-     * @param question la question dont on veux ajouter une réponse fausse
-     * @param reponseFausse la réponse que l'on ajoute.
-     * @return estModifiee est true si la modification c'est effectuée, false sinon.
-     */
-    public boolean ajouterReponseFausse(Question question,String reponseFausse) {
-    	boolean estModifiee = false;
-		if (!reponseFausse.isBlank() && !reponseFausse.isBlank() && !question.reponseFausseExiste(reponseFausse)
-				&& question.getReponsesFaussesQuestion().size() < 4) {
-			question.ajouterReponseFausse(reponseFausse);
-			estModifiee = true;
-		}
-		return estModifiee;
-    }
-    
-    /**
      * Modifie le feedback de la question. Une question n'a pas forcément
      * de feedBack mais un feedBack ne peut être enregistré vide ou
      * rempli uniquement d'espace.
