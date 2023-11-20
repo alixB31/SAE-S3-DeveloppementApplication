@@ -38,43 +38,6 @@ public class EnvoieController {
     private TextField saisieIP;
 
     @FXML
-    void afficherIp(ActionEvent event) {
-        // Obtenir l'adresse IP de la machine locale
-    	// Obtenir l'adresse IP de la machine locale
-    	try {
-    	    Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-
-    	    while (interfaces.hasMoreElements()) {
-    	        NetworkInterface networkInterface = interfaces.nextElement();
-
-    	        if (networkInterface.isUp() && !networkInterface.isLoopback()) {
-    	            Enumeration<InetAddress> addresses = networkInterface.getInetAddresses();
-
-    	            while (addresses.hasMoreElements()) {
-    	                InetAddress address = addresses.nextElement();
-
-    	                // Vérifier si c'est une adresse IPv4
-    	                if (address.getHostAddress().indexOf(':') == -1) {
-    	                    // Cette condition filtre les adresses IPv4
-    	                    adresseIP = address.getHostAddress();
-    	                    break; // Arrête la boucle dès qu'une adresse IPv4 est trouvée
-    	                }
-    	            }
-    	        }
-    	    }
-
-    	    if (adresseIP != null) {
-    	        afficherIP("AdresseIP", "Votre adresseIP est : " + adresseIP);
-    	    } else {
-    	        afficherIP("", "test");
-    	    }
-
-    	} catch (SocketException e) {
-    	    e.printStackTrace();
-    	}
-    }
-
-    @FXML
     void envoieFichier(ActionEvent event) {
 
     }
@@ -85,7 +48,7 @@ public class EnvoieController {
     }
     
     /** 
-     * Affiche l'adresse IP local 
+     * Afficher l'adresse IP local 
      * @param titre
      * @param message
      */
