@@ -1,6 +1,7 @@
 package controleur;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
@@ -107,8 +109,15 @@ public class ScoreQuizController {
     
     @FXML
     void btnTerminerAction(ActionEvent event) {
-    	//TODO pop-up S'il souhaite quitter le feedBack ou non
-    	Main.retourMenuPrincipal();
+    	Alert popUpTerminerQuiz = new Alert(AlertType.CONFIRMATION);
+    	popUpTerminerQuiz.setTitle("Quitter le quiz");
+    	popUpTerminerQuiz.setHeaderText("Attention: Quitter le quiz est irreversible!");
+    	popUpTerminerQuiz.setContentText("Voulez vous quitter le quiz?");
+		
+		Optional<ButtonType> reponseContinuer = popUpTerminerQuiz.showAndWait();
+		if (reponseContinuer.get() == ButtonType.OK) {
+			Main.retourMenuPrincipal();
+		}
     }
     
     public void setListeQuestion() {

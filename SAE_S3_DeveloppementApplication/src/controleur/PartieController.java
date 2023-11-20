@@ -6,10 +6,14 @@ package controleur;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -45,40 +49,46 @@ public class PartieController {
     
     @FXML
     void LancerQuiz(ActionEvent event) {
-    	if (comboBoxCategorie.getValue() == null) {
-    		//TODO pop-up Aucune catégorie sélectionnée (la partie ne se lance pas)
-    	} else {
-    		RadioButton difficulte = (RadioButton)choixDifficultes.getSelectedToggle();
-    		int difficulteReelle;
-    		if (difficulte.getText().equals("Indifférent")) {
-    			difficulteReelle = 0;
-    		} else {
-    			difficulteReelle = Integer.parseInt(difficulte.getText());
-    			System.out.println("Diff est a " + difficulteReelle);
-    		}
-    		Categorie categorie;
-    		if (((String)comboBoxCategorie.getValue()).equals("Toutes les catégories")) {
-    			categorie = null;
-    		} else {
-    			categorie = (Categorie)Main.stockage.getListeCategorie().get((String)comboBoxCategorie.getValue());
-    		}
-    		RadioButton nbQuestion = (RadioButton)nombreQuestion.getSelectedToggle();
-    		System.out.println("Nombre de question initial : " + nbQuestion.getText());
-    		Quiz quiz = new Quiz(difficulteReelle,Integer.parseInt(nbQuestion.getText()),categorie,
-    				Main.stockage);
-    		if (quiz.quantiteQuestionOk(Integer.parseInt(nbQuestion.getText()))) {
-    			Main.repondreQuestion(quiz , 0);
-    		} else if (quiz.getNombreQuestions()!=0){
-    			//TODO Pop-up pas assez de question
-    			// Le nombre de question trouvées est : nbQuestion.getText() Attention c'est déjà une String.
-    			// Si le joueur veux continuer alors il continu.
-    			Main.repondreQuestion(quiz, 0);
-    		} else {
-    			// Il n'y a aucune questions correspondantes
-    			//Pop-up mais pas de possibilité de continuer
-    			System.out.println("Pas de question disponible.");
-    		}
-    	}
+		RadioButton difficulte = (RadioButton)choixDifficultes.getSelectedToggle();
+		int difficulteReelle;
+		if (difficulte.getText().equals("Indifférent")) {
+			difficulteReelle = 0;
+		} else {
+			difficulteReelle = Integer.parseInt(difficulte.getText());
+			System.out.println("Diff est a " + difficulteReelle);
+		}
+		Categorie categorie;
+		if (((String)comboBoxCategorie.getValue()).equals("Toutes les catégories")) {
+			categorie = null;
+		} else {
+			categorie = (Categorie)Main.stockage.getListeCategorie().get((String)comboBoxCategorie.getValue());
+		}
+		RadioButton nbQuestion = (RadioButton)nombreQuestion.getSelectedToggle();
+		System.out.println("Nombre de question initial : " + nbQuestion.getText());
+		Quiz quiz = new Quiz(difficulteReelle,Integer.parseInt(nbQuestion.getText()),categorie,
+				Main.stockage);
+		if (quiz.quantiteQuestionOk(Integer.parseInt(nbQuestion.getText()))) {
+			Main.repondreQuestion(quiz , 0);
+		} else if (quiz.getNombreQuestions()!=0){
+			// Si le nombre ne correspond pas mais qu'il y a tout de même des questions qui correspondent,
+			// alors on propose à l'utilisateur d'annuler le lancement du quiz ou de continuer en lui
+			// précisant le nombre de questions correspondantes.
+			Alert popUpContinuer = new Alert(AlertType.CONFIRMATION);
+			popUpContinuer.setTitle("Pas assez de question");
+			popUpContinuer.setHeaderText("Il y a seulement " + quiz.getNombreQuestions() + " qui correpondent à vos citères,"
+					+ " cependant vous en demandez " + nbQuestion.getText());
+			popUpContinuer.setContentText("Voulez vous continuer?");
+			
+			Optional<ButtonType> reponseContinuer = popUpContinuer.showAndWait();
+			if (reponseContinuer.get() == ButtonType.OK) {
+				Main.repondreQuestion(quiz, 0);
+			}
+			
+		} else {
+			// Il n'y a aucune questions correspondantes
+			//Pop-up mais pas de possibilité de continuer
+			System.out.println("Pas de question disponible.");
+		}
     }
     
     public void setListeCategorie(HashMap<String, Categorie> listeCategorie) {
