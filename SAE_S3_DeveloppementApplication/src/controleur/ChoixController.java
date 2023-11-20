@@ -23,7 +23,7 @@ public class ChoixController {
 
     @FXML
     void RecevoirFichier(ActionEvent event) {
-    	
+    	Main.ihmRecevoir();
     }
 
     @FXML
