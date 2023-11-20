@@ -26,9 +26,6 @@ public class Stockage implements Serializable{
 	// objet ListeQuestion contenant les questions du serveur
 	ListeQuestion listeQuestion;
 	
-	// objet ListeJouteur contenant les joueurs enregistrés sur le serveur
-	ListeJoueur listeJoueur;
-	
 	/**
 	 * Constructeur vide;
 	 */
