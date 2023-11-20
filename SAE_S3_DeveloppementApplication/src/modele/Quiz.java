@@ -77,15 +77,21 @@ public class Quiz {
 	
 	public ArrayList<Question> getCinqQuestions(int indicePage) {
     	int nombreQuestionAAfficher = listeQuestion.size()-(5*indicePage);
-    	int indiceMinimum = indicePage*5;
-		if(nombreQuestionAAfficher>=5) {
+    	int indiceMinimum;
+    	if (indicePage != 0) {
+    		indiceMinimum = (indicePage*5)-1;
+    	} else {
+    		indiceMinimum = indicePage*5;
+    	}
+		if(nombreQuestionAAfficher > 5) {
 			nombreQuestionAAfficher = 5;
 		}
-		ArrayList<Question> listeCinqQuestion = new ArrayList<>();
-    	for (int i = indiceMinimum; i < nombreQuestionAAfficher ;i++) {
-    		listeCinqQuestion.add(listeQuestion.get(indiceMinimum));
+		ArrayList<Question> listeCinqQuestions = new ArrayList<>();
+    	for (int i = 0; i < nombreQuestionAAfficher ;i++) {
+    		listeCinqQuestions.add(listeQuestion.get(indiceMinimum+i));
     	}
-		return listeCinqQuestion;
+    	System.out.println("Longueur liste cinq questions " +listeCinqQuestions.size());
+		return listeCinqQuestions;
 	}
 	
 	public boolean getResultatDeQuestion(int indice) {

@@ -83,6 +83,12 @@ public class ScoreQuizController {
 
     private int numeroDePage;
     
+    private Quiz quiz;
+    
+    public void setQuizScore(Quiz quiz) {
+    	this.quiz = quiz;
+    }
+    
     public void setNumeroDePage(int numeroDePage) {
     	this.numeroDePage = numeroDePage;
     }
@@ -104,9 +110,12 @@ public class ScoreQuizController {
     	Main.ihmScoreQuiz(null, 0);
     }
     
-    public void setListeQuestion(Quiz quiz) {
+    public void setListeQuestion() {
+    	vBoxFeedback.getChildren().clear();
     	ArrayList<Question> listeQuestions = quiz.getCinqQuestions(numeroDePage);
+    	System.out.println("Num page = " + numeroDePage);
     	for (int i = 0; i <listeQuestions.size(); i++) {
+    		System.out.println("Initialisation question n°" + ((numeroDePage*5)+1+i));
     		HBox hbox = new HBox(30);
     		Text textQuestion = new Text("Question n°" + ((numeroDePage*5)+1+i));
 
@@ -162,11 +171,21 @@ public class ScoreQuizController {
     
     @FXML
     void swipeGaucheQuestionAction(){
-    	
+    	System.out.println("Gauche" + numeroDePage);
+    	if (numeroDePage > 0) {
+    		System.out.println("Gauche execute");
+    		setNumeroDePage(numeroDePage-1);
+        	setListeQuestion();
+    	}
     }
     
     @FXML
     void swipeDroitQuestionAction() {
-    	
+    	System.out.println("Droit" + numeroDePage);
+    	if (numeroDePage*5 + 5 < quiz.getNombreQuestions()) {
+    		System.out.println("Droit execute");
+    		setNumeroDePage(numeroDePage+1);
+        	setListeQuestion();
+    	}
     }
 }
