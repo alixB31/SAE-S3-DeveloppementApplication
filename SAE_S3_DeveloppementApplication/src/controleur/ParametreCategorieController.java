@@ -400,21 +400,34 @@ public class ParametreCategorieController {
 			boutonValider.setOnAction(e -> {
 				if (!textField.getText().isEmpty() && !textFieldVrai.getText().isEmpty() && !textFieldFaux.getText().isEmpty()
 						&& (radio1.isSelected() || radio2.isSelected() || radio3.isSelected())) {
-
+					
 					//recuperation de la radio sélectionnez 
 					difficulte = (radio1.isSelected()) ? 1 : (radio2.isSelected()) ? 2 : (radio3.isSelected()) ? 3 : 0;
+					
+					String textFieldVraiTexte = textFieldVrai.getText().trim();
 					// création de l'array list des réponses fausses.
 					listeReponsesFausses = new ArrayList<>();
 					//ajout des reponses fausses a l'array list si elles sont différent de null et de ""
-					listeReponsesFausses.add(textFieldFaux.getText());
-					if (textFieldFaux2.getText() !=null && !textFieldFaux2.getText().isBlank() && textFieldFaux2.getText().trim() != "" ) {
-						listeReponsesFausses.add(textFieldFaux2.getText());
+					String textFieldFauxTexte = textFieldFaux.getText().trim();
+					String textFieldFauxTexte2 = textFieldFaux2.getText().trim();
+					String textFieldFauxTexte3 = textFieldFaux3.getText().trim();
+					String textFieldFauxTexte4 = textFieldFaux4.getText().trim();
+					
+					listeReponsesFausses.add(textFieldFauxTexte);
+					if (textFieldFaux2.getText() !=null && !textFieldFaux2.getText().isBlank() && textFieldFauxTexte2 != "") {
+						if (!listeReponsesFausses.contains(textFieldFauxTexte2)) {
+							listeReponsesFausses.add(textFieldFauxTexte2);
+						} 
 					}
-					if (textFieldFaux3.getText() !=null && !textFieldFaux3.getText().isBlank() && textFieldFaux3.getText().trim() != "" ) {
-						listeReponsesFausses.add(textFieldFaux3.getText());
+					if (textFieldFaux3.getText() !=null && !textFieldFaux3.getText().isBlank() && textFieldFauxTexte3 != "") {
+						if (!listeReponsesFausses.contains(textFieldFauxTexte3)) {
+							listeReponsesFausses.add(textFieldFauxTexte3);
+						}
 					}
-					if (textFieldFaux4.getText() !=null && !textFieldFaux4.getText().isBlank() && textFieldFaux4.getText().trim() != "" ) {
-						listeReponsesFausses.add(textFieldFaux4.getText());
+					if (textFieldFaux4.getText() !=null && !textFieldFaux4.getText().isBlank() && textFieldFauxTexte4 != "") {
+						if (!listeReponsesFausses.contains(textFieldFauxTexte4)) {
+							listeReponsesFausses.add(textFieldFauxTexte4);
+						}
 					}
 
 					feedBack = textFieldFeedBack.getText();
@@ -424,25 +437,30 @@ public class ParametreCategorieController {
 					String NouvelleConcatenation = textField.getText()+nouvelleCategorie.getIntituleCategorie();
 
 					//modification de la question
-					if (nouvelleCategorie == categorieCourante 
-							&&	Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack, concatenation)) {
-
-						comboBoxCategorie.getItems().set(comboBoxCategorie.getItems().indexOf(ancienIntitule), textField.getText().trim());
-						comboBoxCategorie.setValue(textField.getText().trim());
-
-						//on regarde si la question existe deja dans la nouvelle catégorie
-					} else if(nouvelleCategorie != categorieCourante && !Main.stockage.getListeQuestion().containsKey(NouvelleConcatenation)) {			
-						Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVrai.getText(), feedBack, concatenation);
-						comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());				
-						//si elle existe pas on l'enleve de la comboBox de la categorie courrante,sinon on ne peut pas la trasférer et rien ne se passe
-
-					} else if(nouvelleCategorie != categorieCourante && Main.stockage.getListeQuestion().containsKey(NouvelleConcatenation)){
-						ParametreController.afficherAlerte("Question non transférable","Une question avec le même intitulé existe déjà dans la catégorie cible");
+					if (!listeReponsesFausses.contains(textFieldVraiTexte)) {
+						//création de la nouvelle question et ajout a la liste des questions
+						if (nouvelleCategorie == categorieCourante 
+								&&	Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVraiTexte, feedBack, concatenation)) {
+	
+							comboBoxCategorie.getItems().set(comboBoxCategorie.getItems().indexOf(ancienIntitule), textField.getText().trim());
+							comboBoxCategorie.setValue(textField.getText().trim());
+	
+							//on regarde si la question existe deja dans la nouvelle catégorie
+						} else if(nouvelleCategorie != categorieCourante && !Main.stockage.getListeQuestion().containsKey(NouvelleConcatenation)) {			
+							Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVraiTexte, feedBack, concatenation);
+							comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());				
+							//si elle existe pas on l'enleve de la comboBox de la categorie courrante,sinon on ne peut pas la trasférer et rien ne se passe
+	
+						} else if(nouvelleCategorie != categorieCourante && Main.stockage.getListeQuestion().containsKey(NouvelleConcatenation)){
+							ParametreController.afficherAlerte("Question non transférable","Une question avec le même intitulé existe déjà dans la catégorie cible");
+						} else {
+							ParametreController.afficherAlerte("Question non modifiable","Une question avec le même intitulé existe déjà dans cette catégorie");
+						}
+						
 					} else {
-						ParametreController.afficherAlerte("Question non modifiable","Une question avec le même intitulé existe déjà dans cette catégorie");
+						ParametreController.afficherAlerte("Question non ajoutable","Une réponse fausse et la même que la réponse vrai.");
 					}
 					popupStage.close();
-
 				}
 			});
 
