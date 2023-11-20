@@ -150,7 +150,6 @@ public class ScoreQuizController {
     		hbox.getChildren().add(textQuestion);
     		hbox.getChildren().add(affichageJusteOuNon);
     		hbox.getChildren().add(feedBackButton);
-    		vBoxFeedback.setSpacing(50);
     		vBoxFeedback.getChildren().add(hbox);
     	}
     }
