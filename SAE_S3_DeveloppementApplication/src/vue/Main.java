@@ -35,7 +35,7 @@ public class Main extends Application {
     private static Scene sceneParametreCategorie;
     private static Scene sceneRepondreQuestion;
     private static Scene sceneScoreQuiz;
-    private static Scene sceneImportationExportation;
+    private static Scene sceneImportation;
     private static Scene sceneExportation;
     private static Scene sceneEnvoie;
     private static FXMLLoader chargeurFXMLParametre= new FXMLLoader();
@@ -85,10 +85,10 @@ public class Main extends Application {
         Parent ScoreQuiz = chargeurFXMLScoreQuiz.load();
         sceneScoreQuiz = new Scene(ScoreQuiz);
         
-        FXMLLoader chargeurFXMLImportationExportation = new FXMLLoader();
-        chargeurFXMLImportationExportation.setLocation(getClass().getResource("ihmImportationExportation.fxml"));
-        Parent ImportationExportation = chargeurFXMLImportationExportation.load();
-        sceneImportationExportation = new Scene(ImportationExportation);
+        FXMLLoader chargeurFXMLImportation = new FXMLLoader();
+        chargeurFXMLImportation.setLocation(getClass().getResource("ihmImportation.fxml"));
+        Parent Importation = chargeurFXMLImportation.load();
+        sceneImportation = new Scene(Importation);
         
         FXMLLoader chargeurFXMLExportation = new FXMLLoader();
         chargeurFXMLExportation.setLocation(getClass().getResource("ihmExportation.fxml"));
@@ -257,12 +257,16 @@ public class Main extends Application {
 		
     }
     
-    public static void ihmImportationExportation() {
-    	fenetrePrincipale.setScene(sceneImportationExportation);		
+    public static void ihmImportation() {
+    	fenetrePrincipale.setScene(sceneImportation);		
     }
     
     public static void ihmExportation() {
     	fenetrePrincipale.setScene(sceneExportation);		
+    }
+    
+    public static void ihmEnvoie() {
+    	fenetrePrincipale.setScene(sceneEnvoie);
     }
     
 }
