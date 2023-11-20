@@ -63,6 +63,7 @@ public class PartieController {
     			categorie = (Categorie)Main.stockage.getListeCategorie().get((String)comboBoxCategorie.getValue());
     		}
     		RadioButton nbQuestion = (RadioButton)nombreQuestion.getSelectedToggle();
+    		System.out.println("Nombre de question initial : " + nbQuestion.getText());
     		Quiz quiz = new Quiz(difficulteReelle,Integer.parseInt(nbQuestion.getText()),categorie,
     				Main.stockage);
     		if (quiz.quantiteQuestionOk(Integer.parseInt(nbQuestion.getText()))) {

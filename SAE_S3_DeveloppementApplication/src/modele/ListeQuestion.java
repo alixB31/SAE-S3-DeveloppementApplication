@@ -298,23 +298,37 @@ public class ListeQuestion implements Serializable{
      * @return
      */
     public ArrayList<Question> listeQuestionFiltreDifficulteCategorieTaille(Quiz quiz) {
-    	System.out.println("nom cat :" + quiz.getCategorie().getIntituleCategorie());
-    	ArrayList<Question> listeFiltree = listeQuestionParCategorie(quiz.getCategorie());
+    	ArrayList<Question> listeFiltree = new ArrayList<>();
+    	if (quiz.getCategorie() != null) {
+    		listeFiltree = listeQuestionParCategorie(quiz.getCategorie());
+    	} else {
+    		
+    		for (Map.Entry entry : listeQuestion.entrySet()) {
+    			listeFiltree.add((Question)entry.getValue());
+    		}
+    	}
+    	
     	Collections.shuffle(listeFiltree);
     	
     	// Filtrage de la difficulté
-    	for (int i = 0; i< listeFiltree.size(); i++) {
-    		if (listeFiltree.get(i).getDifficulteQuestion()!= quiz.getDifficulte()) {
-    			listeFiltree.remove(i);
-    		}
+    	if (quiz.getDifficulte()!= 0) {
+    		for (int i = 0; i< listeFiltree.size(); i++) {
+        		if (listeFiltree.get(i).getDifficulteQuestion()!= quiz.getDifficulte()) {
+        			listeFiltree.remove(i);
+        		}
+        	}
     	}
-    	if (quiz.getNombreQuestions()== 0 || quiz.getNombreQuestions() > listeFiltree.size()) {
+    	if (quiz.getNombreQuestions() > listeFiltree.size()) {
     		quiz.setNombreQuestion(listeFiltree.size());
     	}
-    	for (int i = quiz.getNombreQuestions(); i < listeFiltree.size(); i++) {
-    		listeFiltree.remove(i);
+    	// On retire les question en trop
+
+    	System.out.println("Nombre question dans liste avant : " + listeFiltree.size());
+    	while (quiz.getNombreQuestions() < listeFiltree.size()) {
+   		listeFiltree.remove(0);
     	}
-    	
+    	System.out.println("Nombre question dans liste apres : " + listeFiltree.size());
+    	System.out.println("Nombre question apres : "+ quiz.getNombreQuestions());
     	return listeFiltree;
     }
     
