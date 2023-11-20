@@ -195,7 +195,7 @@ public class Stockage implements Serializable{
                 String line = scanner.nextLine();
                 String[] data = line.split(";");
 
-                if (data.length >= 5) {  // Assurez-vous qu'il y a au moins 3 valeurs obligatoires
+                if (data.length >= 5) {  // Assurez-vous qu'il y a au moins 5 valeurs obligatoires
                     Categorie categorieCourante;
 
                     String categorieValue = data[0];
@@ -212,32 +212,35 @@ public class Stockage implements Serializable{
                     	if (!data[4].isEmpty() || !data[5].isEmpty() || !data[6].isEmpty() || !data[7].isEmpty()) {
 	                        // Créer une liste des réponses fausses.
 	                        ArrayList<String> reponsesFausses = new ArrayList<>();
-	                        reponsesFausses.add(getSafeValue(data, 4));
-	                        reponsesFausses.add(getSafeValue(data, 5));
-	                        reponsesFausses.add(getSafeValue(data, 6));
-	                        reponsesFausses.add(getSafeValue(data, 7));
+	                        
+	                        if (!data[4].isEmpty()) {
+	                        	reponsesFausses.add(getValeurJuste(data, 4));
+	                        }
+	                        if (!data[5].isEmpty()) {
+	                        	reponsesFausses.add(getValeurJuste(data, 5));
+	                        }
+	                        if (!data[6].isEmpty()) {
+	                        	reponsesFausses.add(getValeurJuste(data, 6));
+	                        }
+	                        if (!data[7].isEmpty()) {
+	                        	reponsesFausses.add(getValeurJuste(data, 7));
+	                        }
 	
 	                        // Créer une nouvelle question.
 	                        Question question = new Question(
-	                                getSafeValue(data, 2),
+	                        		getValeurJuste(data, 2),
 	                                categorieCourante,
 	                                parseIntOrDefault(data[1]),
 	                                reponsesFausses,
-	                                getSafeValue(data, 3),
-	                                getSafeValue(data, 8)
+	                                getValeurJuste(data, 3),
+	                                getValeurJuste(data, 8)
 	                        );
 	
 	                        // Ajouter la question à la liste des questions.
 	                        listeQuestion.ajouterElementListeQuestion(question);
 	                        estImporte = true;
-                    	} else {
-                    		System.err.println("Au moins une des valeurs data[4], data[5], data[6], ou data[7] doit être remplie.");
                     	}
-                    } else {
-                        System.err.println("Les valeurs obligatoires data[0], data[1], data[2] et data[3] doivent être remplies.");
                     }
-                } else {
-                    System.err.println("Ligne incorrecte dans le fichier CSV : " + line);
                 }
             }
 
@@ -247,7 +250,6 @@ public class Stockage implements Serializable{
             return estImporte;
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             // Indiquer que l'importation a échoué.
             return estImporte;
         } finally {
@@ -258,7 +260,7 @@ public class Stockage implements Serializable{
     }
     
     // Méthode pour obtenir une valeur sûre à partir d'un tableau
-    private String getSafeValue(String[] array, int index) {
+    private String getValeurJuste(String[] array, int index) {
         return (index >= 0 && index < array.length) ? array[index] : "";
     }
 
