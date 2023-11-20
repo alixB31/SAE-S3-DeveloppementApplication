@@ -28,17 +28,17 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fx:id="difficultéQuestion" layoutX="135.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
+      <Text fx:id="difficultéQuestion" layoutX="130.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?" wrappingWidth="289.4754180908203">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fx:id="question" layoutX="178.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="En java, combien y a t'il de type de boucle ?" wrappingWidth="723.4099426269531">
+      <Text fx:id="question" layoutX="178.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="En java, combien y a t'il de type de boucle ?" wrappingWidth="723.4099426269531">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Text fx:id="pageCourante" layoutX="984.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+      <Text fx:id="pageCourante" layoutX="980.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -48,11 +48,11 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="nbPageMax" layoutX="1018.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+      <Text fx:id="nbPageMax" layoutX="1016.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <VBox fx:id="reponsesBox" layoutX="178.0" layoutY="314.0" prefHeight="290.0" prefWidth="642.0" />
+      <VBox fx:id="reponsesBox" layoutX="178.0" layoutY="333.0" prefHeight="290.0" prefWidth="642.0" />
    </children>
 </AnchorPane>
