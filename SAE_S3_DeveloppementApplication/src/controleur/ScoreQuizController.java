@@ -83,8 +83,6 @@ public class ScoreQuizController {
 
     private int numeroDePage;
     
-    private int numeroQuestion = 0;
-    
     public void setNumeroDePage(int numeroDePage) {
     	this.numeroDePage = numeroDePage;
     }
@@ -105,56 +103,6 @@ public class ScoreQuizController {
     	// TODO repeter la page celon le nombres de questions (5 questions = 0 repetitions, 20 questions = 3 répétitions)
     	Main.ihmScoreQuiz(null, 0);
     }
-
-    @FXML
-    void feedBackQuestionCinqAction(ActionEvent event) {
-    	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
-    			 "Voici le feedBack",
-    			 ButtonType.OK);
-    	boitefeedBack.setTitle("FeedBack Question n°"); // TODO ajouter le numero de la question
-    	boitefeedBack.setHeaderText("FeedBack"); 
-    	boitefeedBack.showAndWait(); 
-    }
-
-    @FXML
-    void feedBackQuestionDeuxAction(ActionEvent event) {
-    	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
-   			 "Voici le feedBack",
-   			 ButtonType.OK);
-	   	boitefeedBack.setTitle("FeedBack Question n°"); // TODO ajouter le numero de la question
-	   	boitefeedBack.setHeaderText("FeedBack"); 
-	   	boitefeedBack.showAndWait(); 
-    }
-
-    @FXML
-    void feedBackQuestionQuatreAction(ActionEvent event) {
-    	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
-      			 "Voici le feedBack",
-      			 ButtonType.OK);
-   	   	boitefeedBack.setTitle("FeedBack Question n°"); // TODO ajouter le numero de la question
-   	   	boitefeedBack.setHeaderText("FeedBack"); 
-   	   	boitefeedBack.showAndWait(); 
-    }
-
-    @FXML
-    void feedBackQuestionTroisAction(ActionEvent event) {
-    	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
-      			 "Voici le feedBack",
-      			 ButtonType.OK);
-   	   	boitefeedBack.setTitle("FeedBack Question n°"); // TODO ajouter le numero de la question
-   	   	boitefeedBack.setHeaderText("FeedBack"); 
-   	   	boitefeedBack.showAndWait(); 
-    }
-
-    @FXML
-    void feedBackQuestionUnAction(ActionEvent event) {
-    	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
-      			 "Voici le feedBack",
-      			 ButtonType.OK);
-   	   	boitefeedBack.setTitle("FeedBack Question n°"); // TODO ajouter le numero de la question
-   	   	boitefeedBack.setHeaderText("FeedBack"); 
-   	   	boitefeedBack.showAndWait(); 
-    }
     
     public void setListeQuestion(Quiz quiz) {
     	ArrayList<Question> listeQuestions = quiz.getCinqQuestions(numeroDePage);
@@ -169,36 +117,56 @@ public class ScoreQuizController {
     		} else {
     			cheminImageVerteOuRouge += "croix.png";
     		}
+    		
             Image justeOuNon = new Image(cheminImageVerteOuRouge);
             ImageView affichageJusteOuNon = new ImageView(justeOuNon);
             affichageJusteOuNon.setFitWidth(35);
             affichageJusteOuNon.setFitHeight(35);
-//            imageView.setOnMouseClicked(event ->{feedBackQuestionAction();});
             
             // Mise en place du bouton vers le feedback
+            Button feedBackButton = new Button();
             Image versFeedBack = new Image("./images/ampoule.png");
             ImageView affichageVersFeedBack = new ImageView(versFeedBack);
+            feedBackButton.setGraphic(affichageVersFeedBack);
             
+            // Mise en place visuelle.
             affichageVersFeedBack.setFitWidth(35);
             affichageVersFeedBack.setFitHeight(35);
+            feedBackButton.setStyle("-fx-border-color: transparent; -fx-background-color: transparent;");
+            
+            // Action lors du click sur le bouton
+            int numeroQuestion = i;
+            feedBackButton.setOnAction(event -> feedBackQuestionAction(numeroQuestion, quiz.getListeQuestion().get(numeroQuestion).getFeedBackQuestion()));
+            
     		hbox.getChildren().add(textQuestion);
     		hbox.getChildren().add(affichageJusteOuNon);
-    		hbox.getChildren().add(affichageVersFeedBack);
+    		hbox.getChildren().add(feedBackButton);
     		vBoxFeedback.setSpacing(50);
     		vBoxFeedback.getChildren().add(hbox);
     	}
     }
     
     @FXML
-    void feedBackQuestionAction() {
+    void feedBackQuestionAction(int numeroQuestion, String feedback) {
+    	
+    	if (feedback == null || feedback.isBlank() || feedback == "") {
+    		feedback = "Pas de feedback sur cette question.";
+    	}
     	
     	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
-    			 "Voici le feedBack",
-    			 ButtonType.OK);
-    	boitefeedBack.setTitle("FeedBack Question n°" + numeroDePage*5+numeroQuestion); // TODO ajouter le numero de la question
-    	numeroQuestion++;
+    			feedback, ButtonType.OK);
+    	boitefeedBack.setTitle("FeedBack Question n°" + (numeroDePage*5+numeroQuestion+1)); 
     	boitefeedBack.setHeaderText("FeedBack");
-    	boitefeedBack.showAndWait(); 
+    	boitefeedBack.showAndWait();
     }
-
+    
+    @FXML
+    void swipeGaucheQuestionAction(){
+    	
+    }
+    
+    @FXML
+    void swipeDroitQuestionAction() {
+    	
+    }
 }
