@@ -37,7 +37,7 @@ public class PartieController {
     private ToggleGroup choixDifficultes;
     
     @FXML
-    private ComboBox comboBoxCategorie;
+    private ComboBox<String> comboBoxCategorie;
     
     public ComboBox getComboBoxCategorie() {
     	return comboBoxCategorie;
