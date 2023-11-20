@@ -276,7 +276,6 @@ public class Main extends Application {
         for (Categorie categorie : listeCategorie.values()) {
             controller.comboBoxCategorie.getItems().add(categorie.getIntituleCategorie());
         }
-        fenetrePrincipale.setScene(sceneParametre);
     	fenetrePrincipale.setScene(sceneExportation);		
     }
     

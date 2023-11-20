@@ -1,14 +1,10 @@
 package controleur;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ScrollBar;
-import modele.Categorie;
+import javafx.scene.control.ScrollPane;
 import vue.Main;
 
 public class ExporterController {
@@ -23,11 +19,11 @@ public class ExporterController {
     private Button btnSelectionnerTout;
     
     @FXML
-    private ScrollBar scrollBar;
-
+    private ScrollPane scrollBarContenu;
+    
     @FXML
 	public ComboBox<String> comboBoxCategorie;
-
+    
     @FXML
     void btnRetour(ActionEvent event) {
     	Main.retourMenuPrincipal();
@@ -40,7 +36,7 @@ public class ExporterController {
 
     @FXML
     void comboBoxCategorieAction(ActionEvent event) {
-
+    	String CategorieSelection = comboBoxCategorie.getValue();
     }
     
     @FXML
