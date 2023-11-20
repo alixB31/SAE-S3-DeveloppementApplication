@@ -35,6 +35,11 @@ public class ImportationController {
         // Accéder à la fenêtre principale (Stage) à partir de l'événement
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
+        // Définir le répertoire initial comme le répertoire "Téléchargements"
+        String userHome = System.getProperty("user.home");
+        String downloadsPath = userHome + File.separator + "Downloads";
+        fileChooser.setInitialDirectory(new File(downloadsPath));
+        
         // Afficher la boîte de dialogue de parcours et obtenir le fichier sélectionné
         File selectedFile = fileChooser.showOpenDialog(stage);
 
