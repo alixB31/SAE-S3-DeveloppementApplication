@@ -11,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.FileSystems;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -334,8 +335,14 @@ public class Stockage implements Serializable{
     public boolean exportCSV(ArrayList<Question> listeQuestions) {
         boolean estExporte = false;
 
-        String fileName = "banque_de_question_exporte";
-        String filePath = FileSystems.getDefault().getPath(System.getProperty("user.home"), "Downloads", fileName).toString();
+     // Nom du fichier et extension
+        String fileName = "banque_de_question_exporte.csv";
+
+        // Obtenez le répertoire de travail actuel du projet
+        String projectPath = System.getProperty("user.dir");
+
+        // Construisez le chemin complet du fichier CSV dans le répertoire du projet
+        String filePath = Paths.get(projectPath, fileName).toString();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             // Écrire l'en-tête du fichier CSV
