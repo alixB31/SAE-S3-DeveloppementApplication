@@ -334,7 +334,7 @@ public class Stockage implements Serializable{
     public boolean exportCSV(ArrayList<Question> listeQuestions) {
         boolean estExporte = false;
 
-        String fileName = "exported_questions.csv";
+        String fileName = "banque_de_question_exporte";
         String filePath = FileSystems.getDefault().getPath(System.getProperty("user.home"), "Downloads", fileName).toString();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
@@ -344,6 +344,7 @@ public class Stockage implements Serializable{
 
             // Parcourir les questions dans la liste et écrire chaque ligne dans le fichier CSV
             for (Question question : listeQuestions) {
+
                 // Construire la ligne CSV pour chaque question
                 String line = String.format("%s;%d;%s;%s;%s;%s;%s;%s;%s",
                         question.getCategorieDeQuestion().getIntituleCategorie(),
@@ -351,9 +352,9 @@ public class Stockage implements Serializable{
                         question.getIntituleQuestion(),
                         question.getReponseJusteQuestion(),
                         question.getReponsesFaussesQuestion().get(0),
-                        question.getReponsesFaussesQuestion().get(1),
-                        question.getReponsesFaussesQuestion().get(2),
-                        question.getReponsesFaussesQuestion().get(3),
+                        question.getReponsesFaussesQuestion().size() > 1 ? question.getReponsesFaussesQuestion().get(1) : "",
+                        question.getReponsesFaussesQuestion().size() > 2 ? question.getReponsesFaussesQuestion().get(2) : "",
+                        question.getReponsesFaussesQuestion().size() > 3 ? question.getReponsesFaussesQuestion().get(3) : "",
                         question.getFeedBackQuestion());
 
                 // Écrire la ligne dans le fichier
@@ -371,6 +372,7 @@ public class Stockage implements Serializable{
 
         return estExporte;
     }
+
 }
 
 

@@ -42,8 +42,7 @@ class TestImportation {
     	ArrayList<String> reponsesFausses = new ArrayList<>();
     	reponsesFausses.add("Faux1");
     	reponsesFausses.add("Faux2");
-    	reponsesFausses.add("Faux3");
-        reponsesFausses.add("Faux4");
+
         
         Categorie categorie1 = new Categorie("Cat1");
         Categorie categorie2 = new Categorie("Cat2");
