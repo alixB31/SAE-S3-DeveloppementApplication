@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreCategorieController">
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreCategorieController">
    <children>
       <Text layoutX="60.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie : " textAlignment="CENTER">
          <font>
@@ -21,7 +26,7 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <ComboBox fx:id="comboBoxCategorie" layoutX="212.0" layoutY="264.0" prefHeight="96.0" prefWidth="345.0" />
+      <ComboBox fx:id="comboBoxQuestion" layoutX="212.0" layoutY="264.0" prefHeight="96.0" prefWidth="345.0" />
       <Button fx:id="ajouterQuestion" layoutX="601.0" layoutY="284.0" mnemonicParsing="false" onAction="#ajouterQuestion" prefHeight="62.0" prefWidth="46.0" style="-fx-background-color: #5CCAC3;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
