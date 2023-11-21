@@ -4,8 +4,6 @@
  */
 package controleur;
 
-import java.net.ConnectException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -28,14 +26,12 @@ public class EnvoieController {
     public TextField numDePort;
 
     @FXML
-    void envoieFichier(ActionEvent event) throws ConnectException {
-    	if (Client.envoie(getAdresseIPSaisie(),getNumDePortInt())) {
-			ImportationController.afficherInformation("Statut fichier :", "le fichier à bien été envoyé !");
+    void envoieFichier(ActionEvent event) {
+        if (Client.envoie(getAdresseIPSaisie(), getNumDePortInt())) {
+		    ImportationController.afficherInformation("Statut fichier :", "Le fichier a bien été envoyé !");
 		} else {
-			ImportationController.afficherInformation("Statut fichier :", "Erreur... receveur inexistant avec les parametres actuels !");
+		    ImportationController.afficherInformation("Statut fichier :", "Erreur... receveur inexistant avec les paramètres actuels !");
 		}
-     	
-    	
     }
 
     @FXML

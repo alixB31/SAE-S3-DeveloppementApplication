@@ -8,7 +8,6 @@ import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.Socket;
-import controleur.EnvoieController;
 
 /** TODO comment class responsibility (SRP)
  * @author rayanibrahime
@@ -48,7 +47,6 @@ public class Client {
             socket.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
             estEnvoye = false;
         }
 		return estEnvoye;

@@ -7,16 +7,12 @@ package vue;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-
 import controleur.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modele.*;
 import modele.Stockage.EchecSerialisationRestauration;
