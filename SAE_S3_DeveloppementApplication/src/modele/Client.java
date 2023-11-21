@@ -19,7 +19,8 @@ public class Client {
      * @param args
      */
 
-	public static void envoie(String IP, int numPort) {
+	public static boolean envoie(String IP, int numPort) {
+		boolean estEnvoye = false;
         try {
             // Connexion au serveur sur le port 12345
             Socket socket = new Socket(IP, numPort);
@@ -39,6 +40,7 @@ public class Client {
             }
 
             System.out.println("Fichier envoyé : " + filePath);
+            estEnvoye = true;
 
             // Fermeture des flux et de la socket
             out.close();
@@ -47,6 +49,8 @@ public class Client {
 
         } catch (IOException e) {
             e.printStackTrace();
+            estEnvoye = false;
         }
+		return estEnvoye;
     }
 }
