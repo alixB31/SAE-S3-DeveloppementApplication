@@ -1,9 +1,15 @@
 package controleur;
 
+import java.io.IOException;
 import java.net.InetAddress;
+import java.util.Optional;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import vue.Main;
 import modele.Serveur;
 
@@ -37,7 +43,7 @@ public class RecevoirController {
 
     @FXML
     void connexion(ActionEvent event) {
-    	Serveur.gererConnexion();
+    	afficherNotification();
     }
 
     @FXML
@@ -45,11 +51,27 @@ public class RecevoirController {
     	Main.ihmChoix();
     }
     
-    /**
-     * Récupère l'adresse IP du receveur 
-     * @return adresseIP
-     */
-    public static String getAdresseIP() {
-        return adresseIP;
+    private void afficherNotification() {
+    	Serveur.gererConnexion();
+    	Alert boiteAlerte =new Alert(Alert.AlertType.INFORMATION,"Si vous voulez rententer la réception, cliquez sur ok",ButtonType.OK,ButtonType.CANCEL);
+    			boiteAlerte.setTitle("Connexion");
+    			boiteAlerte.setHeaderText("Connexion échouée");
+    			// Ajouter un écouteur sur le bouton par défaut (ici, le bouton OK)
+    	        Optional<ButtonType> result = boiteAlerte.showAndWait();
+    	        
+    	        result.ifPresent(buttonType -> {
+    	            if (buttonType == ButtonType.OK) {
+    	                Serveur.gererConnexion();
+    	                if (Serveur.gererConnexion() == false) {
+    	                	Alert boitefin =new Alert(Alert.AlertType.INFORMATION,"La connexion n'a pas pu être établi, veuillez recommencer",ButtonType.OK);
+    	                	boitefin.setTitle("Connexion");
+    	                	boitefin.setHeaderText("Connexion échouée");
+    	                	boitefin.showAndWait();
+    	                }
+    	            }
+    	            if (buttonType == ButtonType.CANCEL) {
+    	            	
+    	            }
+    	        });
     }
 }
