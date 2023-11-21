@@ -32,18 +32,17 @@ public class ExporterController {
 	@FXML
 	public ComboBox<String> comboBoxCategorie;
 
-	@FXML
-	private VBox vBoxQuestions;
-
 	private boolean allSelected = false;
 
 	private String CategorieSelection;
 
 	private ArrayList<String> questionCheck = new ArrayList<>();
 	public VBox vBox = new VBox();
+	
 
 	@FXML
 	void btnRetour(ActionEvent event) {
+		vBox.getChildren().clear();
 		Main.ihmChoix();
 	}
 
@@ -58,7 +57,6 @@ public class ExporterController {
 //				checkBox.setSelected(allSelected);
 				CheckBox checkBox = (CheckBox) node;
 	            checkBox.setSelected(allSelected);
-
 	            // Si la CheckBox est cochée, l'ajouter à la liste
 	            if (checkBox.isSelected()) {
 	            	checkBox.setOnAction(event2 -> handleCheckBoxAction(checkBox));
@@ -69,7 +67,7 @@ public class ExporterController {
 
 	@FXML
 	void comboBoxCategorieAction(ActionEvent event) {
-
+		System.out.println("On est la");
 		//clear la liste des questions affichés
 
 		vBox.getChildren().clear();
@@ -115,10 +113,12 @@ public class ExporterController {
 	private void handleCheckBoxAction(CheckBox checkBox) {
 		if (checkBox.isSelected()) {
 			questionCheck.add(checkBox.getText());
+			
 		} else {
 			questionCheck.remove(checkBox.getText());
 		}
 	}
+	
 	@FXML
 	void btnExporterAction(ActionEvent event) {
 		Main.ihmEnvoie();
