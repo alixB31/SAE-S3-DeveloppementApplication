@@ -6,8 +6,10 @@ package controleur;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import modele.Client;
 import vue.Main;
 
@@ -27,6 +29,11 @@ public class EnvoieController {
 
     @FXML
     void envoieFichier(ActionEvent event) {
+    	 Alert alert = new Alert(AlertType.INFORMATION);
+         alert.setTitle("Statut fichier :");
+         alert.setHeaderText(null);
+         alert.setContentText("Veuillez patienter le temps de la vérification...");
+         alert.showAndWait();
         if (Client.envoie(getAdresseIPSaisie(), getNumDePortInt())) {
 		    ImportationController.afficherInformation("Statut fichier :", "Le fichier a bien été envoyé !");
 		} else {
