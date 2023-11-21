@@ -32,7 +32,7 @@ public class EnvoieController {
     	if (Client.envoie(getAdresseIPSaisie(),getNumDePortInt())) {
 			ImportationController.afficherInformation("Statut fichier :", "le fichier à bien été envoyé !");
 		} else {
-			ImportationController.afficherInformation("Statut fichier :", "Erreur... receveur inexistant avec les paramertres actuels !");
+			ImportationController.afficherInformation("Statut fichier :", "Erreur... receveur inexistant avec les parametres actuels !");
 		}
      	
     	

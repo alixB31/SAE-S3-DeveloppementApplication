@@ -1,11 +1,6 @@
 package controleur;
 
-import java.net.Inet4Address;
 import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.Enumeration;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,41 +24,9 @@ public class RecevoirController {
     private static String adresseIP;
 
     @FXML
-    void VoirIP(ActionEvent event) {
-        // Obtenir l'adresse IP de la machine locale
-        boolean adresseIPv4Trouvee = false;
-
-        try {
-            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-
-            while (interfaces.hasMoreElements() && !adresseIPv4Trouvee) {
-                NetworkInterface networkInterface = interfaces.nextElement();
-
-                if (networkInterface.isUp() && !networkInterface.isLoopback()) {
-                    Enumeration<InetAddress> addresses = networkInterface.getInetAddresses();
-
-                    while (addresses.hasMoreElements()) {
-                        InetAddress address = addresses.nextElement();
-
-                        // Vérifier si c'est une adresse IPv4
-                        if (address instanceof Inet4Address) {
-                            // Cette condition filtre les adresses IPv4
-                            adresseIP = address.getHostAddress();
-                            ImportationController.afficherInformation("AdresseIP", "Votre adresse IP est : " + adresseIP);
-                            adresseIPv4Trouvee = true;
-                        }
-                    }
-                }
-            }
-
-            if (!adresseIPv4Trouvee) {
-                ImportationController.afficherInformation("AdresseIP", "Adresse IP non trouvée");
-                System.out.println("Adresse IP non trouvée");
-            }
-
-        } catch (SocketException e) {
-            e.printStackTrace();
-        }
+    void VoirIP(ActionEvent event) throws Exception {
+    	InetAddress ip = InetAddress.getLocalHost();
+    	ImportationController.afficherInformation("Adresse IP","L'adresse IP est : " + ip.getHostAddress());
     }
 
 
