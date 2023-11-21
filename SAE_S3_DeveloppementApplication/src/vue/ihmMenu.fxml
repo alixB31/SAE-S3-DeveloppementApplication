@@ -17,12 +17,12 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Button>
-      <Button fx:id="btnImport" alignment="CENTER" contentDisplay="CENTER" layoutX="347.0" layoutY="475.0" mnemonicParsing="false" onAction="#btnImportAction" prefHeight="115.0" prefWidth="190.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Import" textAlignment="CENTER">
+      <Button fx:id="btnImport" alignment="CENTER" contentDisplay="CENTER" layoutX="347.0" layoutY="475.0" mnemonicParsing="false" onAction="#btnImportAction" prefHeight="115.0" prefWidth="183.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Import" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Button>
-      <Button fx:id="btnQuitter" layoutX="60.0" layoutY="632.0" mnemonicParsing="false" onAction="#quitterQuiz" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Quitter">
+      <Button fx:id="btnQuitter" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#quitterQuiz" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Quitter">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
@@ -32,12 +32,12 @@
             <Font name="System Bold Italic" size="88.0" />
          </font>
       </Text>
-      <Button fx:id="btnNotice" layoutX="870.0" layoutY="628.0" mnemonicParsing="false" onAction="#VoirNotice" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 10;" text="Notice">
+      <Button fx:id="btnNotice" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#VoirNotice" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 10;" text="Notice">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="btnExport" alignment="CENTER" contentDisplay="CENTER" layoutX="556.0" layoutY="475.0" mnemonicParsing="false" onAction="#btnExportAction" prefHeight="115.0" prefWidth="190.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Export" textAlignment="CENTER">
+      <Button fx:id="btnExport" alignment="CENTER" contentDisplay="CENTER" layoutX="563.0" layoutY="475.0" mnemonicParsing="false" onAction="#btnExportAction" prefHeight="115.0" prefWidth="183.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 25px;" text="Export" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>

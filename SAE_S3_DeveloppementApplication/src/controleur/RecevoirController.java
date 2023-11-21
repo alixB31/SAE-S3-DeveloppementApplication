@@ -74,8 +74,11 @@ public class RecevoirController {
 
     @FXML
     void connexion(ActionEvent event) {
+    	Thread thread = new Thread(() -> {
+            Serveur.gererConnexion();
+        });
+        thread.start();
     	ImportationController.afficherInformation("Connexion avec votre ami","Attente de connexion...");
-    	Serveur.gererConnexion();
     }
 
     @FXML
