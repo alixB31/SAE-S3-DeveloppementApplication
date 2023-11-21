@@ -48,7 +48,7 @@ class TestImportation {
         Categorie categorie2 = new Categorie("Cat2");
     	
         // Créer des objets Question pour tester
-        Question question1 = new Question("Question 1", categorie1, 1, reponsesFausses, "ReponseJuste1", "Feedback1");
+        Question question1 = new Question("Question 1", categorie1, 1, reponsesFausses, "ReponseJuste1", "");
         Question question2 = new Question("Question 2", categorie2, 1, reponsesFausses, "ReponseJuste1", "Feedback1");
 
         // Ajouter les questions à une liste
