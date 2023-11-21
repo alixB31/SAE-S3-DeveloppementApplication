@@ -50,7 +50,7 @@ public class Main extends Application {
 	private static FXMLLoader chargeurFXMLImportation = new FXMLLoader();
 	private static FXMLLoader chargeurFXMLExportation = new FXMLLoader();
 	private static FXMLLoader chargeurFXMLEnvoie = new FXMLLoader();
-	private static int nbFoisExport = 0;
+	public static int nbFoisExport = 0;
 	public static Stockage stockage;
 
 	@Override
@@ -281,38 +281,11 @@ public class Main extends Application {
 	}
 
 	public static void ihmExportation() {
-
-		// Crée un objet contrôleur du nouveau contrôleur.
 		ExporterController controller = chargeurFXMLExportation.getController();
-
-		// TODO Initialiser la liste de questions de la catégorie sélectionnée.
-		HashMap<String, Categorie> listeCategorie = stockage.getListeCategorie();
-
-		//clear la liste des questions affichés et la comboBox des catégorie
-		controller.vBox.getChildren().clear();
-		
-
-		if (nbFoisExport ==0) {
-			controller.comboBoxCategorie.getItems().clear();
-			controller.comboBoxCategorie.getItems().add("Toutes les catégories");
-			for (Categorie categorie : listeCategorie.values()) {
-				//ajout de tout les catégories a la comboBox de la page d'exportation
-				controller.comboBoxCategorie.getItems().add(categorie.getIntituleCategorie());
-				//affichage de la lsite de toutes les questions
-				ArrayList<Question> listeQuestion = Main.stockage.listeQuestionParCategorie((Categorie)Main.stockage.getListeCategorie().get(categorie.getIntituleCategorie()));	
-				for (int y = 0; y<listeQuestion.size(); y++) {
-					CheckBox dynamicCheckBox = new CheckBox(listeQuestion.get(y).getIntituleQuestion());
-					controller.vBox.getChildren().add(dynamicCheckBox);
-				}
-			}
-			controller.scrollBarContenu.setContent(controller.vBox);
-		}
-		controller.comboBoxCategorie.setValue("Toutes les catégories");
-
-		
-
-		
-		nbFoisExport++;
+		controller.getComboBoxCategorie().getItems().clear();
+		controller.getCheckListeQuestion().getChildren().clear();
+		controller.setComboBoxCategorie(stockage.getListeCategorie());
+		controller.setCheckBoxQuestion(stockage.getListeQuestion());
 		fenetrePrincipale.setScene(sceneExportation);		
 	}
 
