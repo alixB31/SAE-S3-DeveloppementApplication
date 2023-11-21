@@ -1,5 +1,6 @@
 package controleur;
 
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -7,12 +8,9 @@ import java.util.Enumeration;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Alert.AlertType;
 import vue.Main;
 import modele.Serveur;
-import controleur.ImportationController;
 
 public class RecevoirController {
 
@@ -32,39 +30,42 @@ public class RecevoirController {
 
     @FXML
     void VoirIP(ActionEvent event) {
-    	// Obtenir l'adresse IP de la machine locale
-    	try {
-    	    Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+        // Obtenir l'adresse IP de la machine locale
+        boolean adresseIPv4Trouvee = false;
 
-    	    while (interfaces.hasMoreElements()) {
-    	        NetworkInterface networkInterface = interfaces.nextElement();
+        try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
 
-    	        if (networkInterface.isUp() && !networkInterface.isLoopback()) {
-    	            Enumeration<InetAddress> addresses = networkInterface.getInetAddresses();
+            while (interfaces.hasMoreElements() && !adresseIPv4Trouvee) {
+                NetworkInterface networkInterface = interfaces.nextElement();
 
-    	            while (addresses.hasMoreElements()) {
-    	                InetAddress address = addresses.nextElement();
+                if (networkInterface.isUp() && !networkInterface.isLoopback()) {
+                    Enumeration<InetAddress> addresses = networkInterface.getInetAddresses();
 
-    	                // Vérifier si c'est une adresse IPv4
-    	                if (address.getHostAddress().indexOf(':') == -1) {
-    	                    // Cette condition filtre les adresses IPv4
-    	                    adresseIP = address.getHostAddress();
-    	                    break; // Arrête la boucle dès qu'une adresse IPv4 est trouvée
-    	                }
-    	            }
-    	        }
-    	    }
+                    while (addresses.hasMoreElements()) {
+                        InetAddress address = addresses.nextElement();
 
-    	    if (adresseIP != null) {
-    	    	ImportationController.afficherInformation("AdresseIP", "Votre adresseIP est : " + adresseIP);
-    	    } else {
-    	    	ImportationController.afficherInformation(adresseIP, adresseIP);
-    	    }
+                        // Vérifier si c'est une adresse IPv4
+                        if (address instanceof Inet4Address) {
+                            // Cette condition filtre les adresses IPv4
+                            adresseIP = address.getHostAddress();
+                            ImportationController.afficherInformation("AdresseIP", "Votre adresse IP est : " + adresseIP);
+                            adresseIPv4Trouvee = true;
+                        }
+                    }
+                }
+            }
 
-    	} catch (SocketException e) {
-    	    e.printStackTrace();
-    	}
+            if (!adresseIPv4Trouvee) {
+                ImportationController.afficherInformation("AdresseIP", "Adresse IP non trouvée");
+                System.out.println("Adresse IP non trouvée");
+            }
+
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     void VoirNumPort(ActionEvent event) {
