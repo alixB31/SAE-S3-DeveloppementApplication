@@ -1,3 +1,7 @@
+/*
+ * Serveur.java                                      14 nov. 2023
+ * IUT Rodez, info2 2023-2024, pas de copyright ni "copyleft" 
+ */
 package modele;
 
 import java.io.BufferedInputStream;
@@ -7,55 +11,30 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- * Classe représentant le serveur.
- * 
- * TODO: Ajouter des commentaires expliquant les responsabilités de la classe (SRP).
- * TODO: Ajouter des commentaires expliquant le rôle de chaque méthode.
- * 
+/** TODO comment class responsibility (SRP)
  * @author rayanibrahime
+ *
  */
 public class Serveur {
-    public final static int NUM_PORT = 49152;
-
-    /**
-     * Constructeur de la classe Serveur.
+    /** TODO comment method role
+     * @param args
+     * 
      */
-    public Serveur() {
-        // Appel de la méthode pour gérer la connexion
-        gererConnexion();
-    }
-
-    /**
-     * Gère la connexion avec le client.
-     */
-    public static void gererConnexion() {
+	
+	public final static int NUM_PORT =  12345;
+	public static void gererConnexion() {
         try {
+            // Création d'un ServerSocket écoutant sur le port 12345
             ServerSocket serverSocket = new ServerSocket(NUM_PORT);
+
             System.out.println("Attente de connexion...");
 
+            // Attente d'une connexion cliente
             Socket clientSocket = serverSocket.accept();
+
             System.out.println("Connexion établie.");
 
-            // Appel de la méthode pour confirmer l'écriture et la réception du fichier
-            confirmerEcritureEtReception(clientSocket);
-
-            // Fermeture des flux et des sockets
-            clientSocket.close();
-            serverSocket.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Confirme l'écriture et la réception du fichier.
-     * 
-     * @param clientSocket Le socket du client.
-     */
-    private static void confirmerEcritureEtReception(Socket clientSocket) {
-        try {
+            // Obtention du flux d'entrée du client
             BufferedInputStream in = new BufferedInputStream(clientSocket.getInputStream());
 
             // Création d'un fichier pour stocker le fichier CSV reçu
@@ -71,15 +50,14 @@ public class Serveur {
 
             System.out.println("Fichier reçu et enregistré : " + receivedFile.getAbsolutePath());
 
-            // Fermeture des flux
+            // Fermeture des flux et des sockets
             in.close();
             fileOut.close();
+            clientSocket.close();
+            serverSocket.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-	public static int getNumPort() {
-		return NUM_PORT;
 	}
 }

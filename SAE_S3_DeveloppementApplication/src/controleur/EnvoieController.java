@@ -14,7 +14,7 @@ import vue.Main;
 public class EnvoieController {
 
     @FXML
-    private static TextField adresseIPServer;
+    public TextField adresseIPServer;
 
     @FXML
     private Button btnEnvoi;
@@ -23,12 +23,11 @@ public class EnvoieController {
     private Button btnRetour;
 
     @FXML
-    private static TextField numDePort;
+    public TextField numDePort;
 
     @FXML
     void envoieFichier(ActionEvent event) {
-    	ImportationController.afficherInformation("Connexion avec votre ami","Fichier envoyé");
-    	Client.connexionServeur();
+    	Client.envoie(getAdresseIPSaisie(),getNumDePortInt());
     }
 
     @FXML
@@ -36,11 +35,15 @@ public class EnvoieController {
     	Main.ihmExportation();
     }
     
-    public static String getAdresseIPSaisie() {
+    public  String getAdresseIPSaisie() {
     	return adresseIPServer.getText();
     }
     
-    public static String getNumDePort() {
+    public String getNumDePort() {
     	return numDePort.getText();
+    }
+    
+    public int getNumDePortInt() {
+    	return Integer.parseInt(getNumDePort());
     }
 }

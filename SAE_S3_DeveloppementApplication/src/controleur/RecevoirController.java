@@ -69,16 +69,12 @@ public class RecevoirController {
 
     @FXML
     void VoirNumPort(ActionEvent event) {
-    	ImportationController.afficherInformation("Numéro de port","Le numéro de port est : "+ Serveur.getNumPort());
+    	ImportationController.afficherInformation("Numéro de port","Le numéro de port est : " + Serveur.NUM_PORT);
     }
 
     @FXML
     void connexion(ActionEvent event) {
-    	Thread thread = new Thread(() -> {
-            Serveur.gererConnexion();
-        });
-        thread.start();
-    	ImportationController.afficherInformation("Connexion avec votre ami","Attente de connexion...");
+    	Serveur.gererConnexion();
     }
 
     @FXML
