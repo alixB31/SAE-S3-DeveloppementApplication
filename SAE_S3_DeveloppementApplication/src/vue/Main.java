@@ -46,7 +46,7 @@ public class Main extends Application {
 	private static FXMLLoader chargeurFXMLImportation = new FXMLLoader();
 	private static FXMLLoader chargeurFXMLExportation = new FXMLLoader();
 	private static FXMLLoader chargeurFXMLEnvoie = new FXMLLoader();
-	public static int nbFoisExport = 0;
+	public static boolean onViensArriver = false;
 	public static Stockage stockage;
 
 	@Override
@@ -193,12 +193,9 @@ public class Main extends Application {
 		// Initialise le nom de la catégorie dans le label correspondant dans
 		// la nouvelle ihm.
 		controller.nomCategorie.setText(categorie);
-		controller.comboBoxCategorie.getItems().clear();
+		controller.comboBoxQuestion.getItems().clear();
 		// Initialiser la liste de questions de la catégorie sélectionnée.
-		ArrayList<Question> listeQuestionParCategorie = stockage.listeQuestionParCategorie((Categorie)stockage.getListeCategorie().get(categorie));
-		for (int i = 0; i<listeQuestionParCategorie.size(); i++) {
-			controller.comboBoxCategorie.getItems().add(listeQuestionParCategorie.get(i).getIntituleQuestion());
-		}
+		controller.setComboBoxQuestion();
 		// Ouvre la nouvelle ihm des paramètres de la catégorie sélectionnée.
 		fenetrePrincipale.setScene(sceneParametreCategorie);
 	}
@@ -277,8 +274,10 @@ public class Main extends Application {
 	}
 
 	public static void ihmExportation() {
+		onViensArriver = true;
 		ExporterController controller = chargeurFXMLExportation.getController();
 		controller.getComboBoxCategorie().getItems().clear();
+		controller.questionCheck.clear();
 		controller.getCheckListeQuestion().getChildren().clear();
 		controller.setComboBoxCategorie(stockage.getListeCategorie());
 		controller.setCheckBoxQuestion(stockage.getListeQuestion());

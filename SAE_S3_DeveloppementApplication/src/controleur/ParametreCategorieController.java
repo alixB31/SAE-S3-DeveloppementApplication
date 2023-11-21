@@ -61,7 +61,7 @@ public class ParametreCategorieController {
 
 	/** ComboBox de la liste des questions d'une catégorie*/
 	@FXML
-	public ComboBox<String> comboBoxCategorie;
+	public ComboBox<String> comboBoxQuestion;
 
 	/** ComboBox de la liste des catégories*/
 	@FXML
@@ -169,9 +169,9 @@ public class ParametreCategorieController {
 				if (!listeReponsesFausses.contains(textFieldVraiTexte)) {
 					//création de la nouvelle question et ajout a la liste des questions
 					if (Main.stockage.ajouterQuestion(new Question(textField.getText().trim(), categorieCourante, difficulte, listeReponsesFausses, textFieldVraiTexte, feedBack))) {
-						comboBoxCategorie.getItems().add(textField.getText());
-						//Main.stockage.supprimerElementListeQuestion(comboBoxCategorie.getValue());
-						comboBoxCategorie.setValue(textField.getText());
+						comboBoxQuestion.getItems().add(textField.getText());
+						//Main.stockage.supprimerElementListeQuestion(comboBoxQuestion.getValue());
+						comboBoxQuestion.setValue(textField.getText());
 					} else {
 						ParametreController.afficherAlerte("Question non ajoutable","Une question avec le même intitulé existe déjà.");
 					}
@@ -241,7 +241,7 @@ public class ParametreCategorieController {
 	@FXML
 	void deleteQuestion(ActionEvent event) {
 		//vérifie qu'une question a bien était sélectionnée
-		if (comboBoxCategorie.getValue() == null) {
+		if (comboBoxQuestion.getValue() == null) {
 			ParametreController.afficherAlerte("Choisissez une question","Vous devez sélectionner une question pour pouvoir la supprimer");
 		} else {
 			Alert boiteAlerte = new Alert(Alert.AlertType.CONFIRMATION,
@@ -250,9 +250,9 @@ public class ParametreCategorieController {
 			Optional<ButtonType> option = boiteAlerte.showAndWait();
 
 			if (option.get() == ButtonType.YES) { // clic sur "oui"
-				if(Main.stockage.supprimerElementListeQuestion(comboBoxCategorie.getValue()+categorieChoisi)) {
+				if(Main.stockage.supprimerElementListeQuestion(comboBoxQuestion.getValue()+categorieChoisi)) {
 
-					comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());
+					comboBoxQuestion.getItems().remove(comboBoxQuestion.getValue());
 				} else {
 					ParametreController.afficherAlerte("Suppresion Question","La suppresion de la question a échoué");
 				}
@@ -264,12 +264,12 @@ public class ParametreCategorieController {
 	void editerIntitulerQuestion(ActionEvent event) {
 
 		//vérifie qu'une question a bien était sélectionnée
-		if (comboBoxCategorie.getValue() == null) {
+		if (comboBoxQuestion.getValue() == null) {
 			ParametreController.afficherAlerte("Choisissez une question","Vous devez sélectionner une question pour pouvoir la modifier");
 		} else {
 
 			// ancien intitulé 
-			String ancienIntitule = comboBoxCategorie.getValue();
+			String ancienIntitule = comboBoxQuestion.getValue();
 			//categorie courante de la question a modifier
 			Categorie categorieCourante = (Categorie) Main.stockage.getListeCategorie().get(categorieChoisi);
 			// question courante
@@ -442,13 +442,13 @@ public class ParametreCategorieController {
 						if (nouvelleCategorie == categorieCourante 
 								&&	Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVraiTexte, feedBack, concatenation)) {
 	
-							comboBoxCategorie.getItems().set(comboBoxCategorie.getItems().indexOf(ancienIntitule), textField.getText().trim());
-							comboBoxCategorie.setValue(textField.getText().trim());
+							comboBoxQuestion.getItems().set(comboBoxQuestion.getItems().indexOf(ancienIntitule), textField.getText().trim());
+							comboBoxQuestion.setValue(textField.getText().trim());
 	
 							//on regarde si la question existe deja dans la nouvelle catégorie
 						} else if(nouvelleCategorie != categorieCourante && !Main.stockage.getListeQuestion().containsKey(NouvelleConcatenation)) {			
 							Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVraiTexte, feedBack, concatenation);
-							comboBoxCategorie.getItems().remove(comboBoxCategorie.getValue());				
+							comboBoxQuestion.getItems().remove(comboBoxQuestion.getValue());				
 							//si elle existe pas on l'enleve de la comboBox de la categorie courrante,sinon on ne peut pas la trasférer et rien ne se passe
 	
 						} else if(nouvelleCategorie != categorieCourante && Main.stockage.getListeQuestion().containsKey(NouvelleConcatenation)){
@@ -515,6 +515,14 @@ public class ParametreCategorieController {
 
 	public void setNomCategorie(String categorie) {
 		categorieChoisi = categorie;
+	}
+
+	public void setComboBoxQuestion() {
+		ArrayList<Question> listeQuestionParCategorie = Main.stockage.listeQuestionParCategorie((Categorie)Main.stockage.getListeCategorie().get(categorieChoisi));
+		for (int i = 0; i<listeQuestionParCategorie.size(); i++) {
+			comboBoxQuestion.getItems().add(listeQuestionParCategorie.get(i).getIntituleQuestion());
+		}
+		
 	}
 }
 
