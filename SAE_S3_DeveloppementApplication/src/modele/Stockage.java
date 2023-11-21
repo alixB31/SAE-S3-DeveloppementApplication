@@ -104,7 +104,7 @@ public class Stockage implements Serializable{
 	 */
 	public boolean ajouterQuestion(Question question) {
 		boolean estAjoutee = false;
-		if (listeCategorie.elementEstDansListeCategorie(question.getCategorieDeQuestion().getIntituleCategorie())) {
+		if (question.getCategorieDeQuestion() != null && listeCategorie.elementEstDansListeCategorie(question.getCategorieDeQuestion().getIntituleCategorie())) {
 			estAjoutee = listeQuestion.ajouterElementListeQuestion(question);
 		}
 		return estAjoutee;

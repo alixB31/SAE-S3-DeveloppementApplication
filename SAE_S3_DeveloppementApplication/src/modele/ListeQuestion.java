@@ -79,13 +79,15 @@ public class ListeQuestion implements Serializable{
     public boolean ajouterElementListeQuestion(Question question) {
         boolean estAjoutee = false;
         String intitule = question.getIntituleQuestion();
-        String categorie = question.getCategorieDeQuestion().getIntituleCategorie();
-        String concatenation = intitule+categorie;
-        if (!elementEstDansListeQuestion(concatenation) && !intitule.isEmpty() && !intitule.isBlank()) {
-            listeQuestion.put(concatenation, question);
-            estAjoutee = true;
+        if (question.getCategorieDeQuestion() != null) {
+        	String categorie = question.getCategorieDeQuestion().getIntituleCategorie();
+            String concatenation = intitule+categorie;
+            if (!elementEstDansListeQuestion(concatenation) && intitule!= null && !intitule.isEmpty() && !intitule.isBlank()
+            		&& (question.getDifficulteQuestion() == 1 || question.getDifficulteQuestion() == 2 || question.getDifficulteQuestion() == 3)) {
+                listeQuestion.put(concatenation, question);
+                estAjoutee = true;
+            }
         }
-
         return estAjoutee;
     }
 
