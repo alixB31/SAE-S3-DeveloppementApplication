@@ -16,10 +16,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import vue.Main;
 import modele.Quiz;
 import modele.Categorie;
+import modele.Joueur;
 import modele.Question;
 
 /** TODO comment class responsibility (SRP)
@@ -39,6 +41,9 @@ public class PartieController {
     
     @FXML
     private ToggleGroup choixDifficultes;
+    
+    @FXML
+    private TextField pseudoJoueur;
     
     @FXML
     private ComboBox<String> comboBoxCategorie;
