@@ -12,8 +12,8 @@ public class EchecSerialisationRestauration extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	/**
-     * Constructeur avec en argument un message d�crivant l'erreur
-     * @param message  un texte expliquant la cause pr�cise de l'erreur
+     * Constructeur avec en argument un message decrivant l'erreur
+     * @param message  un texte expliquant la cause precise de l'erreur
      */
     public EchecSerialisationRestauration(String message) {
         super(message);

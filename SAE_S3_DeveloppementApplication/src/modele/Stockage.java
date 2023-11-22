@@ -194,6 +194,7 @@ public class Stockage implements Serializable{
             // Parcourir les lignes du fichier CSV.
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
+                //permet de split a chaque point virgule sauf lorsque le point virgule est entouuré de guillemets
                 String[] data = line.split(";(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 
                 if (data.length >= 5) {  // Assurez-vous qu'il y a au moins 5 valeurs obligatoires
@@ -307,8 +308,6 @@ public class Stockage implements Serializable{
 
                // Désérialisation
                Main.stockage = (Stockage) objectIn.readObject();
-
-               // Utilisez l'objet stockage comme nécessaire...
 
            } catch (Exception e) {
                e.printStackTrace();
