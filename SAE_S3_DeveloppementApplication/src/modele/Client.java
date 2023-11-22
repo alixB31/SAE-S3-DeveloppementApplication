@@ -31,7 +31,7 @@ public class Client {
             BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
 
             // Sélection du fichier CSV à envoyer
-            String filePath = "questionsbasiques.csv";
+            String filePath = "banque_de_question_exporte.csv";
             FileInputStream fileIn = new FileInputStream(filePath);
 
             // Lecture et envoi du fichier
