@@ -10,12 +10,14 @@ import java.util.HashMap;
 import controleur.*;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import modele.*;
-import modele.Stockage.EchecSerialisationRestauration;
+import modele.EchecSerialisationRestauration;
 
 
 
@@ -123,6 +125,11 @@ public class Main extends Application {
 		primaryStage.setScene(sceneMenu);
 		fenetrePrincipale = primaryStage;
 		primaryStage.show();
+		
+		//appel de fonction lorsque l'on ferme la fenetres
+		fermetureFenetre(primaryStage);
+
+
 	}
 
 	/**
@@ -295,4 +302,19 @@ public class Main extends Application {
 	public static void ihmRecevoir() {
 		fenetrePrincipale.setScene(sceneRecevoir);
 	}
+
+	private void fermetureFenetre(Stage stage) {
+		// Sérialisation lorsque l'on ferme la fenetre de l'application
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			@Override
+			public void handle(WindowEvent event) {
+				try {
+					Main.stockage.serialiser();
+				} catch (EchecSerialisationRestauration e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
 }
