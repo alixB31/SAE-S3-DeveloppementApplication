@@ -4,10 +4,12 @@
  */
 package controleur;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import modele.Client;
@@ -29,17 +31,39 @@ public class EnvoieController {
 
     @FXML
     void envoieFichier(ActionEvent event) {
-    	 Alert alert = new Alert(AlertType.INFORMATION);
-         alert.setTitle("Statut fichier :");
-         alert.setHeaderText(null);
-         alert.setContentText("Veuillez patienter le temps de la vérification...");
-         alert.showAndWait();
-        if (Client.envoie(getAdresseIPSaisie(), getNumDePortInt())) {
-		    ImportationController.afficherInformation("Statut fichier :", "Le fichier a bien été envoyé !");
-		} else {
-		    ImportationController.afficherInformation("Statut fichier :", "Erreur... receveur inexistant avec les paramètres actuels !");
-		}
+    	Alert enCours = new Alert(AlertType.INFORMATION);
+    	enCours.setTitle("En cours de traitement...");
+    	enCours.setHeaderText(null);
+    	enCours.setContentText("Test");
+    	enCours.show();
+    	
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Envoi de fichier");
+        alert.setHeaderText(null);
+
+        // Créez un nouveau thread pour l'envoi du fichier
+        Thread envoiThread = new Thread(() -> {
+            // Exécutez ici votre code pour envoyer le fichier
+            boolean estEnvoye = Client.envoie(getAdresseIPSaisie(), getNumDePortInt());
+            
+            // Mettez à jour l'interface utilisateur depuis le thread de l'UI
+            Platform.runLater(() -> {
+            	enCours.close();
+                if (estEnvoye) {
+                    alert.setContentText("Fichier envoyé avec succès.");
+                    alert.showAndWait();
+                } else {
+                    alert.setAlertType(AlertType.ERROR);
+                    alert.setContentText("Erreur lors de l'envoi du fichier.");
+                    alert.showAndWait();
+                }
+            });
+        });
+
+        // Démarrez le thread
+        envoiThread.start();
     }
+
 
     @FXML
     void retourMenuPrecedent(ActionEvent event) {

@@ -7,6 +7,7 @@ package modele;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 /** TODO comment class responsibility (SRP)
@@ -20,9 +21,11 @@ public class Client {
 
 	public static boolean envoie(String IP, int numPort) {
 		boolean estEnvoye = false;
-        try {
+		try {
             // Connexion au serveur sur le port 12345
-            Socket socket = new Socket(IP, numPort);
+            Socket socket = new Socket();
+            
+            socket.connect(new InetSocketAddress(IP, numPort), 4000);
 
             // Obtention du flux de sortie vers le serveur
             BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
