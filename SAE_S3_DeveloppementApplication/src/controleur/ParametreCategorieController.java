@@ -25,7 +25,7 @@ import javafx.stage.Modality;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import modele.*;
-import modele.Stockage.EchecSerialisationRestauration;
+
 import vue.Main;
 
 /**
@@ -233,8 +233,7 @@ public class ParametreCategorieController {
 	}
 
 	@FXML
-	void retourMenu(ActionEvent event) throws EchecSerialisationRestauration {
-		Main.stockage.serialiser();
+	void retourMenu(ActionEvent event) {
 		Main.lancerParametre();
 	}
 

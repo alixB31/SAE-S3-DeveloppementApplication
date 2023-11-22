@@ -19,7 +19,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextInputDialog;
 import vue.Main;
 import modele.*;
-import modele.Stockage.EchecSerialisationRestauration;
 
 /**
  * TODO comment class responsibility (SRP)
@@ -139,8 +138,7 @@ public class ParametreController {
 	}
 
 	@FXML
-	void retourMenu(ActionEvent event) throws EchecSerialisationRestauration {
-		Main.stockage.serialiser();
+	void retourMenu(ActionEvent event){
 		Main.retourMenuPrincipal();
 
 	}

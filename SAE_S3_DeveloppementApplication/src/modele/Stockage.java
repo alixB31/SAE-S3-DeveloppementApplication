@@ -317,21 +317,6 @@ public class Stockage implements Serializable{
     }
     
     
-    /**
-     * Exception lev�e si probl�me d'acc�s au fichier lors de la 
-     * s�rialisation ou restauration d'une instance de type Stockage
-     */
-    public static class EchecSerialisationRestauration extends Exception {
-
-        /**
-         * Constructeur avec en argument un message d�crivant l'erreur
-         * @param message  un texte expliquant la cause pr�cise de l'erreur
-         */
-        public EchecSerialisationRestauration(String message) {
-            super(message);
-        }
-    }
-    
     public boolean exportCSV(ArrayList<Question> listeQuestions) {
         boolean estExporte = false;
 

@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
+import modele.EchecSerialisationRestauration;
 import vue.Main;
 
 /** TODO comment class responsibility (SRP)
@@ -35,7 +36,8 @@ public class MenuController {
     private Button btnJoueur;
 
     @FXML
-    void quitterQuiz(ActionEvent event) {
+    void quitterQuiz(ActionEvent event) throws EchecSerialisationRestauration {
+    	Main.stockage.serialiser();
         Platform.exit();
     }
     
