@@ -1,6 +1,9 @@
 package controleur;
 
 import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Enumeration;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,8 +38,38 @@ public class RecevoirController {
     
     @FXML
     void VoirIP(ActionEvent event) throws Exception {
-    	InetAddress ip = InetAddress.getLocalHost();
-    	ImportationController.afficherInformation("Adresse IP","L'adresse IP est : " + ip.getHostAddress());
+        // Obtenez l'adresse IPv4 de la machine
+        String ipV4 = getIPv4Address();
+
+        // Affichez l'adresse IP
+        ImportationController.afficherInformation("Adresse IP", "L'adresse IP est : " + ipV4);
+    }
+
+    // Méthode pour obtenir l'adresse IPv4
+    private String getIPv4Address() throws Exception {
+        Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+
+        while (interfaces.hasMoreElements()) {
+            NetworkInterface iface = interfaces.nextElement();
+            
+            // Ignorez les interfaces virtuelles et inactives
+            if (iface.isLoopback() || !iface.isUp()) {
+                continue;
+            }
+
+            Enumeration<InetAddress> addresses = iface.getInetAddresses();
+            while (addresses.hasMoreElements()) {
+                InetAddress addr = addresses.nextElement();
+
+                // Vérifiez si c'est une adresse IPv4
+                if (addr.getHostAddress().matches("\\d+\\.\\d+\\.\\d+\\.\\d+")) {
+                    return addr.getHostAddress();
+                }
+            }
+        }
+
+        // Si aucune adresse IPv4 n'est trouvée, retournez une chaîne vide ou une valeur par défaut
+        return "Adresse IP non disponible";
     }
 
     @FXML
