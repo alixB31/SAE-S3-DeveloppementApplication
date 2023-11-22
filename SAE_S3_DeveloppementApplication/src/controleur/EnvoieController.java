@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import javafx.scene.control.Alert.AlertType;
 import modele.Client;
 import vue.Main;
@@ -55,10 +56,12 @@ public class EnvoieController {
         layout.setStyle("-fx-background-color: rgba(255, 255, 255, 0.8); -fx-padding: 20px;");
 
         // Créez une nouvelle scène
-        Scene scene = new Scene(layout, 400, 150);
+        Scene scene = new Scene(layout, 350, 120);
 
         // Configurez la scène
         enCoursStage.setScene(scene);
+        
+        enCoursStage.setOnCloseRequest(WindowEvent::consume);
 
         // Créez un nouveau thread pour l'envoi du fichier
         Thread envoiThread = new Thread(() -> {

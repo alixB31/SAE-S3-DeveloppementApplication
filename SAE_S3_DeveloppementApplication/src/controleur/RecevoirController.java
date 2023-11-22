@@ -1,9 +1,6 @@
 package controleur;
 
-import java.io.IOException;
 import java.net.InetAddress;
-import java.util.Optional;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,12 +12,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import vue.Main;
-import modele.Client;
 import modele.Serveur;
 
 public class RecevoirController {
@@ -37,8 +33,6 @@ public class RecevoirController {
     @FXML
     private Button btnRetour;
     
-    private static String adresseIP;
-
     @FXML
     void VoirIP(ActionEvent event) throws Exception {
     	InetAddress ip = InetAddress.getLocalHost();
@@ -67,10 +61,12 @@ public class RecevoirController {
         layout.setStyle("-fx-background-color: rgba(255, 255, 255, 0.8); -fx-padding: 20px;");
 
         // Créez une nouvelle scène
-        Scene scene = new Scene(layout, 400, 150);
+        Scene scene = new Scene(layout, 350, 120);
 
         // Configurez la scène
         enCoursStage.setScene(scene);
+        
+        enCoursStage.setOnCloseRequest(WindowEvent::consume);
 
         // Créez un nouveau thread pour l'envoi du fichier
         Thread recevoirThread = new Thread(() -> {
