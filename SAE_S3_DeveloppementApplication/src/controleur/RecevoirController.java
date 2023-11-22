@@ -35,12 +35,6 @@ public class RecevoirController {
     	ImportationController.afficherInformation("Adresse IP","L'adresse IP est : " + ip.getHostAddress());
     }
 
-
-    @FXML
-    void VoirNumPort(ActionEvent event) {
-    	ImportationController.afficherInformation("Numéro de port","Le numéro de port est : " + Serveur.NUM_PORT);
-    }
-
     @FXML
     void connexion(ActionEvent event) {
     	afficherNotification();
@@ -52,26 +46,44 @@ public class RecevoirController {
     }
     
     private void afficherNotification() {
+    	// Afficher une Pop-up pendant la connexion
+    	Alert boiteinfo = new Alert(Alert.AlertType.INFORMATION,"");
+    	boiteinfo.setTitle("Connexion");
+    	boiteinfo.show();
     	Serveur.gererConnexion();
-    	Alert boiteAlerte =new Alert(Alert.AlertType.INFORMATION,"Si vous voulez rententer la réception, cliquez sur ok",ButtonType.OK,ButtonType.CANCEL);
+    	
+    	if(Serveur.gererConnexion() == true) {
+    		boiteinfo.close();
+        	Alert boitefinOK = new Alert(Alert.AlertType.INFORMATION,"La connexion OK, votre fichier se trouve " + Serveur.getNomFichier(),ButtonType.OK);
+        	boitefinOK.setTitle("Connexion");
+        	boitefinOK.setHeaderText("Connexion réussie");
+        	boitefinOK.showAndWait();
+        } else {
+        	boiteinfo.close();
+    	Alert boiteAlerte = new Alert(Alert.AlertType.INFORMATION,"Si vous voulez rententer la réception, cliquez sur ok",ButtonType.OK,ButtonType.CANCEL);
     			boiteAlerte.setTitle("Connexion");
     			boiteAlerte.setHeaderText("Connexion échouée");
     			// Ajouter un écouteur sur le bouton par défaut (ici, le bouton OK)
     	        Optional<ButtonType> result = boiteAlerte.showAndWait();
-    	        
     	        result.ifPresent(buttonType -> {
     	            if (buttonType == ButtonType.OK) {
+    	            	boiteinfo.show();
     	                Serveur.gererConnexion();
     	                if (Serveur.gererConnexion() == false) {
-    	                	Alert boitefin =new Alert(Alert.AlertType.INFORMATION,"La connexion n'a pas pu être établi, veuillez recommencer",ButtonType.OK);
+    	                	boiteinfo.close();
+    	                	Alert boitefin = new Alert(Alert.AlertType.INFORMATION,"La connexion n'a pas pu être établi, veuillez réesayer",ButtonType.OK);
     	                	boitefin.setTitle("Connexion");
     	                	boitefin.setHeaderText("Connexion échouée");
     	                	boitefin.showAndWait();
+    	                }else {
+	    	            	boiteinfo.close();
+	    	            	Alert boitefinOK = new Alert(Alert.AlertType.INFORMATION,"La connexion OK, votre fichier se trouve " + Serveur.getNomFichier(),ButtonType.OK);
+	    	            	boitefinOK.setTitle("Connexion");
+	    	            	boitefinOK.setHeaderText("Connexion réussie");
+	    	            	boitefinOK.showAndWait();
     	                }
     	            }
-    	            if (buttonType == ButtonType.CANCEL) {
-    	            	
-    	            }
     	        });
+        }
     }
 }
