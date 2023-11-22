@@ -19,13 +19,13 @@ public class Client {
      * @param args
      */
 
-	public static boolean envoie(String IP, int numPort) {
+	public static boolean envoie(String IP) {
 		boolean estEnvoye = false;
 		try {
             // Connexion au serveur sur le port 12345
             Socket socket = new Socket();
             
-            socket.connect(new InetSocketAddress(IP, numPort), 4000);
+            socket.connect(new InetSocketAddress(IP, Serveur.NUM_PORT), 4000);
 
             // Obtention du flux de sortie vers le serveur
             BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());

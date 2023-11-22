@@ -44,7 +44,7 @@ public class EnvoieController {
         // Créez un nouveau thread pour l'envoi du fichier
         Thread envoiThread = new Thread(() -> {
             // Exécutez ici votre code pour envoyer le fichier
-            boolean estEnvoye = Client.envoie(getAdresseIPSaisie(), getNumDePortInt());
+            boolean estEnvoye = Client.envoie(getAdresseIPSaisie());
             
             // Mettez à jour l'interface utilisateur depuis le thread de l'UI
             Platform.runLater(() -> {

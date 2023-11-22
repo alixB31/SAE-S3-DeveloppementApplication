@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Optional;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -11,6 +12,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import vue.Main;
+import modele.Client;
 import modele.Serveur;
 
 public class RecevoirController {
@@ -37,53 +39,40 @@ public class RecevoirController {
 
     @FXML
     void connexion(ActionEvent event) {
-    	afficherNotification();
+    	Alert enCours = new Alert(AlertType.INFORMATION);
+    	enCours.setTitle("Tentative de connexion.");
+    	enCours.setHeaderText("En cours de traitement...");
+    	enCours.show();
+    	
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Envoi de fichier");
+        alert.setHeaderText(null);
+
+        // Créez un nouveau thread pour l'envoi du fichier
+        Thread recoiThread = new Thread(() -> {
+            // Exécutez ici votre code pour envoyer le fichier
+            boolean estRecu = Serveur.gererConnexion();
+            
+            // Mettez à jour l'interface utilisateur depuis le thread de l'UI
+            Platform.runLater(() -> {
+            	enCours.close();
+                if (estRecu) {
+                    alert.setContentText("Fichier reçu avec succès.");
+                    alert.showAndWait();
+                } else {
+                    alert.setAlertType(AlertType.ERROR);
+                    alert.setContentText("Erreur, la connexion n'a pas été établie.");
+                    alert.showAndWait();
+                }
+            });
+        });
+
+        // Démarrez le thread
+        recoiThread.start();
     }
 
     @FXML
     void retourChoix(ActionEvent event) {
     	Main.ihmChoix();
-    }
-    
-    private void afficherNotification() {
-    	// Afficher une Pop-up pendant la connexion
-    	Alert boiteinfo = new Alert(Alert.AlertType.INFORMATION,"");
-    	boiteinfo.setTitle("Connexion");
-    	boiteinfo.show();
-    	Serveur.gererConnexion();
-    	
-    	if(Serveur.gererConnexion() == true) {
-    		boiteinfo.close();
-        	Alert boitefinOK = new Alert(Alert.AlertType.INFORMATION,"La connexion OK, votre fichier se trouve " + Serveur.getNomFichier(),ButtonType.OK);
-        	boitefinOK.setTitle("Connexion");
-        	boitefinOK.setHeaderText("Connexion réussie");
-        	boitefinOK.showAndWait();
-        } else {
-        	boiteinfo.close();
-    	Alert boiteAlerte = new Alert(Alert.AlertType.INFORMATION,"Si vous voulez rententer la réception, cliquez sur ok",ButtonType.OK,ButtonType.CANCEL);
-    			boiteAlerte.setTitle("Connexion");
-    			boiteAlerte.setHeaderText("Connexion échouée");
-    			// Ajouter un écouteur sur le bouton par défaut (ici, le bouton OK)
-    	        Optional<ButtonType> result = boiteAlerte.showAndWait();
-    	        result.ifPresent(buttonType -> {
-    	            if (buttonType == ButtonType.OK) {
-    	            	boiteinfo.show();
-    	                Serveur.gererConnexion();
-    	                if (Serveur.gererConnexion() == false) {
-    	                	boiteinfo.close();
-    	                	Alert boitefin = new Alert(Alert.AlertType.INFORMATION,"La connexion n'a pas pu être établi, veuillez réesayer",ButtonType.OK);
-    	                	boitefin.setTitle("Connexion");
-    	                	boitefin.setHeaderText("Connexion échouée");
-    	                	boitefin.showAndWait();
-    	                }else {
-	    	            	boiteinfo.close();
-	    	            	Alert boitefinOK = new Alert(Alert.AlertType.INFORMATION,"La connexion OK, votre fichier se trouve " + Serveur.getNomFichier(),ButtonType.OK);
-	    	            	boitefinOK.setTitle("Connexion");
-	    	            	boitefinOK.setHeaderText("Connexion réussie");
-	    	            	boitefinOK.showAndWait();
-    	                }
-    	            }
-    	        });
-        }
     }
 }
