@@ -32,7 +32,7 @@ public class Serveur {
 	        serverSocket = new ServerSocket(NUM_PORT);
 
 	        // Définir un temps d'attente maximal en millisecondes
-	        serverSocket.setSoTimeout(2000);
+	        serverSocket.setSoTimeout(4000);
 
 	        System.out.println("Attente de connexion...");
 	       
