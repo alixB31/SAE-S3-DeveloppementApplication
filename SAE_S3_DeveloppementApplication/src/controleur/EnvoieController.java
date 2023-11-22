@@ -5,14 +5,16 @@
 package controleur;
 
 import javafx.application.Platform;
+import javafx.scene.control.ProgressIndicator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -36,13 +38,20 @@ public class EnvoieController {
         // Créez une nouvelle fenêtre Stage
         Stage enCoursStage = new Stage();
         enCoursStage.initModality(Modality.APPLICATION_MODAL);
-        enCoursStage.initStyle(StageStyle.UNDECORATED);
+
+        // Utilisez DECORATED avec une bordure
+        enCoursStage.initStyle(StageStyle.DECORATED);
 
         // Créez une étiquette avec le message
         Label messageLabel = new Label("En cours de traitement...");
 
-        // Ajoutez l'étiquette à une mise en page
-        StackPane layout = new StackPane(messageLabel);
+        // Créez une barre de chargement (spinner)
+        ProgressIndicator progressIndicator = new ProgressIndicator();
+
+        // Ajoutez les éléments à une mise en page
+        VBox layout = new VBox(20); // Utilisez VBox pour aligner les éléments verticalement
+        layout.setAlignment(Pos.CENTER);
+        layout.getChildren().addAll(messageLabel, progressIndicator);
         layout.setStyle("-fx-background-color: rgba(255, 255, 255, 0.8); -fx-padding: 20px;");
 
         // Créez une nouvelle scène
@@ -84,8 +93,6 @@ public class EnvoieController {
         // Affichez la fenêtre Stage
         enCoursStage.show();
     }
-
-
 
     @FXML
     void retourMenuPrecedent(ActionEvent event) {
