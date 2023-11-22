@@ -23,17 +23,11 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <TextField fx:id="adresseIPServer" layoutX="534.0" layoutY="263.0" prefHeight="61.0" prefWidth="336.0" />
-      <Text layoutX="211.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse IP du receveur :">
+      <TextField fx:id="adresseIPServer" layoutX="500.0" layoutY="298.0" prefHeight="61.0" prefWidth="336.0" />
+      <Text layoutX="245.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse IP du receveur :">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <Text layoutX="211.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro de port du receveur :">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Text>
-      <TextField fx:id="numDePort" layoutX="534.0" layoutY="396.0" prefHeight="61.0" prefWidth="336.0" />
    </children>
 </AnchorPane>

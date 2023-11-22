@@ -27,9 +27,6 @@ public class EnvoieController {
     private Button btnRetour;
 
     @FXML
-    public TextField numDePort;
-
-    @FXML
     void envoieFichier(ActionEvent event) {
     	Alert enCours = new Alert(AlertType.INFORMATION);
     	enCours.setTitle("En cours de traitement...");
@@ -72,13 +69,5 @@ public class EnvoieController {
     
     public  String getAdresseIPSaisie() {
     	return adresseIPServer.getText();
-    }
-    
-    public String getNumDePort() {
-    	return numDePort.getText();
-    }
-    
-    public int getNumDePortInt() {
-    	return Integer.parseInt(getNumDePort());
     }
 }
