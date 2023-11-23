@@ -79,14 +79,13 @@ public class ListeQuestion implements Serializable{
     public boolean ajouterElementListeQuestion(Question question) {
         boolean estAjoutee = false;
         String intitule = question.getIntituleQuestion();
-        if (question.getCategorieDeQuestion() != null) {
-        	String categorie = question.getCategorieDeQuestion().getIntituleCategorie();
-            String concatenation = intitule+categorie;
-            if (!elementEstDansListeQuestion(concatenation) && intitule!= null && !intitule.isEmpty() && !intitule.isBlank()
-            		&& (question.getDifficulteQuestion() == 1 || question.getDifficulteQuestion() == 2 || question.getDifficulteQuestion() == 3)) {
-                listeQuestion.put(concatenation, question);
-                estAjoutee = true;
-            }
+
+    	String categorie = question.getCategorieDeQuestion().getIntituleCategorie();
+        String concatenation = intitule+categorie;
+        if (!elementEstDansListeQuestion(concatenation) && intitule!= null && !intitule.isEmpty() && !intitule.isBlank()
+        		&& (question.getDifficulteQuestion() == 1 || question.getDifficulteQuestion() == 2 || question.getDifficulteQuestion() == 3)) {
+            listeQuestion.put(concatenation, question);
+            estAjoutee = true;
         }
         return estAjoutee;
     }
@@ -101,9 +100,10 @@ public class ListeQuestion implements Serializable{
      */
     public boolean modifierIntituleQuestion(Question question, String nouvelIntitule, String concatenation) {
         boolean estModifiee = false;
-        if (elementEstDansListeQuestion(concatenation/*question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie()*/)
-        		&& !nouvelIntitule.isBlank() && !nouvelIntitule.isEmpty()
-        		&& nouvelIntitule != null) {
+        if (nouvelIntitule != null
+        		&& elementEstDansListeQuestion(concatenation/*question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie()*/)
+        		&& !nouvelIntitule.isBlank()
+        		&& !nouvelIntitule.isEmpty()) {
            if (this.supprimerElementListeQuestion(concatenation)) {
         	   question.setIntituleQuestion(nouvelIntitule);
         	   if (this.ajouterElementListeQuestion(question)) {
@@ -123,11 +123,17 @@ public class ListeQuestion implements Serializable{
      */
     public boolean modifierCategorieDeQuestion(Question question, Categorie categorie) {
     	boolean estModifiee = false;
-        if (/*elementEstDansListeQuestion(question.getIntituleQuestion())
-        		&& */categorie != null) {
+    	if (question.getCategorieDeQuestion().equals(categorie)) {
+    		estModifiee = true;
+    	}
+    	else if (categorie != null
+    			&& elementEstDansListeQuestion(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie())
+        		&& !elementEstDansListeQuestion(question.getIntituleQuestion()+categorie.getIntituleCategorie())) {
             question.setCategorieQuestion(categorie);
+            
             estModifiee = true;
         }
+        
         return estModifiee;
     }
 
@@ -159,7 +165,8 @@ public class ListeQuestion implements Serializable{
     public boolean modifierListeReponsesFaussesQuestion(Question question,
     		ArrayList<String> liste, String concatenation) {
     	boolean estModifiee = false;
-        if (elementEstDansListeQuestion(concatenation)){
+        if (elementEstDansListeQuestion(concatenation)
+        		&& question.listeReponsesFaussesValide(liste)){
     		question.setReponsesFaussesQuestion(liste);      
             estModifiee = true;
 
@@ -177,7 +184,7 @@ public class ListeQuestion implements Serializable{
      */
     public boolean modifierFeedBackQuestion(Question question, String feedBack, String concatenation) {
     	boolean estModifie = false;
-        if (elementEstDansListeQuestion(concatenation)) {
+        if (feedBack!= null && !feedBack.isBlank() && elementEstDansListeQuestion(concatenation)) {
             question.setFeedBackQuestion(feedBack);
             estModifie = true;
         }
@@ -194,7 +201,7 @@ public class ListeQuestion implements Serializable{
      */
     public boolean modifierReponseJusteQuestion(Question question, String reponseJuste, String concatenation) {
     	boolean estModifiee = false;
-        if (elementEstDansListeQuestion(concatenation)
+        if (reponseJuste != null && elementEstDansListeQuestion(concatenation)
         		&& !reponseJuste.isBlank() && !reponseJuste.isEmpty()) {
             question.setReponseJusteQuestion(reponseJuste);
             estModifiee = true;

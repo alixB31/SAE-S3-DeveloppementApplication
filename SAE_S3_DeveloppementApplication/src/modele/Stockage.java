@@ -87,6 +87,9 @@ public class Stockage implements Serializable{
 		return toutEstSupprime;
 	}
 
+	public boolean supprimerReponseFausseQuestion(Question question, String nomReponseFausse) {
+		return listeQuestion.supprimerReponseFausse(question, nomReponseFausse);
+	}
 	
 	/**
 	 * Modifie la catégorie en paramètre en remplacent l'ancien intitule par le nouveau
@@ -139,7 +142,7 @@ public class Stockage implements Serializable{
 	
 	public boolean modifierCategorieQuestion(Question question, Categorie categorie) {
 		boolean estModifiee = false;
-		if (listeCategorie.elementEstDansListeCategorie(categorie.getIntituleCategorie())) {
+		if (categorie != null && listeCategorie.elementEstDansListeCategorie(categorie.getIntituleCategorie())) {
 			estModifiee = listeQuestion.modifierCategorieDeQuestion(question, categorie);
 		}
 		return estModifiee;
@@ -172,13 +175,17 @@ public class Stockage implements Serializable{
 	public boolean modifierQuestion(Question question, String intitule, Categorie categorie, int difficulte, 
 			ArrayList<String> liste, String reponse, String feedBack, String concatenation) {
 		boolean toutEstBon = false;
-		if ( listeQuestion.modifierDifficulteQuestion(question, difficulte, concatenation) && listeQuestion.modifierListeReponsesFaussesQuestion(question, liste, concatenation) 
-			 &&	listeQuestion.modifierReponseJusteQuestion(question, reponse, concatenation) && listeQuestion.modifierFeedBackQuestion(question, feedBack, concatenation) 
-			 && listeQuestion.modifierCategorieDeQuestion(question, categorie) && listeQuestion.modifierIntituleQuestion(question, intitule, concatenation) ) {
+		if (categorie != null
+				&& listeCategorie.elementEstDansListeCategorie(categorie.getIntituleCategorie())
+				&& listeQuestion.modifierDifficulteQuestion(question, difficulte, concatenation)
+				&& listeQuestion.modifierListeReponsesFaussesQuestion(question, liste, concatenation) 
+				&& listeQuestion.modifierReponseJusteQuestion(question, reponse, concatenation)
+				&& listeQuestion.modifierFeedBackQuestion(question, feedBack, concatenation) 
+				&& listeQuestion.modifierCategorieDeQuestion(question, categorie)
+				&& listeQuestion.modifierIntituleQuestion(question, intitule, concatenation) ) {
 			toutEstBon = true;
 		}
 		return toutEstBon;
-		
 	}
 	
 	public ArrayList<Question> listeQuestionFiltreDifficulteCategorieTaille(Quiz quiz){

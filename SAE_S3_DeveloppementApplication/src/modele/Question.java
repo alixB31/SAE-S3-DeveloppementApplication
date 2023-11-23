@@ -152,6 +152,19 @@ public class Question  implements Serializable{
 		this.listeReponsesFausses.remove(indice);
 	}
 	
+	public boolean listeReponsesFaussesValide(ArrayList<String> listeReponsesFausses) {
+		boolean estValide = true;
+		String reponse;
+		for (int i = 0; i <listeReponsesFausses.size()
+				&& estValide == true; i++) {
+			reponse = listeReponsesFausses.get(i);
+			if ( reponse== null || reponse.isBlank() || reponse.isEmpty()) {
+				estValide = false;
+			}
+		}
+		return estValide;
+	}
+	
 	/**
 	 * Vérifie si une réponse fausse existe dans la liste des réponses fausses
 	 * d'une question.
@@ -162,7 +175,7 @@ public class Question  implements Serializable{
 	public boolean reponseFausseExiste(String reponseFausseATester) {
 		boolean estDansListeReponseFausse = false;
 		for (int i = 0; i < listeReponsesFausses.size(); i++) {
-    		if (listeReponsesFausses.get(i).equals(reponseFausseATester)) {
+    		if (listeReponsesFausses.get(i)!= null && reponseFausseATester!= null && listeReponsesFausses.get(i).equals(reponseFausseATester)) {
     			estDansListeReponseFausse = true;
     		}
     	}
