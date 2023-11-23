@@ -13,6 +13,10 @@ public class Chiffrement {
 	private final static String CSV_CHIFFRER = "banque_de_question_exporte_chiffre.csv";
 	private final static String CSV_SORTANT_DECHIFFRER = "banque_de_question_entrante_dechiffrer.csv";
 	
+	/* nom du fichier contenant le nombre premier de l'autre personne */
+	private final static String NOMBRE_ECHANGE = "nombre_echange.csv";
+	/* nombre premier que vous pouvez choisir */
+	private final static int MON_NOMBRE_PREMIER = 17 ;
 	/* Clé que vous pouvez modifier a votre bon vouloir */
 	private final static String CLE = "zfzfeDEZ";
 	/* Index du caractères acuel de la clé */
@@ -49,7 +53,6 @@ public class Chiffrement {
 	public static void chiffrementVigenere() {
 
 		try {
-			// Initialisation du dictionnaire avec les correspondances fournies
 			String texteAChiffrer = lireCsv(CSV_ENTRANT);
 
 			// Chiffrement de Vigenère
@@ -200,19 +203,32 @@ public class Chiffrement {
 	public static void cleDiffieHellman() {
 
 		try {
-			// Initialisation du dictionnaire avec les correspondances fournies
-			String texteAChiffrer = lireCsv(CSV_ENTRANT);
-
-			// Chiffrement de Vigenère
-			String texteChiffrer = codeVigenere(texteAChiffrer, CLE);
+			// Recupere le nombre premier de la personne avec qui l'echange va avoir lieu */
+			String nombreEchange = lireCsv(NOMBRE_ECHANGE);
+			
+			// Retrouve la cle de chiffrement
+			String cle = codeDiffieHellman(MON_NOMBRE_PREMIER,Integer.parseInt(nombreEchange));
 
 			// Écriture du fichier chiffré
-			ecritureFichier(CSV_CHIFFRER, texteChiffrer);
+			//ecritureFichier(CSV_CHIFFRER, texteChiffrer);
 
-			System.out.println("Chiffrement de Vigenère terminé avec succès.");
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private static String codeDiffieHellman(int monNombrePremier, int nombreEchange) {
+		int moduleChiffrement = monNombrePremier*nombreEchange;
+		int fonctionEuler = (monNombrePremier-1)*(nombreEchange-1);
+		// Renvoie un exposant de chiffrement premier a la fonction d'euler aléatoire
+		int exposantChiffrement = exposantAleatoire(fonctionEuler);
+		return null;
+
+		
+	}
+
+	private static int exposantAleatoire(int fonctionEuler) {
+		return 0;
 	}
 }
