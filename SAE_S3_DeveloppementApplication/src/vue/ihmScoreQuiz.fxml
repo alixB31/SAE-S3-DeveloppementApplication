@@ -38,7 +38,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Text fx:id="texteEncouragement" layoutX="341.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous pouvez encore vous améliorer ! " wrappingWidth="597.8101806640625">
+      <Text fx:id="texteEncouragement" layoutX="278.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pseudo, vous pouvez encore vous améliorer ! " wrappingWidth="597.8101806640625">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -46,12 +46,7 @@
       <VBox fx:id="vBoxFeedback" layoutX="234.0" layoutY="238.0" prefHeight="375.0" prefWidth="625.0" spacing="30.0" />
       <Button fx:id="swipeGauche" layoutX="407.0" layoutY="633.0" mnemonicParsing="false" onAction="#swipeGaucheQuestionAction" text="&lt;" />
       <Button fx:id="swipeDroit" layoutX="649.0" layoutY="633.0" mnemonicParsing="false" onAction="#swipeDroitQuestionAction" text="&gt;" />
-      <Text layoutX="125.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bravo," wrappingWidth="75.41021728515625">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Text>
-      <Text fx:id="pseudoJoueur" layoutX="208.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pseudo" wrappingWidth="123.4102783203125">
+      <Text layoutX="203.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bravo" wrappingWidth="75.41021728515625">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

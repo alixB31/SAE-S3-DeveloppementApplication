@@ -30,6 +30,8 @@ public class Stockage implements Serializable{
 	// objet ListeQuestion contenant les questions du serveur
 	ListeQuestion listeQuestion;
 	
+	Joueur joueur;
+	
 	/**
 	 * Constructeur vide;
 	 */
@@ -53,6 +55,16 @@ public class Stockage implements Serializable{
 	 */
 	public HashMap getListeQuestion() {
 		return listeQuestion.getListeQuestion();
+	}
+	
+	public String getPseudoJoueur() {
+		return joueur.getPseudoJoueur();
+	}
+	
+	public void setPseudoJoueur(String nouveauPseudo) {
+		if(!nouveauPseudo.isEmpty() || !nouveauPseudo.isBlank() || nouveauPseudo != null) {
+			Joueur joueur = new Joueur(nouveauPseudo);
+		}
 	}
 	
 	/**

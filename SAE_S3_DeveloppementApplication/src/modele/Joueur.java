@@ -29,4 +29,8 @@ public class Joueur {
 	public String getPseudoJoueur() {
 	    return pseudoJoueur;
 	}
+	
+	public void setPseudoJoueur(String nouveauPseudo) {
+		pseudoJoueur = nouveauPseudo;
+	}
 }

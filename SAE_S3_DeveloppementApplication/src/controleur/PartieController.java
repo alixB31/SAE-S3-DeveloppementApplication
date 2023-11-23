@@ -54,6 +54,7 @@ public class PartieController {
     
     @FXML
     void LancerQuiz(ActionEvent event) {
+    	Main.setPseudoJoueur(pseudoJoueur.getText());
 		RadioButton difficulte = (RadioButton)choixDifficultes.getSelectedToggle();
 		int difficulteReelle;
 		if (difficulte.getText().equals("Indifférent")) {

@@ -123,7 +123,7 @@ public class Main extends Application {
 
 		/* Création de la fenêtre principale*/
 		primaryStage.setTitle("Quiz");
-		primaryStage.setHeight(740);
+		primaryStage.setHeight(720);
 		primaryStage.setWidth(1080);
 		primaryStage.setScene(sceneMenu);
 		fenetrePrincipale = primaryStage;
@@ -276,7 +276,13 @@ public class Main extends Application {
 		controller.setNote(quiz.getScoreFinal()+"", quiz.getNombreQuestions()+"");
 		controller.setNumeroDePage(indicePageResultat);
 		controller.setListeQuestion();
+		controller.setPhrase();
 		fenetrePrincipale.setScene(sceneScoreQuiz);
+	}
+	
+	public static void setPseudoJoueur(String pseudo) {
+		ScoreQuizController controller = chargeurFXMLScoreQuiz.getController();
+		controller.setPseudo(pseudo);
 	}
 
 	public static void ihmImportation() {

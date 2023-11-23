@@ -18,6 +18,7 @@ import javafx.scene.text.Text;
 import vue.Main;
 import modele.Question;
 import modele.Quiz;
+import modele.Stockage;
 
 public class ScoreQuizController {
 	
@@ -28,52 +29,7 @@ public class ScoreQuizController {
     private Text categorieQuestion;
 
     @FXML
-    private Button feedBackQuestionCinq;
-
-    @FXML
-    private Button feedBackQuestionDeux;
-
-    @FXML
-    private Button feedBackQuestionQuatre;
-
-    @FXML
-    private Button feedBackQuestionTrois;
-
-    @FXML
-    private Button feedBackQuestionUn;
-
-    @FXML
     private Text nbQuestion;
-
-    @FXML
-    private Text numeroQuestionCinq;
-
-    @FXML
-    private Text numeroQuestionDeux;
-
-    @FXML
-    private Text numeroQuestionQuatre;
-
-    @FXML
-    private Text numeroQuestionTrois;
-
-    @FXML
-    private Text numeroQuestionUn;
-
-    @FXML
-    private ImageView reponseVisuelleQuestionCinq;
-
-    @FXML
-    private ImageView reponseVisuelleQuestionDeux;
-
-    @FXML
-    private ImageView reponseVisuelleQuestionQuatre;
-
-    @FXML
-    private ImageView reponseVisuelleQuestionTrois;
-
-    @FXML
-    private ImageView reponseVisuelleQuestionUn;
 
     @FXML
     private Text score;
@@ -87,6 +43,8 @@ public class ScoreQuizController {
     private int numeroDePage;
     
     private Quiz quiz;
+    
+    private String pseudoJoueur;
     
     public void setQuizScore(Quiz quiz) {
     	this.quiz = quiz;
@@ -119,6 +77,33 @@ public class ScoreQuizController {
 			Main.retourMenuPrincipal();
 		}
     }
+    
+    public void setPseudo(String pseudo) {
+    	pseudoJoueur= pseudo;
+    }
+    
+    public void setPhrase() {
+        double scoreRatio = (double) Integer.parseInt(score.getText()) / Integer.parseInt(nbQuestion.getText());
+
+        if (pseudoJoueur != null || !pseudoJoueur.isBlank() || !pseudoJoueur.isEmpty()){
+	        if (scoreRatio <= 0.5) {
+	            texteEncouragement.setText(pseudoJoueur + ", Tu peux faire mieux, ne lâche pas !");
+	        } else if (scoreRatio > 0.5 && scoreRatio <= 0.75) {
+	            texteEncouragement.setText(pseudoJoueur + "Pas mal, mais il y a toujours place à l'amélioration !");
+	        } else {
+	            texteEncouragement.setText(pseudoJoueur + "Excellent travail ! Continue comme ça !");
+	        }
+        } else {
+        	if (scoreRatio <= 0.5) {
+	            texteEncouragement.setText(", Tu peux faire mieux, ne lâche pas !");
+	        } else if (scoreRatio > 0.5 && scoreRatio <= 0.75) {
+	            texteEncouragement.setText("Pas mal, mais il y a toujours place à l'amélioration !");
+	        } else {
+	            texteEncouragement.setText("Excellent travail ! Continue comme ça !");
+	        }
+        }
+    }
+
     
     public void setListeQuestion() {
     	vBoxFeedback.getChildren().clear();
