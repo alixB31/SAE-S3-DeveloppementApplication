@@ -18,6 +18,7 @@ public class ChoixController {
 
     @FXML
     void EnvoyerFichier(ActionEvent event) {
+    	
     	Main.ihmExportation();
     }
 

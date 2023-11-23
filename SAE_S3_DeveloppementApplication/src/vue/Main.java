@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -48,6 +49,8 @@ public class Main extends Application {
 	private static FXMLLoader chargeurFXMLImportation = new FXMLLoader();
 	private static FXMLLoader chargeurFXMLExportation = new FXMLLoader();
 	private static FXMLLoader chargeurFXMLEnvoie = new FXMLLoader();
+	private static FXMLLoader chargeurFXMLRecevoir = new FXMLLoader();
+	private static FXMLLoader chargeurFXMLChoix = new FXMLLoader();
 	public static boolean onViensArriver = false;
 	public static Stockage stockage;
 
@@ -82,13 +85,13 @@ public class Main extends Application {
 		sceneParametreCategorie = new Scene(parametreCategorie);
 
 		/* on crée la vue du choix d'export */
-		FXMLLoader chargeurFXMLChoix = new FXMLLoader();
+		
 		chargeurFXMLChoix.setLocation(getClass().getResource("ihmChoixClientServeur.fxml"));
 		Parent choix = chargeurFXMLChoix.load();
 		sceneChoix = new Scene(choix); 
 
 		/* on crée la vue du receveur*/
-		FXMLLoader chargeurFXMLRecevoir = new FXMLLoader();
+		
 		chargeurFXMLRecevoir.setLocation(getClass().getResource("ihmRecevoir.fxml"));
 		Parent recevoir = chargeurFXMLRecevoir.load();
 		sceneRecevoir = new Scene(recevoir); 
@@ -281,7 +284,7 @@ public class Main extends Application {
 	}
 
 	public static void ihmExportation() {
-		onViensArriver = true;
+
 		ExporterController controller = chargeurFXMLExportation.getController();
 		controller.getComboBoxCategorie().getItems().clear();
 		controller.questionCheck.clear();

@@ -195,4 +195,24 @@ public class Chiffrement {
 			writer.write(content);
 		}
 	}
+	
+	
+	public static void cleDiffieHellman() {
+
+		try {
+			// Initialisation du dictionnaire avec les correspondances fournies
+			String texteAChiffrer = lireCsv(CSV_ENTRANT);
+
+			// Chiffrement de Vigenère
+			String texteChiffrer = codeVigenere(texteAChiffrer, CLE);
+
+			// Écriture du fichier chiffré
+			ecritureFichier(CSV_CHIFFRER, texteChiffrer);
+
+			System.out.println("Chiffrement de Vigenère terminé avec succès.");
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

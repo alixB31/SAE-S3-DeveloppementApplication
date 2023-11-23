@@ -295,8 +295,7 @@ public class Stockage implements Serializable{
     
     /**
      * Cette méthode lit le fichier dont le nom est passé en paramètre
-     * et restaure les objets qu'il contient.
-     * Ceux-ci peuvent être de type Point ou PointNom
+     * et restaure l'objet stockage qu'il contient.
      * @param nomFichier 
      * @param une chaîne contenant le nom du fichier à consulter
      * @throws EchecSerialisationRestauration 
