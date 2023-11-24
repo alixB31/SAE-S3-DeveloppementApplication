@@ -22,43 +22,64 @@ public class Serveur {
      */
 	
 	public final static int NUM_PORT =  12345;
+	
 	private static ServerSocket serverSocket;
+	
 	private static Socket clientSocket;
+	
 	public static boolean gererConnexion() {
-		boolean Ok;
-		Ok = true;
-	    try {
-	        // Création d'un ServerSocket écoutant sur le port 12345
-	        serverSocket = new ServerSocket(NUM_PORT);
+	    boolean estRecu = false;
+	    boolean connexionAnnulee = false;
 
-	        // Définir un temps d'attente maximal en millisecondes
-	        serverSocket.setSoTimeout(4000);
+	    try {
+	        serverSocket = new ServerSocket(NUM_PORT);
+	        serverSocket.setSoTimeout(60000);
 
 	        System.out.println("Attente de connexion...");
-	       
+
 	        try {
-	            //Attente d'une connexion cliente
+	            // Attente d'une connexion cliente
 	            clientSocket = serverSocket.accept();
 
-	            System.out.println("Connexion établie.");
+	            if (!connexionAnnulee) {
+	                System.out.println("Connexion établie.");
+	                traiterReceptionFichier();
+	                estRecu = true;
+	            } else {
+	                System.out.println("Connexion annulée par l'utilisateur.");
+	            }
 
-	            // Appel de la méthode pour traiter la réception du fichier
-	            traiterReceptionFichier();
-	            
-	            // Close the ServerSocket here if needed
-	            serverSocket.close();
-	           
 	        } catch (java.net.SocketTimeoutException e) {
 	            System.out.println("Temps d'attente écoulé. Aucune connexion reçue dans le délai spécifié.");
-	            // Close the ServerSocket after the timeout
-	            serverSocket.close();
-	            Ok = false;
+	            connexionAnnulee = true;
 	        }
 
 	    } catch (IOException e) {
+	    	connexionAnnulee = true;
+	    } finally {
+	        // Fermez le ServerSocket ici après avoir traité la connexion ou après l'annulation
+	        try {
+	            if (serverSocket != null && !serverSocket.isClosed()) {
+	                serverSocket.close();
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return estRecu;
+	}
+
+	
+	// Ajouter cette méthode à la classe Serveur pour arrêter la connexion
+	public static void arreterConnexion() {
+	    try {
+	        if (serverSocket != null && !serverSocket.isClosed()) {
+	            serverSocket.close();
+	            System.out.println("Connexion annulée par l'utilisateur.");
+	        }
+	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
-	    return Ok;
 	}
 	
 	

@@ -25,7 +25,7 @@ public class Client {
             // Connexion au serveur sur le port 12345
             Socket socket = new Socket();
             
-            socket.connect(new InetSocketAddress(IP, Serveur.NUM_PORT), 4000);
+            socket.connect(new InetSocketAddress(IP, Serveur.NUM_PORT), 500);
 
             // Obtention du flux de sortie vers le serveur
             BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());

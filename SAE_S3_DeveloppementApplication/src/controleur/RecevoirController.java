@@ -3,6 +3,7 @@ package controleur;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -74,7 +75,7 @@ public class RecevoirController {
 
     @FXML
     void connexion(ActionEvent event) {
-    	// Créez une nouvelle fenêtre Stage
+        // Créez une nouvelle fenêtre Stage
         Stage enCoursStage = new Stage();
         enCoursStage.initModality(Modality.APPLICATION_MODAL);
 
@@ -87,23 +88,35 @@ public class RecevoirController {
         // Créez une barre de chargement (spinner)
         ProgressIndicator progressIndicator = new ProgressIndicator();
 
+        // Variable pour suivre si l'annulation a eu lieu
+        AtomicBoolean annulationEffectuee = new AtomicBoolean(false);
+
+        Button annulerButton = new Button("Annuler");
+
+        // Ajouter une action au bouton Annuler pour fermer la connexion
+        annulerButton.setOnAction(e -> {
+            Serveur.arreterConnexion();
+            enCoursStage.close();
+            annulationEffectuee.set(true);
+            afficherInformation("Statut du fichier","La connexion à bien été annulée.");
+        });
+
         // Ajoutez les éléments à une mise en page
         VBox layout = new VBox(20); // Utilisez VBox pour aligner les éléments verticalement
         layout.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(messageLabel, progressIndicator);
+        layout.getChildren().addAll(messageLabel, progressIndicator, annulerButton);
         layout.setStyle("-fx-background-color: rgba(255, 255, 255, 0.8); -fx-padding: 20px;");
 
         // Créez une nouvelle scène
-        Scene scene = new Scene(layout, 350, 120);
+        Scene scene = new Scene(layout, 350, 170);
 
         // Configurez la scène
         enCoursStage.setScene(scene);
-        
+
         enCoursStage.setOnCloseRequest(WindowEvent::consume);
 
         // Créez un nouveau thread pour l'envoi du fichier
         Thread recevoirThread = new Thread(() -> {
-            // Exécutez ici votre code pour envoyer le fichier
             boolean estRecu = Serveur.gererConnexion();
 
             // Mettez à jour l'interface utilisateur depuis le thread de l'UI
@@ -112,19 +125,13 @@ public class RecevoirController {
                 enCoursStage.close();
 
                 // Créez la fenêtre d'information pour afficher le résultat
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Envoi de fichier");
-                alert.setHeaderText(null);
-
-                if (estRecu) {
-                    alert.setContentText("Fichier reçu avec succès.");
-                } else {
-                    alert.setAlertType(AlertType.ERROR);
-                    alert.setContentText("Erreur lors de la connexion entre les machines.");
+                if (estRecu && !annulationEffectuee.get()) {
+                    // Affichez la fenêtre d'information si la connexion n'a pas été annulée
+                    afficherInformation("Statut du fichier :","Fichier reçu avec succès.");
+                } else if (!annulationEffectuee.get()) {
+                    // Afficher un message d'erreur si la connexion n'a pas été annulée
+                    afficherErreur("Statut du fichier :","Erreur lors de la connexion entre les machines.");
                 }
-
-                // Affichez la fenêtre d'information
-                alert.showAndWait();
             });
         });
 
@@ -135,6 +142,36 @@ public class RecevoirController {
         enCoursStage.show();
     }
 
+
+
+    /** 
+     * Affiche un message pour confirmer l'import
+     * d'un fichier csv
+     * @param titre
+     * @param message
+     */
+    public static void afficherInformation(String titre, String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(titre);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    
+    /** 
+     * Affiche un message pour confirmer l'import
+     * d'un fichier csv
+     * @param titre
+     * @param message
+     */
+    public static void afficherErreur(String titre, String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(titre);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    
     @FXML
     void retourChoix(ActionEvent event) {
     	Main.ihmChoix();
