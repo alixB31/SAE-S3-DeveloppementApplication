@@ -21,7 +21,7 @@ public class Serveur {
      * 
      */
 	
-	public final static int NUM_PORT =  12345;
+	public final static int NUM_PORT = 49152;
 	
 	private static ServerSocket serverSocket;
 	
