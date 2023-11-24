@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 
 
 public class Chiffrement {
@@ -12,11 +13,12 @@ public class Chiffrement {
 	private final static String CSV_ENTRANT = "banque_de_question_exporte.csv";
 	private final static String CSV_CHIFFRER = "banque_de_question_exporte_chiffre.csv";
 	private final static String CSV_SORTANT_DECHIFFRER = "banque_de_question_entrante_dechiffrer.csv";
-	
-	/* nom du fichier contenant le nombre premier de l'autre personne */
-	private final static String NOMBRE_ECHANGE = "nombre_echange.csv";
-	/* nombre premier que vous pouvez choisir */
+	private final static String CSV_CLE_PUBLIQUE = "cle_publique.csv";
+
+	/* nombre premier que vous pouvez choisir, vous devez avoir le meme que l'autre personne */
 	private final static int MON_NOMBRE_PREMIER = 17 ;
+	/* Generateur, vous devez avoir le meme que l'autre personne */
+	private static final int GENERATEUR = 0;
 	/* Clé que vous pouvez modifier a votre bon vouloir */
 	private final static String CLE = "zfzfeDEZ";
 	/* Index du caractères acuel de la clé */
@@ -27,9 +29,10 @@ public class Chiffrement {
 	private static int indexCaractere;
 	/* Index du caractere codé */
 	private static int indexChiffre;
-	
 	/* Index du caractere décodé */
 	private static int indexDechiffre;
+	
+	private static int maClePrive;
 
 	private final static char[] listeCaracteres = {
 			'!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/',
@@ -45,12 +48,8 @@ public class Chiffrement {
 	};
 	
 
-	public static void main(String[] args) {
-		chiffrementVigenere();
-		dechiffrementVigenere();
-	}
 
-	public static void chiffrementVigenere() {
+	public static void chiffrementVigenere(int cle) {
 
 		try {
 			String texteAChiffrer = lireCsv(CSV_ENTRANT);
@@ -67,7 +66,7 @@ public class Chiffrement {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void dechiffrementVigenere() {
 
 		try {
@@ -108,7 +107,7 @@ public class Chiffrement {
 		return ensembleTexte.toString();
 	}
 
-	
+
 	private static String codeVigenere(String texte, String cle) {
 
 		// Creer une string ou l'on rajouteras tout les lettres chiffrées
@@ -132,7 +131,7 @@ public class Chiffrement {
 
 				// Index du caractere codé 
 				indexChiffre = (indexCaractere + indexCleActuel) % listeCaracteres.length;
-				
+
 				// Ajout du caractere correspondant a l'index a la string
 				texteChiffrer.append(listeCaracteres[indexChiffre]);
 				// Passage a l'index suivant
@@ -144,16 +143,16 @@ public class Chiffrement {
 	}
 
 	private static String decodeVigenere(String messageChiffre, String cle) {
-		
+
 		// Creer une string ou l'on rajouteras tout les lettres déchiffrées
 		StringBuilder messageDechiffre = new StringBuilder();
-		
+
 		// Obtention de la longueur de la clé et initialisation de l'index de la clé
 		int longueurCle = cle.length();
 		int indexCle = 0;
 
 		for (char caractereChiffre : messageChiffre.toCharArray()) {
-			
+
 			// Si le caractère chiffré est un ';', le laisser inchangé
 			if (caractereChiffre == '\u0012') {
 				messageDechiffre.append(';');
@@ -162,16 +161,16 @@ public class Chiffrement {
 			}else {
 				// Index du caractère chiffré dans la liste de caractères
 				indexCaractereChiffre = trouverIndexCaractere(caractereChiffre);
-				
+
 				// Index du caractère de la cle dans la liste de caractères
 				indexCleActuel = trouverIndexCaractere(cle.charAt(indexCle));
-				
+
 				// Index du caractere décodé 
 				indexDechiffre = (indexCaractereChiffre - indexCleActuel + listeCaracteres.length) % listeCaracteres.length;
-				
+
 				// Ajout du caractere correspondant a l'index a la string
 				messageDechiffre.append(listeCaracteres[indexDechiffre]);
-				
+
 				// Passage a l'index suivant
 				indexCle = (indexCle + 1) % longueurCle;
 			}
@@ -180,7 +179,7 @@ public class Chiffrement {
 		return messageDechiffre.toString();
 	}
 
-	
+
 	private static int trouverIndexCaractere(char caractere) {
 		// Parcoure la liste des caractéres
 		for (int i = 0; i < listeCaracteres.length; i++) {
@@ -198,37 +197,98 @@ public class Chiffrement {
 			writer.write(content);
 		}
 	}
-	
-	
-	public static void cleDiffieHellman() {
+
+
+	public static void chiffrementDiffieHellman() {
 
 		try {
-			// Recupere le nombre premier de la personne avec qui l'echange va avoir lieu */
-			String nombreEchange = lireCsv(NOMBRE_ECHANGE);
-			
 			// Retrouve la cle de chiffrement
-			String cle = codeDiffieHellman(MON_NOMBRE_PREMIER,Integer.parseInt(nombreEchange));
-
-			// Écriture du fichier chiffré
-			//ecritureFichier(CSV_CHIFFRER, texteChiffrer);
-
-
+			int clePrive = clePrive(MON_NOMBRE_PREMIER,GENERATEUR);
+			maClePrive = clePrive;
+			int clePublique = clePublique(GENERATEUR,clePrive,MON_NOMBRE_PREMIER);
+			// création du fichier contenant la clé publique
+			ecritureFichier(CSV_CLE_PUBLIQUE, Integer.toString(clePublique));
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static String codeDiffieHellman(int monNombrePremier, int nombreEchange) {
-		int moduleChiffrement = monNombrePremier*nombreEchange;
-		int fonctionEuler = (monNombrePremier-1)*(nombreEchange-1);
-		// Renvoie un exposant de chiffrement premier a la fonction d'euler aléatoire
-		int exposantChiffrement = exposantAleatoire(fonctionEuler);
-		return null;
+	
+	public static void dechiffrementDiffieHellman() {
 
-		
+		try {
+			// Recupere la cle publique de l'autre personne
+			String clePubliqueAutre = lireCsv(CSV_CLE_PUBLIQUE);
+			int clePartage = calculClePartage(Integer.parseInt(clePubliqueAutre),MON_NOMBRE_PREMIER,maClePrive);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	private static int calculClePartage(int clePubliqueAutre, int nombrePremier, int clePrive) {
+		int clePartage = (clePubliqueAutre^clePrive)%nombrePremier;
+		return clePubliqueAutre;
+
+	}
+
+	private static int clePrive(int NombrePremier, int generateur) {
+		int moduleChiffrement = NombrePremier*generateur;
+		// Calcul de la fonction d'Euler en moduleChiffrement
+		int fonctionEuler = (NombrePremier-1)*(generateur-1);
+		// Renvoie un exposant de chiffrement premier a la fonction d'euler aléatoire
+		int clePrive = exposantAleatoire(fonctionEuler);
+		// Création de la clé publique
+		return clePrive;
+
+	}
+
+	private static int clePublique(int generateur, int clePrive, int nombrePremier) {		
+		int nombre = (clePrive^generateur)%nombrePremier;
+		return nombre;
 	}
 
 	private static int exposantAleatoire(int fonctionEuler) {
-		return 0;
+		int[] listeDeNombres = null;
+		int compteur = 0;
+		for (int i = 2; i < fonctionEuler; i++) {
+			// Ajoute a la liste les nombres premiers à fonctionEuler
+			if (sontPremiersEntreEux(fonctionEuler, i)) {
+				listeDeNombres[compteur] = i;
+				compteur++;
+			}
+		}
+		return obtenirNombreAleatoire(listeDeNombres);
 	}
+
+
+	public static boolean sontPremiersEntreEux(int fonctionEuler, int nombreTeste) {
+		return pgcd(fonctionEuler, nombreTeste) == 1;
+	}
+
+	public static int pgcd(int fonctionEuler, int nombreTeste) {
+		while (nombreTeste != 0) {
+			int temporaire = nombreTeste;
+			// Trouve le reste de fonctionEuler par le nombreTeste
+			nombreTeste = fonctionEuler % nombreTeste;
+			fonctionEuler = temporaire;
+		}		
+		// retourne le pgcd
+		return fonctionEuler;
+	}
+	
+    public static int obtenirNombreAleatoire(int[] liste) {
+        Random random = new Random();
+        // Sélection aléatoire d'un index dans la liste
+        int indexAleatoire = random.nextInt(liste.length);
+        // Retour du nombre correspondant à l'index sélectionné
+        return liste[indexAleatoire];
+    }
 }
