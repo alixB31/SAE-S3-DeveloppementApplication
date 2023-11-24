@@ -7,27 +7,27 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ExporterController">
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E3B4E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ExporterController">
    <children>
-      <Text layoutX="295.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUESTIONS">
+      <Text fill="#8BA1B5" layoutX="295.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUESTIONS">
          <font>
             <Font name="System Bold Italic" size="88.0" />
          </font>
       </Text>
-      <Button fx:id="btnRetour" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnRetour" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour">
+      <Button fx:id="btnRetour" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnRetour" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour" textFill="#D8E3E7">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="Segoe UI Bold" size="25.0" />
          </font>
       </Button>
       <ComboBox fx:id="comboBoxCategorie" layoutX="60.0" layoutY="58.0" onAction="#comboBoxCategorieAction" prefHeight="62.0" prefWidth="138.0" />
-      <Button fx:id="btnSelectionnerTout" layoutX="882.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnSelectionnerToutAction" prefHeight="62.0" prefWidth="137.0" style="-fx-background-color: #FFFFFF;" text="Sélectionner &#10;tout" textAlignment="CENTER">
+      <Button fx:id="btnSelectionnerTout" layoutX="882.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnSelectionnerToutAction" prefHeight="62.0" prefWidth="137.0" style="-fx-background-color: #FFFFFF;" text="Sélectionner &#10;tout" textAlignment="CENTER" textFill="#2E3B4E">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="Segoe UI" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnExporter" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnExporterAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #00B2FF; -fx-background-radius: 10px;" text="Exporter">
+      <Button fx:id="btnExporter" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnExporterAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #5865F2; -fx-background-radius: 10px;" text="Exporter" textFill="#D8E3E7">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="Segoe UI Bold" size="25.0" />
          </font>
       </Button>
       <ScrollPane fx:id="scrollBarContenu" hbarPolicy="NEVER" layoutX="60.0" layoutY="168.0" prefHeight="438.0" prefWidth="960.0" />

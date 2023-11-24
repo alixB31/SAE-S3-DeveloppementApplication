@@ -113,19 +113,29 @@ public class RepondreQuestionControleur {
     }
     
     public void setListeReponse(Question question) {
-    	reponsesBox.getChildren().clear();
-    	ArrayList<String> listeReponses = Main.stockage.getListeReponsesOrdreAleatoire(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie());
-    	boolean premierElement = true;
-    	for (int i = 0; i < listeReponses.size(); i++) {
-    		
-    		RadioButton button = new RadioButton(listeReponses.get(i));
-    		button.setToggleGroup(reponsesToggle);
-    		if(premierElement) {
-    			button.setSelected(true);
-    		}
-    		reponsesBox.getChildren().add(button);
-    		premierElement = false;
-    	}
-    	reponsesBox.setSpacing(20);
+        reponsesBox.getChildren().clear();
+        ArrayList<String> listeReponses = Main.stockage.getListeReponsesOrdreAleatoire(question.getIntituleQuestion() + question.getCategorieDeQuestion().getIntituleCategorie());
+        boolean premierElement = true;
+
+        for (int i = 0; i < listeReponses.size(); i++) {
+            RadioButton button = new RadioButton(listeReponses.get(i));
+            button.setToggleGroup(reponsesToggle);
+
+            if (premierElement) {
+                button.setSelected(true);
+            }
+
+            // Appliquer la police d'écriture
+            button.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 18;");
+
+            // Appliquer la couleur du texte
+            button.setTextFill(javafx.scene.paint.Color.valueOf("#D8E3E7"));
+
+            reponsesBox.getChildren().add(button);
+            premierElement = false;
+        }
+
+        reponsesBox.setSpacing(20);
     }
+
 }

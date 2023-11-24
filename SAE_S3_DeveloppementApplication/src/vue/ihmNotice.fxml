@@ -5,29 +5,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.NoticeController">
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E3B4E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.NoticeController">
    <children>
-      <Button fx:id="btnRetour" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10;" text="Retour">
+      <Button fx:id="btnRetour" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10;" text="Retour" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="Segoe UI Bold" size="25.0" />
          </font>
       </Button>
-      <Text layoutX="150.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Le but de ce quiz est de vous permettre de réviser vos connaissances dans différents thèmes dont Java. " textAlignment="JUSTIFY" wrappingWidth="781.58984375">
+      <Text fill="#8ba1b5" layoutX="150.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Le but de ce quiz est de vous permettre de réviser vos connaissances dans différents thèmes dont Java. " textAlignment="JUSTIFY" wrappingWidth="781.58984375">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Text>
-      <Text layoutX="380.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOTICE">
+      <Text fill="#8ba1b5" layoutX="380.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOTICE">
          <font>
             <Font name="System Bold Italic" size="88.0" />
          </font>
       </Text>
-      <Text layoutX="149.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pour lancer une partie, il faudra simplement cliquer sur le bouton lancer une partie. Par la suite, on vous demandera de paramétrer votre partie. Vous allez choisir le nombre de questions auxquelles vous voulez répondre.Vous pourrez répondre soit à 5, 10 ou 20 questions. Vous pouvez aussi choisir un niveau de difficultés. Concernant la difficulté, vous n'avez aucune obligation de choisir un niveau de difficulté. L’application considéra votre choix comme “indifférent” et vous aurez des questions de difficultés variables allant du niveau 1 pour les plus simples au niveau 3 pour les plus difficiles. De même pour la catégorie, vous pourrez choisir une catégorie de questions. Dans ce cas, le quiz proposera des questions uniquement concernants cette catégorie. Dans le cas d’aucun choix de catégorie, les questions seront tirées au hasard parmi toutes les questions." textAlignment="CENTER" wrappingWidth="781.58984375">
+      <Text fill="#8ba1b5" layoutX="149.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pour lancer une partie, il faudra simplement cliquer sur le bouton lancer une partie. Par la suite, on vous demandera de paramétrer votre partie. Vous allez choisir le nombre de questions auxquelles vous voulez répondre.Vous pourrez répondre soit à 5, 10 ou 20 questions. Vous pouvez aussi choisir un niveau de difficultés. Concernant la difficulté, vous n'avez aucune obligation de choisir un niveau de difficulté. L’application considéra votre choix comme “indifférent” et vous aurez des questions de difficultés variables allant du niveau 1 pour les plus simples au niveau 3 pour les plus difficiles. De même pour la catégorie, vous pourrez choisir une catégorie de questions. Dans ce cas, le quiz proposera des questions uniquement concernants cette catégorie. Dans le cas d’aucun choix de catégorie, les questions seront tirées au hasard parmi toutes les questions." textAlignment="CENTER" wrappingWidth="781.58984375">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Text>
-      <Text layoutX="149.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous avez aussi accès au paramètres de votre quiz. Quand vous cliquez sur le bouton paramètres, vous accéderez à la gestion des catégories. Depuis cette interface, vous pouvez supprimer ou ajouter une catégorie. Si vous souhaitez accéder aux paramètres d’une question ou d’une catégorie, vous devez cliquer sur la catégorie qui vous intéresse. Par la suite, une interface avec la catégorie que vous avez sélectionné apparaît avec les questions qui la concerne. Si vous souhaitez changer le nom d’une catégorie, le bouton éditer vous permettra de modifier le nom de la catégorie. Vous pouvez aussi ajouter une question toujours dans la catégorie que vous avez sélectionné. Si vous souhaitez modifier une question, vous devez cliquer sur la question par la suite une interface de gestion de la question s'affiche avec la réponse juste et la ou les réponses fausses. Vous pourrez modifier la question et les réponses." textAlignment="CENTER" wrappingWidth="781.58984375">
+      <Text fill="#8ba1b5" layoutX="149.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous avez aussi accès au paramètres de votre quiz. Quand vous cliquez sur le bouton paramètres, vous accéderez à la gestion des catégories. Depuis cette interface, vous pouvez supprimer ou ajouter une catégorie. Si vous souhaitez accéder aux paramètres d’une question ou d’une catégorie, vous devez cliquer sur la catégorie qui vous intéresse. Par la suite, une interface avec la catégorie que vous avez sélectionné apparaît avec les questions qui la concerne. Si vous souhaitez changer le nom d’une catégorie, le bouton éditer vous permettra de modifier le nom de la catégorie. Vous pouvez aussi ajouter une question toujours dans la catégorie que vous avez sélectionné. Si vous souhaitez modifier une question, vous devez cliquer sur la question par la suite une interface de gestion de la question s'affiche avec la réponse juste et la ou les réponses fausses. Vous pourrez modifier la question et les réponses." textAlignment="CENTER" wrappingWidth="781.58984375">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>

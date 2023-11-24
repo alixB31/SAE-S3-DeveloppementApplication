@@ -8,30 +8,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5CCAC3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ImportationController">
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E3B4E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ImportationController">
    <children>
-      <Text layoutX="373.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IMPORT">
+      <Text fill="#8BA1B5" layoutX="373.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IMPORT">
          <font>
             <Font name="System Bold Italic" size="88.0" />
          </font>
       </Text>
-      <Button fx:id="btnRetour" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnRetour" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour">
+      <Button fx:id="btnRetour" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnRetour" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour" textFill="#FFFFFF">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Text layoutX="105.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Import : ">
+      <Text fill="#8ba1b5" layoutX="105.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Import : ">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <TextField fx:id="cheminDeFichier" layoutX="248.0" layoutY="306.0" prefHeight="53.0" prefWidth="474.0" />
-      <Button fx:id="btnParcourir" layoutX="823.0" layoutY="304.0" mnemonicParsing="false" onAction="#btnParcourirAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" text="Parcourir">
+      <TextField fx:id="cheminDeFichier" layoutX="248.0" layoutY="306.0" prefHeight="53.0" prefWidth="474.0" style="-fx-background-color: #8ba1b5;" />
+      <Button fx:id="btnParcourir" layoutX="823.0" layoutY="304.0" mnemonicParsing="false" onAction="#btnParcourirAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #8ba1b5;" text="Parcourir" textFill="#2E3B4E">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="btnValider" layoutX="741.0" layoutY="301.0" mnemonicParsing="false" onAction="#btnValiderAction" style="-fx-background-color: #5CCAC3;">
+      <Button fx:id="btnValider" layoutX="741.0" layoutY="301.0" mnemonicParsing="false" onAction="#btnValiderAction" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
