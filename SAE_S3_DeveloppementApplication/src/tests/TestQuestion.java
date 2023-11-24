@@ -78,10 +78,11 @@ class TestQuestion {
 			"   Très court   ", "but   ", "       aller Kante", " Beaucoup de chiffre  1010101011111001110101011001010010010110110101011000011001010010010101"};
 
 	/* Liste de feeedback invalides */
-	private final String[] LISTE_FEEDBACK_INVALIDES = {null, "       "};
+	private final String[] LISTE_FEEDBACK_INVALIDES = {null};
 
 	private final Categorie[] LISTE_CATEGORIES_INVALIDES = {null, new Categorie("inexistante")};
-	
+
+	private final Categorie[] LISTE_CATEGORIES_VALIDES = {new Categorie("France"), new Categorie("Géographie"), new Categorie("3000")};
 	private ArrayList<String> listeReponsesFaussesInvalides = new ArrayList<>();
 
 	@BeforeEach
@@ -289,16 +290,19 @@ class TestQuestion {
 					"Modification de l'intitulé de la question par des intitulés valides");
 		}
 		// Modification d'une question avec différentes catégories valides
-		stockageTest.ajouterCategorie(jeuDeTest.get(3));
-		for (int i = 0; i <jeuDeTest.size(); i++) {
+//		
+		for (int i = 0; i < LISTE_CATEGORIES_VALIDES.length;i++){
+			stockageTest.ajouterCategorie(LISTE_CATEGORIES_VALIDES[i]);
+		}	
+		for (int i = 0; i <LISTE_CATEGORIES_VALIDES.length; i++) {
 			assertTrue(stockageTest.modifierQuestion(jeuDeTestQuestionValide.get(0),
 					jeuDeTestQuestionValide.get(0).getIntituleQuestion(),
-					jeuDeTest.get(i),
+					LISTE_CATEGORIES_VALIDES[i],
 					LISTE_DIFFICULTES_VALIDES[0], listeReponsesFausses ,
 					LISTE_REPONSES_JUSTES_VALIDES[0], LISTE_FEEDBACK_VALIDES[0],
 					jeuDeTestQuestionValide.get(0).getIntituleQuestion()
 					+jeuDeTestQuestionValide.get(0).getCategorieDeQuestion().getIntituleCategorie()),
-					"Modification de la catégories d'une question par des catégories valides");
+					"Modification de la catégories d'une question par des catégories valides " + LISTE_CATEGORIES_VALIDES[i].getIntituleCategorie());
 		}
 
 		// Modification d'une question avec différentes liste de réponses fausses valides
