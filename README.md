@@ -23,21 +23,21 @@ Rayan Ibrahime    ==> Bratoun
 
 Product Owner : Nathan Girardin
 Scrum Master : Mateo Faussurier
-Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahim, Alix Brugier
+Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahime, Alix Brugier
 
 
 **Sprint 1 :**
 
 Product Owner : IBRAHIME Rayan
 Scrum Master : BRUGIER Alix
-Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahim, Alix Brugier
+Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahime, Alix Brugier
 
 
 **Sprint 2 :**
 
 Product Owner : 
 Scrum Master : 
-Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahim, Alix Brugier
+Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahime, Alix Brugier
 
 
 ## Liens : 
