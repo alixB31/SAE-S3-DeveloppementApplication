@@ -115,7 +115,6 @@ public class RepondreQuestionControleur {
     public void setListeReponse(Question question) {
     	reponsesBox.getChildren().clear();
     	ArrayList<String> listeReponses = Main.stockage.getListeReponsesOrdreAleatoire(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie());
-        
     	boolean premierElement = true;
     	for (int i = 0; i < listeReponses.size(); i++) {
     		
@@ -127,6 +126,6 @@ public class RepondreQuestionControleur {
     		reponsesBox.getChildren().add(button);
     		premierElement = false;
     	}
-    	reponsesBox.setSpacing(20); // Peut être le modiffier en fonction du nombre de question
+    	reponsesBox.setSpacing(20);
     }
 }
