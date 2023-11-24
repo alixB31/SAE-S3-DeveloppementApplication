@@ -183,10 +183,19 @@ public class Question  implements Serializable{
 	}
 	
 	public ArrayList<String> getListeReponsesOrdreAleatoire(){
-    	ArrayList<String> listeReponses = getReponsesFaussesQuestion();
+		
+    	ArrayList<String> listeReponses = new ArrayList<>();
+    	for (int i = 0; i < listeReponsesFausses.size(); i++) {
+    		listeReponses.add(listeReponsesFausses.get(i));
+    	}
+    	
+    	System.out.println(" faux : " + listeReponses);
     	// Ajout de la réponse juste;
     	listeReponses.add(getReponseJusteQuestion());
+    	System.out.println(" vrai : " + listeReponses);
+    	System.out.println("reel " + getReponsesFaussesQuestion());
     	Collections.shuffle(listeReponses);
+    	System.out.println(" total : " + listeReponses);
     	return listeReponses;
     }
 }
