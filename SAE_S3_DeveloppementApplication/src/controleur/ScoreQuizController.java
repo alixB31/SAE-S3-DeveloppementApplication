@@ -87,19 +87,19 @@ public class ScoreQuizController {
 
         if (pseudoJoueur != null || !pseudoJoueur.isBlank() || !pseudoJoueur.isEmpty()){
 	        if (scoreRatio <= 0.5) {
-	            texteEncouragement.setText(pseudoJoueur + ", Tu peux faire mieux, ne lâche pas !");
+	            texteEncouragement.setText("Bravo, " + pseudoJoueur + " tu peux faire mieux, ne lâche pas !");
 	        } else if (scoreRatio > 0.5 && scoreRatio <= 0.75) {
-	            texteEncouragement.setText(pseudoJoueur + "Pas mal, mais il y a toujours place à l'amélioration !");
+	            texteEncouragement.setText("Bravo, " + pseudoJoueur + " pas mal, mais il y a toujours place à l'amélioration !");
 	        } else {
-	            texteEncouragement.setText(pseudoJoueur + "Excellent travail ! Continue comme ça !");
+	            texteEncouragement.setText("Bravo, " + pseudoJoueur + " excellent travail ! Continue comme ça !");
 	        }
         } else {
         	if (scoreRatio <= 0.5) {
-	            texteEncouragement.setText(", Tu peux faire mieux, ne lâche pas !");
+	            texteEncouragement.setText("Bravo, tu peux faire mieux, ne lâche pas !");
 	        } else if (scoreRatio > 0.5 && scoreRatio <= 0.75) {
-	            texteEncouragement.setText("Pas mal, mais il y a toujours place à l'amélioration !");
+	            texteEncouragement.setText("Bravo, pas mal, mais il y a toujours place à l'amélioration !");
 	        } else {
-	            texteEncouragement.setText("Excellent travail ! Continue comme ça !");
+	            texteEncouragement.setText("Bravo, excellent travail ! Continue comme ça !");
 	        }
         }
     }
