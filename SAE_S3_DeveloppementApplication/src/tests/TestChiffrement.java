@@ -9,6 +9,9 @@ class TestChiffrement {
 	
 	
 	
+	
+	
+	
 	@Test
 	void testPremierEntreEux() {
 		assertFalse(modele.Chiffrement.sontPremiersEntreEux(20,5));
