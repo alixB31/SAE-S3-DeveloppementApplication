@@ -100,16 +100,20 @@ public class ListeQuestion implements Serializable{
      */
     public boolean modifierIntituleQuestion(Question question, String nouvelIntitule, String concatenation) {
         boolean estModifiee = false;
-        if (nouvelIntitule != null
-        		&& elementEstDansListeQuestion(concatenation/*question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie()*/)
-        		&& !nouvelIntitule.isBlank()
-        		&& !nouvelIntitule.isEmpty()) {
-           if (this.supprimerElementListeQuestion(concatenation)) {
-        	   question.setIntituleQuestion(nouvelIntitule);
-        	   if (this.ajouterElementListeQuestion(question)) {
-        		   estModifiee = true;
-        	   }  
-           }
+        if (nouvelIntitule != null) {
+        	if (!nouvelIntitule.equals(question.getIntituleQuestion())
+            		&& elementEstDansListeQuestion(concatenation/*question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie()*/)
+            		&& !nouvelIntitule.isBlank()
+            		&& !nouvelIntitule.isEmpty()) {
+               if (this.supprimerElementListeQuestion(concatenation)) {
+            	   question.setIntituleQuestion(nouvelIntitule);
+            	   if (this.ajouterElementListeQuestion(question)) {
+            		   estModifiee = true;
+            	   }  
+               }
+            } else if (nouvelIntitule.equals(question.getIntituleQuestion())) {
+            	estModifiee = true;
+            }
         }
         return estModifiee;
     }
@@ -123,14 +127,17 @@ public class ListeQuestion implements Serializable{
      */
     public boolean modifierCategorieDeQuestion(Question question, Categorie categorie) {
     	boolean estModifiee = false;
+    	System.out.println(elementEstDansListeQuestion(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie()));
+		System.out.println(!elementEstDansListeQuestion(question.getIntituleQuestion()+categorie.getIntituleCategorie()));
     	if (question.getCategorieDeQuestion().equals(categorie)) {
     		estModifiee = true;
-    	}
-    	else if (categorie != null
+    		System.out.println("c les meme" + categorie.getIntituleCategorie());
+    	} else if (categorie != null
     			&& elementEstDansListeQuestion(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie())
         		&& !elementEstDansListeQuestion(question.getIntituleQuestion()+categorie.getIntituleCategorie())) {
             question.setCategorieQuestion(categorie);
-            
+            supprimerElementListeQuestion(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie());
+            ajouterElementListeQuestion(question);
             estModifiee = true;
         }
         
@@ -184,7 +191,7 @@ public class ListeQuestion implements Serializable{
      */
     public boolean modifierFeedBackQuestion(Question question, String feedBack, String concatenation) {
     	boolean estModifie = false;
-        if (feedBack!= null && !feedBack.isBlank() && elementEstDansListeQuestion(concatenation)) {
+        if (feedBack!= null&& elementEstDansListeQuestion(concatenation)) {
             question.setFeedBackQuestion(feedBack);
             estModifie = true;
         }
