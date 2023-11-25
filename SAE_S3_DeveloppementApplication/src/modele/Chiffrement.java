@@ -99,31 +99,6 @@ public class Chiffrement {
     }
 
 
-    /** 
-     * Lis un fichier et ajoute un à un les caractères a une string en remplacant 
-     * les retours a la ligne par un caractére spécial
-     * @param fichier a lire
-     * @return String chaine de tout les caractères du fichier 
-     */
-    private static String lireCsv(String filePath) throws IOException {
-        // Creer une string ou l'on rajouteras tout les elements du csv
-        StringBuilder ensembleTexte = new StringBuilder();
-        // Lis le contenu du fichier ligne par ligne
-        try (BufferedReader texte = new BufferedReader(new FileReader(filePath))) {
-            // Ligne du fichier
-            String ligne;
-
-            // Ajoute les lettre ligne par ligne a la string 
-            while ((ligne = texte.readLine()) != null) {
-                // Lorsque la ligne ajoute un caractere spécial pour remplacer le retour a la ligne
-                ensembleTexte.append(ligne).append('\u0013');
-            }
-            // Ajoute un retour a la ligne a la fin de chaque question
-
-        }
-        System.out.println(ensembleTexte.toString());
-        return ensembleTexte.toString();
-    }
 
     
     /** 
@@ -227,18 +202,6 @@ public class Chiffrement {
         return -1;
     }
     
-    /**
-     * Écrit le contenu spécifié dans un fichier donné.
-     * @param filePath Le chemin du fichier dans lequel écrire le contenu.
-     * @param content Le contenu à écrire dans le fichier.
-     * @throws IOException En cas d'erreur lors de l'écriture dans le fichier.
-     */
-    private static void ecritureFichier(String filePath, String content) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write(content);
-        }
-    }
-
 
     public static void chiffrementDiffieHellman() {
 
@@ -331,5 +294,44 @@ public class Chiffrement {
         int indexAleatoire = random.nextInt(liste.length);
         // Retour du nombre correspondant à l'index sélectionné
         return liste[indexAleatoire];
+    }
+    
+
+    /** 
+     * Lis un fichier et ajoute un à un les caractères a une string en remplacant 
+     * les retours a la ligne par un caractére spécial
+     * @param fichier a lire
+     * @return String chaine de tout les caractères du fichier 
+     */
+    private static String lireCsv(String filePath) throws IOException {
+        // Creer une string ou l'on rajouteras tout les elements du csv
+        StringBuilder ensembleTexte = new StringBuilder();
+        // Lis le contenu du fichier ligne par ligne
+        try (BufferedReader texte = new BufferedReader(new FileReader(filePath))) {
+            // Ligne du fichier
+            String ligne;
+
+            // Ajoute les lettre ligne par ligne a la string 
+            while ((ligne = texte.readLine()) != null) {
+                // Lorsque la ligne ajoute un caractere spécial pour remplacer le retour a la ligne
+                ensembleTexte.append(ligne).append('\u0013');
+            }
+            // Ajoute un retour a la ligne a la fin de chaque question
+
+        }
+        System.out.println(ensembleTexte.toString());
+        return ensembleTexte.toString();
+    }
+    
+    /**
+     * Écrit le contenu spécifié dans un fichier donné.
+     * @param filePath Le chemin du fichier dans lequel écrire le contenu.
+     * @param content Le contenu à écrire dans le fichier.
+     * @throws IOException En cas d'erreur lors de l'écriture dans le fichier.
+     */
+    private static void ecritureFichier(String filePath, String content) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(content);
+        }
     }
 }

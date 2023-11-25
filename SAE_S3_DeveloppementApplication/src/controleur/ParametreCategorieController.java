@@ -39,10 +39,10 @@ public class ParametreCategorieController {
 	private Button ajouterQuestion;
 
 	@FXML
-	private Button btnRetour1;
+	private Button btnRetour;
 
 	@FXML
-	private Button btnSuivant;
+	private Button btnTerminer;
 
 	@FXML
 	public Label nomCategorie;
@@ -232,10 +232,6 @@ public class ParametreCategorieController {
 
 	}
 
-	@FXML
-	void retourMenu(ActionEvent event) {
-		Main.lancerParametre();
-	}
 
 	@FXML
 	void deleteQuestion(ActionEvent event) {
@@ -522,6 +518,17 @@ public class ParametreCategorieController {
 			comboBoxQuestion.getItems().add(listeQuestionParCategorie.get(i).getIntituleQuestion());
 		}
 
+	}
+	
+
+	@FXML
+	void terminer(ActionEvent event) {
+		Main.retourMenuPrincipal();
+	}
+	
+	@FXML
+	void retourMenu(ActionEvent event) {
+		Main.lancerParametre();
 	}
 }
 

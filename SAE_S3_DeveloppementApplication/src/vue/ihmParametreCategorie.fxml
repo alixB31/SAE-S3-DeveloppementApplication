@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -9,14 +14,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E3B4E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreCategorieController">
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E3B4E;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ParametreCategorieController">
    <children>
       <Text fill="#8ba1b5" layoutX="60.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie : " textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Text>
-      <Button fx:id="btnRetour1" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour" textFill="WHITE">
+      <Button fx:id="btnRetour" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10px;" text="Retour" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
@@ -59,5 +64,10 @@
             <Font name="System Bold Italic" size="88.0" />
          </font>
       </Text>
+      <Button fx:id="btnTerminer" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#terminer" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 10px; -fx-background-color: #5865F2;" text="Terminer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

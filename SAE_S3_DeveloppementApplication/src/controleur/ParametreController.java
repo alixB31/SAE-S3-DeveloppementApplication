@@ -106,9 +106,9 @@ public class ParametreController {
 			String resultat = boiteSaisie.getResult();
 			if (resultat != null && !resultat.isEmpty()) {
 				if (Main.stockage.modifierElementListeCategorie((Categorie)Main.stockage.getListeCategorie().get(comboBox.getValue()), resultat)) {
+					System.out.println("here");
 					comboBox.getItems().set(comboBox.getItems().indexOf(categorieCourante), resultat);
 					comboBox.setValue(resultat);
-					System.out.println(comboBox.getValue());
 				} else {
 					afficherAlerte("Impossible modifier catégorie","Impossible de modifier la catégorie général");
 				}
@@ -118,7 +118,7 @@ public class ParametreController {
 		} else {
 			Tooltip tooltip = new Tooltip("Impossible de modifier une catégorie");
 			Tooltip.install(btnModifier, tooltip);
-			afficherAlerte("Impossible modifier catégorie","Impossible de modifier une catégorie pour l'instant");
+			afficherAlerte("Impossible modifier catégorie","Veuillez choisir une catégorie pour la modifier");
 		}
 
 	}
