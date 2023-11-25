@@ -82,7 +82,7 @@ public class ParametreController {
 					comboBox.getItems().remove(comboBox.getValue());
 					System.out.println(Main.stockage.getListeCategorie());
 				} else {
-					afficherAlerte("Suppresion Catégorie","La suppresion de la catégorie a échoué");
+					afficherAlerte("Impossible Suppresion Catégorie","La suppresion de la catégorie général est impossible");
 				}
 			}
 		} else {
@@ -110,9 +110,11 @@ public class ParametreController {
 					comboBox.setValue(resultat);
 					System.out.println(comboBox.getValue());
 				} else {
-					afficherAlerte("Impossible modifier catégorie général","Impossible de modifier la catégorie général");
+					afficherAlerte("Impossible modifier catégorie","Impossible de modifier la catégorie général");
 				}
-			} 
+			} else {
+				afficherAlerte("Impossible modifier catégorie","Impossible de ne pas mettre d'intitulé a une catégorie");
+			}
 		} else {
 			Tooltip tooltip = new Tooltip("Impossible de modifier une catégorie");
 			Tooltip.install(btnModifier, tooltip);
