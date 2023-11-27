@@ -14,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import vue.Main;
 import modele.Question;
@@ -113,6 +115,8 @@ public class ScoreQuizController {
     		System.out.println("Initialisation question n°" + ((numeroDePage*5)+1+i));
     		HBox hbox = new HBox(30);
     		Text textQuestion = new Text("Question n°" + ((numeroDePage*5)+1+i));
+    		textQuestion.setFill(Color.web("#8ba1b5"));
+    		textQuestion.setFont(Font.font(16));
 
     		// Mise en place du bouton vert ou rouge
     		String cheminImageVerteOuRouge = "./images/";
