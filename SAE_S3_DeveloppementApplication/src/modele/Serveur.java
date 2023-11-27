@@ -8,6 +8,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -27,6 +28,8 @@ public class Serveur {
 	
 	private static Socket clientSocket;
 	
+	private static boolean fichierRecu = false;
+	
 	public static boolean gererConnexion() {
 	    boolean estRecu = false;
 	    boolean connexionAnnulee = false;
@@ -44,6 +47,13 @@ public class Serveur {
 	            if (!connexionAnnulee) {
 	                System.out.println("Connexion établie.");
 	                traiterReceptionFichier();
+	                if (fichierRecu) {
+	                    repondreReceptionFichier();
+	                    clientSocket.close();
+	                    estRecu = true;
+	                } else {
+	                    System.out.println("Le fichier n'a pas été reçu avec succès. Aucune réponse envoyée au client.");
+	                }
 	                estRecu = true;
 	            } else {
 	                System.out.println("Connexion annulée par l'utilisateur.");
@@ -70,6 +80,25 @@ public class Serveur {
 	}
 
 	
+	private static void repondreReceptionFichier() {
+		try {
+	        // Obtention du flux de sortie du client
+	        OutputStream out = clientSocket.getOutputStream();
+
+	        // Envoyer la réponse au client
+	        String reponse = "Fichier reçu avec succès par le serveur.";
+	        out.write(reponse.getBytes());
+
+	        System.out.println("Réponse envoyée au client : " + reponse);
+
+	        // Fermer le flux de sortie
+	        out.close();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+
+
 	// Ajouter cette méthode à la classe Serveur pour arrêter la connexion
 	public static void arreterConnexion() {
 	    try {
@@ -108,11 +137,11 @@ public class Serveur {
         }
         
         System.out.println("Fichier reçu et enregistré : " + receivedFile.getAbsolutePath());
+        fichierRecu = true;
+        
         // Fermeture des flux et du socket
         in.close();
         fileOut.close();
-        clientSocket.close();
-        
     }
     
     public static String getNomFichier() {
