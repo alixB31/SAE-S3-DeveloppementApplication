@@ -21,15 +21,17 @@ public class ListeQuestion implements Serializable{
      * dans la liste pour acceder à une question.
      * l'intitule d'une question est unique.
      */
-    HashMap<String, Question> listeQuestion;
+    private HashMap<String, Question> listeQuestion;
 
+    private ArrayList<Question> listeASupprimer = new ArrayList<>();
+    
+    private ArrayList<Question> listeAAjouter = new ArrayList<>();
     /**
      * Construit un objet ListeQuestion qui contiendra des objets Question.
      */
     public ListeQuestion() {
         listeQuestion = new HashMap<>();
     }
-
     /**
      * getter de la ListeQuestion
      * @return la liste des questions
@@ -127,20 +129,22 @@ public class ListeQuestion implements Serializable{
      */
     public boolean modifierCategorieDeQuestion(Question question, Categorie categorie) {
     	boolean estModifiee = false;
-    	System.out.println(elementEstDansListeQuestion(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie()));
-		System.out.println(!elementEstDansListeQuestion(question.getIntituleQuestion()+categorie.getIntituleCategorie()));
     	if (question.getCategorieDeQuestion().equals(categorie)) {
     		estModifiee = true;
     		System.out.println("c les meme" + categorie.getIntituleCategorie());
     	} else if (categorie != null
     			&& elementEstDansListeQuestion(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie())
         		&& !elementEstDansListeQuestion(question.getIntituleQuestion()+categorie.getIntituleCategorie())) {
-            question.setCategorieQuestion(categorie);
-            supprimerElementListeQuestion(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie());
-            ajouterElementListeQuestion(question);
+//    		supprimerElementListeQuestion(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie());
+    		listeASupprimer.add(question);
+    		question.setCategorieQuestion(categorie);
+    		listeAAjouter.add(question);
+//    		ajouterElementListeQuestion(question);
+//            question.setCategorieQuestion(categorie);
+//            ajouterElementListeQuestion(question);
+            
             estModifiee = true;
         }
-        
         return estModifiee;
     }
 
@@ -279,12 +283,22 @@ public class ListeQuestion implements Serializable{
     	boolean sontModifiees = false;
     	if (this.listeQuestionParCategorie(categorie).size() == 0) {
     		sontModifiees = true;
-    	}
-    	for (Map.Entry question: listeQuestion.entrySet()) {
-    		if (((Question)question.getValue()).getCategorieDeQuestion().equals(categorie)) {
-    			this.modifierCategorieDeQuestion((Question)question.getValue(), nouvelleCategorie);
-    			sontModifiees = true;
+    	} else {
+    		for (Map.Entry question: listeQuestion.entrySet()) {
+    			Question questionObject = (Question)question.getValue();
+        		if (questionObject.getCategorieDeQuestion().equals(categorie)) {
+        			modifierCategorieDeQuestion(questionObject, nouvelleCategorie);
+        			sontModifiees = true;
+        		}
+        	}
+    		for (int i = 0; i < listeAAjouter.size(); i++) {
+    			this.ajouterElementListeQuestion(listeAAjouter.get(i));
     		}
+    		for (int i = 0; i< listeASupprimer.size(); i++) {
+    			this.supprimerElementListeQuestion(listeASupprimer.get(i).getIntituleQuestion());
+    		}
+    		listeASupprimer.clear();
+    		listeAAjouter.clear();
     	}
     	return sontModifiees;
     }
