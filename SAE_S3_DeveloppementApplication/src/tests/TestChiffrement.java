@@ -6,12 +6,6 @@ import org.junit.jupiter.api.Test;
 import modele.Chiffrement.*;
 class TestChiffrement {
 
-	
-	
-	
-	
-	
-	
 	@Test
 	void testPremierEntreEux() {
 		assertFalse(modele.Chiffrement.sontPremiersEntreEux(20,5));
@@ -27,6 +21,13 @@ class TestChiffrement {
 		assertEquals(modele.Chiffrement.pgcd(11,5),1);
 		assertEquals(modele.Chiffrement.pgcd(39,5),1);
 	}
-
+	
+	@Test
+	void testCalculModulaire() {
+		assertEquals(modele.Chiffrement.calculClePartage(89,91,33),23);
+		assertNotEquals(modele.Chiffrement.calculClePartage(89,91,33),83);
+		assertEquals(modele.Chiffrement.calculClePartage(750,98,71),5);
+		assertEquals(modele.Chiffrement.calculClePartage(4843,981,501),334);
+	}
 
 }

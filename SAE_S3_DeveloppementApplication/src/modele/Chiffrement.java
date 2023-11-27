@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -15,323 +16,372 @@ import java.util.Random;
  */
 public class Chiffrement {
 
-    private final static String CSV_ENTRANT = "banque_de_question_exporte.csv";
-    private final static String CSV_CHIFFRER = "banque_de_question_exporte_chiffre.csv";
-    private final static String CSV_SORTANT_DECHIFFRER = "banque_de_question_entrante_dechiffrer.csv";
-    private final static String CSV_CLE_PUBLIQUE = "cle_publique.csv";
+	private final static String CSV_ENTRANT = "banque_de_question_exporte.csv";
+	private final static String CSV_CHIFFRER = "banque_de_question_exporte_chiffre.csv";
+	private final static String CSV_SORTANT_DECHIFFRER = "banque_de_question_entrante_dechiffrer.csv";
+	private final static String CSV_CLE_PUBLIQUE = "cle_publique.csv";
 
-    /* nombre premier que vous pouvez choisir, vous devez avoir le meme que l'autre personne */
-    private final static int MON_NOMBRE_PREMIER = 17 ;
-    /* Generateur, vous devez avoir le meme que l'autre personne */
-    private static final int GENERATEUR = 0;
-    /* Clé que vous pouvez modifier a votre bon vouloir */
-    private final static String CLE = "zfzfeDEZ";
-    /* Index du caractères acuel de la clé */
-    private static int indexCleActuel;	
-    /* Index du caractère chiffré dans la liste de caractères*/
-    private static int indexCaractereChiffre;
-    /* Index du caractères actuel */
-    private static int indexCaractere;
-    /* Index du caractere codé */
-    private static int indexChiffre;
-    /* Index du caractere décodé */
-    private static int indexDechiffre;
+	/* nombre premier que vous pouvez choisir, vous devez avoir le meme que l'autre personne */
+	private final static int MON_NOMBRE_PREMIER = 79 ;
+	/* Generateur, vous devez avoir le meme que l'autre personne */
+	private static final int GENERATEUR = 3;
+	/* Clé que vous pouvez modifier a votre bon vouloir */
+	private final static String CLE = "zfzfeDEZ";
+	/* Index du caractères acuel de la clé */
+	private static int indexCleActuel;	
+	/* Index du caractère chiffré dans la liste de caractères*/
+	private static int indexCaractereChiffre;
+	/* Index du caractères actuel */
+	private static int indexCaractere;
+	/* Index du caractere codé */
+	private static int indexChiffre;
+	/* Index du caractere décodé */
+	private static int indexDechiffre;
 
-    private static int maClePrive;
+	private static int maClePrive;
 
-    private final static char[] listeCaracteres = {
-            '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/',
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', '<', '=', '>', '?',
-            '@', 'A', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'B', 'C', 'Ç', 'D', 'E', 'È', 'É', 'Ê',
-            'Ë', 'F', 'G', 'H', 'I', 'Ì', 'Í', 'Î', 'Ï', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O',
-            'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'P', 'Q', 'R', 'S', 'Š', 'T', 'U', 'Ù', 'Ú', 'Û',
-            'Ü', 'V', 'W', 'X', 'Y', 'Ÿ', 'Z', '[', '\\', ']', '^', '_', '`', 'a', 'à', 'á',
-            'â', 'ã', 'ä', 'å', 'b', 'c',' ', 'ç', 'd', 'e', 'è', 'é', 'ê', 'ë', 'f', 'g', 'h',
-            'i', 'ì', 'í', 'î', 'ï', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'ò', 'ó', 'ô', 'õ',
-            'ö', 'ø', 'p', 'q', 'r', 's', 'š', 't', 'u', 'ù', 'ú', 'û', 'ü', 'v', 'w', 'x',
-            'y', 'ÿ', 'z', '{', '|', '}', '~'
-    };
-
-
-
-    /** 
-     * Chiffre un fichier csv entrant a l'aide d'une cle de chiffrement
-     * @param cle utilisé pour chiffrer
-     */
-    public static void chiffrementVigenere(int cle) {
-
-        try {
-            String texteAChiffrer = lireCsv(CSV_ENTRANT);
-
-            // Chiffrement de Vigenère
-            String texteChiffrer = codeVigenere(texteAChiffrer, CLE);
-
-            // Écriture du fichier chiffré
-            ecritureFichier(CSV_CHIFFRER, texteChiffrer);
-
-            System.out.println("Chiffrement de Vigenère terminé avec succès.");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /** TODO comment method role
-     * 
-     */
-    public static void dechiffrementVigenere() {
-
-        try {
-            // Initialisation du dictionnaire avec les correspondances fournies
-            String texteADechiffrer = lireCsv(CSV_CHIFFRER);
-
-            // Chiffrement de Vigenère
-            String texteDechiffrer = decodeVigenere(texteADechiffrer, CLE);
-
-            // Écriture du fichier chiffré
-            ecritureFichier(CSV_SORTANT_DECHIFFRER, texteDechiffrer);
-
-            System.out.println("Dechiffrement de Vigenère terminé avec succès.");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	private final static char[] listeCaracteres = {
+			'!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/',
+			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', '<', '=', '>', '?',
+			'@', 'A', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'B', 'C', 'Ç', 'D', 'E', 'È', 'É', 'Ê',
+			'Ë', 'F', 'G', 'H', 'I', 'Ì', 'Í', 'Î', 'Ï', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O',
+			'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'P', 'Q', 'R', 'S', 'Š', 'T', 'U', 'Ù', 'Ú', 'Û',
+			'Ü', 'V', 'W', 'X', 'Y', 'Ÿ', 'Z', '[', '\\', ']', '^', '_', '`', 'a', 'à', 'á',
+			'â', 'ã', 'ä', 'å', 'b', 'c',' ', 'ç', 'd', 'e', 'è', 'é', 'ê', 'ë', 'f', 'g', 'h',
+			'i', 'ì', 'í', 'î', 'ï', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'ò', 'ó', 'ô', 'õ',
+			'ö', 'ø', 'p', 'q', 'r', 's', 'š', 't', 'u', 'ù', 'ú', 'û', 'ü', 'v', 'w', 'x',
+			'y', 'ÿ', 'z', '{', '|', '}', '~'
+	};
 
 
+	public static void main(String[] args) throws EchecSerialisationRestauration {
+		chiffrementDiffieHellman();
+		dechiffrementDiffieHellman();
+	}
+	/** 
+	 * Chiffre un fichier csv entrant a l'aide d'une cle de chiffrement
+	 * @param cle utilisé pour chiffrer
+	 */
+	public static void chiffrementVigenere(int cle) {
 
-    
-    /** 
-     * Chiffre par une méthode de Vigenere une chaine de caractéres
-     * @param texte a chiffrer
-     * @param cle a utiliser pour chiffrer
-     * @return String chaine de caractères chiffrées
-     */
-    private static String codeVigenere(String texte, String cle) {
+		try {
+			String texteAChiffrer = lireCsv(CSV_ENTRANT);
 
-        // Creer une string ou l'on rajouteras tout les lettres chiffrées
-        StringBuilder texteChiffrer = new StringBuilder();
-        // Obtention de la longueur de la clé et initialisation de l'index de la clé
-        int longueurCle = cle.length();
-        int indexCle = 0;
+			// Chiffrement de Vigenère
+			String texteChiffrer = codeVigenere(texteAChiffrer, CLE);
 
-        // Parcours de chaque caractère dans le texte à chiffrer
-        for (char caractere : texte.toCharArray()) {
-            // Si le caractère est un ';', le laisser inchangé
-            if (caractere == ';') {		
-                texteChiffrer.append('\u0012');
-            } else if (caractere == '\u0013') {
-                texteChiffrer.append(caractere);
-            } else {
-                // Index du caractère dans la liste de caractères
-                indexCaractere = trouverIndexCaractere(caractere);
-                // Index du caractère de la cle dans la liste de caractères
-                indexCleActuel = trouverIndexCaractere(cle.charAt(indexCle));
+			// Écriture du fichier chiffré
+			ecritureFichier(CSV_CHIFFRER, texteChiffrer);
 
-                // Index du caractere codé 
-                indexChiffre = (indexCaractere + indexCleActuel) % listeCaracteres.length;
+			System.out.println("Chiffrement de Vigenère terminé avec succès.");
 
-                // Ajout du caractere correspondant a l'index a la string
-                texteChiffrer.append(listeCaracteres[indexChiffre]);
-                // Passage a l'index suivant
-                indexCle = (indexCle + 1) % longueurCle;
-            }
-        }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-        return texteChiffrer.toString();
-    }
-    
-    
-    /** 
-     * Dechiffre par une méthode de Vigenere une chaine de caractéres
-     * @param texte a déchiffrer
-     * @param cle a utiliser pour déchiffrer
-     * @return String chaine de caractères déchiffrées
-     */
-    private static String decodeVigenere(String messageChiffre, String cle) {
+	/** TODO comment method role
+	 * 
+	 */
+	public static void dechiffrementVigenere() {
 
-        // Creer une string ou l'on rajouteras tout les lettres déchiffrées
-        StringBuilder messageDechiffre = new StringBuilder();
+		try {
+			// Initialisation du dictionnaire avec les correspondances fournies
+			String texteADechiffrer = lireCsv(CSV_CHIFFRER);
 
-        // Obtention de la longueur de la clé et initialisation de l'index de la clé
-        int longueurCle = cle.length();
-        int indexCle = 0;
+			// Chiffrement de Vigenère
+			String texteDechiffrer = decodeVigenere(texteADechiffrer, CLE);
 
-        for (char caractereChiffre : messageChiffre.toCharArray()) {
+			// Écriture du fichier chiffré
+			ecritureFichier(CSV_SORTANT_DECHIFFRER, texteDechiffrer);
 
-            // Si le caractère chiffré est un ';', le laisser inchangé
-            if (caractereChiffre == '\u0012') {
-                messageDechiffre.append(';');
-            } else if (caractereChiffre == '\u0013') {
-                messageDechiffre.append('\n');
-            }else {
-                // Index du caractère chiffré dans la liste de caractères
-                indexCaractereChiffre = trouverIndexCaractere(caractereChiffre);
+			System.out.println("Dechiffrement de Vigenère terminé avec succès.");
 
-                // Index du caractère de la cle dans la liste de caractères
-                indexCleActuel = trouverIndexCaractere(cle.charAt(indexCle));
-
-                // Index du caractere décodé 
-                indexDechiffre = (indexCaractereChiffre - indexCleActuel + listeCaracteres.length) % listeCaracteres.length;
-
-                // Ajout du caractere correspondant a l'index a la string
-                messageDechiffre.append(listeCaracteres[indexDechiffre]);
-
-                // Passage a l'index suivant
-                indexCle = (indexCle + 1) % longueurCle;
-            }
-        }
-
-        return messageDechiffre.toString();
-    }
-
-    /** 
-     * Trouve l'index du caractere dans le dictionnaire prédéfinis
-     * @param caractere 
-     * @return int l'index du caractere dans le dictionnaire
-     */
-    private static int trouverIndexCaractere(char caractere) {
-        // Parcoure la liste des caractéres
-        for (int i = 0; i < listeCaracteres.length; i++) {
-            // Renvoie l'index du caractere de la liste si il est égal au caractere rechérché
-            if (listeCaracteres[i] == caractere) {
-                return i;
-            }
-        }
-        // Si le caractère n'est pas trouvé dans la liste, retourner une valeur par défaut
-        return -1;
-    }
-    
-
-    public static void chiffrementDiffieHellman() {
-
-        try {
-            // Retrouve la cle de chiffrement
-            int clePrive = clePrive(MON_NOMBRE_PREMIER,GENERATEUR);
-            maClePrive = clePrive;
-            int clePublique = clePublique(GENERATEUR,clePrive,MON_NOMBRE_PREMIER);
-            // création du fichier contenant la clé publique
-            ecritureFichier(CSV_CLE_PUBLIQUE, Integer.toString(clePublique));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static void dechiffrementDiffieHellman() {
-
-        try {
-            // Recupere la cle publique de l'autre personne
-            String clePubliqueAutre = lireCsv(CSV_CLE_PUBLIQUE);
-            int clePartage = calculClePartage(Integer.parseInt(clePubliqueAutre),MON_NOMBRE_PREMIER,maClePrive);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 
 
+	/** 
+	 * Chiffre par une méthode de Vigenere une chaine de caractéres
+	 * @param texte a chiffrer
+	 * @param cle a utiliser pour chiffrer
+	 * @return String chaine de caractères chiffrées
+	 */
+	private static String codeVigenere(String texte, String cle) {
+
+		// Creer une string ou l'on rajouteras tout les lettres chiffrées
+		StringBuilder texteChiffrer = new StringBuilder();
+		// Obtention de la longueur de la clé et initialisation de l'index de la clé
+		int longueurCle = cle.length();
+		int indexCle = 0;
+
+		// Parcours de chaque caractère dans le texte à chiffrer
+		for (char caractere : texte.toCharArray()) {
+			// Si le caractère est un ';', le laisser inchangé
+			if (caractere == ';') {		
+				texteChiffrer.append('\u0012');
+			} else if (caractere == '\u0013') {
+				texteChiffrer.append(caractere);
+			} else {
+				// Index du caractère dans la liste de caractères
+				indexCaractere = trouverIndexCaractere(caractere);
+				// Index du caractère de la cle dans la liste de caractères
+				indexCleActuel = trouverIndexCaractere(cle.charAt(indexCle));
+
+				// Index du caractere codé 
+				indexChiffre = (indexCaractere + indexCleActuel) % listeCaracteres.length;
+
+				// Ajout du caractere correspondant a l'index a la string
+				texteChiffrer.append(listeCaracteres[indexChiffre]);
+				// Passage a l'index suivant
+				indexCle = (indexCle + 1) % longueurCle;
+			}
+		}
+
+		return texteChiffrer.toString();
+	}
 
 
+	/** 
+	 * Dechiffre par une méthode de Vigenere une chaine de caractéres
+	 * @param texte a déchiffrer
+	 * @param cle a utiliser pour déchiffrer
+	 * @return String chaine de caractères déchiffrées
+	 */
+	private static String decodeVigenere(String messageChiffre, String cle) {
 
-    private static int calculClePartage(int clePubliqueAutre, int nombrePremier, int clePrive) {
-        int clePartage = (clePubliqueAutre^clePrive)%nombrePremier;
-        return clePubliqueAutre;
+		// Creer une string ou l'on rajouteras tout les lettres déchiffrées
+		StringBuilder messageDechiffre = new StringBuilder();
 
-    }
+		// Obtention de la longueur de la clé et initialisation de l'index de la clé
+		int longueurCle = cle.length();
+		int indexCle = 0;
 
-    private static int clePrive(int NombrePremier, int generateur) {
-        int moduleChiffrement = NombrePremier*generateur;
-        // Calcul de la fonction d'Euler en moduleChiffrement
-        int fonctionEuler = (NombrePremier-1)*(generateur-1);
-        // Renvoie un exposant de chiffrement premier a la fonction d'euler aléatoire
-        int clePrive = exposantAleatoire(fonctionEuler);
-        // Création de la clé publique
-        return clePrive;
+		for (char caractereChiffre : messageChiffre.toCharArray()) {
 
-    }
+			// Si le caractère chiffré est un ';', le laisser inchangé
+			if (caractereChiffre == '\u0012') {
+				messageDechiffre.append(';');
+			} else if (caractereChiffre == '\u0013') {
+				messageDechiffre.append('\n');
+			}else {
+				// Index du caractère chiffré dans la liste de caractères
+				indexCaractereChiffre = trouverIndexCaractere(caractereChiffre);
 
-    private static int clePublique(int generateur, int clePrive, int nombrePremier) {		
-        int nombre = (clePrive^generateur)%nombrePremier;
-        return nombre;
-    }
+				// Index du caractère de la cle dans la liste de caractères
+				indexCleActuel = trouverIndexCaractere(cle.charAt(indexCle));
 
-    private static int exposantAleatoire(int fonctionEuler) {
-        int[] listeDeNombres = null;
-        int compteur = 0;
-        for (int i = 2; i < fonctionEuler; i++) {
-            // Ajoute a la liste les nombres premiers à fonctionEuler
-            if (sontPremiersEntreEux(fonctionEuler, i)) {
-                listeDeNombres[compteur] = i;
-                compteur++;
-            }
-        }
-        return obtenirNombreAleatoire(listeDeNombres);
-    }
+				// Index du caractere décodé 
+				indexDechiffre = (indexCaractereChiffre - indexCleActuel + listeCaracteres.length) % listeCaracteres.length;
+
+				// Ajout du caractere correspondant a l'index a la string
+				messageDechiffre.append(listeCaracteres[indexDechiffre]);
+
+				// Passage a l'index suivant
+				indexCle = (indexCle + 1) % longueurCle;
+			}
+		}
+
+		return messageDechiffre.toString();
+	}
+
+	/** 
+	 * Trouve l'index du caractere dans le dictionnaire prédéfinis
+	 * @param caractere 
+	 * @return int l'index du caractere dans le dictionnaire
+	 */
+	private static int trouverIndexCaractere(char caractere) {
+		// Parcoure la liste des caractéres
+		for (int i = 0; i < listeCaracteres.length; i++) {
+			// Renvoie l'index du caractere de la liste si il est égal au caractere rechérché
+			if (listeCaracteres[i] == caractere) {
+				return i;
+			}
+		}
+		// Si le caractère n'est pas trouvé dans la liste, retourner une valeur par défaut
+		return -1;
+	}
+
+	/** 
+	 * Creer une clé publique et une cle prive puis ecris la clé publique
+	 * dans un fichier csv.
+	 */
+	public static void chiffrementDiffieHellman() {
+
+		try {
+			// Retrouve la cle de chiffrement
+			int clePrive = clePrive(MON_NOMBRE_PREMIER,GENERATEUR);
+			maClePrive = clePrive;
+			int clePublique = clePublique(GENERATEUR,clePrive,MON_NOMBRE_PREMIER);
+			System.out.println(clePublique);
+			// création du fichier contenant la clé publique
+			ecritureFichier(CSV_CLE_PUBLIQUE, Integer.toString(clePublique));
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/** 
+	 * Lis la clé publique et creer la clé partagée avec.
+	 */
+	public static void dechiffrementDiffieHellman() {
+
+		try {
+			// Recupere la cle publique de l'autre personne
+			String clePubliqueAutre = lireCle("cle_publique2.csv");
+			long clePartage = calculClePartage(Integer.parseInt(clePubliqueAutre),maClePrive,MON_NOMBRE_PREMIER);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/** 
+	 * Calcule la clé partagée grace a un calcul modulaire.
+	 * @param clePubliqueAutre
+	 * @param nombrePremier
+	 * @param clePrive
+	 */
+	public static long calculClePartage(long clePubliqueAutre,long clePrive, long nombrePremier) {
+		long clePartage = exponentiationModulaire(clePubliqueAutre,clePrive,nombrePremier);
+		return clePartage;
+
+	}
 
 
-    public static boolean sontPremiersEntreEux(int fonctionEuler, int nombreTeste) {
-        return pgcd(fonctionEuler, nombreTeste) == 1;
-    }
+	private static long exponentiationModulaire(long base, long exposant, long modulo) {
+	    long resultat = 1; 
+	    // Réduit la base modulo modulo dès le départ pour éviter des valeurs énormes
+	    base = base % modulo;
+	    while (exposant > 0) {
+	        // Si le bit de poids faible de l'exposant est 1
+	        if (exposant % 2 == 1) {
+	            resultat = (resultat * base) % modulo;  // Multiplie le résultat par la base et réduit modulo
+	        }
+	        base = (base * base) % modulo;  // Carré de la base et réduction modulo
+	        exposant = exposant / 2;  // Division de l'exposant par 2 (décalage vers la droite)
+	    }
+	    return resultat;  // Retourne le résultat final
+	}
 
-    public static int pgcd(int fonctionEuler, int nombreTeste) {
-        while (nombreTeste != 0) {
-            int temporaire = nombreTeste;
-            // Trouve le reste de fonctionEuler par le nombreTeste
-            nombreTeste = fonctionEuler % nombreTeste;
-            fonctionEuler = temporaire;
-        }		
-        // retourne le pgcd
-        return fonctionEuler;
-    }
+	/** 
+	 * Calcule la clé privé grace a un calcul modulaire.
+	 * @param clePubliqueAutre
+	 * @param nombrePremier
+	 * @param clePrive
+	 */
+	private static int clePrive(int NombrePremier, int generateur) {
+		int moduleChiffrement = NombrePremier*generateur;
+		// Calcul de la fonction d'Euler en moduleChiffrement
+		int fonctionEuler = (NombrePremier-1)*(generateur-1);
+		// Renvoie un exposant de chiffrement premier a la fonction d'euler aléatoire
+		int clePrive = exposantAleatoire(fonctionEuler);
+		// Création de la clé publique
+		return clePrive;
 
-    public static int obtenirNombreAleatoire(int[] liste) {
-        Random random = new Random();
-        // Sélection aléatoire d'un index dans la liste
-        int indexAleatoire = random.nextInt(liste.length);
-        // Retour du nombre correspondant à l'index sélectionné
-        return liste[indexAleatoire];
-    }
-    
+	}
 
-    /** 
-     * Lis un fichier et ajoute un à un les caractères a une string en remplacant 
-     * les retours a la ligne par un caractére spécial
-     * @param fichier a lire
-     * @return String chaine de tout les caractères du fichier 
-     */
-    private static String lireCsv(String filePath) throws IOException {
-        // Creer une string ou l'on rajouteras tout les elements du csv
-        StringBuilder ensembleTexte = new StringBuilder();
-        // Lis le contenu du fichier ligne par ligne
-        try (BufferedReader texte = new BufferedReader(new FileReader(filePath))) {
-            // Ligne du fichier
-            String ligne;
+	private static int clePublique(int generateur, int clePrive, int nombrePremier) {		
+		int nombre = (clePrive^generateur)%nombrePremier;
+		return nombre;
+	}
 
-            // Ajoute les lettre ligne par ligne a la string 
-            while ((ligne = texte.readLine()) != null) {
-                // Lorsque la ligne ajoute un caractere spécial pour remplacer le retour a la ligne
-                ensembleTexte.append(ligne).append('\u0013');
-            }
-            // Ajoute un retour a la ligne a la fin de chaque question
+	private static int exposantAleatoire(int fonctionEuler) {
+		// Déclaration d'une liste de nombres
+		ArrayList<Integer> listeDeNombres = new ArrayList<>();
+		for (int i = 2; i<fonctionEuler; i++) {
+			// Ajoute a la liste les nombres premiers à fonctionEuler
+			if (sontPremiersEntreEux(fonctionEuler, i)) {
+				listeDeNombres.add(i) ;
+			}
+		}
 
-        }
-        System.out.println(ensembleTexte.toString());
-        return ensembleTexte.toString();
-    }
-    
-    /**
-     * Écrit le contenu spécifié dans un fichier donné.
-     * @param filePath Le chemin du fichier dans lequel écrire le contenu.
-     * @param content Le contenu à écrire dans le fichier.
-     * @throws IOException En cas d'erreur lors de l'écriture dans le fichier.
-     */
-    private static void ecritureFichier(String filePath, String content) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write(content);
-        }
-    }
+		return obtenirNombreAleatoire(listeDeNombres);
+	}
+
+
+	public static boolean sontPremiersEntreEux(int fonctionEuler, int nombreTeste) {
+		return pgcd(fonctionEuler, nombreTeste) == 1;
+	}
+
+	public static int pgcd(int fonctionEuler, int nombreTeste) {
+		while (nombreTeste != 0 && fonctionEuler != 1) {
+			int temporaire = nombreTeste;
+			// Trouve le reste de fonctionEuler par le nombreTeste
+			nombreTeste = fonctionEuler % nombreTeste;
+			fonctionEuler = temporaire;
+		}		
+		// retourne le pgcd
+		return fonctionEuler;
+	}
+
+	public static int obtenirNombreAleatoire(ArrayList<Integer> listeDeNombres) {
+		Random random = new Random();
+		// Sélection aléatoire d'un index dans la liste
+		int indexAleatoire = random.nextInt(listeDeNombres.size());
+		// Retour du nombre correspondant à l'index sélectionné
+		return listeDeNombres.get(indexAleatoire);
+	}
+
+
+	/** 
+	 * Lis un fichier et ajoute un à un les caractères a une string en remplacant 
+	 * les retours a la ligne par un caractére spécial
+	 * @param fichier a lire
+	 * @return String chaine de tout les caractères du fichier 
+	 */
+	private static String lireCsv(String filePath) throws IOException {
+		// Creer une string ou l'on rajouteras tout les elements du csv
+		StringBuilder ensembleTexte = new StringBuilder();
+		// Lis le contenu du fichier ligne par ligne
+		try (BufferedReader texte = new BufferedReader(new FileReader(filePath))) {
+			// Ligne du fichier
+			String ligne;
+
+			// Ajoute les lettre ligne par ligne a la string 
+			while ((ligne = texte.readLine()) != null) {
+				// Lorsque la ligne ajoute un caractere spécial pour remplacer le retour a la ligne
+				ensembleTexte.append(ligne).append('\u0013');
+			}
+			// Ajoute un retour a la ligne a la fin de chaque question
+		}
+		return ensembleTexte.toString();
+	}
+
+
+	/** 
+	 * Lis un fichier cle et ajoute un à un les caractères a une string
+	 * @param fichier a lire
+	 * @return String chaine de tout les caractères du fichier 
+	 */
+	private static String lireCle(String filePath) throws IOException {
+		// Creer une string ou l'on rajouteras tout les elements du csv
+		StringBuilder ensembleTexte = new StringBuilder();
+		// Lis le contenu du fichier ligne par ligne
+		try (BufferedReader texte = new BufferedReader(new FileReader(filePath))) {
+			// Ligne du fichier
+			String ligne;
+			// Ajoute les lettre ligne par ligne a la string 
+			while ((ligne = texte.readLine()) != null) {
+				ensembleTexte.append(ligne);
+			}
+		}
+		return ensembleTexte.toString();
+	}
+	/**
+	 * Écrit le contenu spécifié dans un fichier donné.
+	 * @param filePath Le chemin du fichier dans lequel écrire le contenu.
+	 * @param content Le contenu à écrire dans le fichier.
+	 * @throws IOException En cas d'erreur lors de l'écriture dans le fichier.
+	 */
+	private static void ecritureFichier(String filePath, String content) throws IOException {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+			writer.write(content);
+		}
+	}
 }

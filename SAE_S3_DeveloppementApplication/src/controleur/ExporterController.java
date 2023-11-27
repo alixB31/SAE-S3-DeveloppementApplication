@@ -134,6 +134,7 @@ public class ExporterController {
 			}
 		}
 		Main.stockage.exportCSV(arrayListQuestion);
+		Chiffrement.chiffrementDiffieHellman();
 		Main.ihmEnvoie();
 	}
 
