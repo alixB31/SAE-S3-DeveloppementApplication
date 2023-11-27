@@ -23,7 +23,7 @@ public class ListeQuestion implements Serializable{
      */
     private HashMap<String, Question> listeQuestion;
 
-    private ArrayList<Question> listeASupprimer = new ArrayList<>();
+    private HashMap<String ,Question> listeASupprimer = new HashMap<>();
     
     private ArrayList<Question> listeAAjouter = new ArrayList<>();
     /**
@@ -113,7 +113,7 @@ public class ListeQuestion implements Serializable{
             		   estModifiee = true;
             	   }  
                }
-            } else if (nouvelIntitule.equals(question.getIntituleQuestion())) {
+            } else {
             	estModifiee = true;
             }
         }
@@ -135,15 +135,13 @@ public class ListeQuestion implements Serializable{
     	} else if (categorie != null
     			&& elementEstDansListeQuestion(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie())
         		&& !elementEstDansListeQuestion(question.getIntituleQuestion()+categorie.getIntituleCategorie())) {
-//    		supprimerElementListeQuestion(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie());
-    		listeASupprimer.add(question);
+    		listeASupprimer.put(question.getIntituleQuestion()+ question.getCategorieDeQuestion().getIntituleCategorie(),question);
     		question.setCategorieQuestion(categorie);
     		listeAAjouter.add(question);
-//    		ajouterElementListeQuestion(question);
-//            question.setCategorieQuestion(categorie);
-//            ajouterElementListeQuestion(question);
-            
+    		System.out.println("Modifié");
             estModifiee = true;
+        } else {
+        	System.out.println("La question existe déjà.");
         }
         return estModifiee;
     }
@@ -291,16 +289,24 @@ public class ListeQuestion implements Serializable{
         			sontModifiees = true;
         		}
         	}
-    		for (int i = 0; i < listeAAjouter.size(); i++) {
-    			this.ajouterElementListeQuestion(listeAAjouter.get(i));
-    		}
-    		for (int i = 0; i< listeASupprimer.size(); i++) {
-    			this.supprimerElementListeQuestion(listeASupprimer.get(i).getIntituleQuestion());
-    		}
-    		listeASupprimer.clear();
-    		listeAAjouter.clear();
+    		postModificationCategorie();
     	}
     	return sontModifiees;
+    }
+    
+    public void postModificationCategorie() {
+    	System.out.println("ajouter " + listeAAjouter);
+    	System.out.println("supprimer "+ listeASupprimer);
+    	for (int i = 0; i < listeAAjouter.size(); i++) {
+			this.ajouterElementListeQuestion(listeAAjouter.get(i));
+		}
+		for (Map.Entry entry : listeASupprimer.entrySet()) {
+			listeQuestion.remove(entry.getKey());
+		}
+		listeASupprimer.clear();
+		listeAAjouter.clear();
+		System.out.println("clear ajouter " + listeAAjouter);
+    	System.out.println("clear supprimer "+ listeASupprimer);
     }
     
     /**
@@ -342,6 +348,8 @@ public class ListeQuestion implements Serializable{
     	System.out.println("Nombre question apres : "+ quiz.getNombreQuestions());
     	return listeFiltree;
     }
+    
+    
     
     public ArrayList<String> getReponsesOrdreAleatoire(Question question) {
     	return question.getListeReponsesOrdreAleatoire();

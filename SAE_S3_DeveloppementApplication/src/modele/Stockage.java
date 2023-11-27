@@ -180,11 +180,13 @@ public class Stockage implements Serializable{
 				&& listeQuestion.modifierDifficulteQuestion(question, difficulte, concatenation)
 				&& listeQuestion.modifierListeReponsesFaussesQuestion(question, liste, concatenation) 
 				&& listeQuestion.modifierReponseJusteQuestion(question, reponse, concatenation)
-				&& listeQuestion.modifierFeedBackQuestion(question, feedBack, concatenation) 
-				&& listeQuestion.modifierCategorieDeQuestion(question, categorie)
-				&& listeQuestion.modifierIntituleQuestion(question, intitule, concatenation) ) {
+				&& listeQuestion.modifierFeedBackQuestion(question, feedBack, concatenation)
+				&& listeQuestion.modifierIntituleQuestion(question, intitule, concatenation)
+				&& listeQuestion.modifierCategorieDeQuestion(question, categorie)) {
 			toutEstBon = true;
+			postModificationCategorie();
 		}
+		
 		return toutEstBon;
 	}
 	
@@ -271,6 +273,10 @@ public class Stockage implements Serializable{
                 scanner.close();
             }
         }
+    }
+    
+    public void postModificationCategorie() {
+    	listeQuestion.postModificationCategorie();
     }
     
     // Méthode pour obtenir une valeur sûre à partir d'un tableau

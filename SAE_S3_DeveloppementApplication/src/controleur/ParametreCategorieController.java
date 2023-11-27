@@ -434,14 +434,15 @@ public class ParametreCategorieController {
 					//modification de la question
 					if (!listeReponsesFausses.contains(textFieldVraiTexte)) {
 						//création de la nouvelle question et ajout a la liste des questions
-						if (nouvelleCategorie == categorieCourante 
-								&&	Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVraiTexte, feedBack, concatenation)) {
+						if (nouvelleCategorie.equals(categorieCourante) 
+								&&	Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVraiTexte, feedBack, concatenation)
+								) {
 
 							comboBoxQuestion.getItems().set(comboBoxQuestion.getItems().indexOf(ancienIntitule), textField.getText().trim());
 							comboBoxQuestion.setValue(textField.getText().trim());
 
 							//on regarde si la question existe deja dans la nouvelle catégorie
-						} else if(nouvelleCategorie != categorieCourante && !Main.stockage.getListeQuestion().containsKey(NouvelleConcatenation)) {			
+						} else if(!nouvelleCategorie.equals(categorieCourante) && !Main.stockage.getListeQuestion().containsKey(NouvelleConcatenation)) {			
 							Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVraiTexte, feedBack, concatenation);
 							comboBoxQuestion.getItems().remove(comboBoxQuestion.getValue());				
 							//si elle existe pas on l'enleve de la comboBox de la categorie courrante,sinon on ne peut pas la trasférer et rien ne se passe
