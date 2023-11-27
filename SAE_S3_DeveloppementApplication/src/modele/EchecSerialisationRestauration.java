@@ -6,9 +6,6 @@ package modele;
  */
 public class EchecSerialisationRestauration extends Exception {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/**

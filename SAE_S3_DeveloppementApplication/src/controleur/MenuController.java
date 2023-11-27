@@ -15,55 +15,60 @@ import vue.Main;
 public class MenuController {
 
 	@FXML
-    private Button btnExport;
+	private Button btnExport;
 
-    @FXML
-    private Button btnImport;
+	@FXML
+	private Button btnImport;
 
-    @FXML
-    private Button btnLancerPartie;
+	@FXML
+	private Button btnLancerPartie;
 
-    @FXML
-    private Button btnNotice;
+	@FXML
+	private Button btnNotice;
 
-    @FXML
-    private Button btnParam;
+	@FXML
+	private Button btnParam;
 
-    @FXML
-    private Button btnQuitter;
-    
-    @FXML
-    private Button btnJoueur;
+	@FXML
+	private Button btnQuitter;
 
-    @FXML
-    void quitterQuiz(ActionEvent event) throws EchecSerialisationRestauration {
-    	Main.stockage.serialiser();
-        Platform.exit();
-    }
-    
-    @FXML 
-    void VoirNotice(ActionEvent event) {
-        Main.voirNotice();
-    }
+	@FXML
+	private Button btnJoueur;
 
-    @FXML 
-    void lancerPartie(ActionEvent event) {
-    	
-       Main.lancerPartie();
-    }
-    
-    @FXML 
-    void lancerParam(ActionEvent event) {
-       Main.lancerParametre();
-    }
-    
-    @FXML
-    void btnImportAction(ActionEvent event) {
-    	Main.ihmImportation();
-    }
-    
-    @FXML
-    void btnExportAction(ActionEvent event) {
-    	Main.ihmChoix();;
-    }
+	@FXML
+	void quitterQuiz(ActionEvent event) throws EchecSerialisationRestauration {
+		try {
+			Main.stockage.serialiser();
+		} catch (EchecSerialisationRestauration e) {
+			ParametreController.afficherAlerte("Echec serialisation","Échec de la sérialisation.");			
+		}
+
+		Platform.exit();
+	}
+
+	@FXML 
+	void VoirNotice(ActionEvent event) {
+		Main.voirNotice();
+	}
+
+	@FXML 
+	void lancerPartie(ActionEvent event) {
+
+		Main.lancerPartie();
+	}
+
+	@FXML 
+	void lancerParam(ActionEvent event) {
+		Main.lancerParametre();
+	}
+
+	@FXML
+	void btnImportAction(ActionEvent event) {
+		Main.ihmImportation();
+	}
+
+	@FXML
+	void btnExportAction(ActionEvent event) {
+		Main.ihmChoix();;
+	}
 }

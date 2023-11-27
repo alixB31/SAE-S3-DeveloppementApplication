@@ -85,13 +85,13 @@ public class Main extends Application {
 		sceneParametreCategorie = new Scene(parametreCategorie);
 
 		/* on crée la vue du choix d'export */
-		
+
 		chargeurFXMLChoix.setLocation(getClass().getResource("ihmChoixClientServeur.fxml"));
 		Parent choix = chargeurFXMLChoix.load();
 		sceneChoix = new Scene(choix); 
 
 		/* on crée la vue du receveur*/
-		
+
 		chargeurFXMLRecevoir.setLocation(getClass().getResource("ihmRecevoir.fxml"));
 		Parent recevoir = chargeurFXMLRecevoir.load();
 		sceneRecevoir = new Scene(recevoir); 
@@ -129,8 +129,8 @@ public class Main extends Application {
 		fenetrePrincipale = primaryStage;
 		primaryStage.show();
 		// Bloquer le redimensionnement de la fenêtre
-	        primaryStage.setResizable(false);
-		
+		primaryStage.setResizable(false);
+
 		//appel de fonction lorsque l'on ferme la fenetres
 		fermetureFenetre(primaryStage);
 
@@ -219,7 +219,12 @@ public class Main extends Application {
 	 */
 	public static void main(String[] args) throws EchecSerialisationRestauration {
 		stockage = new Stockage();
-		stockage.restaurer();
+		try {
+			stockage.restaurer();
+		} catch (EchecSerialisationRestauration e) {
+			ParametreController.afficherAlerte("Echec restauration","Échec de la réstauration.");			
+		}
+		
 		stockage.ajouterCategorie(new Categorie("Général"));
 		System.out.println(stockage.getListeCategorie());
 		launch(args);
@@ -281,7 +286,7 @@ public class Main extends Application {
 		controller.setPhrase();
 		fenetrePrincipale.setScene(sceneScoreQuiz);
 	}
-	
+
 	public static void setPseudoJoueur(String pseudo) {
 		ScoreQuizController controller = chargeurFXMLScoreQuiz.getController();
 		controller.setPseudo(pseudo);
@@ -322,7 +327,7 @@ public class Main extends Application {
 				try {
 					Main.stockage.serialiser();
 				} catch (EchecSerialisationRestauration e) {
-					e.printStackTrace();
+					ParametreController.afficherAlerte("Echec serialisation","Échec de la sérialisation.");			
 				}
 			}
 		});

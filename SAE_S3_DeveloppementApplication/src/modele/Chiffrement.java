@@ -216,10 +216,10 @@ public class Chiffrement {
 			// Retrouve la cle de chiffrement
 			int clePrive = clePrive(MON_NOMBRE_PREMIER,GENERATEUR);
 			maClePrive = clePrive;
-			int clePublique = clePublique(GENERATEUR,clePrive,MON_NOMBRE_PREMIER);
+			long clePublique = clePublique(GENERATEUR,clePrive,MON_NOMBRE_PREMIER);
 			System.out.println(clePublique);
 			// création du fichier contenant la clé publique
-			ecritureFichier(CSV_CLE_PUBLIQUE, Integer.toString(clePublique));
+			ecritureFichier(CSV_CLE_PUBLIQUE, Long.toString(clePublique));
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -253,7 +253,12 @@ public class Chiffrement {
 
 	}
 
-
+	/** 
+	 * Simplifie les calculs pour éviter que l'exponentielle dépasse la limite des long
+	 * @param base a exponentié
+	 * @param exposant du calcul
+	 * @param modulo du calcul
+	 */
 	private static long exponentiationModulaire(long base, long exposant, long modulo) {
 	    long resultat = 1; 
 	    // Réduit la base modulo modulo dès le départ pour éviter des valeurs énormes
@@ -274,9 +279,9 @@ public class Chiffrement {
 	 * @param clePubliqueAutre
 	 * @param nombrePremier
 	 * @param clePrive
+	 * @return int clePrive
 	 */
 	private static int clePrive(int NombrePremier, int generateur) {
-		int moduleChiffrement = NombrePremier*generateur;
 		// Calcul de la fonction d'Euler en moduleChiffrement
 		int fonctionEuler = (NombrePremier-1)*(generateur-1);
 		// Renvoie un exposant de chiffrement premier a la fonction d'euler aléatoire
@@ -285,12 +290,28 @@ public class Chiffrement {
 		return clePrive;
 
 	}
-
-	private static int clePublique(int generateur, int clePrive, int nombrePremier) {		
-		int nombre = (clePrive^generateur)%nombrePremier;
-		return nombre;
+	
+	/** 
+	 * Calcule la clé publique.
+	 * @param generateur
+	 * @param clePrive
+	 * @param nombrePremier
+	 * @return int clePublique
+	 */
+	private static long clePublique(int generateur, int clePrive, int nombrePremier) {		
+		long clePublique = exponentiationModulaire(clePrive,generateur,nombrePremier);
+		return clePublique;
+//		int nombre = (clePrive^generateur)%nombrePremier;
+//		return clePublique;
 	}
-
+	
+	/** 
+	 * Renvoie un nombre aléatoire qui est premier a fonctionEuler
+	 * @param generateur
+	 * @param clePrive
+	 * @param nombrePremier
+	 * @return int nombre aléatoire
+	 */
 	private static int exposantAleatoire(int fonctionEuler) {
 		// Déclaration d'une liste de nombres
 		ArrayList<Integer> listeDeNombres = new ArrayList<>();
@@ -304,11 +325,23 @@ public class Chiffrement {
 		return obtenirNombreAleatoire(listeDeNombres);
 	}
 
-
+	/** 
+	 * Regarde si deux nombres sont premiers entre eux. Pour cela regarde si leur 
+	 * pgcd = 1
+	 * @param fonctionEuler
+	 * @param nombreTeste
+	 * @return true si premier false sinon
+	 */
 	public static boolean sontPremiersEntreEux(int fonctionEuler, int nombreTeste) {
 		return pgcd(fonctionEuler, nombreTeste) == 1;
 	}
-
+	
+	/** 
+	 * Renvoie le plus grand denominateur commun
+	 * @param fonctionEuler
+	 * @param nombreTeste
+	 * @return int
+	 */
 	public static int pgcd(int fonctionEuler, int nombreTeste) {
 		while (nombreTeste != 0 && fonctionEuler != 1) {
 			int temporaire = nombreTeste;
@@ -319,7 +352,12 @@ public class Chiffrement {
 		// retourne le pgcd
 		return fonctionEuler;
 	}
-
+	
+	/** 
+	 * Renvoie un nombre aleatoire appartenant a une liste
+	 * @param listeDeNombres
+	 * @return int
+	 */
 	public static int obtenirNombreAleatoire(ArrayList<Integer> listeDeNombres) {
 		Random random = new Random();
 		// Sélection aléatoire d'un index dans la liste
