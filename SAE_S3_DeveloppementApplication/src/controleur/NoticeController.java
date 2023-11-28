@@ -11,8 +11,8 @@ import vue.Main;
 
 
 /** 
- * Cette classe est le contrôleur de la vue ihmNotice.java
- * @author rayanibrahime
+ * Controleur de la vue de la Notice.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 
 public class NoticeController {

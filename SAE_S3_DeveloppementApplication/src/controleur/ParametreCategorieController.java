@@ -28,11 +28,11 @@ import modele.*;
 
 import vue.Main;
 
-/**
- * Contrôleur de la vue ihmParametreCategorie
- * @author rayanibrahime
- *
+/** 
+ * Controleur de la vue ParametreCategorie.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
+
 public class ParametreCategorieController {
 
 	@FXML

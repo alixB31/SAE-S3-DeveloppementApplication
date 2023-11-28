@@ -1,3 +1,7 @@
+/*
+ * RepondreQuestionController.java                                      15 nov. 2023
+ * IUT Rodez, info1 2022-2023, pas de copyright ni "copyleft" 
+ */
 package controleur;
 
 import java.util.ArrayList;
@@ -13,9 +17,9 @@ import modele.Quiz;
 import modele.Question;
 import vue.Main;
 
-/** TODO comment class responsibility (SRP)
- * @author rayanibrahime
- * @author nathangirardin
+/** 
+ * Controleur de la vue RepondreQuestion.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class RepondreQuestionControleur {
 

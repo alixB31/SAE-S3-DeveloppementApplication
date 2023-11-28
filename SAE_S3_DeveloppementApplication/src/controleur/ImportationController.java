@@ -1,3 +1,7 @@
+/*
+ * ImportationController.java                                      20 nov. 2023
+ * IUT Rodez, info1 2022-2023, pas de copyright ni "copyleft" 
+ */
 package controleur;
 
 import java.io.File;
@@ -11,6 +15,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import vue.Main;
 
+/** 
+ * Controleur de la vue Importation.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
+ */
 public class ImportationController {
 
     @FXML

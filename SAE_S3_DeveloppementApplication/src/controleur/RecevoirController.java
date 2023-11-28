@@ -1,3 +1,7 @@
+/*
+ * RecevoirController.java                                      14 nov. 2023
+ * IUT Rodez, info1 2022-2023, pas de copyright ni "copyleft" 
+ */
 package controleur;
 
 import java.net.InetAddress;
@@ -23,8 +27,9 @@ import javafx.scene.control.ProgressIndicator;
 import vue.Main;
 import modele.Serveur;
 
-/**
- * Contrôleur pour la vue de réception.
+/** 
+ * Controleur de la vue Recevoir.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class RecevoirController {
 

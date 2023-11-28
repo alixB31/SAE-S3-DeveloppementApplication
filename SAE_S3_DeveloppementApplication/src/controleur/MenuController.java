@@ -1,3 +1,7 @@
+/*
+ * MenuController.java                                      16 nov. 2023
+ * IUT Rodez, info1 2022-2023, pas de copyright ni "copyleft" 
+ */
 package controleur;
 
 import javafx.application.Platform;
@@ -8,9 +12,9 @@ import javafx.scene.control.TextInputDialog;
 import modele.EchecSerialisationRestauration;
 import vue.Main;
 
-/** TODO comment class responsibility (SRP)
- * @author rayanibrahime
- *
+/** 
+ * Controleur de la vue du Menu.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class MenuController {
 

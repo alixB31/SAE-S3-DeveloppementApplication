@@ -24,9 +24,9 @@ import modele.Categorie;
 import modele.Joueur;
 import modele.Question;
 
-/** TODO comment class responsibility (SRP)
- * @author rayanibrahime
- *
+/** 
+ * Controleur de la vue de la Partie.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class PartieController {
 

@@ -23,6 +23,10 @@ import javafx.scene.control.Alert.AlertType;
 import modele.Client;
 import vue.Main;
 
+/** 
+ * Controleur de la vue d'Envoie.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
+ */
 public class EnvoieController {
 
     @FXML

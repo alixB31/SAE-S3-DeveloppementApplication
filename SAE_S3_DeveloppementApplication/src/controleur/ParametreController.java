@@ -20,11 +20,9 @@ import javafx.scene.control.TextInputDialog;
 import vue.Main;
 import modele.*;
 
-/**
- * TODO comment class responsibility (SRP)
- * 
- * @author rayanibrahime
- * @author nathangirardin
+/** 
+ * Controleur de la vue Parametre.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class ParametreController {
 

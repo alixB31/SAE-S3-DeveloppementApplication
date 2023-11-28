@@ -1,3 +1,7 @@
+/*
+ * ScoreQuizController.java                                      19 nov. 2023
+ * IUT Rodez, info1 2022-2023, pas de copyright ni "copyleft" 
+ */
 package controleur;
 
 import java.util.ArrayList;
@@ -22,6 +26,10 @@ import modele.Question;
 import modele.Quiz;
 import modele.Stockage;
 
+/** 
+ * Controleur de la vue du ScoreQuizz.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
+ */
 public class ScoreQuizController {
 	
     @FXML
