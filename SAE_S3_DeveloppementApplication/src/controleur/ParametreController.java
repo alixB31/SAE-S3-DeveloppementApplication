@@ -147,8 +147,7 @@ public class ParametreController {
 			if (comboBox.getValue() != null) {
 				Main.voirParamCategorie(comboBox.getValue());
 			} else {
-				// peu etre modifier cela 
-				afficherAlerte("Choisissez une catégorie","Choisissez une catégorie avant d'appuyer sur suivant.");
+				afficherAlerte("Choisissez une catégorie","Choisissez une catégorie avant d'appuyer sur voir les questions.");
 			}
 		} catch (Exception e) {
 			// Gérer l'exception (afficher un message d'erreur, journaliser, etc.)

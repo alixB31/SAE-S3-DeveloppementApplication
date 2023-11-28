@@ -29,7 +29,7 @@ import modele.*;
 import vue.Main;
 
 /** 
- * Controleur de la vue ParametreCategorie.
+ * Contrôleur de la vue ParametreCategorie.
  * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 
@@ -44,6 +44,7 @@ public class ParametreCategorieController {
 	@FXML
 	private Button btnTerminer;
 
+	/** TODO comment field role (attribute, association) */
 	@FXML
 	public Label nomCategorie;
 
