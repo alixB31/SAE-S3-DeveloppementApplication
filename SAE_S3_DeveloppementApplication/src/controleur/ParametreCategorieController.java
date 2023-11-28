@@ -117,7 +117,7 @@ public class ParametreCategorieController {
 		// Ajout des éléments au layout de la popup
 		popupLayout.addRow(0, new Label("Intitulé de la question:"), textField);
 		popupLayout.addRow(1, new Label("Difficulté de la question:"), radio1, radio2, radio3);
-		popupLayout.addRow(2, new Label("Réponse vrai:"), textFieldVrai);
+		popupLayout.addRow(2, new Label("Réponse vraie:"), textFieldVrai);
 		popupLayout.addRow(3, new Label("Réponse fausse:"), textFieldFaux);
 		popupLayout.addRow(4, new Label(""), textFieldFaux2);
 		popupLayout.addRow(5, new Label(""), textFieldFaux3);
