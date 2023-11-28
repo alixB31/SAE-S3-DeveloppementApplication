@@ -37,7 +37,7 @@ public class Categorie implements Serializable{
 	/**
 	 * @param intitule , écrit l'intitule d'une catégorie
 	 */
-	public void setIntituleCategorie(String intitule) {
-	    this.intituleCategorie = intitule;
-	}
+//	public void setIntituleCategorie(String intitule) {
+//	    this.intituleCategorie = intitule;
+//	}
 }
