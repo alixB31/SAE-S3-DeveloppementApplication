@@ -9,7 +9,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -26,7 +25,6 @@ public class Serveur {
 	public final static int NUM_PORT = 49152;
 	
 	private static ServerSocket socketServeur;
-	
 	private static Socket socketClient;
 	
 	public static boolean gererConnexion() {
@@ -71,7 +69,6 @@ public class Serveur {
 	    return estRecu;
 	}
 
-
 	// Ajouter cette méthode à la classe Serveur pour arrêter la connexion
 	public static void arreterConnexion() {
 	    try {
@@ -87,7 +84,6 @@ public class Serveur {
 	/**
      * Traite la réception du fichier.
      * 
-     * @param socketClient Le socket du client.
      * @throws IOException En cas d'erreur d'entrée/sortie.
      */
 	private static File fichierRecu;
@@ -95,7 +91,7 @@ public class Serveur {
 	
     private static void traiterReceptionFichier() throws IOException {
         // Obtention du flux d'entrée du client
-        BufferedInputStream entreeServeur = new BufferedInputStream(socketClient.getInputStream());
+        BufferedInputStream entreeClient = new BufferedInputStream(socketClient.getInputStream());
 
         // Création d'un fichier pour stocker le fichier CSV reçu
         fichierRecu = new File("recu.csv");
@@ -104,33 +100,33 @@ public class Serveur {
         // Lecture et écriture du fichier
         byte[] tampon = new byte[1024];
         int octetsLus;
-        while ((octetsLus = entreeServeur.read(tampon)) != -1) {
+        while ((octetsLus = entreeClient.read(tampon)) != -1) {
             sortieFichier.write(tampon, 0, octetsLus);
         }
         
         System.out.println("Fichier reçu et enregistré : " + fichierRecu.getAbsolutePath());
-        repondreReceptionFichier();
+        repondreReceptionFichier(socketClient);
         
         // Fermeture des flux et du socket
-        entreeServeur.close();
+        entreeClient.close();
         sortieFichier.close();
     }
     
-    private static void repondreReceptionFichier() {
-		try {
-	        // Obtention du flux de sortie du client
-	        BufferedOutputStream out = new BufferedOutputStream(socketClient.getOutputStream());
+    private static void repondreReceptionFichier(Socket socket) {
+    	try {
+            // Obtention du flux de sortie du client
+            BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
 
-	        // Envoyer la réponse au client
-	        String reponse = "Fichier reçu avec succès par le serveur.";
-	        out.write(reponse.getBytes());
+            // Envoyer la réponse au client
+            String reponse = "Fichier reçu avec succès par le serveur.";
+            out.write(reponse.getBytes());
 
-	        System.out.println("Réponse envoyée au client : " + reponse);
+            System.out.println("Réponse envoyée au client : " + reponse);
 
-	        // Fermer le flux de sortie
-	        out.close();
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+            // Fermer le flux de sortie
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 }
