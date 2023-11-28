@@ -130,20 +130,21 @@ public class ParametreCategorieController {
 		Button boutonAnnuler = new Button("Annuler");
 		boutonValider.setDisable(true);
 
-		//categorie courante de la question a créer
+		// Categorie courante de la question a créer
 		Categorie categorieCourante = (Categorie) Main.stockage.getListeCategorie().get(categorieChoisi);
-
+		
+		// Cas ou on clique sur valider
 		boutonValider.setOnAction(e -> {
 			if (!textField.getText().isEmpty() && !textFieldVrai.getText().isEmpty() && !textFieldFaux.getText().isEmpty()
 					&& (radio1.isSelected() || radio2.isSelected() || radio3.isSelected())) {
 
-				//recuperation de la radio sélectionnez 
+				// Recuperation de la radio sélectionnez 
 				difficulte = (radio1.isSelected()) ? 1 : (radio2.isSelected()) ? 2 : (radio3.isSelected()) ? 3 : 0;
-				// création de l'array list des réponses fausses.
+				// Création de l'array list des réponses fausses.
 				listeReponsesFausses = new ArrayList<>();
 
 				String textFieldVraiTexte = textFieldVrai.getText().trim();
-				//ajout des reponses fausses a l'array list si elles sont différent de null et de ""
+				// Ajout des reponses fausses a l'array list si elles sont différent de null et de ""
 				String textFieldFauxTexte = textFieldFaux.getText().trim();
 				String textFieldFauxTexte2 = textFieldFaux2.getText().trim();
 				String textFieldFauxTexte3 = textFieldFaux3.getText().trim();
@@ -168,11 +169,12 @@ public class ParametreCategorieController {
 				feedBack = textFieldFeedBack.getText();
 
 				if (!listeReponsesFausses.contains(textFieldVraiTexte)) {
-					//création de la nouvelle question et ajout a la liste des questions
+					// Création de la nouvelle question et ajout a la liste des questions
 					if (Main.stockage.ajouterQuestion(new Question(textField.getText().trim(), categorieCourante, difficulte, listeReponsesFausses, textFieldVraiTexte, feedBack))) {
 						comboBoxQuestion.getItems().add(textField.getText());
-						//Main.stockage.supprimerElementListeQuestion(comboBoxQuestion.getValue());
 						comboBoxQuestion.setValue(textField.getText());
+						// Ferme la popUp une fois que tout est bon
+						popupStage.close();
 					} else {
 						ParametreController.afficherAlerte("Question non ajoutable","Une question avec le même intitulé existe déjà.");
 					}
@@ -180,16 +182,15 @@ public class ParametreCategorieController {
 					ParametreController.afficherAlerte("Question non ajoutable","Une réponse fausse est la même que la réponse vrai.");
 				}
 
-				popupStage.close();
-
 			}
 		});
-
+		
+		// Ferme la popUp quand on clique sur annuler
 		boutonAnnuler.setOnAction(e -> {
 			popupStage.close();
 		});
 
-		//regarde que tout les textField sois remplis
+		// Regarde que tout les textField sois remplis
 		textField.textProperty().addListener((observable, oldValue, newValue) ->
 		boutonValider.setDisable(
 				newValue.trim().isEmpty() ||
@@ -236,7 +237,7 @@ public class ParametreCategorieController {
 
 	@FXML
 	void deleteQuestion(ActionEvent event) {
-		//vérifie qu'une question a bien était sélectionnée
+		// Vérifie qu'une question a bien était sélectionnée
 		if (comboBoxQuestion.getValue() == null) {
 			ParametreController.afficherAlerte("Choisissez une question","Vous devez sélectionner une question pour pouvoir la supprimer");
 		} else {
@@ -259,38 +260,38 @@ public class ParametreCategorieController {
 	@FXML
 	void editerIntitulerQuestion(ActionEvent event) {
 
-		//vérifie qu'une question a bien était sélectionnée
+		// Vérifie qu'une question a bien était sélectionnée
 		if (comboBoxQuestion.getValue() == null) {
 			ParametreController.afficherAlerte("Choisissez une question","Vous devez sélectionner une question pour pouvoir la modifier");
 		} else {
 
-			// ancien intitulé 
+			// Ancien intitulé 
 			String ancienIntitule = comboBoxQuestion.getValue();
-			//categorie courante de la question a modifier
+			// Categorie courante de la question a modifier
 			Categorie categorieCourante = (Categorie) Main.stockage.getListeCategorie().get(categorieChoisi);
-			// question courante
+			// Question courante
 			String concatenation = ancienIntitule+categorieCourante.getIntituleCategorie();
 
 
 
 			Question questionCourante = (Question) Main.stockage.getListeQuestion().get(concatenation);
-			// reponse vrai précédente
+			// Reponse vrai précédente
 			String ancienneReponseVrai = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponseJusteQuestion();
-			// ancien feedback
+			// Ancien feedback
 			String ancienFeedback = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getFeedBackQuestion();	
-			// nombre de reponses fausses de l'ancienne question 
+			// Nombre de reponses fausses de l'ancienne question 
 			int nombreReponseFausse = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().size();
-			// difficulté de l'ancienne question 
+			// Difficulté de l'ancienne question 
 			int ancienneDifficulte = ((Question) Main.stockage.getListeQuestion().get(concatenation)).getDifficulteQuestion();
 
-			//comboBox de toute les catégories
+			// ComboBox de toute les catégories
 			comboBox = new ComboBox<>();
 			HashMap<String, Categorie> map = Main.stockage.getListeCategorie();
 			for (Map.Entry mapEntry: map.entrySet()) {
 				comboBox.getItems().add(((Categorie) mapEntry.getValue()).getIntituleCategorie());
 
 			}
-			//préselection de la catégorie actuelle de la question
+			// Préselection de la catégorie actuelle de la question
 			comboBox.setValue(categorieCourante.getIntituleCategorie());
 			// Créer des boutons radio
 			ToggleGroup toggleGroup = new ToggleGroup();
@@ -326,7 +327,7 @@ public class ParametreCategorieController {
 			TextField textFieldVrai = new TextField();
 			textFieldVrai.setText(ancienneReponseVrai);
 
-			//affiche la premiere reponse fausse
+			// Affiche la premiere reponse fausse
 			TextField textFieldFaux = new TextField();
 			if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(0) !=null && 
 					((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(0) != "") {
@@ -334,7 +335,7 @@ public class ParametreCategorieController {
 				textFieldFaux.setText(ancienneFausse1);
 			} 	
 			TextField textFieldFaux2 = new TextField();
-			//si il y a plus de 1 reponse fausse, affiche les autres
+			// Si il y a plus de 1 reponse fausse, affiche les autres
 			if (nombreReponseFausse>1) {
 				if (((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(1) !=null && 
 						((Question) Main.stockage.getListeQuestion().get(concatenation)).getReponsesFaussesQuestion().get(1) != "") {
@@ -392,7 +393,8 @@ public class ParametreCategorieController {
 			Button boutonValider = new Button("Valider");
 			Button boutonAnnuler = new Button("Annuler");
 			boutonValider.setDisable(true);
-
+			
+			// Cas ou on clique sur valider
 			boutonValider.setOnAction(e -> {
 				if (!textField.getText().isEmpty() && !textFieldVrai.getText().isEmpty() && !textFieldFaux.getText().isEmpty()
 						&& (radio1.isSelected() || radio2.isSelected() || radio3.isSelected())) {
@@ -441,13 +443,18 @@ public class ParametreCategorieController {
 
 							comboBoxQuestion.getItems().set(comboBoxQuestion.getItems().indexOf(ancienIntitule), textField.getText().trim());
 							comboBoxQuestion.setValue(textField.getText().trim());
-
+							
+							//ferme la popUp
+							popupStage.close();
+							
 							//on regarde si la question existe deja dans la nouvelle catégorie
 						} else if(!nouvelleCategorie.equals(categorieCourante) && !Main.stockage.getListeQuestion().containsKey(NouvelleConcatenation)) {			
 							Main.stockage.modifierQuestion(questionCourante,textField.getText(), nouvelleCategorie, difficulte, listeReponsesFausses, textFieldVraiTexte, feedBack, concatenation);
 							comboBoxQuestion.getItems().remove(comboBoxQuestion.getValue());				
 							//si elle existe pas on l'enleve de la comboBox de la categorie courrante,sinon on ne peut pas la trasférer et rien ne se passe
-
+							
+							//ferme la popUp
+							popupStage.close();
 						} else if(nouvelleCategorie != categorieCourante && Main.stockage.getListeQuestion().containsKey(NouvelleConcatenation)){
 							ParametreController.afficherAlerte("Question non transférable","Une question avec le même intitulé existe déjà dans la catégorie cible");
 						} else {
@@ -456,16 +463,16 @@ public class ParametreCategorieController {
 
 					} else {
 						ParametreController.afficherAlerte("Question non ajoutable","Une réponse fausse et la même que la réponse vrai.");
-					}
-					popupStage.close();
+					}					
 				}
 			});
-
+			
+			// Ferme la popo Up quand on clique sur annuler
 			boutonAnnuler.setOnAction(e -> {
 				popupStage.close();
 			});
 
-			//regarde que tout les textField sois remplis
+			// Regarde que tout les textField sois remplis
 			textField.textProperty().addListener((observable, oldValue, newValue) ->
 			boutonValider.setDisable(
 					newValue.trim().isEmpty() ||
