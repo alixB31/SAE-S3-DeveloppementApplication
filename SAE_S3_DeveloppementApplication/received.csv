@@ -1,0 +1,5 @@
+Catégorie;Niveau;Libellé;juste;faux1;faux2;faux3;faux4;feedback
+condition;2;Quelle condition exprime qu'une note doit être comprise entre 0 et 20 et être différente de 9 ?;note >= 0 && note <= 20 && note != 9;note > 0 && note < 20 && note != 9;note >= 0 || note <= 20 || note != 9;note > 0 || note < 20 || note != 9;note >= 0 && note < 9 && note >= 10 && note <= 20;
+Affichage;2;"Qu'affiche l'instruction suivante : System.out.println(""Bonjour "" + "" a tous"");";Bonjour a tous;cette instruction est incorrecte;Bonjour                                 a tous;;;Le retour à la ligne est fait après l'affichage de la totalité du texte
+condition;1;La condition suivante 100 <= quantite <= 200   est correctement écrite; faux; vrai;;;;
+Commentaire;1;Quel est le délimiteur de début d'un commentaire Javadoc ?;le délimiteur /**;le délimiteur /*;le délimiteur //;le délimiteur (*;;

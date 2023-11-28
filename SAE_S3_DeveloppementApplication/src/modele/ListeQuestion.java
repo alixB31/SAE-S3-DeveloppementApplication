@@ -340,12 +340,9 @@ public class ListeQuestion implements Serializable{
     	}
     	// On retire les question en trop
 
-    	System.out.println("Nombre question dans liste avant : " + listeFiltree.size());
     	while (quiz.getNombreQuestions() < listeFiltree.size()) {
    		listeFiltree.remove(0);
     	}
-    	System.out.println("Nombre question dans liste apres : " + listeFiltree.size());
-    	System.out.println("Nombre question apres : "+ quiz.getNombreQuestions());
     	return listeFiltree;
     }
     

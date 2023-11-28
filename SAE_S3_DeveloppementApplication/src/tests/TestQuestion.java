@@ -303,6 +303,7 @@ class TestQuestion {
 					jeuDeTestQuestionValide.get(0).getIntituleQuestion()
 					+jeuDeTestQuestionValide.get(0).getCategorieDeQuestion().getIntituleCategorie()),
 					"Modification de la catégories d'une question par des catégories valides " + LISTE_CATEGORIES_VALIDES[i].getIntituleCategorie());
+			stockageTest.postModificationCategorie();
 		}
 
 		// Modification d'une question avec différentes liste de réponses fausses valides
