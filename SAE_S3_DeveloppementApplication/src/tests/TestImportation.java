@@ -81,7 +81,7 @@ class TestImportation {
             e.printStackTrace();
         }
 
-        boolean estEnvoye = Client.envoyer("localhost");
+        boolean estEnvoye = Client.envoie("localhost");
 
         try {
             Thread.sleep(100);

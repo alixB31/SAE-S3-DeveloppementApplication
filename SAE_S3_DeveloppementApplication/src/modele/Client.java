@@ -10,12 +10,12 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-/** TODO comment class responsibility (SRP)
+/** TODO commenter la responsabilité de la classe (SRP)
  * @author rayanibrahime
  *
  */
 public class Client {
-    /** TODO comment method role
+    /** TODO commenter le rôle de la méthode
      * @param args
      */
 
@@ -25,28 +25,28 @@ public class Client {
             // Connexion au serveur sur le port 12345
             Socket socket = new Socket();
             
-            socket.connect(new InetSocketAddress(IP, Serveur.NUM_PORT), 500);
+            socket.connect(new InetSocketAddress(IP, Serveur.NUM_PORT), 100);
 
             // Obtention du flux de sortie vers le serveur
-            BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
+            BufferedOutputStream sortie = new BufferedOutputStream(socket.getOutputStream());
 
             // Sélection du fichier CSV à envoyer
-            String filePath = "banque_de_question_exporte.csv";
-            FileInputStream fileIn = new FileInputStream(filePath);
+            String cheminFichier = "recu.csv";
+            FileInputStream entreeFichier = new FileInputStream(cheminFichier);
 
             // Lecture et envoi du fichier
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = fileIn.read(buffer)) != -1) {
-                out.write(buffer, 0, bytesRead);
+            byte[] tampon = new byte[1024];
+            int octetsLus;
+            while ((octetsLus = entreeFichier.read(tampon)) != -1) {
+                sortie.write(tampon, 0, octetsLus);
             }
 
-            System.out.println("Fichier envoyé : " + filePath);
+            System.out.println("Fichier envoyé : " + cheminFichier);
             estEnvoye = true;
 
             // Fermeture des flux et de la socket
-            out.close();
-            fileIn.close();
+            sortie.close();
+            entreeFichier.close();
             socket.close();
 
         } catch (IOException e) {

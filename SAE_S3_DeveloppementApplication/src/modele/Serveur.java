@@ -5,6 +5,7 @@
 package modele;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,48 +13,39 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/** TODO comment class responsibility (SRP)
+/** TODO commenter la responsabilité de la classe (SRP)
  * @author rayanibrahime
  *
  */
 public class Serveur {
-    /** TODO comment method role
+    /** TODO commenter le rôle de la méthode
      * @param args
      * 
      */
 	
 	public final static int NUM_PORT = 49152;
 	
-	private static ServerSocket serverSocket;
+	private static ServerSocket socketServeur;
 	
-	private static Socket clientSocket;
-	
-	private static boolean fichierRecu = false;
+	private static Socket socketClient;
 	
 	public static boolean gererConnexion() {
 	    boolean estRecu = false;
 	    boolean connexionAnnulee = false;
 
 	    try {
-	        serverSocket = new ServerSocket(NUM_PORT);
-	        serverSocket.setSoTimeout(60000);
+	        socketServeur = new ServerSocket(NUM_PORT);
+	        socketServeur.setSoTimeout(60000);
 
 	        System.out.println("Attente de connexion...");
 
 	        try {
 	            // Attente d'une connexion cliente
-	            clientSocket = serverSocket.accept();
+	            socketClient = socketServeur.accept();
 
 	            if (!connexionAnnulee) {
 	                System.out.println("Connexion établie.");
 	                traiterReceptionFichier();
-	                if (fichierRecu) {
-	                    repondreReceptionFichier();
-	                    clientSocket.close();
-	                    estRecu = true;
-	                } else {
-	                    System.out.println("Le fichier n'a pas été reçu avec succès. Aucune réponse envoyée au client.");
-	                }
 	                estRecu = true;
 	            } else {
 	                System.out.println("Connexion annulée par l'utilisateur.");
@@ -69,8 +61,8 @@ public class Serveur {
 	    } finally {
 	        // Fermez le ServerSocket ici après avoir traité la connexion ou après l'annulation
 	        try {
-	            if (serverSocket != null && !serverSocket.isClosed()) {
-	                serverSocket.close();
+	            if (socketServeur != null && !socketServeur.isClosed()) {
+	                socketServeur.close();
 	            }
 	        } catch (IOException e) {
 	            e.printStackTrace();
@@ -79,11 +71,55 @@ public class Serveur {
 	    return estRecu;
 	}
 
+
+	// Ajouter cette méthode à la classe Serveur pour arrêter la connexion
+	public static void arreterConnexion() {
+	    try {
+	        if (socketServeur != null && !socketServeur.isClosed()) {
+	            socketServeur.close();
+	            System.out.println("Connexion annulée par l'utilisateur.");
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
 	
-	private static void repondreReceptionFichier() {
+	/**
+     * Traite la réception du fichier.
+     * 
+     * @param socketClient Le socket du client.
+     * @throws IOException En cas d'erreur d'entrée/sortie.
+     */
+	private static File fichierRecu;
+	private static FileOutputStream sortieFichier;
+	
+    private static void traiterReceptionFichier() throws IOException {
+        // Obtention du flux d'entrée du client
+        BufferedInputStream entreeServeur = new BufferedInputStream(socketClient.getInputStream());
+
+        // Création d'un fichier pour stocker le fichier CSV reçu
+        fichierRecu = new File("recu.csv");
+        sortieFichier = new FileOutputStream(fichierRecu);
+
+        // Lecture et écriture du fichier
+        byte[] tampon = new byte[1024];
+        int octetsLus;
+        while ((octetsLus = entreeServeur.read(tampon)) != -1) {
+            sortieFichier.write(tampon, 0, octetsLus);
+        }
+        
+        System.out.println("Fichier reçu et enregistré : " + fichierRecu.getAbsolutePath());
+        repondreReceptionFichier();
+        
+        // Fermeture des flux et du socket
+        entreeServeur.close();
+        sortieFichier.close();
+    }
+    
+    private static void repondreReceptionFichier() {
 		try {
 	        // Obtention du flux de sortie du client
-	        OutputStream out = clientSocket.getOutputStream();
+	        BufferedOutputStream out = new BufferedOutputStream(socketClient.getOutputStream());
 
 	        // Envoyer la réponse au client
 	        String reponse = "Fichier reçu avec succès par le serveur.";
@@ -97,58 +133,4 @@ public class Serveur {
 	        e.printStackTrace();
 	    }
 	}
-
-
-	// Ajouter cette méthode à la classe Serveur pour arrêter la connexion
-	public static void arreterConnexion() {
-	    try {
-	        if (serverSocket != null && !serverSocket.isClosed()) {
-	            serverSocket.close();
-	            System.out.println("Connexion annulée par l'utilisateur.");
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	}
-	
-	
-	
-	/**
-     * Traite la réception du fichier.
-     * 
-     * @param clientSocket Le socket du client.
-     * @throws IOException En cas d'erreur d'entrée/sortie.
-     */
-	private static File receivedFile;
-	private static FileOutputStream fileOut;
-    private static void traiterReceptionFichier() throws IOException {
-        // Obtention du flux d'entrée du client
-        BufferedInputStream in = new BufferedInputStream(clientSocket.getInputStream());
-
-        // Création d'un fichier pour stocker le fichier CSV reçu
-        receivedFile = new File("received.csv");
-        fileOut = new FileOutputStream(receivedFile);
-
-        // Lecture et écriture du fichier
-        byte[] buffer = new byte[1024];
-        int bytesRead;
-        while ((bytesRead = in.read(buffer)) != -1) {
-            fileOut.write(buffer, 0, bytesRead);
-        }
-        
-        System.out.println("Fichier reçu et enregistré : " + receivedFile.getAbsolutePath());
-        fichierRecu = true;
-        
-        // Fermeture des flux et du socket
-        in.close();
-        fileOut.close();
-    }
-    
-    public static String getNomFichier() {
-    	return receivedFile.getAbsolutePath();
-    }
-    
-    public static void fermerServeur() throws IOException {
-    	serverSocket.close();
-    }
 }
