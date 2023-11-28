@@ -136,42 +136,18 @@ public class Stockage implements Serializable{
 	    return listeQuestion.listeQuestionParCategorie(categorie);
 	}
 	
-//	public boolean modifierIntituleQuestion(Question question, String intitule) {
-//		return listeQuestion.modifierIntituleQuestion(question, intitule);
-//	}
-	
 	public boolean modifierCategorieQuestion(Question question, Categorie categorie) {
 		boolean estModifiee = false;
-		if (categorie != null && listeCategorie.elementEstDansListeCategorie(categorie.getIntituleCategorie())) {
+		if (question != null && categorie != null && listeCategorie.elementEstDansListeCategorie(categorie.getIntituleCategorie())) {
 			estModifiee = listeQuestion.modifierCategorieDeQuestion(question, categorie);
 		}
 		return estModifiee;
 	}
-//	
-//	public boolean modifierDifficulteQuestion(Question question, int difficulte) {
-//		return listeQuestion.modifierDifficulteQuestion(question, difficulte);
-//	}
-//	
-//	public boolean modifierFeedBackQuestion(Question question, String feedBack) {
-//		return listeQuestion.modifierFeedBackQuestion(question, feedBack);
-//	}
-//	
-//	public boolean modifierReponseJusteQuestion(Question question, String reponseJuste) {
-//		return listeQuestion.modifierReponseJusteQuestion(question, reponseJuste);
-//	}
-//	public boolean ajouterReponseFausseQuestion(Question question, String reponseFausse) {
-//		return listeQuestion.ajouterReponseFausse(question, reponseFausse);
-//	}
-//	
+
 	public boolean supprimerElementListeQuestion(String intitule) {
 		return listeQuestion.supprimerElementListeQuestion(intitule);
 	}
-//	
-//	public boolean supprimerReponseFausseQuestion(Question question, String ancienneReponseFausse) {
-//		return listeQuestion.supprimerReponseFausse(question, ancienneReponseFausse);
-//	}
-	
-	
+
 	public boolean modifierQuestion(Question question, String intitule, Categorie categorie, int difficulte, 
 			ArrayList<String> liste, String reponse, String feedBack, String concatenation) {
 		boolean toutEstBon = false;

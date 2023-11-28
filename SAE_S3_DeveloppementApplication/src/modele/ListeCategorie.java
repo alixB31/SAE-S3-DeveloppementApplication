@@ -81,7 +81,8 @@ public class ListeCategorie implements Serializable{
         if (categorie != null) {
         	String intitule = categorie.getIntituleCategorie();
             if (!elementEstDansListeCategorie(intitule) && !intitule.isEmpty() 
-                    && !intitule.isBlank() && intitule.toLowerCase()!="toutes les catéories") {
+                    && !intitule.isBlank() && !intitule.equals("Toutes les catéories")
+                    && !intitule.equals("Général")) {
                 listeCategorie.put(intitule, categorie);
                 estAjoutee = true;
             }

@@ -17,13 +17,14 @@ import modele.Categorie;
 import modele.Stockage;
 
 class TestQuestion {
-	/*Liste contenant des questions de tests*/
+	/* Liste contenant des questions de tests */
 	private ArrayList<Question> jeuDeTestQuestionValide;  
 
-	/*Liste contenant des categories de tests*/
+	/* Liste contenant des categories de tests */
 	private ArrayList<Categorie> jeuDeTest;
 
-	private Stockage stockageTest = null;
+	/* Objet Stockage servant pour les tests */
+	private Stockage stockageTest;
 
 	/* liste de reponse fausse */
 	private ArrayList<String> listeReponsesFausses = new ArrayList<>();
@@ -31,6 +32,7 @@ class TestQuestion {
 	/* liste trop longue de reponse fausse */
 	private ArrayList<String> listeReponsesFaussesTropLongue = new ArrayList<>();
 
+	/* Liste de réponses justes valides */
 	private ArrayList<String> listeReponseJusteValide = new ArrayList<>();
 
 	/* Liste de réponses justes valides */
@@ -57,7 +59,6 @@ class TestQuestion {
 	/* Liste de réponses fausses invalides */
 	private final String[] LISTE_REPONSES_FAUSSES_INVALIDES = {"       ", "", null, "identique"};
 
-	/* Liste entière de réponses fausses*/
 	/* Liste intitulés valides de question */
 	private final String[] LISTE_INTITULES_QUESTION_VALIDES = {"Comment ça va?", "Java existe depuis combien de temps?",
 			"Selectionner les assertions vraies.             ", "         Combien il y a de point?", "         Une question        très      espacée",
@@ -80,9 +81,13 @@ class TestQuestion {
 	/* Liste de feeedback invalides */
 	private final String[] LISTE_FEEDBACK_INVALIDES = {null};
 
+	/* Liste des catégories Invalides */
 	private final Categorie[] LISTE_CATEGORIES_INVALIDES = {null, new Categorie("inexistante")};
 
+	/* Liste de catégories valides */
 	private final Categorie[] LISTE_CATEGORIES_VALIDES = {new Categorie("France"), new Categorie("Géographie"), new Categorie("3000")};
+	
+	/*  */
 	private ArrayList<String> listeReponsesFaussesInvalides = new ArrayList<>();
 
 	@BeforeEach
@@ -247,11 +252,10 @@ class TestQuestion {
 		// avec une catégorie null
 		assertFalse(stockageTest.modifierCategorieQuestion(jeuDeTestQuestionValide.get(1),null), "Tentatice de modification de la catégorie par une catégorie null.");
 
-		//cas ou la nouvelle categorie existe
+		//cas ou la nouvelle catégorie possède un nom invalide
 		stockageTest.ajouterCategorie(jeuDeTest.get(3));
-		assertTrue(stockageTest.modifierCategorieQuestion(jeuDeTestQuestionValide.get(1),(Categorie)stockageTest.getListeCategorie().get(jeuDeTest.get(2).getIntituleCategorie())), "Modification d'une catégorie valide.");
-		assertEquals(jeuDeTestQuestionValide.get(1).getCategorieDeQuestion(),jeuDeTest.get(2), "Vérification de la modification de la catégorie valide et existante.");
-
+		assertFalse(stockageTest.modifierCategorieQuestion(jeuDeTestQuestionValide.get(1),(Categorie)stockageTest.getListeCategorie().get(jeuDeTest.get(2).getIntituleCategorie())), "Modification d'une catégorie valide.");
+		
 		// Modification d'une question vers une catégorie contenant une question identique
 		stockageTest.ajouterQuestion(new Question("3+2",jeuDeTest.get(2),1,listeReponsesFausses,"5","3 + 2 = 5"));
 		assertFalse(stockageTest.modifierCategorieQuestion((Question)stockageTest.getListeQuestion()
