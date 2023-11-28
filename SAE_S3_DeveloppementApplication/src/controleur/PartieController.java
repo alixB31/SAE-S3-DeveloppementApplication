@@ -61,7 +61,6 @@ public class PartieController {
 			difficulteReelle = 0;
 		} else {
 			difficulteReelle = Integer.parseInt(difficulte.getText());
-			System.out.println("Diff est a " + difficulteReelle);
 		}
 		Categorie categorie;
 		if (((String)comboBoxCategorie.getValue()).equals("Toutes les catégories")) {
@@ -70,7 +69,6 @@ public class PartieController {
 			categorie = (Categorie)Main.stockage.getListeCategorie().get((String)comboBoxCategorie.getValue());
 		}
 		RadioButton nbQuestion = (RadioButton)nombreQuestion.getSelectedToggle();
-		System.out.println("Nombre de question initial : " + nbQuestion.getText());
 		Quiz quiz = new Quiz(difficulteReelle,Integer.parseInt(nbQuestion.getText()),categorie,
 				Main.stockage);
 		if (quiz.quantiteQuestionOk(Integer.parseInt(nbQuestion.getText()))) {
@@ -81,7 +79,7 @@ public class PartieController {
 			// précisant le nombre de questions correspondantes.
 			Alert popUpContinuer = new Alert(AlertType.CONFIRMATION);
 			popUpContinuer.setTitle("Pas assez de question");
-			popUpContinuer.setHeaderText("Il y a seulement " + quiz.getNombreQuestions() + " questions qui correpondent à vos citères,"
+			popUpContinuer.setHeaderText("Il y a seulement " + quiz.getNombreQuestions() + " questions qui correpondent à vos critères,"
 					+ " cependant vous en demandez " + nbQuestion.getText());
 			popUpContinuer.setContentText("Voulez vous continuer?");
 			
@@ -93,7 +91,11 @@ public class PartieController {
 		} else {
 			// Il n'y a aucune questions correspondantes
 			//Pop-up mais pas de possibilité de continuer
-			System.out.println("Pas de question disponible.");
+			Alert popUpPasDeQuestion = new Alert(AlertType.INFORMATION);
+			popUpPasDeQuestion.setTitle("Aucune question disponible");
+			popUpPasDeQuestion.setHeaderText("Il n'y a pas de question correspondante aux paramètres que vous avez entré.");
+			popUpPasDeQuestion.setContentText(null);
+			popUpPasDeQuestion.showAndWait();
 		}
     }
     

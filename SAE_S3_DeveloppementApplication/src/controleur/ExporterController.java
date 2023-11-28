@@ -129,7 +129,6 @@ public class ExporterController {
 		} else {
 			questionCheck.remove(checkBox.getText());
 		}
-		System.out.println(questionCheck);
 	}
 
 	@FXML

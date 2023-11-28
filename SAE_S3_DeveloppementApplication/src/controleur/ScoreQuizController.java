@@ -73,14 +73,12 @@ public class ScoreQuizController {
     	nbQuestion.setText(nombreTotalDeQuestion);
     }
     
-    //TODO le nom du joueur s'il existe
-    
     @FXML
     void btnTerminerAction(ActionEvent event) {
     	Alert popUpTerminerQuiz = new Alert(AlertType.CONFIRMATION);
-    	popUpTerminerQuiz.setTitle("Quitter le quiz");
-    	popUpTerminerQuiz.setHeaderText("Attention: Quitter le quiz est irreversible!");
-    	popUpTerminerQuiz.setContentText("Voulez vous quitter le quiz?");
+    	popUpTerminerQuiz.setTitle("Retourner au Menu principal");
+    	popUpTerminerQuiz.setHeaderText("Attention: Quitter le questionnaire est irreversible!");
+    	popUpTerminerQuiz.setContentText("Voulez-vous quitter le questionnaire?");
 		
 		Optional<ButtonType> reponseContinuer = popUpTerminerQuiz.showAndWait();
 		if (reponseContinuer.get() == ButtonType.OK) {
@@ -118,9 +116,7 @@ public class ScoreQuizController {
     public void setListeQuestion() {
     	vBoxFeedback.getChildren().clear();
     	ArrayList<Question> listeQuestions = quiz.getCinqQuestions(numeroDePage);
-    	System.out.println("Num page = " + numeroDePage);
     	for (int i = 0; i <listeQuestions.size(); i++) {
-    		System.out.println("Initialisation question n°" + ((numeroDePage*5)+1+i));
     		HBox hbox = new HBox(30);
     		Text textQuestion = new Text("Question n°" + ((numeroDePage*5)+1+i));
     		textQuestion.setFill(Color.web("#8ba1b5"));
@@ -170,15 +166,22 @@ public class ScoreQuizController {
     	Alert boitefeedBack = new Alert(Alert.AlertType.INFORMATION,
     			feedback, ButtonType.OK);
     	boitefeedBack.setTitle("Explication de la Question n°" + (numeroDePage*5+numeroQuestion+1)); 
-    	boitefeedBack.setHeaderText(quiz.getListeQuestion().get(numeroDePage*5+numeroQuestion).getIntituleQuestion());
+    	String resultat = quiz.getListeQuestion().get(numeroDePage*5+numeroQuestion).getIntituleQuestion();
+    	if (quiz.getResultatDeQuestion(numeroQuestion + (numeroDePage*5))){
+    		resultat += "\nVous avez correctement répondu : " + quiz.getListeQuestion()
+    		.get(numeroDePage*5+numeroQuestion).getReponseJusteQuestion();
+    	} else {
+    		resultat += "\nVous avez répondu : " + quiz.getListeReponsesSelectionnees().get(numeroDePage*5+numeroQuestion)
+    				+ "\nLa bonne réponse est " + quiz.getListeQuestion()
+    	    		.get(numeroDePage*5+numeroQuestion).getReponseJusteQuestion();
+    	}
+    	boitefeedBack.setHeaderText(resultat);
     	boitefeedBack.showAndWait();
     }
     
     @FXML
     void swipeGaucheQuestionAction(){
-    	System.out.println("Gauche" + numeroDePage);
-    	if (numeroDePage > 0) {
-    		System.out.println("Gauche execute");
+if (numeroDePage > 0) {
     		setNumeroDePage(numeroDePage-1);
         	setListeQuestion();
     	}
@@ -186,9 +189,7 @@ public class ScoreQuizController {
     
     @FXML
     void swipeDroitQuestionAction() {
-    	System.out.println("Droit" + numeroDePage);
     	if (numeroDePage*5 + 5 < quiz.getNombreQuestions()) {
-    		System.out.println("Droit execute");
     		setNumeroDePage(numeroDePage+1);
         	setListeQuestion();
     	}

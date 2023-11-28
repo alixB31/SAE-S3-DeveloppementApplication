@@ -54,17 +54,12 @@ public class ImportationController {
         // Traiter le fichier sélectionné (vous pouvez ajouter votre logique ici)
         if (selectedFile != null) {
         	cheminDeFichier.setText(selectedFile.getAbsolutePath());
-            System.out.println("fichier selectionné : " + selectedFile.getAbsolutePath());
             if (Main.stockage.importCSV(selectedFile.getAbsolutePath())) {
-            	System.out.print("le fichier à bien été importé");
             	afficherInformation("Fichier importé", "Le fichier a bien été importé");
             } else {
-            	System.out.print("Le fichier n'a pas été importé");
             	afficherInformation("Fichier non importé", "Le fichier n'a pas été importé");
             }
             // Ajoutez ici le code pour traiter le fichier sélectionné
-        } else {
-            System.out.println("Aucun fichier sélectionné.");
         }
     }
 

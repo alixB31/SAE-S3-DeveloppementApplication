@@ -71,12 +71,16 @@ public class RepondreQuestionControleur {
     	// Renvoie sur une question s'il en reste, sinon envoie
     	// sur la page des résultats.
     	if (reponsesToggle.getSelectedToggle()!=null) {
+    		String listeJusteEtSelectionnee;
     		RadioButton reponse = (RadioButton)reponsesToggle.getSelectedToggle();
-    		System.out.println(reponse.getText());
     		if(quiz.estJuste(reponse.getText(), indiceQuestionCourrante)) {
+    			listeJusteEtSelectionnee = null;
+    			quiz.getListeReponsesSelectionnees().add(listeJusteEtSelectionnee);
 				quiz.ajouterResultat(indiceQuestionCourrante, true);
 				quiz.incrementerScore();
 			} else {
+				listeJusteEtSelectionnee = reponse.getText();
+				quiz.getListeReponsesSelectionnees().add(listeJusteEtSelectionnee);
 				quiz.ajouterResultat(indiceQuestionCourrante, false);
 			}
     		if (indiceQuestionCourrante+1 < quiz.getNombreQuestions()) {

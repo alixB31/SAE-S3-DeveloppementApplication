@@ -129,18 +129,14 @@ public class ListeQuestion implements Serializable{
 	public boolean modifierCategorieDeQuestion(Question question, Categorie categorie) {
 		boolean estModifiee = false;
 		if (question.getCategorieDeQuestion().equals(categorie)) {
-			estModifiee = true;
-			System.out.println("c les meme" + categorie.getIntituleCategorie());
-		} else if (categorie != null
+			estModifiee = true;} else if (categorie != null
 				&& elementEstDansListeQuestion(question.getIntituleQuestion()+question.getCategorieDeQuestion().getIntituleCategorie())
 				&& !elementEstDansListeQuestion(question.getIntituleQuestion()+categorie.getIntituleCategorie())) {
 			listeASupprimer.put(question.getIntituleQuestion()+ question.getCategorieDeQuestion().getIntituleCategorie(),question);
 			question.setCategorieQuestion(categorie);
 			listeAAjouter.add(question);
-			System.out.println("Modifié");
 			estModifiee = true;
 		} else {
-			System.out.println("La question existe déjà.");
 		}
 		return estModifiee;
 	}
@@ -294,8 +290,6 @@ public class ListeQuestion implements Serializable{
 	}
 
 	public void postModificationCategorie() {
-		System.out.println("ajouter " + listeAAjouter);
-		System.out.println("supprimer "+ listeASupprimer);
 		for (int i = 0; i < listeAAjouter.size(); i++) {
 			this.ajouterElementListeQuestion(listeAAjouter.get(i));
 		}
@@ -304,8 +298,6 @@ public class ListeQuestion implements Serializable{
 		}
 		listeASupprimer.clear();
 		listeAAjouter.clear();
-		System.out.println("clear ajouter " + listeAAjouter);
-		System.out.println("clear supprimer "+ listeASupprimer);
 	}
 
 	/**

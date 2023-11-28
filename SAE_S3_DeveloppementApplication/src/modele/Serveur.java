@@ -35,22 +35,16 @@ public class Serveur {
 	        socketServeur = new ServerSocket(NUM_PORT);
 	        socketServeur.setSoTimeout(60000);
 
-	        System.out.println("Attente de connexion...");
-
 	        try {
 	            // Attente d'une connexion cliente
 	            socketClient = socketServeur.accept();
 
 	            if (!connexionAnnulee) {
-	                System.out.println("Connexion établie.");
 	                traiterReceptionFichier();
 	                estRecu = true;
-	            } else {
-	                System.out.println("Connexion annulée par l'utilisateur.");
 	            }
 
 	        } catch (java.net.SocketTimeoutException e) {
-	            System.out.println("Temps d'attente écoulé. Aucune connexion reçue dans le délai spécifié.");
 	            connexionAnnulee = true;
 	        }
 
@@ -74,7 +68,6 @@ public class Serveur {
 	    try {
 	        if (socketServeur != null && !socketServeur.isClosed()) {
 	            socketServeur.close();
-	            System.out.println("Connexion annulée par l'utilisateur.");
 	        }
 	    } catch (IOException e) {
 	        e.printStackTrace();
@@ -103,8 +96,6 @@ public class Serveur {
         while ((octetsLus = entreeClient.read(tampon)) != -1) {
             sortieFichier.write(tampon, 0, octetsLus);
         }
-        
-        System.out.println("Fichier reçu et enregistré : " + fichierRecu.getAbsolutePath());
         repondreReceptionFichier(socketClient);
         
         // Fermeture des flux et du socket
@@ -120,9 +111,6 @@ public class Serveur {
             // Envoyer la réponse au client
             String reponse = "Fichier reçu avec succès par le serveur.";
             out.write(reponse.getBytes());
-
-            System.out.println("Réponse envoyée au client : " + reponse);
-
             // Fermer le flux de sortie
             out.close();
         } catch (IOException e) {

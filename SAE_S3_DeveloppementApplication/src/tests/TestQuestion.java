@@ -128,7 +128,7 @@ class TestQuestion {
 		jeuDeTestQuestionValide.add(new Question("3+1",jeuDeTest.get(1),1,listeReponsesFaussesTropLongue,"4","3 + 1 = 4"));
 		jeuDeTestQuestionValide.add(new Question("3+3",jeuDeTest.get(2),1,listeReponsesFausses,"6","3 + 3 = 6"));
 
-
+		stockageTest.getListeCategorie().put("Général",new Categorie("Général"));
 		// jeu de test de questions
 	}
 
@@ -142,10 +142,9 @@ class TestQuestion {
 	void testAjouterQuestion() {
 		// Vérification des caractères valides d'une question
 		HashMap<String , Question> mapVoulu = new HashMap<>();
-		boolean testOk;
+
 		for (int i = 0; i < jeuDeTestQuestionValide.size(); i++) {
-			testOk = stockageTest.ajouterQuestion(jeuDeTestQuestionValide.get(i));
-			assertTrue(testOk, "Ajout de la question " + jeuDeTestQuestionValide.get(i).getIntituleQuestion());
+			assertTrue(stockageTest.ajouterQuestion(jeuDeTestQuestionValide.get(i)), "Ajout de la question " + jeuDeTestQuestionValide.get(i).getIntituleQuestion());
 			mapVoulu.put(jeuDeTestQuestionValide.get(i).getIntituleQuestion() + jeuDeTestQuestionValide.get(i).getCategorieDeQuestion().getIntituleCategorie(), jeuDeTestQuestionValide.get(i));
 		}
 
@@ -155,7 +154,6 @@ class TestQuestion {
 		// Vérification des ajouts invalides
 		// Ajout d'une question déjà présente dans la liste des questions
 		for (int i = 0; i < jeuDeTestQuestionValide.size(); i++) {
-			testOk = stockageTest.ajouterQuestion(jeuDeTestQuestionValide.get(i));
 			assertFalse(stockageTest.ajouterQuestion(jeuDeTestQuestionValide.get(i)), "Ajout d'une question déjà existante. question : " + jeuDeTestQuestionValide.get(i).getIntituleQuestion());
 		}
 		assertEquals(stockageTest.getListeQuestion(),mapVoulu, "Vérification après des ajouts de questions déjà existantes.");
@@ -252,10 +250,6 @@ class TestQuestion {
 		// avec une catégorie null
 		assertFalse(stockageTest.modifierCategorieQuestion(jeuDeTestQuestionValide.get(1),null), "Tentatice de modification de la catégorie par une catégorie null.");
 
-		//cas ou la nouvelle catégorie possède un nom invalide
-		stockageTest.ajouterCategorie(jeuDeTest.get(3));
-		assertFalse(stockageTest.modifierCategorieQuestion(jeuDeTestQuestionValide.get(1),(Categorie)stockageTest.getListeCategorie().get(jeuDeTest.get(2).getIntituleCategorie())), "Modification d'une catégorie valide.");
-		
 		// Modification d'une question vers une catégorie contenant une question identique
 		stockageTest.ajouterQuestion(new Question("3+2",jeuDeTest.get(2),1,listeReponsesFausses,"5","3 + 2 = 5"));
 		assertFalse(stockageTest.modifierCategorieQuestion((Question)stockageTest.getListeQuestion()

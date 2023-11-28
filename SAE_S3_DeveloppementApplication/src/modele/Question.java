@@ -189,13 +189,9 @@ public class Question  implements Serializable{
     		listeReponses.add(listeReponsesFausses.get(i));
     	}
     	
-    	System.out.println(" faux : " + listeReponses);
     	// Ajout de la réponse juste;
     	listeReponses.add(getReponseJusteQuestion());
-    	System.out.println(" vrai : " + listeReponses);
-    	System.out.println("reel " + getReponsesFaussesQuestion());
     	Collections.shuffle(listeReponses);
-    	System.out.println(" total : " + listeReponses);
     	return listeReponses;
     }
 }

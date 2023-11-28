@@ -12,7 +12,9 @@ public class Quiz {
 	
 	private Stockage stockage;
 	
-	private ArrayList<Question> listeQuestion; 
+	private ArrayList<Question> listeQuestion;
+	
+	private ArrayList<String> reponseSelectionnees = new ArrayList<>();
 	
 	private int score = 0;
 	
@@ -24,11 +26,6 @@ public class Quiz {
 			nombreQuestions = nombreQuestion;
 			if (categorie != null && stockage.getListeCategorie().containsKey(categorie.getIntituleCategorie())) {
 				this.categorie = categorie;
-			} else if (categorie == null) {
-				System.out.println("Aucune catégorie n'est disponible!");
-			} else {
-				System.out.println("La catégorie n'existe pas dans la liste des catégories"
-						+ " associée au stockage.");
 			}
 			listeQuestion = stockage.listeQuestionFiltreDifficulteCategorieTaille(this);
 			this.nombreQuestions = listeQuestion.size();
@@ -38,6 +35,10 @@ public class Quiz {
 	
 	public void incrementerScore() {
 		score++;
+	}
+	
+	public ArrayList<String> getListeReponsesSelectionnees() {
+		return this.reponseSelectionnees;
 	}
 	
 	public int getDifficulte() {
@@ -67,7 +68,6 @@ public class Quiz {
 	public void ajouterResultat(int indice, boolean resultat) {
 		if (indice < listeResultatReponse.length) {
 			listeResultatReponse[indice] = resultat;
-			System.out.println("Ajout du résultat.");
 		}
 	}
 	
@@ -90,7 +90,6 @@ public class Quiz {
     	for (int i = 0; i < nombreQuestionAAfficher ;i++) {
     		listeCinqQuestions.add(listeQuestion.get(indiceMinimum+i));
     	}
-    	System.out.println("Longueur liste cinq questions " +listeCinqQuestions.size());
 		return listeCinqQuestions;
 	}
 	
