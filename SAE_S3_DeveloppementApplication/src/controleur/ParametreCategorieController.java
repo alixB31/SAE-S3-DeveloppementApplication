@@ -509,10 +509,17 @@ public class ParametreCategorieController {
 
 	}
 
+	/** 
+	 * Definis la categorie courante
+	 * @param categorie courante
+	 */
 	public void setNomCategorie(String categorie) {
 		categorieChoisi = categorie;
 	}
 
+	/** 
+	 * Initialiase la liste des questions de la catégorie
+	 */
 	public void setComboBoxQuestion() {
 		ArrayList<Question> listeQuestionParCategorie = Main.stockage.listeQuestionParCategorie((Categorie)Main.stockage.getListeCategorie().get(categorieChoisi));
 		for (int i = 0; i<listeQuestionParCategorie.size(); i++) {
