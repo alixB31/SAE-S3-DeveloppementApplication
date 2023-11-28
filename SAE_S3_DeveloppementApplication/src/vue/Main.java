@@ -171,6 +171,8 @@ public class Main extends Application {
 		controller.getComboBoxCategorie().getItems().clear();
 		// On ajoute la liste des catégories existantes dans la liste déroulante.
 		controller.setListeCategorie(stockage.getListeCategorie());
+		
+		controller.setPseudo(stockage.getPseudoJoueur());
 		// Lancement de la fenètre.
 		fenetrePrincipale.setScene(scenePartie);
 	}

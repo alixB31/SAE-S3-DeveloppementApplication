@@ -6,11 +6,13 @@
 
 package modele;
 
+import java.io.Serializable;
+
 /**
  * Classe regroupant l'ensemble des methodes servant a la gestion des joueurs 
  * @author A.Brugier
  */
-public class Joueur {
+public class Joueur implements Serializable {
 	
 	/* intitule de la categorie */
 	private String pseudoJoueur;

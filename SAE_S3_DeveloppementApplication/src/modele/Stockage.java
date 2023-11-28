@@ -38,6 +38,8 @@ public class Stockage implements Serializable{
 	public Stockage() {
 		listeCategorie = new ListeCategorie();
 		listeQuestion = new ListeQuestion();
+		joueur = new Joueur("");
+		
 	}
 	
 	/** 
@@ -58,12 +60,16 @@ public class Stockage implements Serializable{
 	}
 	
 	public String getPseudoJoueur() {
+		if (joueur != null) {
 		return joueur.getPseudoJoueur();
+		}
+		return "";
 	}
 	
 	public void setPseudoJoueur(String nouveauPseudo) {
-		if(!nouveauPseudo.isEmpty() || !nouveauPseudo.isBlank() || nouveauPseudo != null) {
-			Joueur joueur = new Joueur(nouveauPseudo);
+		if(!nouveauPseudo.isBlank() || nouveauPseudo.length() == 0) {
+			//joueur = new Joueur("");
+			joueur.setPseudoJoueur(nouveauPseudo);
 		}
 	}
 	

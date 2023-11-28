@@ -109,8 +109,14 @@ public class PartieController {
     	}
     }
     
+    public void setPseudo(String pseudo) {
+    	pseudoJoueur.setText(pseudo);
+    }
+    
     @FXML
     void RetourMenu(ActionEvent event) {
+    	Main.stockage.setPseudoJoueur(pseudoJoueur.getText());
+    	System.out.print("Pseudo : " + Main.stockage.getPseudoJoueur());
         Main.retourMenuPrincipal();
     }
 
