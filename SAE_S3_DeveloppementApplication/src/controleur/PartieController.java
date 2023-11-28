@@ -81,7 +81,7 @@ public class PartieController {
 			// précisant le nombre de questions correspondantes.
 			Alert popUpContinuer = new Alert(AlertType.CONFIRMATION);
 			popUpContinuer.setTitle("Pas assez de question");
-			popUpContinuer.setHeaderText("Il y a seulement " + quiz.getNombreQuestions() + " qui correpondent à vos citères,"
+			popUpContinuer.setHeaderText("Il y a seulement " + quiz.getNombreQuestions() + " questions qui correpondent à vos citères,"
 					+ " cependant vous en demandez " + nbQuestion.getText());
 			popUpContinuer.setContentText("Voulez vous continuer?");
 			
