@@ -22,7 +22,7 @@ public class Chiffrement {
 	private final static String CSV_CLE_PUBLIQUE = "cle_publique.csv";
 
 	/* nombre premier que vous pouvez choisir, vous devez avoir le meme que l'autre personne */
-	private final static int MON_NOMBRE_PREMIER = 79 ;
+	private final static int MON_NOMBRE_PREMIER = 29 ;
 	/* Generateur, vous devez avoir le meme que l'autre personne */
 	private static final int GENERATEUR = 3;
 	/* Clé que vous pouvez modifier a votre bon vouloir */
@@ -281,7 +281,7 @@ public class Chiffrement {
 	 * @param clePrive
 	 * @return int clePrive
 	 */
-	private static int clePrive(int NombrePremier, int generateur) {
+	public static int clePrive(int NombrePremier, int generateur) {
 		// Calcul de la fonction d'Euler en moduleChiffrement
 		int fonctionEuler = (NombrePremier-1)*(generateur-1);
 		// Renvoie un exposant de chiffrement premier a la fonction d'euler aléatoire
@@ -298,7 +298,7 @@ public class Chiffrement {
 	 * @param nombrePremier
 	 * @return int clePublique
 	 */
-	private static long clePublique(int generateur, int clePrive, int nombrePremier) {		
+	public static long clePublique(int generateur, int clePrive, int nombrePremier) {		
 		long clePublique = exponentiationModulaire(clePrive,generateur,nombrePremier);
 		return clePublique;
 //		int nombre = (clePrive^generateur)%nombrePremier;
@@ -337,7 +337,7 @@ public class Chiffrement {
 	}
 	
 	/** 
-	 * Renvoie le plus grand denominateur commun
+	 * Renvoie le plus grand denominateur commun de deux nombres
 	 * @param fonctionEuler
 	 * @param nombreTeste
 	 * @return int
