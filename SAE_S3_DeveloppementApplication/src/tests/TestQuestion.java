@@ -17,6 +17,7 @@ import modele.Categorie;
 import modele.Stockage;
 
 class TestQuestion {
+<<<<<<< Updated upstream
 	/* Liste contenant des questions de tests */
 	private ArrayList<Question> jeuDeTestQuestionValide;  
 
@@ -99,6 +100,69 @@ class TestQuestion {
 		jeuDeTest.add(new Categorie("Math"));
 		jeuDeTest.add(new Categorie("Général"));
 		jeuDeTest.add(new Categorie("categoriePasDansListe"));
+=======
+	/*Liste contenant des questions de tests*/
+    private ArrayList<Question> jeuxDeTestQuestion;  
+    
+    /*Liste contenant des categories de tests*/
+    private ArrayList<Categorie> jeuxDeTest;
+    
+    private Stockage stockageTest = null;
+    
+    /* liste de reponse fausse */
+    private ArrayList<String> listeReponsesFausses = new ArrayList<>();
+    
+    /* liste trop longue de reponse fausse */
+    private ArrayList<String> listeReponsesFaussesTropLongue = new ArrayList<>();
+    
+    private ArrayList<String> listeReponseJusteValide = new ArrayList<>();
+    
+    /* Liste de réponses justes valides */
+    private final String[] LISTE_REPONSES_JUSTES_VALIDES = {"unique", "    rouge    ", "01234567890123456789",
+    		"j", ")à_(è&çà'", " b ", "JAVA", "identique"};
+    
+    /* Liste de réponses justes invalides */
+    private final String[] LISTE_REPONSES_JUSTES_INVALIDES = {"       ", "", null};
+    
+    /* Liste de réponses fausses valides */
+    private final String[] LISTE_REPONSES_FAUSSES_VALIDES = {"php", "entre des '' ", "5", "   toujours",
+    		"jamais   ", "     le crochet    ", "rhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",};
+    
+    /* Liste de réponses fausses invalides */
+    private final String[] LISTE_REPONSES_FAUSSES_INVALIDES = {"       ", "", null, "identique"};
+    
+    /* Liste intitulés valides de question */
+    private final String[] LISTE_INTITULES_QUESTION_VALIDES = {"Comment ça va?", "Java existe depuis combien de temps?",
+    		"Selectionner les assertions vraies.             ", "         Combien il y a de point?", "         Une question        très      espacée",
+    		" b ", "  , ", "?"};
+    
+    /* Liste intitulés invalides question */
+    private final String[] LISTE_INTITULES_QUESTION_INVALIDES = {"", "      ", null};
+    
+    /* Liste difficultes valides */
+    private final int[] LISTE_DIFFICULTES_VALIDES = {1, 2, 3};
+    
+    /* Liste difficultes invalides */
+    private final int[] LISTE_DIFFICULTES_INVALIDES = {0, 4, 5, 50, 100, 1000000000, -1, -2, -3, -4, -100};
+    
+    /* Liste de feedback valides */
+    private final String[] LISTE_FEEDBACK_VALIDES = {"Pour comprendre la réponse il fallait penser à manger.",
+    		"La priorité des opérations se font dans un ordre bien précis. Il en est de même sur java, cet ordre peut être modifier en mettant des parenthèse.",
+    		"   Très court   ", "but   ", "       aller Kante", " Beaucoup de chiffre  1010101011111001110101011001010010010110110101011000011001010010010101"};
+    
+    /* Liste de feeedback invalides */
+    private final String[] LISTE_FEEDBACK_INVALIDES = {"", null, "       "};
+    
+	@BeforeEach
+	void setUp() throws Exception {
+		//Jeu de catégories
+		jeuxDeTest = new ArrayList<>(5);
+		jeuxDeTestQuestion = new ArrayList<>(5);
+		jeuxDeTest.add(new Categorie("Java"));
+		jeuxDeTest.add(new Categorie("Math"));
+		jeuxDeTest.add(new Categorie("Général"));
+		jeuxDeTest.add(new Categorie("categoriePasDansListe"));
+>>>>>>> Stashed changes
 		
 		//Jeu de réponses fausses 
 		listeReponsesFausses.add("2");
@@ -109,6 +173,7 @@ class TestQuestion {
 		listeReponsesFaussesTropLongue.add("2");
 		listeReponsesFaussesTropLongue.add("4");
 		listeReponsesFaussesTropLongue.add("5");
+<<<<<<< Updated upstream
 
 		//Jeu de réponses
 		for (int i = 0; i < LISTE_REPONSES_FAUSSES_INVALIDES.length; i++) {
@@ -129,6 +194,20 @@ class TestQuestion {
 		jeuDeTestQuestionValide.add(new Question("3+3",jeuDeTest.get(2),1,listeReponsesFausses,"6","3 + 3 = 6"));
 
 		stockageTest.getListeCategorie().put("Général",new Categorie("Général"));
+=======
+		
+		//Jeu de question
+		jeuxDeTestQuestion.add(new Question("Combien y a t'il de nombre boucle en java ?",jeuxDeTest.get(0),1,listeReponsesFausses,"3","il y a 3 boucles"));
+		jeuxDeTestQuestion.add(new Question("3+2",jeuxDeTest.get(1),1,listeReponsesFausses,"5","3 + 2 = 5"));
+		jeuxDeTestQuestion.add(new Question("3+1",jeuxDeTest.get(1),1,listeReponsesFaussesTropLongue,"4","3 + 1 = 4"));
+		jeuxDeTestQuestion.add(new Question("3+3",jeuxDeTest.get(2),1,listeReponsesFausses,"6","3 + 3 = 6"));
+		stockageTest = new Stockage();
+		stockageTest.ajouterCategorie(jeuxDeTest.get(0));
+		stockageTest.ajouterCategorie(jeuxDeTest.get(1));
+		stockageTest.ajouterCategorie(jeuxDeTest.get(2));
+		
+		
+>>>>>>> Stashed changes
 		// jeu de test de questions
 	}
 
@@ -235,7 +314,25 @@ class TestQuestion {
 		//cas ou la question n'existe pas 
 		assertFalse(stockageTest.supprimerElementListeQuestion("Question inexistante"));
 	}
+<<<<<<< Updated upstream
 
+=======
+	
+//	@Test
+//	void testModifierIntituleQuestion() {
+//		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(1));
+//		stockageTest.modifierQuestion(jeuxDeTestQuestion.get(1),"Que fais 2 +3 ?");
+//		assertEquals(jeuxDeTestQuestion.get(1).getIntituleQuestion(),"Que fais 2 +3 ?");
+//		//cas intitule vide
+//		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(0));
+//		assertFalse(stockageTest.modifierQuestion(jeuxDeTestQuestion.get(0),""));
+//		
+//		//cas ou la question n'existe pas 
+//		assertFalse(stockageTest.modifierQuestion(jeuxDeTestQuestion.get(2),"AAAAA"));
+//
+//	}
+	
+>>>>>>> Stashed changes
 	@Test
 	void testModifierCategorieQuestion() {
 		stockageTest.ajouterQuestion(jeuDeTestQuestionValide.get(1));
@@ -261,6 +358,7 @@ class TestQuestion {
 				"Tentative de modification de la catégorie d'une question qui n'est pas présente dans la liste des questions.");
 	}
 
+<<<<<<< Updated upstream
 	@Test
 	void testmodifierQuestion() {
 		stockageTest.ajouterQuestion(jeuDeTestQuestionValide.get(0));
@@ -451,4 +549,101 @@ class TestQuestion {
 		stockageTest.supprimerReponseFausseQuestion(jeuDeTestQuestionValide.get(0),"2");
 		assertFalse(stockageTest.supprimerReponseFausseQuestion(jeuDeTestQuestionValide.get(0),"10"));
 	}
+=======
+//	@Test
+//	void testModifierDifficulteQuestion() {
+//		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(1));
+//		stockageTest.modifierDifficulteQuestion(jeuxDeTestQuestion.get(1),3);
+//		assertEquals(jeuxDeTestQuestion.get(1).getDifficulteQuestion(),3);
+//		//cas ou difficultes pas valide
+//		assertFalse(stockageTest.modifierDifficulteQuestion(jeuxDeTestQuestion.get(1),5));
+//		//cas ou la question n'existe pas 
+//		assertFalse(stockageTest.modifierDifficulteQuestion(jeuxDeTestQuestion.get(0),2));
+//
+//	}
+//	
+//	@Test
+//	void testModifierFeedBackQuestion() {
+//		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(1));
+//		stockageTest.modifierFeedBackQuestion(jeuxDeTestQuestion.get(1),"le résultat est 5");
+//		assertEquals(jeuxDeTestQuestion.get(1).getFeedBackQuestion(),"le résultat est 5");
+//		//cas ou feedback vide
+//		assertFalse(stockageTest.modifierFeedBackQuestion(jeuxDeTestQuestion.get(1),""));
+//		//cas ou la question n'existe pas 
+//		assertFalse(stockageTest.modifierFeedBackQuestion(jeuxDeTestQuestion.get(3),"2"));
+//
+//	}
+//	
+//	@Test
+//	void testModifierReponseJusteQuestion() {
+//		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(1));
+//		stockageTest.modifierReponseJusteQuestion(jeuxDeTestQuestion.get(1),"55");
+//		assertEquals(jeuxDeTestQuestion.get(1).getReponseJusteQuestion(),"55");
+//		//cas ou reponse vide 
+//		assertFalse(stockageTest.modifierReponseJusteQuestion(jeuxDeTestQuestion.get(1),""));
+//		//cas ou la question n'existe pas 
+//		assertFalse(stockageTest.modifierReponseJusteQuestion(jeuxDeTestQuestion.get(3),"55"));
+//		
+//	}
+//	
+//	@Test
+//	void testAjouterReponseFausseQuestion() {
+//		ArrayList arrayVoulu = new ArrayList<>();
+//		arrayVoulu.add("2");
+//		arrayVoulu.add("7");
+//		arrayVoulu.add("10");
+//		arrayVoulu.add("55");
+//		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(1));
+//		stockageTest.ajouterReponseFausseQuestion(jeuxDeTestQuestion.get(1),"55");
+//		assertEquals(jeuxDeTestQuestion.get(1).getReponsesFaussesQuestion(),arrayVoulu);
+//		//cas avec plus de 4 reponses fausses
+//		assertFalse(stockageTest.ajouterReponseFausseQuestion(jeuxDeTestQuestion.get(1),"trop long"));
+//		//cas ou la nouvelle reponses fausses est fausses
+//		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(0));
+//		assertFalse(stockageTest.ajouterReponseFausseQuestion(jeuxDeTestQuestion.get(0),""));
+//	}
+//	
+//	@Test
+//	void testSupprimerReponseFausseQuestion() {
+//		ArrayList arrayVoulu = new ArrayList<>();
+//		arrayVoulu.add("7");
+//		arrayVoulu.add("10");
+//		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(1));
+//		stockageTest.supprimerReponseFausseQuestion(jeuxDeTestQuestion.get(1),"2");
+//		assertEquals(jeuxDeTestQuestion.get(1).getReponsesFaussesQuestion(),arrayVoulu);
+//		
+//		ArrayList arrayVoulu2 = new ArrayList<>();
+//		stockageTest.ajouterReponseFausseQuestion(jeuxDeTestQuestion.get(0),"2");
+//		arrayVoulu2.add("10");
+//		arrayVoulu2.add("2");
+//		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(0));
+//		stockageTest.supprimerReponseFausseQuestion(jeuxDeTestQuestion.get(0),"7");
+//		assertEquals(jeuxDeTestQuestion.get(0).getReponsesFaussesQuestion(),arrayVoulu2);
+//		
+//		//suppresion jusqu'a qu'il n'y ai plus de reponses fausses
+//		stockageTest.supprimerReponseFausseQuestion(jeuxDeTestQuestion.get(0),"2");
+//		assertFalse(stockageTest.supprimerReponseFausseQuestion(jeuxDeTestQuestion.get(0),"10"));
+//	}
+//	
+//	@Test
+//	void testModifierListeReponseFausseQuestion() {
+//		ArrayList arrayVoulu = new ArrayList<>();
+//		arrayVoulu.add("2000");
+//		arrayVoulu.add("7");
+//		arrayVoulu.add("10");
+//		stockageTest.ajouterQuestion(jeuxDeTestQuestion.get(1));
+//		stockageTest.modifierListeReponseFausseQuestion(jeuxDeTestQuestion.get(1),"2","2000");
+//		assertEquals(jeuxDeTestQuestion.get(1).getReponsesFaussesQuestion(),arrayVoulu);
+//		// cas ou on modifie par la meme reponse
+//		assertTrue(stockageTest.modifierListeReponseFausseQuestion(jeuxDeTestQuestion.get(1),"7","7"));
+//		// cas ou on modifie par une reponse vide
+//		assertFalse(stockageTest.modifierListeReponseFausseQuestion(jeuxDeTestQuestion.get(1),"7",""));
+//		// cas ou on modifie une reponse inexistante
+//		assertFalse(stockageTest.modifierListeReponseFausseQuestion(jeuxDeTestQuestion.get(1),"50","25"));
+//		
+//		
+//	}
+	
+	
+>>>>>>> Stashed changes
 }
