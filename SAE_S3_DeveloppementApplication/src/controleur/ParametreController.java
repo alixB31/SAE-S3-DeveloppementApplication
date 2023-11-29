@@ -116,26 +116,27 @@ public class ParametreController {
 	        boiteSaisie.setHeaderText("Modifier la catégorie : " + categorieCourante);
 	        boiteSaisie.setTitle("Catégorie");
 	        boiteSaisie.setContentText("Entrez le nouveau nom de votre catégorie : ");
-	        boiteSaisie.showAndWait();
 	        Optional<String> valider = boiteSaisie.showAndWait();
 	        if (valider.isPresent()) {
 		        // Récupère le résultat de la boîte de saisie
 		        String resultat = boiteSaisie.getResult();
-	
 		        // Vérifie si le résultat n'est pas nul et non vide
-		        if (resultat != null && !resultat.isEmpty()) {
+		        if (resultat != null && !resultat.isEmpty() && verifierRegex(resultat)) {
 		            // Tente de modifier le nom de la catégorie dans le stockage
 		            if (Main.stockage.modifierElementListeCategorie((Categorie)Main.stockage.getListeCategorie().get(comboBox.getValue()), resultat)) {
 		                // Met à jour la liste déroulante avec le nouveau nom de catégorie
 		                comboBox.getItems().set(comboBox.getItems().indexOf(categorieCourante), resultat);
 		                comboBox.setValue(resultat);
+		            } else if(comboBox.getValue().equals(resultat)) {
+		            	// Si l'utilisateur na pas changé la catégorie rien ne se passe
+		            	boiteSaisie.close();
 		            } else {
-		                // Affiche une alerte si la modification de la catégorie échoue
-		                afficherAlerte("Impossible modifier catégorie", "Impossible de modifier la catégorie");
+		            	// Affiche une alerte si la modification de la catégorie échoue
+		            	afficherAlerte("Impossible modifier catégorie", "Impossible de modifier la catégorie");
 		            }
 		        } else {
 		            // Affiche une alerte si le résultat de la boîte de saisie est vide
-		            afficherAlerte("Impossible modifier catégorie", "Impossible de ne pas mettre d'intitulé à une catégorie");
+		            afficherAlerte("Impossible modifier catégorie", "Impossible de ne pas mettre d'intitulé à une catégorie ou qu'il dépasse 20 caractéres");
 		        }
 	        } else {
 	        	boiteSaisie.close();
