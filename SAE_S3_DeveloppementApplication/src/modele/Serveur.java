@@ -5,9 +5,12 @@
 package modele;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -80,6 +83,10 @@ public class Serveur {
         // Lecture et écriture du fichier
         byte[] tampon = new byte[1024];
         int octetsLus;
+        String cleAEnvoyer = Chiffrement.chiffrementDiffieHellman();
+        int clePubliqueC = cleServeur(socketClient, cleAEnvoyer);
+        int cleGlobale = Chiffrement.dechiffrementDiffieHellman(clePubliqueC);
+        
         while ((octetsLus = entreeClient.read(tampon)) != -1) {
             sortieFichier.write(tampon, 0, octetsLus);
         }
@@ -98,5 +105,19 @@ public class Serveur {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
+	}
+	
+	public static int cleServeur(Socket client, String cleAEnvoyer) {
+		int clePubliqueC = 0;
+		try {
+			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+	        PrintStream out = new PrintStream(client.getOutputStream());
+	        out.println(cleAEnvoyer);
+	        clePubliqueC = Integer.parseInt(in.readLine());
+		} catch (IOException e) {
+            System.err.println("Communication avec le serveur impossible");
+            clePubliqueC = 0;
+        }
+		return clePubliqueC;
 	}
 }

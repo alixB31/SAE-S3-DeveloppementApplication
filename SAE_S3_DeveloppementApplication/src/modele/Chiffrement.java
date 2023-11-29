@@ -16,10 +16,10 @@ import java.util.Random;
  */
 public class Chiffrement {
 
-	private final static String CSV_ENTRANT = "banque_de_question_exporte.csv";
-	private final static String CSV_CHIFFRER = "banque_de_question_exporte_chiffre.csv";
-	private final static String CSV_SORTANT_DECHIFFRER = "banque_de_question_entrante_dechiffrer.csv";
-	private final static String CSV_CLE_PUBLIQUE = "cle_publique.csv";
+	private final static String CSV_ENTRANT = "aEnvoyer.csv";
+	private final static String CSV_CHIFFRER = "aEnvoyerCrypte.csv";
+	private final static String CSV_SORTANT_DECHIFFRER = "recuADechiffrer.csv";
+	private final static String CSV_CLE_PUBLIQUE = "clePublique.csv";
 
 	/* nombre premier que vous pouvez choisir, vous devez avoir le meme que l'autre personne */
 	private final static int MON_NOMBRE_PREMIER = 29 ;
@@ -62,13 +62,13 @@ public class Chiffrement {
 	 * Chiffre un fichier csv entrant a l'aide d'une cle de chiffrement
 	 * @param cle utilisé pour chiffrer
 	 */
-	public static void chiffrementVigenere(int cle) {
+	public static void chiffrementVigenere(String cle) {
 
 		try {
 			String texteAChiffrer = lireCsv(CSV_ENTRANT);
 
 			// Chiffrement de Vigenère
-			String texteChiffrer = codeVigenere(texteAChiffrer, CLE);
+			String texteChiffrer = codeVigenere(texteAChiffrer, cle);
 
 			// Écriture du fichier chiffré
 			ecritureFichier(CSV_CHIFFRER, texteChiffrer);

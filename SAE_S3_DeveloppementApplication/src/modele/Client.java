@@ -5,8 +5,11 @@
 package modele;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -23,6 +26,7 @@ public class Client {
 	public static boolean envoie(String IP) {
 		boolean estEnvoye = false;
 		try {
+			//TODO s'envoyer
             // Connexion au serveur sur le port défini dans Serveur.NUM_PORT
             Socket socket = new Socket();
             
@@ -38,6 +42,10 @@ public class Client {
             // Lecture et envoi du fichier
             byte[] tampon = new byte[1024];
             int octetsLus;
+            String cleAEnvoyer = Chiffrement.chiffrementDiffieHellman();
+            int clePubliqueS = cleClient(socket, cleAEnvoyer);
+            int cleGlobale = Chiffrement.dechiffrementDiffieHellman(clePubliqueS);
+            
             while ((octetsLus = entreeFichier.read(tampon)) != -1) {
                 sortie.write(tampon, 0, octetsLus);
             }
@@ -55,4 +63,18 @@ public class Client {
         }
 		return estEnvoye;
     }
+	
+	private static int cleClient(Socket serveur, String cleAEnvoyer) {
+		int clePubliqueS = 0;
+		try {
+			BufferedReader in = new BufferedReader(new InputStreamReader(serveur.getInputStream()));
+	        PrintStream out = new PrintStream(serveur.getOutputStream());
+	        out.println(cleAEnvoyer);
+	        clePubliqueS = Integer.parseInt(in.readLine());
+		} catch (IOException e) {
+            System.err.println("Communication avec le serveur impossible");
+            clePubliqueS = 0;
+        }
+		return clePubliqueS;
+	}
 }
