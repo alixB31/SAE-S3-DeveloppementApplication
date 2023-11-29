@@ -75,19 +75,7 @@ class TestImportation {
         });
         serverThread.start();
 
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         boolean estEnvoye = Client.envoie("localhost");
-
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         
         Serveur.arreterConnexion();
 

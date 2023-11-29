@@ -5,7 +5,6 @@
 package modele;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,6 +25,8 @@ public class Serveur {
 	
 	private static ServerSocket socketServeur;
 	private static Socket socketClient;
+	private static File fichierRecu;
+	private static FileOutputStream sortieFichier;
 	
 	public static boolean gererConnexion() {
 	    boolean estRecu = false;
@@ -62,7 +63,32 @@ public class Serveur {
 	    }
 	    return estRecu;
 	}
+	
+	/**
+     * Traite la réception du fichier.
+     * 
+     * @throws IOException En cas d'erreur d'entrée/sortie.
+     */
+    private static void traiterReceptionFichier() throws IOException {
+        // Obtention du flux d'entrée du client
+        BufferedInputStream entreeClient = new BufferedInputStream(socketClient.getInputStream());
 
+        // Création d'un fichier pour stocker le fichier CSV reçu
+        fichierRecu = new File("reçu.csv");
+        sortieFichier = new FileOutputStream(fichierRecu);
+
+        // Lecture et écriture du fichier
+        byte[] tampon = new byte[1024];
+        int octetsLus;
+        while ((octetsLus = entreeClient.read(tampon)) != -1) {
+            sortieFichier.write(tampon, 0, octetsLus);
+        }
+        
+        // Fermeture des flux et du socket
+        entreeClient.close();
+        sortieFichier.close();
+    }
+    
 	// Ajouter cette méthode à la classe Serveur pour arrêter la connexion
 	public static void arreterConnexion() {
 	    try {
@@ -72,49 +98,5 @@ public class Serveur {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
-	}
-	
-	/**
-     * Traite la réception du fichier.
-     * 
-     * @throws IOException En cas d'erreur d'entrée/sortie.
-     */
-	private static File fichierRecu;
-	private static FileOutputStream sortieFichier;
-	
-    private static void traiterReceptionFichier() throws IOException {
-        // Obtention du flux d'entrée du client
-        BufferedInputStream entreeClient = new BufferedInputStream(socketClient.getInputStream());
-
-        // Création d'un fichier pour stocker le fichier CSV reçu
-        fichierRecu = new File("recu.csv");
-        sortieFichier = new FileOutputStream(fichierRecu);
-
-        // Lecture et écriture du fichier
-        byte[] tampon = new byte[1024];
-        int octetsLus;
-        while ((octetsLus = entreeClient.read(tampon)) != -1) {
-            sortieFichier.write(tampon, 0, octetsLus);
-        }
-        repondreReceptionFichier(socketClient);
-        
-        // Fermeture des flux et du socket
-        entreeClient.close();
-        sortieFichier.close();
-    }
-    
-    private static void repondreReceptionFichier(Socket socket) {
-    	try {
-            // Obtention du flux de sortie du client
-            BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
-
-            // Envoyer la réponse au client
-            String reponse = "Fichier reçu avec succès par le serveur.";
-            out.write(reponse.getBytes());
-            // Fermer le flux de sortie
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 	}
 }

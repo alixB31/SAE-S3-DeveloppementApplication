@@ -5,10 +5,8 @@
 package modele;
 
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -34,7 +32,7 @@ public class Client {
             BufferedOutputStream sortie = new BufferedOutputStream(socket.getOutputStream());
 
             // Sélection du fichier CSV à envoyer
-            String cheminFichier = "recu.csv";
+            String cheminFichier = "reçu.csv";
             FileInputStream entreeFichier = new FileInputStream(cheminFichier);
 
             // Lecture et envoi du fichier
@@ -50,11 +48,6 @@ public class Client {
             // Fermeture des flux et de la socket
             sortie.close();
             entreeFichier.close();
-
-            // Réception de la réponse du serveur
-            String reponseServeur = recevoirReponse(socket);
-            System.out.println("Réponse du serveur : " + reponseServeur);
-
             socket.close();
 
         } catch (IOException e) {
@@ -62,16 +55,4 @@ public class Client {
         }
 		return estEnvoye;
     }
-
-	private static String recevoirReponse(Socket socket) throws IOException {
-	    BufferedReader lecteur = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-	    StringBuilder reponse = new StringBuilder();
-	    String ligne;
-
-	    while ((ligne = lecteur.readLine()) != null) {
-	        reponse.append(ligne).append("\n");
-	    }
-
-	    return reponse.toString();
-	}
 }
