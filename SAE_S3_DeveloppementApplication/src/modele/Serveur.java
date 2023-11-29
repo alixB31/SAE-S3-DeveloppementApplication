@@ -77,7 +77,7 @@ public class Serveur {
         BufferedInputStream entreeClient = new BufferedInputStream(socketClient.getInputStream());
 
         // Création d'un fichier pour stocker le fichier CSV reçu
-        fichierRecu = new File("recu.csv");
+        fichierRecu = new File("Crypter.csv");
         sortieFichier = new FileOutputStream(fichierRecu);
 
         // Lecture et écriture du fichier
@@ -86,11 +86,11 @@ public class Serveur {
         String cleAEnvoyer = Chiffrement.chiffrementDiffieHellman();
         int clePubliqueC = cleServeur(socketClient, cleAEnvoyer);
         long cleGlobale = Chiffrement.dechiffrementDiffieHellman(clePubliqueC);
-        String cleVigenere = Chiffrement.CreationCleVigenere(cleGlobale);
-        Chiffrement.dechiffrementVigenere(cleVigenere);
+        String cleVigenere = Chiffrement.CreationCleVigenere(cleGlobale);  
         while ((octetsLus = entreeClient.read(tampon)) != -1) {
             sortieFichier.write(tampon, 0, octetsLus);
         }
+        Chiffrement.dechiffrementVigenere(cleVigenere);
         
         // Fermeture des flux et du socket
         entreeClient.close();

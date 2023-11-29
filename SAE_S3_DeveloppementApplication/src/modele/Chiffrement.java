@@ -17,9 +17,8 @@ import java.util.Random;
 public class Chiffrement {
 
 	private final static String CSV_ENTRANT = "aEnvoyer.csv";
-	private final static String CSV_CHIFFRER = "aEnvoyerCrypte.csv";
-	private final static String CSV_SORTANT_DECHIFFRER = "recuADechiffrer.csv";
-	private final static String CSV_CLE_PUBLIQUE = "clePublique.csv";
+	private final static String CSV_CHIFFRER = "Crypter.csv";
+	private final static String CSV_SORTANT_DECHIFFRER = "Dechiffrer.csv";
 
 	/* nombre premier que vous pouvez choisir, vous devez avoir le meme que l'autre personne */
 	private final static int MON_NOMBRE_PREMIER = 29 ;
@@ -54,11 +53,7 @@ public class Chiffrement {
 	};
 
 
-	public static void main(String[] args) throws EchecSerialisationRestauration {
-//		String cle = CreationCleVigenere(871511);
-//		chiffrementVigenere(cle); 
-//		dechiffrementVigenere(cle);
-	}
+
 	/** 
 	 * Chiffre un fichier csv entrant a l'aide d'une cle de chiffrement
 	 * @param cle utilisé pour chiffrer

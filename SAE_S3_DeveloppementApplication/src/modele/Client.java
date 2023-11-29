@@ -36,7 +36,7 @@ public class Client {
             BufferedOutputStream sortie = new BufferedOutputStream(socket.getOutputStream());
 
             // Sélection du fichier CSV à envoyer
-            String cheminFichier = "aEnvoyer.csv";
+            String cheminFichier = "Crypter.csv";
             FileInputStream entreeFichier = new FileInputStream(cheminFichier);
 
             // Lecture et envoi du fichier
