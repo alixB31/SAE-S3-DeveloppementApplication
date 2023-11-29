@@ -74,7 +74,7 @@ public class Serveur {
         BufferedInputStream entreeClient = new BufferedInputStream(socketClient.getInputStream());
 
         // Création d'un fichier pour stocker le fichier CSV reçu
-        fichierRecu = new File("reçu.csv");
+        fichierRecu = new File("recu.csv");
         sortieFichier = new FileOutputStream(fichierRecu);
 
         // Lecture et écriture du fichier
