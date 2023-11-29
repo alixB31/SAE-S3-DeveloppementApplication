@@ -55,8 +55,9 @@ public class Chiffrement {
 
 
 	public static void main(String[] args) throws EchecSerialisationRestauration {
-		chiffrementDiffieHellman();
-		dechiffrementDiffieHellman();
+//		String cle = CreationCleVigenere(871511);
+//		chiffrementVigenere(cle); 
+//		dechiffrementVigenere(cle);
 	}
 	/** 
 	 * Chiffre un fichier csv entrant a l'aide d'une cle de chiffrement
@@ -66,36 +67,31 @@ public class Chiffrement {
 
 		try {
 			String texteAChiffrer = lireCsv(CSV_ENTRANT);
-
 			// Chiffrement de Vigenère
 			String texteChiffrer = codeVigenere(texteAChiffrer, cle);
-
 			// Écriture du fichier chiffré
 			ecritureFichier(CSV_CHIFFRER, texteChiffrer);
 
-			System.out.println("Chiffrement de Vigenère terminé avec succès.");
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	/** TODO comment method role
-	 * 
+	/** 
+	 * Dechiffre un fichier csv entrant a l'aide d'une cle de chiffrement
+	 * @param cle utilisé pour chiffrer
 	 */
-	public static void dechiffrementVigenere() {
+	public static void dechiffrementVigenere(String cle) {
 
 		try {
 			// Initialisation du dictionnaire avec les correspondances fournies
 			String texteADechiffrer = lireCsv(CSV_CHIFFRER);
-
 			// Chiffrement de Vigenère
-			String texteDechiffrer = decodeVigenere(texteADechiffrer, CLE);
-
+			String texteDechiffrer = decodeVigenere(texteADechiffrer, cle);
 			// Écriture du fichier chiffré
 			ecritureFichier(CSV_SORTANT_DECHIFFRER, texteDechiffrer);
 
-			System.out.println("Dechiffrement de Vigenère terminé avec succès.");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -207,38 +203,27 @@ public class Chiffrement {
 	}
 
 	/** 
-	 * Creer une clé publique et une cle prive puis ecris la clé publique
-	 * dans un fichier csv.
+	 * Creer une clé publique et une cle prive puis renvoie la clé publique
 	 */
-	public static void chiffrementDiffieHellman() {
+	public static String chiffrementDiffieHellman() {
+		// Retrouve la cle de chiffrement
+		int clePrive = clePrive(MON_NOMBRE_PREMIER,GENERATEUR);
+		maClePrive = clePrive;
+		long clePublique = clePublique(GENERATEUR,clePrive,MON_NOMBRE_PREMIER);
+		return String.valueOf(clePublique);
 
-		try {
-			// Retrouve la cle de chiffrement
-			int clePrive = clePrive(MON_NOMBRE_PREMIER,GENERATEUR);
-			maClePrive = clePrive;
-			long clePublique = clePublique(GENERATEUR,clePrive,MON_NOMBRE_PREMIER);
-			System.out.println(clePublique);
-			// création du fichier contenant la clé publique
-			ecritureFichier(CSV_CLE_PUBLIQUE, Long.toString(clePublique));
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/** 
-	 * Lis la clé publique et creer la clé partagée avec.
+	 * Creer la clé partagée avec la clé publique de l'autre.
+	 * @param clePubliqueAutre
+	 * @return 
 	 */
-	public static void dechiffrementDiffieHellman() {
+	public static long dechiffrementDiffieHellman(int clePubliqueAutre) {
+		// Recupere la cle publique de l'autre personne
+		long cleGlobale = calculClePartage(clePubliqueAutre,maClePrive,MON_NOMBRE_PREMIER);
+		return cleGlobale;
 
-		try {
-			// Recupere la cle publique de l'autre personne
-			String clePubliqueAutre = lireCle("cle_publique2.csv");
-			long clePartage = calculClePartage(Integer.parseInt(clePubliqueAutre),maClePrive,MON_NOMBRE_PREMIER);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/** 
@@ -260,18 +245,18 @@ public class Chiffrement {
 	 * @param modulo du calcul
 	 */
 	private static long exponentiationModulaire(long base, long exposant, long modulo) {
-	    long resultat = 1; 
-	    // Réduit la base modulo modulo dès le départ pour éviter des valeurs énormes
-	    base = base % modulo;
-	    while (exposant > 0) {
-	        // Si le bit de poids faible de l'exposant est 1
-	        if (exposant % 2 == 1) {
-	            resultat = (resultat * base) % modulo;  // Multiplie le résultat par la base et réduit modulo
-	        }
-	        base = (base * base) % modulo;  // Carré de la base et réduction modulo
-	        exposant = exposant / 2;  // Division de l'exposant par 2 (décalage vers la droite)
-	    }
-	    return resultat;  // Retourne le résultat final
+		long resultat = 1; 
+		// Réduit la base modulo modulo dès le départ pour éviter des valeurs énormes
+		base = base % modulo;
+		while (exposant > 0) {
+			// Si le bit de poids faible de l'exposant est 1
+			if (exposant % 2 == 1) {
+				resultat = (resultat * base) % modulo;  // Multiplie le résultat par la base et réduit modulo
+			}
+			base = (base * base) % modulo;  // Carré de la base et réduction modulo
+			exposant = exposant / 2;  // Division de l'exposant par 2 (décalage vers la droite)
+		}
+		return resultat;  // Retourne le résultat final
 	}
 
 	/** 
@@ -290,7 +275,7 @@ public class Chiffrement {
 		return clePrive;
 
 	}
-	
+
 	/** 
 	 * Calcule la clé publique.
 	 * @param generateur
@@ -301,10 +286,10 @@ public class Chiffrement {
 	public static long clePublique(int generateur, int clePrive, int nombrePremier) {		
 		long clePublique = exponentiationModulaire(clePrive,generateur,nombrePremier);
 		return clePublique;
-//		int nombre = (clePrive^generateur)%nombrePremier;
-//		return clePublique;
+		//		int nombre = (clePrive^generateur)%nombrePremier;
+		//		return clePublique;
 	}
-	
+
 	/** 
 	 * Renvoie un nombre aléatoire qui est premier a fonctionEuler
 	 * @param generateur
@@ -335,7 +320,7 @@ public class Chiffrement {
 	public static boolean sontPremiersEntreEux(int fonctionEuler, int nombreTeste) {
 		return pgcd(fonctionEuler, nombreTeste) == 1;
 	}
-	
+
 	/** 
 	 * Renvoie le plus grand denominateur commun de deux nombres
 	 * @param fonctionEuler
@@ -352,7 +337,7 @@ public class Chiffrement {
 		// retourne le pgcd
 		return fonctionEuler;
 	}
-	
+
 	/** 
 	 * Renvoie un nombre aleatoire appartenant a une liste
 	 * @param listeDeNombres
@@ -364,6 +349,27 @@ public class Chiffrement {
 		int indexAleatoire = random.nextInt(listeDeNombres.size());
 		// Retour du nombre correspondant à l'index sélectionné
 		return listeDeNombres.get(indexAleatoire);
+	}
+
+	/** 
+	 * Creer la cle de vigenere a l'aide de la cle globale créer par
+	 * l'échange de Diffie-Hellman
+	 * @param cleGlobale
+	 * @return String cleVigenere
+	 */
+	public static String CreationCleVigenere(long cleGlobale) {
+		// Creer une string ou l'on rajouteras tout les caractere de la cle de vigenere
+		StringBuilder cleVigenere = new StringBuilder();
+		String cle = String.valueOf(cleGlobale*24);
+		for (int i = 0; i < cle.length(); i++) {
+	        // Multiplier chaque chiffre par sa place dans la clé et l'ajouter à la StringBuilder
+	        int chiffre = Character.getNumericValue(cle.charAt(i));
+	        int valeurModifiee = chiffre * (i + 1);
+	        cleVigenere.append(listeCaracteres[valeurModifiee%listeCaracteres.length]);
+	    }
+		// retourne la cle de vigenere créer
+		System.out.println(cleVigenere);
+		return cleVigenere.toString();
 	}
 
 

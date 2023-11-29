@@ -51,6 +51,11 @@ class TestChiffrement {
         assertTrue(listeDeNombres.contains(modele.Chiffrement.clePrive(79, 3)));
 
 	}
+	
+	@Test
+	void testCreationCleVigenere() {
+		modele.Chiffrement.CreationCleVigenere(871511);
 
+	}
 	
 }

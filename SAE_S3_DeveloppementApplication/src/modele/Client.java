@@ -44,8 +44,9 @@ public class Client {
             int octetsLus;
             String cleAEnvoyer = Chiffrement.chiffrementDiffieHellman();
             int clePubliqueS = cleClient(socket, cleAEnvoyer);
-            int cleGlobale = Chiffrement.dechiffrementDiffieHellman(clePubliqueS);
-            
+            long cleGlobale = Chiffrement.dechiffrementDiffieHellman(clePubliqueS);
+            String cleVigenere = Chiffrement.CreationCleVigenere(cleGlobale);
+            Chiffrement.chiffrementVigenere(cleVigenere);
             while ((octetsLus = entreeFichier.read(tampon)) != -1) {
                 sortie.write(tampon, 0, octetsLus);
             }
