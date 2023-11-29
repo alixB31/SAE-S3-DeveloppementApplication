@@ -35,18 +35,22 @@ public class Client {
             // Obtention du flux de sortie vers le serveur
             BufferedOutputStream sortie = new BufferedOutputStream(socket.getOutputStream());
 
-            // Sélection du fichier CSV à envoyer
-            String cheminFichier = "Crypter.csv";
-            FileInputStream entreeFichier = new FileInputStream(cheminFichier);
-
             // Lecture et envoi du fichier
             byte[] tampon = new byte[1024];
             int octetsLus;
             String cleAEnvoyer = Chiffrement.chiffrementDiffieHellman();
             int clePubliqueS = cleClient(socket, cleAEnvoyer);
+            System.out.println("cleAEnvoyer" +cleAEnvoyer);
+            System.out.println("clePublique" +clePubliqueS);
             long cleGlobale = Chiffrement.dechiffrementDiffieHellman(clePubliqueS);
             String cleVigenere = Chiffrement.CreationCleVigenere(cleGlobale);
             Chiffrement.chiffrementVigenere(cleVigenere);
+            System.out.println("Cle globale" +cleGlobale);
+            System.out.println("Cle vigenere" +cleVigenere);
+            // Sélection du fichier CSV à envoyer
+            String cheminFichier = "Crypter.csv";
+            FileInputStream entreeFichier = new FileInputStream(cheminFichier);
+            
             while ((octetsLus = entreeFichier.read(tampon)) != -1) {
                 sortie.write(tampon, 0, octetsLus);
             }

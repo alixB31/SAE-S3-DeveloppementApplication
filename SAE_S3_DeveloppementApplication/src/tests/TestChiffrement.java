@@ -28,7 +28,7 @@ class TestChiffrement {
 		
 	@Test
 	void testCalculClePublique() {
-		assertEquals(modele.Chiffrement.clePublique(91,89,33),23);
+		assertEquals(modele.Chiffrement.clePublique(89,9,33),2);
 		assertNotEquals(modele.Chiffrement.clePublique(89,91,33),23);
 		assertEquals(modele.Chiffrement.clePublique(3,58621,71),66);
 		assertEquals(modele.Chiffrement.clePublique(981,4848,501),312);
@@ -36,7 +36,7 @@ class TestChiffrement {
 	
 	@Test
 	void testCalculClePartage() {
-		assertEquals(modele.Chiffrement.calculClePartage(89,91,33),23);
+		assertEquals(modele.Chiffrement.calculClePartage(89,9,33),2);
 		assertNotEquals(modele.Chiffrement.calculClePartage(89,91,33),83);
 		assertEquals(modele.Chiffrement.calculClePartage(750,98,71),5);
 		assertEquals(modele.Chiffrement.calculClePartage(4843,981,501),334);

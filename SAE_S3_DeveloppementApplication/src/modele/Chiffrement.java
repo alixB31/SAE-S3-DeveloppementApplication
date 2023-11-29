@@ -228,6 +228,7 @@ public class Chiffrement {
 	 * @param clePrive
 	 */
 	public static long calculClePartage(long clePubliqueAutre,long clePrive, long nombrePremier) {
+		System.out.println("Ma cle privé " +clePrive);
 		long clePartage = exponentiationModulaire(clePubliqueAutre,clePrive,nombrePremier);
 		return clePartage;
 
@@ -240,16 +241,10 @@ public class Chiffrement {
 	 * @param modulo du calcul
 	 */
 	private static long exponentiationModulaire(long base, long exposant, long modulo) {
-		long resultat = 1; 
-		// Réduit la base modulo modulo dès le départ pour éviter des valeurs énormes
-		base = base % modulo;
-		while (exposant > 0) {
-			// Si le bit de poids faible de l'exposant est 1
-			if (exposant % 2 == 1) {
-				resultat = (resultat * base) % modulo;  // Multiplie le résultat par la base et réduit modulo
-			}
-			base = (base * base) % modulo;  // Carré de la base et réduction modulo
-			exposant = exposant / 2;  // Division de l'exposant par 2 (décalage vers la droite)
+		long resultat = base; 
+		for(int i =1; i<exposant;i++) {
+			resultat *= exposant;
+			resultat %= modulo;
 		}
 		return resultat;  // Retourne le résultat final
 	}
