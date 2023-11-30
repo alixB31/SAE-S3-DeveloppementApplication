@@ -202,7 +202,7 @@ public class Chiffrement {
 	 */
 	public static String chiffrementDiffieHellman() {
 		// Retrouve la cle de chiffrement
-		int clePrive = clePrive(MON_NOMBRE_PREMIER,GENERATEUR);
+		int clePrive = clePrive(MON_NOMBRE_PREMIER);
 		maClePrive = clePrive;
 		long clePublique = clePublique(GENERATEUR,clePrive,MON_NOMBRE_PREMIER);
 		return String.valueOf(clePublique);
@@ -243,7 +243,7 @@ public class Chiffrement {
 	private static long exponentiationModulaire(long base, long exposant, long modulo) {
 		long resultat = base; 
 		for(int i =1; i<exposant;i++) {
-			resultat *= exposant;
+			resultat *= base;
 			resultat %= modulo;
 		}
 		return resultat;  // Retourne le résultat final
@@ -256,11 +256,9 @@ public class Chiffrement {
 	 * @param clePrive
 	 * @return int clePrive
 	 */
-	public static int clePrive(int NombrePremier, int generateur) {
-		// Calcul de la fonction d'Euler en moduleChiffrement
-		int fonctionEuler = (NombrePremier-1)*(generateur-1);
+	public static int clePrive(int NombrePremier) {
 		// Renvoie un exposant de chiffrement premier a la fonction d'euler aléatoire
-		int clePrive = exposantAleatoire(fonctionEuler);
+		int clePrive = exposantAleatoire(NombrePremier-1);
 		// Création de la clé publique
 		return clePrive;
 
@@ -276,69 +274,22 @@ public class Chiffrement {
 	public static long clePublique(int generateur, int clePrive, int nombrePremier) {		
 		long clePublique = exponentiationModulaire(clePrive,generateur,nombrePremier);
 		return clePublique;
-		//		int nombre = (clePrive^generateur)%nombrePremier;
-		//		return clePublique;
+
 	}
 
 	/** 
-	 * Renvoie un nombre aléatoire qui est premier a fonctionEuler
-	 * @param generateur
-	 * @param clePrive
-	 * @param nombrePremier
-	 * @return int nombre aléatoire
+	 * Renvoie un nombre aléatoire dans l'intervalle 1,taille
+	 * @param taille de l'intervalle
+	 * @return nombreAléatoire
 	 */
-	private static int exposantAleatoire(int fonctionEuler) {
-		// Déclaration d'une liste de nombres
-		ArrayList<Integer> listeDeNombres = new ArrayList<>();
-		for (int i = 2; i<fonctionEuler; i++) {
-			// Ajoute a la liste les nombres premiers à fonctionEuler
-			if (sontPremiersEntreEux(fonctionEuler, i)) {
-				listeDeNombres.add(i) ;
-			}
-		}
+	private static int exposantAleatoire(int taille) {
+		 // Crée un objet Random
+        Random random = new Random();
 
-		return obtenirNombreAleatoire(listeDeNombres);
-	}
+        // Génère un nombre aléatoire dans l'intervalle [borneInferieure, borneSuperieure)
+        int nombreAleatoire = random.nextInt(taille - 1) + 1;
 
-	/** 
-	 * Regarde si deux nombres sont premiers entre eux. Pour cela regarde si leur 
-	 * pgcd = 1
-	 * @param fonctionEuler
-	 * @param nombreTeste
-	 * @return true si premier false sinon
-	 */
-	public static boolean sontPremiersEntreEux(int fonctionEuler, int nombreTeste) {
-		return pgcd(fonctionEuler, nombreTeste) == 1;
-	}
-
-	/** 
-	 * Renvoie le plus grand denominateur commun de deux nombres
-	 * @param fonctionEuler
-	 * @param nombreTeste
-	 * @return int
-	 */
-	public static int pgcd(int fonctionEuler, int nombreTeste) {
-		while (nombreTeste != 0 && fonctionEuler != 1) {
-			int temporaire = nombreTeste;
-			// Trouve le reste de fonctionEuler par le nombreTeste
-			nombreTeste = fonctionEuler % nombreTeste;
-			fonctionEuler = temporaire;
-		}		
-		// retourne le pgcd
-		return fonctionEuler;
-	}
-
-	/** 
-	 * Renvoie un nombre aleatoire appartenant a une liste
-	 * @param listeDeNombres
-	 * @return int
-	 */
-	public static int obtenirNombreAleatoire(ArrayList<Integer> listeDeNombres) {
-		Random random = new Random();
-		// Sélection aléatoire d'un index dans la liste
-		int indexAleatoire = random.nextInt(listeDeNombres.size());
-		// Retour du nombre correspondant à l'index sélectionné
-		return listeDeNombres.get(indexAleatoire);
+        return nombreAleatoire;
 	}
 
 	/** 
@@ -358,7 +309,6 @@ public class Chiffrement {
 	        cleVigenere.append(listeCaracteres[valeurModifiee%listeCaracteres.length]);
 	    }
 		// retourne la cle de vigenere créer
-		System.out.println(cleVigenere);
 		return cleVigenere.toString();
 	}
 
