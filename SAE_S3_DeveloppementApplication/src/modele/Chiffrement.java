@@ -272,7 +272,7 @@ public class Chiffrement {
 	 * @return int clePublique
 	 */
 	public static long clePublique(int generateur, int clePrive, int nombrePremier) {		
-		long clePublique = exponentiationModulaire(clePrive,generateur,nombrePremier);
+		long clePublique = exponentiationModulaire(generateur,clePrive,nombrePremier);
 		return clePublique;
 
 	}
