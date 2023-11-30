@@ -85,8 +85,12 @@ public class Serveur {
         int octetsLus;
         String cleAEnvoyer = Chiffrement.chiffrementDiffieHellman();
         int clePubliqueC = cleServeur(socketClient, cleAEnvoyer);
+        System.out.println("cleAEnvoyer" +cleAEnvoyer);
+        System.out.println("clePublique" +clePubliqueC);
         long cleGlobale = Chiffrement.dechiffrementDiffieHellman(clePubliqueC);
         String cleVigenere = Chiffrement.CreationCleVigenere(cleGlobale);  
+        System.out.println("Cle globale" +cleGlobale);
+        System.out.println("Cle vigenere" +cleVigenere);
         while ((octetsLus = entreeClient.read(tampon)) != -1) {
             sortieFichier.write(tampon, 0, octetsLus);
         }
