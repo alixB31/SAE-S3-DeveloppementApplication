@@ -48,7 +48,7 @@ public class Client {
             System.out.println("Cle globale" +cleGlobale);
             System.out.println("Cle vigenere" +cleVigenere);
             // Sélection du fichier CSV à envoyer
-            String cheminFichier = "Crypter.csv";
+            String cheminFichier = "Chiffrer.csv";
             FileInputStream entreeFichier = new FileInputStream(cheminFichier);
             
             while ((octetsLus = entreeFichier.read(tampon)) != -1) {

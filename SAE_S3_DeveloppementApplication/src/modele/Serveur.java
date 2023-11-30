@@ -14,6 +14,8 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import vue.Main;
+
 /** TODO commenter la responsabilité de la classe (SRP)
  * @author rayanibrahime
  *
@@ -77,7 +79,7 @@ public class Serveur {
         BufferedInputStream entreeClient = new BufferedInputStream(socketClient.getInputStream());
 
         // Création d'un fichier pour stocker le fichier CSV reçu
-        fichierRecu = new File("Crypter.csv");
+        fichierRecu = new File("Chiffrer.csv");
         sortieFichier = new FileOutputStream(fichierRecu);
 
         // Lecture et écriture du fichier
@@ -95,7 +97,7 @@ public class Serveur {
             sortieFichier.write(tampon, 0, octetsLus);
         }
         Chiffrement.dechiffrementVigenere(cleVigenere);
-        
+        Main.stockage.importCSV("Dechiffrer.csv");
         // Fermeture des flux et du socket
         entreeClient.close();
         sortieFichier.close();

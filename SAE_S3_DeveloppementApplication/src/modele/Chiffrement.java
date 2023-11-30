@@ -17,7 +17,7 @@ import java.util.Random;
 public class Chiffrement {
 
 	private final static String CSV_ENTRANT = "aEnvoyer.csv";
-	private final static String CSV_CHIFFRER = "Crypter.csv";
+	private final static String CSV_CHIFFRER = "Chiffrer.csv";
 	private final static String CSV_SORTANT_DECHIFFRER = "Dechiffrer.csv";
 
 	/* nombre premier que vous pouvez choisir, vous devez avoir le meme que l'autre personne */
