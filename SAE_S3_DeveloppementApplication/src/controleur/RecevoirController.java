@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -44,6 +45,7 @@ public class RecevoirController {
 
     @FXML
     private Button btnRetour;
+    
 
     /**
      * Action associée au bouton pour voir l'adresse IP.
@@ -55,9 +57,8 @@ public class RecevoirController {
     void VoirIP(ActionEvent event) throws Exception {
         // Obtenez l'adresse IPv4 de la machine
         String ipV4 = getIPv4Address();
-
-        // Affichez l'adresse IP
-        ImportationController.afficherInformation("Adresse IP", "L'adresse IP est : " + ipV4);
+        
+        btnIP.setText(ipV4); 
     }
 
     /**

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ScrollPane?>
@@ -7,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E3B4E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ExporterController">
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E3B4E;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ExporterController">
    <children>
       <Text fill="#8BA1B5" layoutX="295.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUESTIONS">
          <font>
@@ -20,11 +24,6 @@
          </font>
       </Button>
       <ComboBox fx:id="comboBoxCategorie" layoutX="60.0" layoutY="58.0" onAction="#comboBoxCategorieAction" prefHeight="62.0" prefWidth="138.0" />
-      <Button fx:id="btnSelectionnerTout" layoutX="882.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnSelectionnerToutAction" prefHeight="62.0" prefWidth="137.0" style="-fx-background-color: #FFFFFF;" text="Sélectionner &#10;tout" textAlignment="CENTER" textFill="#2E3B4E">
-         <font>
-            <Font name="Segoe UI" size="18.0" />
-         </font>
-      </Button>
       <Button fx:id="btnExporter" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnExporterAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #5865F2; -fx-background-radius: 10px;" text="Exporter" textFill="#D8E3E7">
          <font>
             <Font name="Segoe UI Bold" size="25.0" />

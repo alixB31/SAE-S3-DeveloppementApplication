@@ -130,11 +130,10 @@ public class Main extends Application {
 		primaryStage.show();
 		// Bloquer le redimensionnement de la fenêtre
 		primaryStage.setResizable(false);
-
+		
+		
 		//appel de fonction lorsque l'on ferme la fenetres
 		fermetureFenetre(primaryStage);
-
-
 	}
 
 	/**
