@@ -109,7 +109,6 @@ public class Chiffrement {
 		// Obtention de la longueur de la clé et initialisation de l'index de la clé
 		int longueurCle = cle.length();
 		int indexCle = 0;
-
 		// Parcours de chaque caractère dans le texte à chiffrer
 		for (char caractere : texte.toCharArray()) {
 			// Si le caractère est un ';', le laisser inchangé
@@ -122,7 +121,7 @@ public class Chiffrement {
 				indexCaractere = trouverIndexCaractere(caractere);
 				// Index du caractère de la cle dans la liste de caractères
 				indexCleActuel = trouverIndexCaractere(cle.charAt(indexCle));
-
+				
 				// Index du caractere codé 
 				indexChiffre = (indexCaractere + indexCleActuel) % listeCaracteres.length;
 

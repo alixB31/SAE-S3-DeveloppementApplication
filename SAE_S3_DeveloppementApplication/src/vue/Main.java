@@ -317,6 +317,9 @@ public class Main extends Application {
 	}
 
 	public static void ihmRecevoir() {
+		RecevoirController controller = chargeurFXMLRecevoir.getController();
+		// Remet le bouton IP a son état de base
+		controller.btnIP.setText("Voir IP");
 		fenetrePrincipale.setScene(sceneRecevoir);
 	}
 

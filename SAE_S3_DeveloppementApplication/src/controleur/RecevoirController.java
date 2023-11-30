@@ -38,7 +38,7 @@ public class RecevoirController {
     private Button btnConnexion;
 
     @FXML
-    private Button btnIP;
+	public Button btnIP;
 
     @FXML
     private Button btnNumPort;

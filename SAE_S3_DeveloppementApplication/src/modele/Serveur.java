@@ -97,7 +97,6 @@ public class Serveur {
             sortieFichier.write(tampon, 0, octetsLus);
         }
         Chiffrement.dechiffrementVigenere(cleVigenere);
-        Main.stockage.importCSV("Dechiffrer.csv");
         // Fermeture des flux et du socket
         entreeClient.close();
         sortieFichier.close();
