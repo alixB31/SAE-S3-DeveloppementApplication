@@ -301,10 +301,10 @@ public class Chiffrement {
 		// Creer une string ou l'on rajouteras tout les caractere de la cle de vigenere
 		StringBuilder cleVigenere = new StringBuilder();
 		String cle = String.valueOf(cleGlobale*24);
-		for (int i = 0; i < cle.length(); i++) {
+		for (int i = 1; i < cle.length(); i++) {
 	        // Multiplier chaque chiffre par sa place dans la clé et l'ajouter à la StringBuilder
 	        int chiffre = Character.getNumericValue(cle.charAt(i));
-	        int valeurModifiee = chiffre * (i + 1);
+	        int valeurModifiee = chiffre * (i * i);
 	        cleVigenere.append(listeCaracteres[valeurModifiee%listeCaracteres.length]);
 	    }
 		// retourne la cle de vigenere créer
