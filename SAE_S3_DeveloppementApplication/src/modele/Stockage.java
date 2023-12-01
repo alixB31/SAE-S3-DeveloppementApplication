@@ -1,3 +1,7 @@
+/*
+ * ParametreCategorieController.java                                       25 oct. 2023
+ * IUT Rodez, info2 2023-2024, pas de copyright ni "copyleft" 
+ */
 package modele;
 
 import java.io.BufferedWriter;
@@ -18,9 +22,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 import vue.Main;
-/** TODO comment class responsibility (SRP)
- * @author mateo.faussurier
- *
+
+/** 
+ * Stockage des listes de question et de categorie ainsi que de toutes
+ * les méthodes associées 
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class Stockage implements Serializable{
 	
@@ -68,7 +74,6 @@ public class Stockage implements Serializable{
 	
 	public void setPseudoJoueur(String nouveauPseudo) {
 		if(!nouveauPseudo.isBlank() || nouveauPseudo.length() == 0) {
-			//joueur = new Joueur("");
 			joueur.setPseudoJoueur(nouveauPseudo);
 		}
 	}
@@ -88,14 +93,11 @@ public class Stockage implements Serializable{
 	 */
 	public boolean supprimerElementListeCategorie(Categorie categorie) {
 		boolean toutEstSupprime = true;
-//		toutEstSupprime &= listeQuestion.supprimerQuestionParCategorie(categorie);
 		toutEstSupprime &= listeCategorie.supprimerElementListeCategorie(categorie.getIntituleCategorie());
 		return toutEstSupprime;
 	}
 
-	public boolean supprimerReponseFausseQuestion(Question question, String nomReponseFausse) {
-		return listeQuestion.supprimerReponseFausse(question, nomReponseFausse);
-	}
+
 	
 	/**
 	 * Modifie la catégorie en paramètre en remplacent l'ancien intitule par le nouveau
@@ -142,43 +144,89 @@ public class Stockage implements Serializable{
 	    return listeQuestion.listeQuestionParCategorie(categorie);
 	}
 	
+
+	/**
+	 * Modifie la catégorie d'une question donnée.
+	 * @param question La question à modifier.
+	 * @param categorie La nouvelle catégorie de la question.
+	 * @return true si la catégorie de la question a été modifiée avec succès, false sinon.
+	 *         La modification peut échouer si la question ou la nouvelle catégorie est nulle,
+	 *         ou si la catégorie n'existe pas dans la liste des catégories.
+	 */
 	public boolean modifierCategorieQuestion(Question question, Categorie categorie) {
-		boolean estModifiee = false;
-		if (question != null && categorie != null && listeCategorie.elementEstDansListeCategorie(categorie.getIntituleCategorie())) {
-			estModifiee = listeQuestion.modifierCategorieDeQuestion(question, categorie);
-		}
-		return estModifiee;
+	    boolean estModifiee = false;
+
+	    // Vérifier que la question et la catégorie ne sont pas nulles,et que la categorie existe bien
+	    if (question != null && categorie != null && listeCategorie.elementEstDansListeCategorie(categorie.getIntituleCategorie())) {
+	        // Appeler la méthode pour modifier la catégorie de la question.
+	        estModifiee = listeQuestion.modifierCategorieDeQuestion(question, categorie);
+	    }
+
+	    // Retourner true si la catégorie a été modifiée avec succès, sinon false.
+	    return estModifiee;
 	}
 
+	
+	/**
+	 * Supprime une question de la liste en utilisant son intitulé.
+	 * @param intitule.
+	 * @return true si la question a été supprimée avec succès, false sinon.
+	 *         La suppression peut échouer si l'intitulé est nul ou si la question n'est pas présente dans la liste.
+	 */
 	public boolean supprimerElementListeQuestion(String intitule) {
-		return listeQuestion.supprimerElementListeQuestion(intitule);
+	    // Appeler la méthode de la liste des questions pour effectuer la suppression.
+	    return listeQuestion.supprimerElementListeQuestion(intitule);
 	}
 
-	public boolean modifierQuestion(Question question, String intitule, Categorie categorie, int difficulte, 
-			ArrayList<String> liste, String reponse, String feedBack, String concatenation) {
-		boolean toutEstBon = false;
-		if (categorie != null
-				&& listeCategorie.elementEstDansListeCategorie(categorie.getIntituleCategorie())
-				&& listeQuestion.modifierDifficulteQuestion(question, difficulte, concatenation)
-				&& listeQuestion.modifierListeReponsesFaussesQuestion(question, liste, concatenation) 
-				&& listeQuestion.modifierReponseJusteQuestion(question, reponse, concatenation)
-				&& listeQuestion.modifierFeedBackQuestion(question, feedBack, concatenation)
-				&& listeQuestion.modifierIntituleQuestion(question, intitule, concatenation)
-				&& listeQuestion.modifierCategorieDeQuestion(question, categorie)) {
-			toutEstBon = true;
-			postModificationCategorie();
-		}
-		
-		return toutEstBon;
+	
+	/**
+	 * Modifie les attributs d'une question spécifiée.
+	 * @param question La question à modifier.
+	 * @param intitule Le nouvel intitulé de la question.
+	 * @param categorie La nouvelle catégorie de la question.
+	 * @param difficulte La nouvelle difficulté de la question.
+	 * @param liste La nouvelle liste de réponses fausses.
+	 * @param reponse La nouvelle réponse correcte.
+	 * @param feedBack Le nouveau feedback associé à la question.
+	 * @param concatenation La méthode utilisée pour concaténer les modifications.
+	 * @return true si toutes les modifications ont été effectuées avec succès, false sinon.
+	 *         La modification peut échouer si la catégorie est nulle, si la catégorie n'existe pas
+	 *         dans la liste des catégories, ou si l'une des modifications spécifiées échoue.
+	 */
+	public boolean modifierQuestion(Question question, String intitule, Categorie categorie, int difficulte,
+	        ArrayList<String> liste, String reponse, String feedBack, String concatenation) {
+	    boolean toutEstBon = false;
+
+	    // Vérifier que la catégorie est non nulle et existe dans la liste des catégories.
+	    if (categorie != null
+	            && listeCategorie.elementEstDansListeCategorie(categorie.getIntituleCategorie())    
+	            // Appeler les méthodes de la liste des questions pour effectuer les modifications.
+	            && listeQuestion.modifierDifficulteQuestion(question, difficulte, concatenation)
+	            && listeQuestion.modifierListeReponsesFaussesQuestion(question, liste, concatenation)
+	            && listeQuestion.modifierReponseJusteQuestion(question, reponse, concatenation)
+	            && listeQuestion.modifierFeedBackQuestion(question, feedBack, concatenation)
+	            && listeQuestion.modifierIntituleQuestion(question, intitule, concatenation)
+	            && listeQuestion.modifierCategorieDeQuestion(question, categorie)) {
+	        // Marquer que toutes les modifications ont été effectuées avec succès.
+	    	
+	        toutEstBon = true;
+	        postModificationCategorie();
+	    }
+	    // Retourner true si toutes les modifications ont été effectuées avec succès, sinon false.
+	    return toutEstBon;
 	}
 	
+	/**
+	 * Permet de récuperer les questions correspondants au filtre de difficulté et de taille
+	 * @param quiz Le quiz avec les filtres effectifs.
+	 * @return listeQuestion la liste des questions correspondant aux filtres.
+	 */
 	public ArrayList<Question> listeQuestionFiltreDifficulteCategorieTaille(Quiz quiz){
 		return listeQuestion.listeQuestionFiltreDifficulteCategorieTaille(quiz);
 	}
 	
 	/**
      * Importe les données depuis un fichier CSV.
-     *
      * @param filePath Le chemin du fichier CSV à importer.
      * @return true si l'importation est réussie, false sinon.
      */
@@ -228,7 +276,7 @@ public class Stockage implements Serializable{
 	                        Question question = new Question(
 	                        		getValeurJuste(data, 2),
 	                                categorieCourante,
-	                                parseIntOrDefault(data[1]),
+	                                intEnString(data[1]),
 	                                reponsesFausses,
 	                                getValeurJuste(data, 3),
 	                                getValeurJuste(data, 8)
@@ -257,17 +305,26 @@ public class Stockage implements Serializable{
         }
     }
     
+    /**
+	 * Finalise les modifications de categorie
+	 */
     public void postModificationCategorie() {
     	listeQuestion.postModificationCategorie();
     }
     
-    // Méthode pour obtenir une valeur sûre à partir d'un tableau
+    /**
+	 * Recupere une donnée valide 
+	 * @return la valeur
+	 */
     private String getValeurJuste(String[] array, int index) {
         return (index >= 0 && index < array.length) ? array[index] : "";
     }
 
-    // Méthode pour convertir une chaîne en entier ou retourner une valeur par défaut
-    private int parseIntOrDefault(String value) {
+    /**
+	 * Transforme une chaine en int 
+	 * @return int en chaine ou 0 si impossible
+	 */
+    private int intEnString(String value) {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
@@ -275,6 +332,11 @@ public class Stockage implements Serializable{
         }
     }
     
+    /**
+     * Mélange les questions d'une catégorie
+	 * @param nomQuestionNomCategorie 
+	 * @return listeQustion dans un ordre aléatoire
+	 */
     public ArrayList<String> getListeReponsesOrdreAleatoire(String nomQuestionNomCategorie) {
     	return listeQuestion.getReponsesOrdreAleatoire(listeQuestion.getElementListeQuestion(nomQuestionNomCategorie));
     }
@@ -324,7 +386,11 @@ public class Stockage implements Serializable{
     	}
     }
     
-    
+    /**
+     * Cette méthode crée un fichier Csv contenant la liste des questions que l'utilisateur veut exporter
+     * @param listeQuestions liste des questions a exporter
+     * @throws ClassNotFoundException 
+     */
     public boolean exportCSV(ArrayList<Question> listeQuestions) {
         boolean estExporte = false;
 

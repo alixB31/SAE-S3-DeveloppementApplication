@@ -53,7 +53,10 @@ public class Chiffrement {
 	};
 
 
-
+	public static void main(String[] args) {
+		System.out.println(calculClePartage(125,47,35));
+		
+	}
 	/** 
 	 * Chiffre un fichier csv entrant a l'aide d'une cle de chiffrement
 	 * @param cle utilisé pour chiffrer
