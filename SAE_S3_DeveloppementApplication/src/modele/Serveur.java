@@ -16,9 +16,9 @@ import java.net.Socket;
 
 import vue.Main;
 
-/** TODO commenter la responsabilité de la classe (SRP)
- * @author rayanibrahime
- *
+/** 
+ * Gestion des échanges du serveur avec chiffrement des données.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class Serveur {
     /** TODO commenter le rôle de la méthode
@@ -87,12 +87,8 @@ public class Serveur {
         int octetsLus;
         String cleAEnvoyer = Chiffrement.chiffrementDiffieHellman();
         int clePubliqueC = cleServeur(socketClient, cleAEnvoyer);
-        System.out.println("cleAEnvoyer" +cleAEnvoyer);
-        System.out.println("clePublique" +clePubliqueC);
         long cleGlobale = Chiffrement.dechiffrementDiffieHellman(clePubliqueC);
         String cleVigenere = Chiffrement.CreationCleVigenere(cleGlobale);  
-        System.out.println("Cle globale" +cleGlobale);
-        System.out.println("Cle vigenere" +cleVigenere);
         while ((octetsLus = entreeClient.read(tampon)) != -1) {
             sortieFichier.write(tampon, 0, octetsLus);
         }
@@ -100,6 +96,10 @@ public class Serveur {
         // Fermeture des flux et du socket
         entreeClient.close();
         sortieFichier.close();
+        // Fin de la connexion
+        arreterConnexion();
+        // Importation du fichier qui a été reçu et déchiffré
+        Main.stockage.importCSV("Dechiffrer.csv");
     }
     
 	// Ajouter cette méthode à la classe Serveur pour arrêter la connexion
@@ -107,6 +107,7 @@ public class Serveur {
 	    try {
 	        if (socketServeur != null && !socketServeur.isClosed()) {
 	            socketServeur.close();
+
 	        }
 	    } catch (IOException e) {
 	        e.printStackTrace();

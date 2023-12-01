@@ -21,7 +21,7 @@ public class Chiffrement {
 	private final static String CSV_SORTANT_DECHIFFRER = "Dechiffrer.csv";
 
 	/* nombre premier que vous pouvez choisir, vous devez avoir le meme que l'autre personne */
-	private final static int MON_NOMBRE_PREMIER = 29 ;
+	private final static int MON_NOMBRE_PREMIER = 50461 ;
 	/* Generateur, vous devez avoir le meme que l'autre personne */
 	private static final int GENERATEUR = 3;
 	/* Clé que vous pouvez modifier a votre bon vouloir */

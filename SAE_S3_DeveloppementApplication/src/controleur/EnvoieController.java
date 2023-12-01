@@ -106,7 +106,11 @@ public class EnvoieController {
     	Main.ihmExportation();
     }
     
-    public  String getAdresseIPSaisie() {
+    /**
+	 * Recupere l'adresse IP saisie
+	 * @return l'adresse IP
+	 */
+    public String getAdresseIPSaisie() {
     	return adresseIPServer.getText();
     }
 }
