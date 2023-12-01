@@ -6,6 +6,7 @@ package modele;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -36,7 +37,7 @@ public class Client {
             // Connexion au serveur sur le port défini dans Serveur.NUM_PORT
             Socket socket = new Socket();
             
-            socket.connect(new InetSocketAddress(IP, Serveur.NUM_PORT), 100);
+            socket.connect(new InetSocketAddress(IP, Serveur.NUM_PORT), 1000);
 
             // Obtention du flux de sortie vers le serveur
             BufferedOutputStream sortie = new BufferedOutputStream(socket.getOutputStream());
@@ -64,6 +65,8 @@ public class Client {
             sortie.close();
             entreeFichier.close();
             socket.close();
+            
+            supprimerFichiersCrees();
 
         } catch (IOException e) {
             estEnvoye = false;
@@ -90,4 +93,24 @@ public class Client {
         }
 		return clePubliqueS;
 	}
+	
+	 /** 
+     * Supprime les fichiers créés pendant le processus.
+     */
+    public static void supprimerFichiersCrees() {
+        
+        // Supprimer le fichier CSV aEnvoyer
+        String cheminFichierAEnvoyer = "aEnvoyer.csv";
+        File fichierAEnvoyer = new File(cheminFichierAEnvoyer);
+        if (fichierAEnvoyer.exists()) {
+        	fichierAEnvoyer.delete();
+        }
+        
+        // Supprimer le fichier CSV Chiffrer
+        String cheminFichierChiffrer = "Chiffrer.csv";
+        File fichierChiffrer = new File(cheminFichierChiffrer);
+        if (fichierChiffrer.exists()) {
+        	fichierChiffrer.delete();
+        }
+    }
 }
