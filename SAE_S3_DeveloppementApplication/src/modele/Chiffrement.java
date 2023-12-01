@@ -21,7 +21,7 @@ public class Chiffrement {
 	private final static String CSV_SORTANT_DECHIFFRER = "Dechiffrer.csv";
 
 	/* nombre premier que vous pouvez choisir, vous devez avoir le meme que l'autre personne */
-	private final static int MON_NOMBRE_PREMIER = 29 ;
+	private final static int MON_NOMBRE_PREMIER = 50461 ;
 	/* Generateur, vous devez avoir le meme que l'autre personne */
 	private static final int GENERATEUR = 3;
 	/* Clé que vous pouvez modifier a votre bon vouloir */
@@ -92,9 +92,6 @@ public class Chiffrement {
 			e.printStackTrace();
 		}
 	}
-
-
-
 
 	/** 
 	 * Chiffre par une méthode de Vigenere une chaine de caractéres
@@ -258,7 +255,6 @@ public class Chiffrement {
 	public static int clePrive(int NombrePremier) {
 		// Renvoie un exposant de chiffrement premier a la fonction d'euler aléatoire
 		int clePrive = exposantAleatoire(NombrePremier-1);
-		// Création de la clé publique
 		return clePrive;
 
 	}
@@ -301,10 +297,10 @@ public class Chiffrement {
 		// Creer une string ou l'on rajouteras tout les caractere de la cle de vigenere
 		StringBuilder cleVigenere = new StringBuilder();
 		String cle = String.valueOf(cleGlobale*24);
-		for (int i = 0; i < cle.length(); i++) {
+		for (int i = 1; i < cle.length(); i++) {
 	        // Multiplier chaque chiffre par sa place dans la clé et l'ajouter à la StringBuilder
 	        int chiffre = Character.getNumericValue(cle.charAt(i));
-	        int valeurModifiee = chiffre * (i + 1);
+	        int valeurModifiee = chiffre * (i * i);
 	        cleVigenere.append(listeCaracteres[valeurModifiee%listeCaracteres.length]);
 	    }
 		// retourne la cle de vigenere créer

@@ -13,16 +13,22 @@ import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-/** TODO commenter la responsabilité de la classe (SRP)
- * @author rayanibrahime
- *
+/** 
+ * Gestion des échanges du client avec chiffrement des données.
+ * 
+ * @author Alix.Brugier 
+ * @author Mateo.faussurier 
+ * @author Nathan.Girardin 
+ * @author Rayan.Ibrahime
  */
 public class Client {
-    /** TODO commenter le rôle de la méthode
+	
+	
+    /** 
+	 * Envoie a l'adresse IP une clé privé et un fichier chiffré.
      * @param IP L'adresse IP du serveur auquel se connecter.
      * @return true si le fichier est envoyé avec succès, false sinon.
      */
-
 	public static boolean envoie(String IP) {
 		boolean estEnvoye = false;
 		try {
@@ -40,13 +46,9 @@ public class Client {
             int octetsLus;
             String cleAEnvoyer = Chiffrement.chiffrementDiffieHellman();
             int clePubliqueS = cleClient(socket, cleAEnvoyer);
-            System.out.println("cleAEnvoyer" +cleAEnvoyer);
-            System.out.println("clePublique" +clePubliqueS);
             long cleGlobale = Chiffrement.dechiffrementDiffieHellman(clePubliqueS);
             String cleVigenere = Chiffrement.CreationCleVigenere(cleGlobale);
             Chiffrement.chiffrementVigenere(cleVigenere);
-            System.out.println("Cle globale" +cleGlobale);
-            System.out.println("Cle vigenere" +cleVigenere);
             // Sélection du fichier CSV à envoyer
             String cheminFichier = "Chiffrer.csv";
             FileInputStream entreeFichier = new FileInputStream(cheminFichier);
@@ -69,6 +71,12 @@ public class Client {
 		return estEnvoye;
     }
 	
+	/** 
+	 * Envoie a l'adresse IP une clé publique.
+     * @param serveur le serveur auquel se connecter.
+     * @param cleAEnvoyer.
+     * @return clePubliqueS.
+     */
 	private static int cleClient(Socket serveur, String cleAEnvoyer) {
 		int clePubliqueS = 0;
 		try {

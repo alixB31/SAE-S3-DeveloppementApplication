@@ -92,16 +92,25 @@ public class ExporterController {
 	}
 
 
-
+	/**
+	 * Initialise une comboBox avec tout les categories existantes.
+	 * @param listeCategorie hashMap de la liste des catégories
+	 */
 	public void setComboBoxCategorie(HashMap<String, Categorie> listeCategorie) {
+		// Ajoute l'option toutes les catégories a la comboBox
 		comboBoxCategorie.getItems().add("Toutes les catégories");
 		comboBoxCategorie.getSelectionModel().selectFirst();
+		// Ajoute toute les catégories une a une a la comboBox
 		for (Map.Entry entry : listeCategorie.entrySet()) {
 			comboBoxCategorie.getItems().add(((Categorie)entry.getValue()).getIntituleCategorie());
 			
 		}
 	}
-
+	
+	/**
+	 * Initialise une comboBox avec tout les categories existantes.
+	 * @param listeCategorie hashMap de la liste des catégories
+	 */
 	public void setCheckBoxQuestion(HashMap<String, Question> listeQuestion) {
 		for (Map.Entry entry : listeQuestion.entrySet()) {
 			CheckBox dynamicCheckBox = new CheckBox(((Question)entry.getValue()).getIntituleQuestion());
@@ -113,16 +122,25 @@ public class ExporterController {
 		}
 		scrollBarContenu.setContent(vBox);
 	}
-
+	
+	/**
+	 * @return la comboBox des catégorie 
+	 */
 	public ComboBox getComboBoxCategorie() {
 		return comboBoxCategorie;
 	}
 
+	/**
+	 * @return la vBox qui contient les checkBox des question 
+	 */
 	public VBox getCheckListeQuestion() {
 		return vBox;
 	}
 
-	// Méthode pour gérer les événements de CheckBox
+	/**
+	 * Lorsqu'une checkbox est sélectionné ajoute l'intitule de la qustion
+	 * à la liste des question sélectionné 
+	 */
 	private void modifierListeCheck(CheckBox checkBox) {
 		if (checkBox.isSelected()) {
 			questionCheck.add(checkBox.getText());
@@ -135,13 +153,17 @@ public class ExporterController {
 	void btnExporterAction(ActionEvent event) {
 		arrayListQuestion = new ArrayList<>();
 		HashMap<String, Question> listeQuestion = Main.stockage.getListeQuestion();
+		
+		// Regarde une a une les questions pour voir si leur intitulé appartient a la liste des questions sélectionné
 		for (Question question : listeQuestion.values()) {
 			if (questionCheck.contains(question.getIntituleQuestion())) {
+				// Ajoute la question correspondante a la liste des questions a exporté
 				arrayListQuestion.add(question);
 			}
 		}
+		// Créer le csv des questions
 		Main.stockage.exportCSV(arrayListQuestion);
-		Chiffrement.chiffrementDiffieHellman();
+		// Change de vue pour celle d'envoie
 		Main.ihmEnvoie();
 	}
 
