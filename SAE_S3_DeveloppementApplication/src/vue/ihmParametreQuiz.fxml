@@ -20,7 +20,7 @@
             <Font name="Segoe UI Bold" size="25.0" />
          </font>
       </Button>
-      <Text fill="#8ba1b5" layoutX="319.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CATEGORIE" textAlignment="CENTER">
+      <Text fill="#8ba1b5" layoutX="302.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CATEGORIE" textAlignment="CENTER">
          <font>
             <Font name="System Bold Italic" size="88.0" />
          </font>
