@@ -29,7 +29,7 @@
          <graphic>
             <ImageView fitHeight="65.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/trash-131964752826272583.png" />
+                  <Image url="@../images/poubelle.png" />
                </image>
             </ImageView>
          </graphic>
