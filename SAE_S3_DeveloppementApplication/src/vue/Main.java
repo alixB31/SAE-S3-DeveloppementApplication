@@ -26,8 +26,9 @@ import modele.EchecSerialisationRestauration;
 /**
  * Cette classe est la classe principale d'une application JavaFX.
  * Cette classe contient les chargeurs des vues.
- * @author rayan.ibrahime
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
+ 
 public class Main extends Application {
 	private static Stage fenetrePrincipale;
 	private static Scene sceneNotice;

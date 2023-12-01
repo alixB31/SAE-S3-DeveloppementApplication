@@ -1,8 +1,13 @@
+/*
+ * EchecSerialisationRestauration.java									15 novembre 2023 
+ * IUT de Rodez, no copyright ni "copyleft"
+ */
 package modele;
 
 /**
- * Exception lev�e si probl�me d'acc�s au fichier lors de la 
- * s�rialisation ou restauration d'une instance de type Stockage
+ * Exception levée si problème d'accés au fichier lors de la 
+ * sérialisation ou restauration d'une instance de type Stockage
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class EchecSerialisationRestauration extends Exception {
 

@@ -13,6 +13,7 @@ class TestChiffrement {
 	@Test
 	void testCalculClePublique() {
 		assertEquals(modele.Chiffrement.calculClePartage(19,4,5),1);
+		assertEquals(modele.Chiffrement.calculClePartage(125,47,35),20);
 
 	}
 	

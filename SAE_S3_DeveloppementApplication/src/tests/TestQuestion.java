@@ -425,30 +425,5 @@ class TestQuestion {
 		}
 
 	}
-	@Test
-	void testSupprimerReponseFausseQuestion() {
-		ArrayList arrayVoulu = new ArrayList<>();
-		arrayVoulu.add("7");
-		arrayVoulu.add("10");
-		stockageTest.ajouterQuestion(jeuDeTestQuestionValide.get(1));
-		assertTrue(stockageTest.supprimerReponseFausseQuestion(jeuDeTestQuestionValide.get(1),"2"),
-				"Suppression d'une réponse fausse.");
-		assertEquals(jeuDeTestQuestionValide.get(1).getReponsesFaussesQuestion(),arrayVoulu,
-				"Vérification de la suppression.");
-		
-		ArrayList arrayVoulu2 = new ArrayList<>();
-		arrayVoulu2.add("2");
-		arrayVoulu2.add("10");
-		
-		
-		
-		jeuDeTestQuestionValide.get(0).setReponsesFaussesQuestion(new ArrayList<String>() {{add("2");add("7");add("10");}});
-		stockageTest.ajouterQuestion(jeuDeTestQuestionValide.get(0));
-		assertTrue(stockageTest.supprimerReponseFausseQuestion(jeuDeTestQuestionValide.get(0),"7"));
-		assertEquals(jeuDeTestQuestionValide.get(0).getReponsesFaussesQuestion(),arrayVoulu2);
-		
-		//suppresion jusqu'a qu'il n'y ai plus de reponses fausses
-		stockageTest.supprimerReponseFausseQuestion(jeuDeTestQuestionValide.get(0),"2");
-		assertFalse(stockageTest.supprimerReponseFausseQuestion(jeuDeTestQuestionValide.get(0),"10"));
-	}
+
 }

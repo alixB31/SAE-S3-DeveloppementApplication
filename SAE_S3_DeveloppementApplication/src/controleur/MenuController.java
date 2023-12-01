@@ -1,5 +1,5 @@
 /*
- * MenuController.java                                      16 nov. 2023
+ * MenuController.java                                      27 oct. 2023
  * IUT Rodez, info1 2022-2023, pas de copyright ni "copyleft" 
  */
 package controleur;

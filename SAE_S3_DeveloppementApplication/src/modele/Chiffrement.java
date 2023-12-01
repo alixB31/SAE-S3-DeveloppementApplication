@@ -2,6 +2,8 @@ package modele;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -53,12 +55,16 @@ public class Chiffrement {
 	};
 
 
-
+	public static void main(String[] args) {
+		System.out.println(calculClePartage(125,47,35));
+		
+	}
 	/** 
 	 * Chiffre un fichier csv entrant a l'aide d'une cle de chiffrement
 	 * @param cle utilisé pour chiffrer
+	 * @throws IOException 
 	 */
-	public static void chiffrementVigenere(String cle) {
+	public static void chiffrementVigenere(String cle) throws IOException {
 
 		try {
 			String texteAChiffrer = lireCsv(CSV_ENTRANT);
@@ -68,8 +74,8 @@ public class Chiffrement {
 			ecritureFichier(CSV_CHIFFRER, texteChiffrer);
 
 
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			System.out.println("Vous avez supprimer a la main le fichier que vous vouliez exporter");
 		}
 	}
 

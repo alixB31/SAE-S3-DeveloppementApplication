@@ -11,8 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Liste des questions de type HashMap.
- * @author Nathan Girardin, Mateo Faussurier, Rayan Ibrahim, Alix Brugier
+ * Liste des questions de type HashMap. Il ne peut pas y avoir plusieurs fois
+ * des questions de même intitulé.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class ListeQuestion implements Serializable{
 
@@ -252,25 +253,7 @@ public class ListeQuestion implements Serializable{
 		return sontSupprimees;
 	}
 
-	/**
-	 * Supprime une réponse fausse.
-	 * @param question la question dont on modifie la réponse fausse.
-	 * @param ancienneReponseFausse L'ancieen réponse fausse à supprimer.
-	 * @return
-	 */
-	public boolean supprimerReponseFausse(Question question, String ancienneReponseFausse) {
-		boolean estSupprimeReponseFausse = false;
-		if (question.reponseFausseExiste(ancienneReponseFausse)
-				&& question.listeReponsesFausses.size() > 1) {
-			for (int i = 0; i< question.getReponsesFaussesQuestion().size(); i++) {
-				if (ancienneReponseFausse.equals(question.getReponsesFaussesQuestion().get(i))) {
-					estSupprimeReponseFausse = true;
-					question.supprimerReponseFausseQuestion(i);
-				}
-			}
-		}
-		return estSupprimeReponseFausse;
-	}
+
 
 	public boolean modifierQuestionParCategorie(Categorie categorie, Categorie nouvelleCategorie) {
 		boolean sontModifiees = false;

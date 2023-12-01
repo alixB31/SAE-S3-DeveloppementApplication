@@ -1,3 +1,8 @@
+/**
+ * Question.java									08 novembre 2023 
+ * IUT de Rodez, no copyright ni "copyleft"
+ */
+
 package modele;
 
 import java.io.Serializable;
@@ -8,7 +13,7 @@ import java.util.Collections;
  * Les objets question contiennent les paramètres d'une question. Les questions
  * sont données à l'utilisateur durant un quizz. Un utilisateur peu modifier,
  * créer et supprimer des questions.
- * @author mateo.faussurier
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class Question implements Serializable{
 
@@ -33,6 +38,7 @@ public class Question implements Serializable{
 	public String feedBackQuestion;
 
 	/**
+	 * Constructeru d'une question
 	 * @param intitule
 	 * @param categorie
 	 * @param difficulte

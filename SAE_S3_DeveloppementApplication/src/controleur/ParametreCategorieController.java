@@ -1,5 +1,5 @@
 /*
- * ParametreCategorieController.java                                      4 nov. 2023
+ * ParametreCategorieController.java                                      27 oct. 2023
  * IUT Rodez, info2 2023-2024, pas de copyright ni "copyleft" 
  */
 package controleur;

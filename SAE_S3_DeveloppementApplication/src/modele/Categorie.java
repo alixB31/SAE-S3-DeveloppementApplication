@@ -10,11 +10,11 @@ import java.io.Serializable;
 
 /**
  * Classe regroupant l'ensemble des methodes servant a la gestion des categories 
- * @author F.Bernad, A.Brouzes, R.Britelle
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class Categorie implements Serializable{
 
-	/* intitule de la categorie */
+	/** intitule de la categorie */
 	private String intituleCategorie;
 	
 	/**
@@ -34,10 +34,4 @@ public class Categorie implements Serializable{
 	}
 	
 	
-	/**
-	 * @param intitule , écrit l'intitule d'une catégorie
-	 */
-//	public void setIntituleCategorie(String intitule) {
-//	    this.intituleCategorie = intitule;
-//	}
 }
