@@ -8,6 +8,7 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -33,7 +34,6 @@ public class Client {
 	public static boolean envoie(String IP) {
 		boolean estEnvoye = false;
 		try {
-			//TODO s'envoyer
             // Connexion au serveur sur le port défini dans Serveur.NUM_PORT
             Socket socket = new Socket();
             
@@ -52,7 +52,13 @@ public class Client {
             Chiffrement.chiffrementVigenere(cleVigenere);
             // Sélection du fichier CSV à envoyer
             String cheminFichier = "Chiffrer.csv";
-            FileInputStream entreeFichier = new FileInputStream(cheminFichier);
+            FileInputStream entreeFichier = null;
+            try {
+            	entreeFichier = new FileInputStream(cheminFichier);
+            } catch (FileNotFoundException e) {
+            	System.out.println("C'st catché");
+            }
+            
             
             while ((octetsLus = entreeFichier.read(tampon)) != -1) {
                 sortie.write(tampon, 0, octetsLus);
