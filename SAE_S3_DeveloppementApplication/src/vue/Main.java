@@ -4,6 +4,7 @@
  */
 package vue;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -218,15 +219,16 @@ public class Main extends Application {
 	 * @param args the command line arguments
 	 * @throws EchecSerialisationRestauration 
 	 */
-	public static void main(String[] args) throws EchecSerialisationRestauration {
+	public static void main(String[] args) throws EchecSerialisationRestauration,FileNotFoundException {
 		stockage = new Stockage();
 		try {
 			stockage.restaurer();
 		} catch (EchecSerialisationRestauration e) {
 			ParametreController.afficherAlerte("Echec restauration","Échec de la réstauration.");			
 		}
-		
-		stockage.ajouterCategorie(new Categorie("Général"));
+		if (!stockage.getListeCategorie().containsKey("Général")) {
+			stockage.getListeCategorie().put("Général", new Categorie("Général"));
+		}
 		System.out.println(stockage.getListeCategorie());
 		launch(args);
 	}

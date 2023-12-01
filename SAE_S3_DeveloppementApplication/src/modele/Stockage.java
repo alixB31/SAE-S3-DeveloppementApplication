@@ -306,19 +306,22 @@ public class Stockage implements Serializable{
      * @param nomFichier 
      * @param une chaîne contenant le nom du fichier à consulter
      * @throws EchecSerialisationRestauration 
+     * @throws IOException 
+     * @throws ClassNotFoundException 
      */
-    public void restaurer() throws EchecSerialisationRestauration {
+    public void restaurer() throws EchecSerialisationRestauration{
         // déclaration du fichier et lecture dans le fichier
-    	try (FileInputStream fileIn = new FileInputStream("stockage.ser");
-                ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
+    	try {
+    		FileInputStream fileIn = new FileInputStream("stockage.ser");
+			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+    		// Désérialisation
+    		Main.stockage = (Stockage) objectIn.readObject();
 
-               // Désérialisation
-               Main.stockage = (Stockage) objectIn.readObject();
-
-           } catch (Exception e) {
-               e.printStackTrace();
-           }
-
+    	}catch (FileNotFoundException e) {
+    		System.out.println("Le fichier n'existe pas, il sera créé.");
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
     }
     
     
