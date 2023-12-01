@@ -93,9 +93,6 @@ public class Chiffrement {
 		}
 	}
 
-
-
-
 	/** 
 	 * Chiffre par une méthode de Vigenere une chaine de caractéres
 	 * @param texte a chiffrer
@@ -258,7 +255,6 @@ public class Chiffrement {
 	public static int clePrive(int NombrePremier) {
 		// Renvoie un exposant de chiffrement premier a la fonction d'euler aléatoire
 		int clePrive = exposantAleatoire(NombrePremier-1);
-		// Création de la clé publique
 		return clePrive;
 
 	}
