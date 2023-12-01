@@ -108,10 +108,11 @@ public class ExporterController {
 	}
 	
 	/**
-	 * Initialise une comboBox avec tout les categories existantes.
-	 * @param listeCategorie hashMap de la liste des catégories
+	 * Initialise une comboBox avec tout les question correspond a la catégorie sélectionné.
+	 * @param listeQuestion hashMap de la liste des questions
 	 */
 	public void setCheckBoxQuestion(HashMap<String, Question> listeQuestion) {
+		vBox.getChildren().clear();
 		for (Map.Entry entry : listeQuestion.entrySet()) {
 			CheckBox dynamicCheckBox = new CheckBox(((Question)entry.getValue()).getIntituleQuestion());
 			dynamicCheckBox.setOnAction(event2 -> modifierListeCheck(dynamicCheckBox));
@@ -161,10 +162,15 @@ public class ExporterController {
 				arrayListQuestion.add(question);
 			}
 		}
-		// Créer le csv des questions
-		Main.stockage.exportCSV(arrayListQuestion);
-		// Change de vue pour celle d'envoie
-		Main.ihmEnvoie();
+		if (arrayListQuestion.size()>0) {
+			// Créer le csv des questions
+			Main.stockage.exportCSV(arrayListQuestion);
+			// Change de vue pour celle d'envoie
+			Main.ihmEnvoie();
+		} else {
+			ParametreController.afficherAlerte("Selectionnez une question","Veuillez sélectionner au moins une question à exporter.");
+		}
+		
 	}
 
 }
