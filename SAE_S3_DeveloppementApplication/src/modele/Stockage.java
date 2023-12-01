@@ -1,5 +1,5 @@
 /*
- * ParametreCategorieController.java                                       25 oct. 2023
+ * Stockage.java                                       25 oct. 2023
  * IUT Rodez, info2 2023-2024, pas de copyright ni "copyleft" 
  */
 package modele;

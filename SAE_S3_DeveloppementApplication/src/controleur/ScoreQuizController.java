@@ -1,5 +1,5 @@
 /*
- * ScoreQuizController.java                                      19 nov. 2023
+ * ScoreQuizController.java                                      15 nov. 2023
  * IUT Rodez, info1 2022-2023, pas de copyright ni "copyleft" 
  */
 package controleur;
