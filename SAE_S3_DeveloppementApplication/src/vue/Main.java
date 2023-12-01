@@ -302,10 +302,13 @@ public class Main extends Application {
 	public static void ihmExportation() {
 
 		ExporterController controller = chargeurFXMLExportation.getController();
+		// Clear la comboBox des categories de la page d'exportation
 		controller.getComboBoxCategorie().getItems().clear();
+		// Clear la liste des questions check de la page d'exportation
 		controller.questionCheck.clear();
-		controller.getCheckListeQuestion().getChildren().clear();
+		// Initialise la comboBox des categories de la page d'exportation
 		controller.setComboBoxCategorie(stockage.getListeCategorie());
+		// Initialise les checkbox des questions de la page d'exportation
 		controller.setCheckBoxQuestion(stockage.getListeQuestion());
 		fenetrePrincipale.setScene(sceneExportation);		
 	}
