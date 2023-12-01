@@ -123,6 +123,8 @@ public class Serveur {
         
         // Importation du fichier qui a été reçu et déchiffré
         Main.stockage.importCSV("Dechiffrer.csv");
+        
+        supprimerFichiersCrees();
     }
 
     /**
@@ -161,5 +163,25 @@ public class Serveur {
             clePubliqueC = 0;
         }
         return clePubliqueC;
+    }
+    
+    /** 
+     * Supprime les fichiers créés pendant le processus.
+     */
+    public static void supprimerFichiersCrees() {
+    	
+        String cheminFichierChiffrer = "Chiffrer.csv";
+        File fichierChiffrer = new File(cheminFichierChiffrer);
+        if (fichierChiffrer.exists()) {
+        	fichierChiffrer.delete();
+            System.out.println("Fichier temporaire supprimé : " + cheminFichierChiffrer);
+        }
+        
+        String cheminFichierDechiffrer = "Dechiffrer.csv";
+        File fichierDechiffrer = new File(cheminFichierDechiffrer);
+        if (fichierDechiffrer.exists()) {
+        	fichierDechiffrer.delete();
+            System.out.println("Fichier aEnvoyer.csv supprimé : " + cheminFichierDechiffrer);
+        }
     }
 }
