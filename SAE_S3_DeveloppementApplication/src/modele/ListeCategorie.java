@@ -11,8 +11,7 @@ import java.util.HashMap;
 /** 
  * Liste des catégories de type HashMap. Il ne peut pas y avoir plusieurs fois
  * des catégories de même intitulé.
- * @author mateo.faussurier
- *
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class ListeCategorie implements Serializable{
 

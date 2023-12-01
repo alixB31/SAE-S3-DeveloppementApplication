@@ -11,8 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Liste des questions de type HashMap.
- * @author Nathan Girardin, Mateo Faussurier, Rayan Ibrahim, Alix Brugier
+ * Liste des questions de type HashMap. Il ne peut pas y avoir plusieurs fois
+ * des questions de même intitulé.
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class ListeQuestion implements Serializable{
 

@@ -17,11 +17,7 @@ import java.net.Socket;
 
 /** 
  * Gestion des échanges du client avec chiffrement des données.
- * 
- * @author Alix.Brugier 
- * @author Mateo.faussurier 
- * @author Nathan.Girardin 
- * @author Rayan.Ibrahime
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class Client {
 	
@@ -34,6 +30,7 @@ public class Client {
 	public static boolean envoie(String IP) {
 		boolean estEnvoye = false;
 		try {
+			
             // Connexion au serveur sur le port défini dans Serveur.NUM_PORT
             Socket socket = new Socket();
             

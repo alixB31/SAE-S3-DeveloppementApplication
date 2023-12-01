@@ -20,11 +20,7 @@ import vue.Main;
  * Gestion des échanges du serveur avec chiffrement des données.
  * Cette classe implémente un serveur permettant la réception de fichiers
  * chiffrés par chiffrement de type Vigenère et Diffie-Hellman.
- * 
- * @author Alix.Brugier
- * @author Mateo.faussurier
- * @author Nathan.Girardin
- * @author Rayan.Ibrahime
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class Serveur {
     /** Port par défaut pour la communication avec le client. */

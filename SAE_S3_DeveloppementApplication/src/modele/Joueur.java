@@ -1,8 +1,7 @@
-/**
- * Categorie.java									08 novembre 2023 
+/*
+ * Joueur.java									08 novembre 2023 
  * IUT de Rodez, no copyright ni "copyleft"
  */
-
 
 package modele;
 
@@ -10,11 +9,11 @@ import java.io.Serializable;
 
 /**
  * Classe regroupant l'ensemble des methodes servant a la gestion des joueurs 
- * @author A.Brugier
+ * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
 public class Joueur implements Serializable {
 	
-	/* intitule de la categorie */
+
 	private String pseudoJoueur;
 	
 	/**
@@ -32,6 +31,10 @@ public class Joueur implements Serializable {
 	    return pseudoJoueur;
 	}
 	
+	/**
+	 * Setter du pseudo du joueur
+	 * @return pseudoJoueur, le pseudo du joueur courant.
+	 */
 	public void setPseudoJoueur(String nouveauPseudo) {
 		pseudoJoueur = nouveauPseudo;
 	}
