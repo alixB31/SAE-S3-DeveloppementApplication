@@ -15,7 +15,11 @@ import java.net.Socket;
 
 /** 
  * Gestion des échanges du client avec chiffrement des données.
- * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
+ * 
+ * @author Alix.Brugier 
+ * @author Mateo.faussurier 
+ * @author Nathan.Girardin 
+ * @author Rayan.Ibrahime
  */
 public class Client {
 	

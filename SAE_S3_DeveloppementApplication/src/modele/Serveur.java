@@ -18,59 +18,74 @@ import vue.Main;
 
 /** 
  * Gestion des échanges du serveur avec chiffrement des données.
- * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
+ * Cette classe implémente un serveur permettant la réception de fichiers
+ * chiffrés par chiffrement de type Vigenère et Diffie-Hellman.
+ * 
+ * @author Alix.Brugier
+ * @author Mateo.faussurier
+ * @author Nathan.Girardin
+ * @author Rayan.Ibrahime
  */
 public class Serveur {
-    /** TODO commenter le rôle de la méthode
-     * @param args
+    /** Port par défaut pour la communication avec le client. */
+    public final static int NUM_PORT = 49152;
+    
+    /** Socket du serveur utilisé pour la communication. */
+    private static ServerSocket socketServeur;
+    
+    /** Socket du client connecté. */
+    private static Socket socketClient;
+    
+    /** Fichier reçu et à traiter. */
+    private static File fichierRecu;
+    
+    /** Flux de sortie pour écrire dans le fichier reçu. */
+    private static FileOutputStream sortieFichier;
+
+    /**
+     * Gère la connexion avec un client, la réception et le traitement d'un fichier chiffré.
      * 
+     * @return Vrai si la réception du fichier s'est déroulée avec succès, faux sinon.
      */
-	
-	public final static int NUM_PORT = 49152;
-	
-	private static ServerSocket socketServeur;
-	private static Socket socketClient;
-	private static File fichierRecu;
-	private static FileOutputStream sortieFichier;
-	
-	public static boolean gererConnexion() {
-	    boolean estRecu = false;
-	    boolean connexionAnnulee = false;
+    public static boolean gererConnexion() {
+        boolean estRecu = false;
+        boolean connexionAnnulee = false;
 
-	    try {
-	        socketServeur = new ServerSocket(NUM_PORT);
-	        socketServeur.setSoTimeout(60000);
+        try {
+            // Création du socket serveur avec un timeout de 60 secondes
+            socketServeur = new ServerSocket(NUM_PORT);
+            socketServeur.setSoTimeout(60000);
 
-	        try {
-	            // Attente d'une connexion cliente
-	            socketClient = socketServeur.accept();
+            try {
+                // Attente d'une connexion cliente
+                socketClient = socketServeur.accept();
 
-	            if (!connexionAnnulee) {
-	                traiterReceptionFichier();
-	                estRecu = true;
-	            }
+                if (!connexionAnnulee) {
+                    traiterReceptionFichier();
+                    estRecu = true;
+                }
 
-	        } catch (java.net.SocketTimeoutException e) {
-	            connexionAnnulee = true;
-	        }
+            } catch (java.net.SocketTimeoutException e) {
+                connexionAnnulee = true;
+            }
 
-	    } catch (IOException e) {
-	    	connexionAnnulee = true;
-	    } finally {
-	        // Fermez le ServerSocket ici après avoir traité la connexion ou après l'annulation
-	        try {
-	            if (socketServeur != null && !socketServeur.isClosed()) {
-	                socketServeur.close();
-	            }
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	    }
-	    return estRecu;
-	}
-	
-	/**
-     * Traite la réception du fichier.
+        } catch (IOException e) {
+            connexionAnnulee = true;
+        } finally {
+            // Fermeture du ServerSocket ici après avoir traité la connexion ou après l'annulation
+            try {
+                if (socketServeur != null && !socketServeur.isClosed()) {
+                    socketServeur.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return estRecu;
+    }
+
+    /**
+     * Traite la réception du fichier chiffré en utilisant les algorithmes de Diffie-Hellman et Vigenère.
      * 
      * @throws IOException En cas d'erreur d'entrée/sortie.
      */
@@ -85,46 +100,66 @@ public class Serveur {
         // Lecture et écriture du fichier
         byte[] tampon = new byte[1024];
         int octetsLus;
+        
+        // Échange de clés Diffie-Hellman
         String cleAEnvoyer = Chiffrement.chiffrementDiffieHellman();
         int clePubliqueC = cleServeur(socketClient, cleAEnvoyer);
         long cleGlobale = Chiffrement.dechiffrementDiffieHellman(clePubliqueC);
         String cleVigenere = Chiffrement.CreationCleVigenere(cleGlobale);  
+
         while ((octetsLus = entreeClient.read(tampon)) != -1) {
             sortieFichier.write(tampon, 0, octetsLus);
         }
+
+        // Déchiffrement Vigenère du fichier reçu
         Chiffrement.dechiffrementVigenere(cleVigenere);
+
         // Fermeture des flux et du socket
         entreeClient.close();
         sortieFichier.close();
+        
         // Fin de la connexion
         arreterConnexion();
+        
         // Importation du fichier qui a été reçu et déchiffré
         Main.stockage.importCSV("Dechiffrer.csv");
     }
-    
-	// Ajouter cette méthode à la classe Serveur pour arrêter la connexion
-	public static void arreterConnexion() {
-	    try {
-	        if (socketServeur != null && !socketServeur.isClosed()) {
-	            socketServeur.close();
 
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	}
-	
-	public static int cleServeur(Socket client, String cleAEnvoyer) {
-		int clePubliqueC = 0;
-		try {
-			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-	        PrintStream out = new PrintStream(client.getOutputStream());
-	        out.println(cleAEnvoyer);
-	        clePubliqueC = Integer.parseInt(in.readLine());
-		} catch (IOException e) {
+    /**
+     * Arrête la connexion avec le client en fermant le socket serveur.
+     */
+    public static void arreterConnexion() {
+        try {
+            if (socketServeur != null && !socketServeur.isClosed()) {
+                socketServeur.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Échange la clé Diffie-Hellman avec le client.
+     * 
+     * @param client Le socket du client.
+     * @param cleAEnvoyer La clé Diffie-Hellman à envoyer au client.
+     * @return La clé publique reçue du client.
+     */
+    public static int cleServeur(Socket client, String cleAEnvoyer) {
+        int clePubliqueC = 0;
+        try {
+            BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            PrintStream out = new PrintStream(client.getOutputStream());
+            
+            // Envoi de la clé Diffie-Hellman au client
+            out.println(cleAEnvoyer);
+            
+            // Réception de la clé publique du client
+            clePubliqueC = Integer.parseInt(in.readLine());
+        } catch (IOException e) {
             System.err.println("Communication avec le serveur impossible");
             clePubliqueC = 0;
         }
-		return clePubliqueC;
-	}
+        return clePubliqueC;
+    }
 }
