@@ -61,7 +61,6 @@ public class Client {
                 sortie.write(tampon, 0, octetsLus);
             }
 
-            System.out.println("Fichier envoyé : " + cheminFichier);
             estEnvoye = true;
 
             // Fermeture des flux et de la socket
