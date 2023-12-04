@@ -1,13 +1,15 @@
+/*
+ * Chiffrement.java                                      21 nov. 2023
+ * IUT Rodez, info2 2023-2024, pas de copyright ni "copyleft" 
+ */
 package modele;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -26,8 +28,6 @@ public class Chiffrement {
 	private final static int MON_NOMBRE_PREMIER = 50461 ;
 	/* Generateur, vous devez avoir le meme que l'autre personne */
 	private static final int GENERATEUR = 3;
-	/* Clé que vous pouvez modifier a votre bon vouloir */
-	private final static String CLE = "zfzfeDEZ";
 	/* Index du caractères acuel de la clé */
 	private static int indexCleActuel;	
 	/* Index du caractère chiffré dans la liste de caractères*/
@@ -112,6 +112,7 @@ public class Chiffrement {
 			// Si le caractère est un ';', le laisser inchangé
 			if (caractere == ';') {		
 				texteChiffrer.append('\u0012');
+				
 			} else if (caractere == '\u0013') {
 				texteChiffrer.append(caractere);
 			} else {
@@ -122,7 +123,7 @@ public class Chiffrement {
 				
 				// Index du caractere codé 
 				indexChiffre = (indexCaractere + indexCleActuel) % listeCaracteres.length;
-
+			
 				// Ajout du caractere correspondant a l'index a la string
 				texteChiffrer.append(listeCaracteres[indexChiffre]);
 				// Passage a l'index suivant
@@ -190,8 +191,8 @@ public class Chiffrement {
 				return i;
 			}
 		}
-		// Si le caractère n'est pas trouvé dans la liste, retourner une valeur par défaut
-		return -1;
+		// Si le caractère n'est pas trouvé dans la liste, retourner 1, le caractére sera donc un !
+		return 1;
 	}
 
 	/** 

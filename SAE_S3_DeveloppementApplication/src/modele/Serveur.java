@@ -170,14 +170,12 @@ public class Serveur {
         File fichierChiffrer = new File(cheminFichierChiffrer);
         if (fichierChiffrer.exists()) {
         	fichierChiffrer.delete();
-            System.out.println("Fichier temporaire supprimé : " + cheminFichierChiffrer);
         }
         
         String cheminFichierDechiffrer = "Dechiffrer.csv";
         File fichierDechiffrer = new File(cheminFichierDechiffrer);
         if (fichierDechiffrer.exists()) {
         	fichierDechiffrer.delete();
-            System.out.println("Fichier aEnvoyer.csv supprimé : " + cheminFichierDechiffrer);
         }
     }
 }
