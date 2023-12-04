@@ -21,23 +21,23 @@ Rayan Ibrahime    ==> Bratoun
 
 **Sprint 0 :**
 
-Product Owner : Nathan Girardin
-Scrum Master : Mateo Faussurier
-Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahime, Alix Brugier
+Product Owner : Nathan Girardin   
+Scrum Master : Mateo Faussurier   
+Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahime, Alix Brugier   
 
 
 **Sprint 1 :**
 
-Product Owner : IBRAHIME Rayan
-Scrum Master : BRUGIER Alix
-Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahime, Alix Brugier
+Product Owner : IBRAHIME Rayan  
+Scrum Master : BRUGIER Alix   
+Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahime, Alix Brugier   
 
 
 **Sprint 2 :**
 
-Product Owner : FAUSSURIER Mateo 
-Scrum Master : IBRAHIME Rayan
-Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahime, Alix Brugier
+Product Owner : FAUSSURIER Mateo    
+Scrum Master : IBRAHIME Rayan   
+Equipe de developpement : Mateo Faussurier, Nathan Girardin, Rayan Ibrahime, Alix Brugier   
 
 
 ## Liens : 
