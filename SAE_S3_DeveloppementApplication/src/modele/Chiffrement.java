@@ -54,11 +54,6 @@ public class Chiffrement {
 			'y', 'ÿ', 'z', '{', '|', '}', '~'
 	};
 
-
-	public static void main(String[] args) {
-		System.out.println(calculClePartage(125,47,35));
-		
-	}
 	/** 
 	 * Chiffre un fichier csv entrant a l'aide d'une cle de chiffrement
 	 * @param cle utilisé pour chiffrer
@@ -218,7 +213,7 @@ public class Chiffrement {
 	 */
 	public static long dechiffrementDiffieHellman(int clePubliqueAutre) {
 		// Recupere la cle publique de l'autre personne
-		long cleGlobale = calculClePartage(clePubliqueAutre,maClePrive,MON_NOMBRE_PREMIER);
+		long cleGlobale = calculCleGlobale(clePubliqueAutre,maClePrive,MON_NOMBRE_PREMIER);
 		return cleGlobale;
 
 	}
@@ -229,10 +224,9 @@ public class Chiffrement {
 	 * @param nombrePremier
 	 * @param clePrive
 	 */
-	public static long calculClePartage(long clePubliqueAutre,long clePrive, long nombrePremier) {
-		System.out.println("Ma cle privé " +clePrive);
-		long clePartage = exponentiationModulaire(clePubliqueAutre,clePrive,nombrePremier);
-		return clePartage;
+	public static long calculCleGlobale(long clePubliqueAutre,long clePrive, long nombrePremier) {
+		long cleGlobale = exponentiationModulaire(clePubliqueAutre,clePrive,nombrePremier);
+		return cleGlobale;
 
 	}
 

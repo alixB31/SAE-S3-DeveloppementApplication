@@ -12,15 +12,15 @@ class TestChiffrement {
 		
 	@Test
 	void testCalculClePublique() {
-		assertEquals(modele.Chiffrement.calculClePartage(19,4,5),1);
-		assertEquals(modele.Chiffrement.calculClePartage(125,47,35),20);
+		assertEquals(modele.Chiffrement.calculCleGlobale(19,4,5),1);
+		assertEquals(modele.Chiffrement.calculCleGlobale(125,47,35),20);
 
 	}
 	
 	@Test
-	void testCalculClePartage() {
-		assertEquals(modele.Chiffrement.calculClePartage(19,4,5),1);
-		assertNotEquals(modele.Chiffrement.calculClePartage(89,91,33),83);
+	void testCalculCleGlobale() {
+		assertEquals(modele.Chiffrement.calculCleGlobale(19,4,5),1);
+		assertNotEquals(modele.Chiffrement.calculCleGlobale(89,91,33),83);
 
 	}
 	
