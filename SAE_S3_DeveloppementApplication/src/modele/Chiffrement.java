@@ -53,7 +53,7 @@ public class Chiffrement {
 			'ö', 'ø', 'p', 'q', 'r', 's', 'š', 't', 'u', 'ù', 'ú', 'û', 'ü', 'v', 'w', 'x',
 			'y', 'ÿ', 'z', '{', '|', '}', '~'
 	};
-
+	
 	/** 
 	 * Chiffre un fichier csv entrant a l'aide d'une cle de chiffrement
 	 * @param cle utilisé pour chiffrer
@@ -100,7 +100,7 @@ public class Chiffrement {
 	 * @param cle a utiliser pour chiffrer
 	 * @return String chaine de caractères chiffrées
 	 */
-	private static String codeVigenere(String texte, String cle) {
+	public static String codeVigenere(String texte, String cle) {
 
 		// Creer une string ou l'on rajouteras tout les lettres chiffrées
 		StringBuilder texteChiffrer = new StringBuilder();
@@ -140,7 +140,7 @@ public class Chiffrement {
 	 * @param cle a utiliser pour déchiffrer
 	 * @return String chaine de caractères déchiffrées
 	 */
-	private static String decodeVigenere(String messageChiffre, String cle) {
+	public static String decodeVigenere(String messageChiffre, String cle) {
 
 		// Creer une string ou l'on rajouteras tout les lettres déchiffrées
 		StringBuilder messageDechiffre = new StringBuilder();
@@ -333,25 +333,6 @@ public class Chiffrement {
 	}
 
 
-	/** 
-	 * Lis un fichier cle et ajoute un à un les caractères a une string
-	 * @param fichier a lire
-	 * @return String chaine de tout les caractères du fichier 
-	 */
-	private static String lireCle(String filePath) throws IOException {
-		// Creer une string ou l'on rajouteras tout les elements du csv
-		StringBuilder ensembleTexte = new StringBuilder();
-		// Lis le contenu du fichier ligne par ligne
-		try (BufferedReader texte = new BufferedReader(new FileReader(filePath))) {
-			// Ligne du fichier
-			String ligne;
-			// Ajoute les lettre ligne par ligne a la string 
-			while ((ligne = texte.readLine()) != null) {
-				ensembleTexte.append(ligne);
-			}
-		}
-		return ensembleTexte.toString();
-	}
 	/**
 	 * Écrit le contenu spécifié dans un fichier donné.
 	 * @param filePath Le chemin du fichier dans lequel écrire le contenu.
