@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * Classe de tests pour les fonctionnalités d'importation, d'exportation et de communication.
  */
-class TestImportation {
+class TestReseau {
 
     /**
      * Teste l'importation réussie d'un fichier CSV.
