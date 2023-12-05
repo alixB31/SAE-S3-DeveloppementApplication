@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E3B4E;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.NoticeController">
+   <children>
+      <Button fx:id="btnRetour" layoutX="60.0" layoutY="620.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #C32A4E; -fx-background-radius: 10;" text="Retour" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="25.0" />
+         </font>
+      </Button>
+      <Text fill="#8ba1b5" layoutX="158.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Le but de ce quiz est de vous permettre de réviser vos connaissances dans différents thèmes, dont Java." textAlignment="CENTER" wrappingWidth="781.58984375">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#8ba1b5" layoutX="370.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOTICE">
+         <font>
+            <Font name="System Bold Italic" size="88.0" />
+         </font>
+      </Text>
+      <Text fill="#8ba1b5" layoutX="149.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pour lancer une partie, il suffit de cliquer sur le bouton &quot;Lancer une partie&quot;. Ensuite, on vous demandera de paramétrer votre partie. Vous pourrez choisir le nombre de questions auxquelles vous souhaitez répondre, soit 5, 10 ou 20 questions. Vous pouvez également choisir un niveau de difficulté. Concernant la difficulté, vous n'avez aucune obligation de choisir un niveau particulier. L'application considérera votre choix comme &quot;indifférent&quot;, et vous aurez des questions de difficultés variables allant du niveau 1 pour les plus simples au niveau 3 pour les plus difficiles. De même pour la catégorie, vous pourrez choisir une catégorie de questions. Dans ce cas, le quiz proposera des questions concernant uniquement cette catégorie. Dans le cas de &quot;Toutes les catégories&quot;, les questions seront tirées au hasard parmi toutes les questions." textAlignment="CENTER" wrappingWidth="781.58984375">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#8ba1b5" layoutX="158.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous avez également accès aux paramètres de votre quiz. Lorsque vous cliquez sur le bouton &quot;Paramètres&quot;, vous accédez à la gestion des catégories. Depuis cette interface, vous pouvez modifier, supprimer ou ajouter une catégorie. Si vous souhaitez accéder aux paramètres d'une question, vous devez sélectionner la catégorie qui concerne la question. Ensuite, vous accéderez à la gestion des questions de la catégorie sélectionnée. Depuis cette interface, vous pouvez sélectionner, modifier, supprimer ou ajouter une question." textAlignment="CENTER" wrappingWidth="781.58984375">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#8ba1b5" layoutX="149.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous pouvez importer une banque de questions grâce au bouton &quot;Importer&quot;. Sur la page d'importation, vous pouvez soit écrire le chemin du fichier directement, puis valider, ou accéder à votre explorateur de fichiers pour sélectionner un fichier directement." textAlignment="CENTER" wrappingWidth="781.58984375">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#8ba1b5" layoutX="158.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enfin, pour finir, vous pouvez exporter vos questions. Après avoir cliqué sur le bouton &quot;Exporter&quot;, vous pouvez soit recevoir ou envoyer un fichier. Dans le cas où vous voulez recevoir un fichier, vous aurez la possibilité de voir votre adresse IP pour la communiquer à votre camarade qui souhaite vous envoyer des questions. Ensuite, il faudra appuyer sur le bouton &quot;Connexion&quot; pour lancer l'échange. Concernant l'envoi, tout d'abord, vous devrez sélectionner les questions que vous souhaitez envoyer. Vous pouvez filtrer les questions par catégorie. Quand vous avez choisi vos questions, vous devrez renseigner l'adresse IP de votre ami pour que l'échange se réalise. Quand vous cliquez sur &quot;Valider&quot;, les questions sont cryptées et envoyées. Votre camarade recevra un fichier CSV décrypté." textAlignment="CENTER" wrappingWidth="781.58984375">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

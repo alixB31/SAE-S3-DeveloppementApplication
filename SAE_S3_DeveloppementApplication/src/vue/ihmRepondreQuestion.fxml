@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E3B4E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.RepondreQuestionController">
+   <children>
+      <Text fill="#8BA1B5" layoutX="434.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
+         <font>
+            <Font name="System Bold Italic" size="88.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnValider" layoutX="870.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnValiderAction" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #61C266; -fx-background-radius: 10px;" text="Valider" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="25.0" />
+         </font>
+      </Button>
+      <Text fx:id="categorieQuestion" fill="#8ba1b5" layoutX="59.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie" wrappingWidth="367.32810974121094">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#8ba1b5" layoutX="59.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulté : ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="difficultéQuestion" fill="#8ba1b5" layoutX="130.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?" wrappingWidth="289.4754180908203">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="question" fill="#8ba1b5" layoutX="178.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="En java, combien y a t'il de type de boucle ?" wrappingWidth="723.4099426269531">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="pageCourante" fill="#8ba1b5" layoutX="980.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#8ba1b5" layoutX="1002.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="nbPageMax" fill="#8ba1b5" layoutX="1016.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <VBox fx:id="reponsesBox" layoutX="178.0" layoutY="333.0" prefHeight="290.0" prefWidth="642.0" />
+   </children>
+</AnchorPane>
