@@ -238,7 +238,7 @@ public class Main extends Application {
 	 * Lancer une partie        
 	 */
 	public static void repondreQuestion(Quiz quiz , int indice) {
-		RepondreQuestionControleur controller = chargeurFXMLReponseQuestion.getController();
+		RepondreQuestionController controller = chargeurFXMLReponseQuestion.getController();
 		// Initialisation du quiz et la position de la question à présenter
 		controller.setQuiz(quiz);
 		controller.setIndiceQuestion(indice);

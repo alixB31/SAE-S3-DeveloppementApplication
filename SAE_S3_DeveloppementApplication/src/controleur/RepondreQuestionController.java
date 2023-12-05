@@ -21,7 +21,7 @@ import vue.Main;
  * Controleur de la vue RepondreQuestion.
  * @author Alix.Brugier Mateo.faussurier Nathan.Girardin Rayan.Ibrahime
  */
-public class RepondreQuestionControleur {
+public class RepondreQuestionController {
 
     @FXML
     private Text question;
