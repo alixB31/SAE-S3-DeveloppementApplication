@@ -392,7 +392,7 @@ public class ParametreCategorieController {
 			// Bouton de validation
 			Button boutonValider = new Button("Valider");
 			Button boutonAnnuler = new Button("Annuler");
-			boutonValider.setDisable(true);
+			
 			
 			// Cas ou on clique sur valider
 			boutonValider.setOnAction(e -> {

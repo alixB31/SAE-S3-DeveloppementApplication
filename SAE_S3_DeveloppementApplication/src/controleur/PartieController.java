@@ -116,7 +116,6 @@ public class PartieController {
     @FXML
     void RetourMenu(ActionEvent event) {
     	Main.stockage.setPseudoJoueur(pseudoJoueur.getText());
-    	System.out.print("Pseudo : " + Main.stockage.getPseudoJoueur());
         Main.retourMenuPrincipal();
     }
 
